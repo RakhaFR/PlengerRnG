@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>PLENGER RnG — Alpha</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <video class="bg-video" autoplay loop muted>
+    <source src="bgVid.mp4" type="video/mp4" />
+  </video>
+
+  <audio id="rollSfx" src="spinning-reel.mp3" preload="auto"></audio>
+  <audio id="resultSfx" src="cengkrink.mp3" preload="auto"></audio>
+  <audio id="coinSfx" src="coin.mp3" preload="auto"></audio>
+  <audio id="errorSfx" src="error.mp3" preload="auto"></audio>
+
+  <div id="coinPopup" class="popup hidden">+0 Coins</div>
+
+
+  <section class="lobby" id="lobby">
+    <div class="panel">
+      <h1>PLENGER RnG</h1>
+      <div style="margin-top:16px">
+        <button onclick="startGame()"
+          style="background:rgba(10,10,10,.65); border:1px solid var(--glass-brd); border-radius:14px; color: white; padding: 20px 80px 20px 80px; cursor: pointer;">Mulai</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="game hidden" id="game">
+    <div class="coin-bar">
+      🪙 <span id="coinAmount">0</span> Coins
+    </div>
+    <div class="rng-wrap" id="rngWrap">
+      <div class="rng-frame" id="rngFrame"><img id="rngImage" src="" alt="" /></div>
+      <div class="rng-text" id="rngText"></div>
+      <div id="rngBadge" class="badge" style="background:var(--g-common)">Common</div>
+      <div id="rngNumber" class="number-text"></div>
+    </div>
+
+
+    <div class="hud">
+      <div class="pill pill-left" onclick="toggleAutoRoll()">Gulir Otomatis: MATI <span class="sub">Bayar 10
+          Coins</span></div>
+      <div class="pill pill-center" onclick="rollRNG()">
+        <div id="luckBadge" class="luck-badge hidden">2x LUCK</div>
+        <div class="title">Gulir</div>
+        <div class="counter"><span id="rollCounter">0</span>/10</div>
+      </div>
+      <div class="pill pill-right" onclick="openInventory()">Koleksi</div>
+    </div>
+  </section>
+
+  <!-- INVENTORY POPUP (LocalStorage) -->
+  <div class="overlay" id="inventoryOverlay" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="invTitle">
+      <div class="modal-header">
+        <div class="modal-title" id="invTitle">⭐ Koleksi Plenger</div>
+        <div class="close-x" id="closeInv" title="Tutup">✕</div>
+      </div>
+      <div class="toolbar">
+        <div class="search"><input id="searchInput" placeholder="Ketik untuk mencari" /></div>
+        <div class="filter" id="chips">
+          <div class="chip" data-r="all">Semua</div>
+          <div class="chip" data-r="common">Common</div>
+          <div class="chip" data-r="uncommon">Uncommon</div>
+          <div class="chip" data-r="rare">Rare</div>
+          <div class="chip" data-r="epic">Epic</div>
+          <div class="chip" data-r="legendary">Legend</div>
+          <div class="chip" data-r="mythical">Mythical</div>
+        </div>
+
+        <div class="sell-buttons">
+          <button id="sellBtn">Menjual</button>
+          <button id="sellAllBtn">Menjual Semua</button>
+          <button id="lockedBtn" class="chip">item yang dikunci</button>
+        </div>
+
+      </div>
+      <div id="gridWrap" class="grid"></div>
+    </div>
+  </div>
+
+  <footer>© 2025 by <strong>Rakha FR</strong> — PLENGER RnG 🎲
+</footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
