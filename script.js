@@ -224,7 +224,7 @@ luck: {
         image: 'Rafi chad.jpg',
         text: 'RAFI CHAD',
         rarity: 'legend',
-        numberRange: [1, 60999]
+        numberRange: [1, 200999]
       },
       {
         image: 'rakha mmm.jpg',
@@ -236,7 +236,7 @@ luck: {
         image: 'rasya hooo.jpg',
         text: 'rasya hooo...',
         rarity: 'legend',
-        numberRange: [1, 90999]
+        numberRange: [1, 120999]
       },
       {
         image: 'Rasya lier.jpg',
@@ -1741,3 +1741,4 @@ function createPotionStatus() {
   document.body.appendChild(el);
   return el;
 }
+
