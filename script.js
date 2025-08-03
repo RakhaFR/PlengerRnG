@@ -36,7 +36,7 @@ luck: {
     const ITEMS = [
       {
         image: 'agra sigma.jpg',
-        text: 'Agra Sigma',
+        text: 'agra Sigma',
         rarity: 'epic',
         numberRange: [1, 1200]
       },
@@ -1741,4 +1741,5 @@ function createPotionStatus() {
   document.body.appendChild(el);
   return el;
 }
+
 
