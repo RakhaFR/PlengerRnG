@@ -209,7 +209,7 @@ luck: {
         numberRange: [1, 4289]
       },
       {
-        image: 'menghirup ke surga',
+        image: 'menghirup ke surga.jpg',
         text: 'menghirup ke surga',
         rarity: 'epic',
         numberRange: [1, 6790]
@@ -1741,6 +1741,7 @@ function createPotionStatus() {
   document.body.appendChild(el);
   return el;
 }
+
 
 
 
