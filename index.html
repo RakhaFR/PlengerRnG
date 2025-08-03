@@ -12,13 +12,31 @@
   <video class="bg-video" autoplay loop muted>
     <source src="bgVid.mp4" type="video/mp4" />
   </video>
+  <div id="rarityAnimation" class="rarity-anim hidden">
+    <div class="rarity-bg"></div>
+    <img src="star.png" alt="Star" class="rarity-star" />
+  </div>
+
 
   <audio id="rollSfx" src="spinning-reel.mp3" preload="auto"></audio>
   <audio id="resultSfx" src="cengkrink.mp3" preload="auto"></audio>
   <audio id="coinSfx" src="coin.mp3" preload="auto"></audio>
   <audio id="errorSfx" src="error.mp3" preload="auto"></audio>
+  <audio id="gachaMusic" src="gacha-music.mp3" preload="auto"></audio>
 
   <div id="coinPopup" class="popup hidden">+0 Coins</div>
+
+  <!-- Sidebar Atas Kiri -->
+<div class="sidebar-top-left" id="topSidebar" style="display: none;">
+  <button class="side-btn" onclick="openStore()">
+    <img src="luck-potion.png" alt="Shop" class="side-icon">
+    <span class="side-label">Store</span>
+  </button>
+  <button class="side-btn" onclick="openPotionInventory()">
+    <img src="fast-roll.png" alt="Inventory" class="side-icon">
+    <span class="side-label">Inventory</span>
+  </button>
+</div>
 
 
   <section class="lobby" id="lobby">
@@ -44,9 +62,8 @@
 
 
     <div class="hud">
-      <div class="pill pill-left" onclick="toggleAutoRoll()">Gulir Otomatis: MATI <span class="sub">Bayar 10
-          Coins</span></div>
-      <div class="pill pill-center" onclick="rollRNG()">
+      <div class="pill pill-left" onclick="toggleAutoRoll()">Gulir Otomatis: MATI <span class="sub">Bayar 10 Coins</span></div>
+      <div class="pill pill-center" id="rollBtn">
         <div id="luckBadge" class="luck-badge hidden">2x LUCK</div>
         <div class="title">Gulir</div>
         <div class="counter"><span id="rollCounter">0</span>/10</div>
@@ -70,7 +87,7 @@
           <div class="chip" data-r="uncommon">Uncommon</div>
           <div class="chip" data-r="rare">Rare</div>
           <div class="chip" data-r="epic">Epic</div>
-          <div class="chip" data-r="legendary">Legend</div>
+          <div class="chip" data-r="legend">Legend</div>
           <div class="chip" data-r="mythical">Mythical</div>
         </div>
 
@@ -79,14 +96,68 @@
           <button id="sellAllBtn">Menjual Semua</button>
           <button id="lockedBtn" class="chip">item yang dikunci</button>
         </div>
-
+        <div id="errorPopup" class="error-popup hidden">Pesan kesalahan</div>
       </div>
       <div id="gridWrap" class="grid"></div>
     </div>
   </div>
+  <div class="overlay" id="storeOverlay">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">🛒 Store Potion</div>
+      <div class="close-x" onclick="closeStore()">✕</div>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <div class="frame" style="background:var(--g-uncommon)">
+          <img src="luck-potion.png" alt="Luck Potion">
+        </div>
+        <div class="name">2x Luck Potion</div>
+        <div class="rarity-badge">Selama 5 menit</div>
+        <div class="actions">
+          <div class="pill" onclick="buyPotion('luck')">💰 5000 • BUY</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="frame" style="background:var(--g-rare)">
+          <img src="fast-roll.png" alt="Fast Roll Potion">
+        </div>
+        <div class="name">2x Fast Roll Potion</div>
+        <div class="rarity-badge">Selama 5 menit</div>
+        <div class="actions">
+          <div class="pill" onclick="buyPotion('fast')">💰 4000 • BUY</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="potionInventoryOverlay">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">🧪 Potion Inventory</div>
+      <div class="close-x" onclick="closePotionInventory()">✕</div>
+    </div>
+    <div class="grid" id="potionGrid">
+      <!-- akan dirender lewat JS -->
+    </div>
+  </div>
+</div>
+
+<div id="activeEffectsStatus" style="
+  position: fixed;
+  top: 50px;
+  right: 12px;
+  z-index: 999;
+  font-size: 10px;
+  font-family: 'Press Start 2P', monospace;
+  text-align: right;
+  color: white;
+  line-height: 1.4;
+"></div>
 
   <footer>© 2025 by <strong>Rakha FR</strong> — PLENGER RnG 🎲
-</footer>
+  </footer>
 
   <script src="script.js"></script>
 </body>
