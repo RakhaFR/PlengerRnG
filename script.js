@@ -191,7 +191,7 @@ luck: {
         numberRange: [1, 123]
       },
       {
-        image: 'Hilmi.jpg',
+        image: 'hilmi.jpg',
         text: 'HILMI...',
         rarity: 'uncommon',
         numberRange: [1, 461]
@@ -221,7 +221,7 @@ luck: {
         numberRange: [1, 569]
       },
       {
-        image: 'Rafi chad.jpg',
+        image: 'rafi chad.jpg',
         text: 'RAFI CHAD',
         rarity: 'legend',
         numberRange: [1, 200999]
@@ -239,13 +239,13 @@ luck: {
         numberRange: [1, 120999]
       },
       {
-        image: 'Rasya lier.jpg',
+        image: 'rasya lier.jpg',
         text: 'RASYA LAGI LIER',
         rarity: 'rare',
         numberRange: [1, 679]
       },
       {
-        image: 'Restu side_eye.jpg',
+        image: 'restu side_eye.jpg',
         text: 'restu side eye..',
         rarity: 'common',
         numberRange: [1, 35]
@@ -263,7 +263,7 @@ luck: {
         numberRange: [1, 217]
       },
       {
-        image: 'Virqi apa itu bang.jpg',
+        image: 'virqi apa itu bang.jpg',
         text: 'apa itu bang?',
         rarity: 'common',
         numberRange: [1, 43]
@@ -1741,5 +1741,6 @@ function createPotionStatus() {
   document.body.appendChild(el);
   return el;
 }
+
 
 
