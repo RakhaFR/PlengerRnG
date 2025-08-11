@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>PLENGER RnG — BETA</title>
+  <title>PLENGER RnG — FULLBETA</title>
   <link rel="icon" type="image/png" href="icon.png">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -37,6 +37,10 @@
     <img src="fast-roll.png" alt="Inventory" class="side-icon">
     <span class="side-label">Inventory</span>
   </button>
+  <button class="side-btn" onclick="openUpdateLog()">
+  <img src="update.png" alt="Update" class="side-icon">
+  <span class="side-label">Update Log</span>
+</button>
 </div>
 
 
@@ -54,12 +58,15 @@
     <div class="coin-bar">
       🪙 <span id="coinAmount">0</span> Coins
     </div>
-    <div class="rng-wrap" id="rngWrap">
-      <div class="rng-frame" id="rngFrame"><img id="rngImage" src="" alt="" /></div>
-      <div class="rng-text" id="rngText"></div>
-      <div id="rngBadge" class="badge" style="background:var(--g-common)">Common</div>
-      <div id="rngNumber" class="number-text"></div>
-    </div>
+<div class="rng-wrap" id="rngWrap">
+  <div id="rollingText" class="rolling-text" style="display:none;"></div>
+  <div class="rng-frame" id="rngFrame">
+    <img id="rngImage" src="" alt="" />
+  </div>
+  <div class="rng-text" id="rngText"></div>
+  <div id="rngBadge" class="badge" style="background:var(--g-common)">Common</div>
+  <div id="rngNumber" class="number-text"></div>
+</div>
 
 
     <div class="hud">
@@ -109,29 +116,28 @@
       <div class="close-x" onclick="closeStore()">✕</div>
     </div>
     <div class="grid">
-      <div class="card">
-        <div class="frame" style="background:var(--g-uncommon)">
-          <img src="luck-potion.png" alt="Luck Potion">
-        </div>
-        <div class="name">2x Luck Potion</div>
-        <div class="rarity-badge">Selama 5 menit</div>
-        <div class="actions">
-          <div class="pill" onclick="buyPotion('luck')">💰 5000 • BUY</div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="frame" style="background:var(--g-rare)">
-          <img src="fast-roll.png" alt="Fast Roll Potion">
-        </div>
-        <div class="name">2x Fast Roll Potion</div>
-        <div class="rarity-badge">Selama 5 menit</div>
-        <div class="actions">
-          <div class="pill" onclick="buyPotion('fast')">💰 4000 • BUY</div>
-        </div>
-      </div>
+      <!-- lewat js -->
     </div>
   </div>
 </div>
+
+<!-- Setelah overlay store dan inventory -->
+<div class="overlay" id="updateLogOverlay">
+  <div class="modal">
+    <!-- header -->
+    <div class="modal-header">
+      <div class="modal-title">📢 Update Announcement</div>
+      <div class="close-x" onclick="closeUpdateLog()">✕</div>
+    </div>
+
+    <!-- isi update -->
+    <div style="display: flex; gap: 12px; padding: 14px 18px; flex: 1; overflow: hidden;">
+      <div id="updateContent" style="flex: 2; overflow-y: auto;"></div>
+      <div id="updateList" style="flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 8px;"></div>
+    </div>
+  </div>
+</div>
+
 
 <div class="overlay" id="potionInventoryOverlay">
   <div class="modal">
@@ -145,17 +151,8 @@
   </div>
 </div>
 
-<div id="activeEffectsStatus" style="
-  position: fixed;
-  top: 50px;
-  right: 12px;
-  z-index: 999;
-  font-size: 10px;
-  font-family: 'Press Start 2P', monospace;
-  text-align: right;
-  color: white;
-  line-height: 1.4;
-"></div>
+
+<div id="activeEffectsStatus"></div>
 
   <footer>© 2025 by <strong>Rakha FR</strong> — PLENGER RnG 🎲
   </footer>
@@ -164,5 +161,4 @@
 </body>
 
 </html>
-
 
