@@ -13,22 +13,38 @@
     ];
 
     const POTIONS = {
-luck: {
-  name: '2x Luck Potion',
-  icon: 'luck-potion.png',
-  effect: 'luck',
-  duration: 5 * 60 * 1000,
-  price: 5000,
-  color: 'var(--g-uncommon)' // tambahkan ini
-},
-  fast: {
-    name: '2x Fast Roll Potion',
-    icon: 'fast-roll.png',
-    effect: 'fast',
-    duration: 5 * 60 * 1000,
-    price: 4000,
-    color: 'var(--g-rare)'
-  }
+  luck: [
+    { mult: 2, name: '2x Luck Potion',  icon: 'luck-potion.png', effect: 'luck', duration: 5*60*1000, price: 5000,  color: 'linear-gradient(135deg, #93da96, #3a3a3a)' },
+    { mult: 3, name: '3x Luck Potion',  icon: 'x3-luck.png', effect: 'luck', duration: 5*60*1000, price: 7000,  color: 'linear-gradient(135deg, #55a600, #fdd501)' },
+    { mult: 5, name: '5x Luck Potion',  icon: 'x5-luck.png', effect: 'luck', duration: 5*60*1000, price: 18000, color: 'linear-gradient(135deg, #72de00, #ffd500)' },
+    { mult: 7, name: '7x Luck Potion',  icon: 'x7-luck.png', effect: 'luck', duration: 5*60*1000, price: 36000, color: 'linear-gradient(135deg, #ffffff, #5FD3CB)' },
+    { mult:10, name: '10x Luck Potion', icon: 'x10-luck.png', effect: 'luck', duration: 5*60*1000, price: 72000, color: 'linear-gradient(135deg, #98fcfc, #006bff)' }
+  ],
+  fast: [
+    { mult: 2, name: '2x Fast Roll Potion',  icon: 'fast-roll.png', effect: 'fast', duration: 5*60*1000, price: 4000,  color: 'linear-gradient(135deg, #91D9D4, #3a3a3a)' },
+    { mult: 3, name: '3x Fast Roll Potion',  icon: 'x3-roll.png', effect: 'fast', duration: 5*60*1000, price: 6000,  color: 'linear-gradient(135deg, #93da96, #5f936c)' },
+    { mult: 5, name: '5x Fast Roll Potion',  icon: 'x5-roll.png', effect: 'fast', duration: 5*60*1000, price: 18000, color: 'linear-gradient(135deg, #56d44c, #285e2d)' },
+    { mult: 7, name: '7x Fast Roll Potion',  icon: 'x7-roll.png', effect: 'fast', duration: 5*60*1000, price: 27000, color: 'linear-gradient(135deg, #007583, #002e5f)' },
+    { mult:10, name: '10x Fast Roll Potion', icon: 'x10-roll.png', effect: 'fast', duration: 5*60*1000, price: 50000, color: 'linear-gradient(135deg, #0192af, #01446f)' }
+  ]
+};
+
+const LUCK_EFFECTS = {
+  2: { common: 0.8,  uncommon: 0.8,  rare: 2,   epic: 2,   legend: 2,   mythical: 2 },
+  3: { common: 0.75, uncommon: 0.75, rare: 3,   epic: 3,   legend: 3,   mythical: 3 },
+  5: { common: 0.6,  uncommon: 0.6,  rare: 0.8*5, epic: 5, legend: 5,   mythical: 5 },
+  7: { common: 0.3,  uncommon: 0.3,  rare: 0.65*7, epic: 0.95*7, legend: 7, mythical: 7 },
+  10:{ common: 0.1,  uncommon: 0.1,  rare: 0.55*10, epic: 0.85*10, legend: 10, mythical: 10 }
+};
+
+
+const FAST_ROLL_EFFECTS = {
+  1:  { shuffleSpeed: 150, rollDuration: 7000 },
+  2:  { shuffleSpeed: 115, rollDuration: 5000 },
+  3:  { shuffleSpeed: 90,  rollDuration: 3500 },
+  5:  { shuffleSpeed: 60,  rollDuration: 2500 },
+  7:  { shuffleSpeed: 45,  rollDuration: 1800 },
+  10: { shuffleSpeed: 30,  rollDuration: 1200 }
 };
 
 
@@ -38,7 +54,7 @@ luck: {
         image: 'agra sigma.jpg',
         text: 'agra Sigma',
         rarity: 'epic',
-        numberRange: [1, 1200]
+        numberRange: [1, 12000]
       },
       {
         image: 'ac.jpg',
@@ -62,7 +78,7 @@ luck: {
         image: 'deki nyengir.jpg',
         text: 'Deki Nyengir',
         rarity: 'epic',
-        numberRange: [1, 2500]
+        numberRange: [1, 25000]
       },
       {
         image: 'marvin wink.jpg',
@@ -380,13 +396,13 @@ luck: {
         image: 'zaky-sigma.jpg',
         text: 'zaki sigma',
         rarity: 'epic',
-        numberRange: [1, 4560]
+        numberRange: [1, 11260]
       },
             {
         image: 'agra-rock.jpg',
         text: 'agra rock lenger',
         rarity: 'epic',
-        numberRange: [1, 12330]
+        numberRange: [1, 32330]
       },
             {
         image: 'alif-dance.jpg',
@@ -394,9 +410,73 @@ luck: {
         rarity: 'rare',
         numberRange: [1, 2451]
       },
+            {
+        image: 'again-migra.jpg',
+        text: 'lagi-lagi mereka nih',
+        rarity: 'legend',
+        numberRange: [1, 241100]
+      },
+                  {
+        image: 'deki-melet.jpg',
+        text: 'deki melet',
+        rarity: 'rare',
+        numberRange: [1, 1450]
+      },
+                  {
+        image: 'marvin-bengong.jpg',
+        text: 'marvin bengong',
+        rarity: 'epic',
+        numberRange: [1, 10299]
+      },
+                  {
+        image: 'surya-sad.jpg',
+        text: 'surya 😭',
+        rarity: 'epic',
+        numberRange: [1, 30199]
+      },
+                  {
+        image: 'axel.jpg',
+        text: 'Hitam Putih',
+        rarity: 'mythical',
+        numberRange: [1, 1450000]
+      },
+                  {
+        image: 'naufal-side.jpg',
+        text: 'Naufal side eye',
+        rarity: 'epic',
+        numberRange: [1, 58400]
+      },
+                  {
+        image: 'yan-.jpg',
+        text: 'fathian..',
+        rarity: 'common',
+        numberRange: [1, 29]
+      },
+                  {
+        image: 'benq.jpg',
+        text: 'ben!',
+        rarity: 'rare',
+        numberRange: [1, 6151]
+      },
+                  {
+        image: 'gak-kenal.jpg',
+        text: 'hehehe 😭',
+        rarity: 'rare',
+        numberRange: [1, 1892]
+      },
+                  {
+        image: 'hilmi-takut.jpg',
+        text: 'hilmi takut. mama..',
+        rarity: 'epic',
+        numberRange: [1, 50292]
+      },
+                  {
+        image: 'riza.jpg',
+        text: 'riza.',
+        rarity: 'uncommon',
+        numberRange: [1, 146]
+      },
     ];
-
-
 
     // LocalStorage keys
     const LS_KEY_INVENTORY = 'inventory';
@@ -413,6 +493,14 @@ luck: {
     let sinceRare = 0;     // pity counter Rare+
     let sinceEpic = 0;     // pity counter Epic+
     let luckSource = 'none'; // 'cengkrink' | 'potion' | 'none'
+    let fastRollActive = false;
+    // Pastikan variabel global ada
+// Efek aktif: luck & fast disimpan dalam array
+window.activeEffects = {
+  luck: [], // contoh: [{ mult: 3, expire: 123456789 }]
+  fast: []  // contoh: [{ mult: 2, expire: 123456789 }]
+};
+setInterval(updateEffectStatusUI, 1000);
 
     // Elemen penting
     const el = (id) => document.getElementById(id);
@@ -429,6 +517,26 @@ luck: {
         default: return 'var(--g-common)';
       }
     }
+
+    function rarityTextColor(key) {
+  switch (key) {
+    case 'uncommon': return '#2ad980';
+    case 'rare': return '#6fb6ff';
+    case 'epic': return '#d08cff';
+    case 'legend': return '#ffcf6f';
+    case 'mythical': return '#ff1a1a';
+    default: return '#ffffff';
+  }
+}
+
+function getRandomItemByRarity(rarityKey) {
+  const itemsByRarity = ITEMS.filter(item => item.rarity === rarityKey);
+  if (itemsByRarity.length === 0) {
+    return { text: '???', rarity: rarityKey };
+  }
+  return itemsByRarity[Math.floor(Math.random() * itemsByRarity.length)];
+}
+
 
     function getItemCount(name) {
       // default 0 agar xN = 1 saat pertama kali muncul (kita clamp di render)
@@ -473,6 +581,15 @@ luck: {
       return `1 dari ${max}`;
     }
 
+function isLuckPotionActive() {
+  if (!Array.isArray(window.activeEffects.luck)) return false;
+
+  const now = Date.now();
+  // Hapus yang sudah expired
+  window.activeEffects.luck = window.activeEffects.luck.filter(e => e.expire > now);
+
+  return window.activeEffects.luck.length > 0;
+}
 
 
     /******************************************
@@ -503,7 +620,6 @@ luck: {
     }
 
 
-
     /************************************
      * ======= RNG & ROLLING LOGIC =======
      ************************************/
@@ -518,6 +634,7 @@ luck: {
 
     const luckBadge = el('luckBadge');
     if (luckBadge) luckBadge.classList.add('hidden');
+
 
 
     // Bikin objek item lengkap (pastikan ada rarity object)
@@ -546,48 +663,56 @@ luck: {
       return toItemObject(b);
     }
 
-    // Weighted pick final + pity + luckBonus
-    function weightedPick() {
-      // Base weight per item: (rarity weight) ^ 0.9 → sedikit flatten biar nggak Common terus
-      const baseW = ITEMS.map(it => {
-        const r = (typeof it.rarity === 'string') ? rarityObj(it.rarity) : it.rarity;
-        return Math.pow(rarityObj(r.key).weight, 0.9);
-      });
+// Weighted pick final + pity + luckBonus
+function weightedPick() {
+  // Base weight per item: (rarity weight) ^ 0.9 → sedikit flatten biar nggak Common terus
+  const baseW = ITEMS.map(it => {
+    const r = (typeof it.rarity === 'string') ? rarityObj(it.rarity) : it.rarity;
+    return Math.pow(rarityObj(r.key).weight, 0.9);
+  });
 
-      // Luck bonus (2x tiap 10 roll)
-      const luckMul = ITEMS.map(it => {
-        const rk = (typeof it.rarity === 'string') ? it.rarity : it.rarity.key;
+  const luckMul = ITEMS.map(it => {
+    const rk = (typeof it.rarity === 'string') ? it.rarity : it.rarity.key;
 
-        if (luckBonus === 2 && (rk === 'rare' || rk === 'epic' || rk === 'legend')) {
-          return 2; // Boost rarity langka
-        } else if (luckBonus === 2 && (rk === 'common' || rk === 'uncommon')) {
-          return 0.8; // Turunkan sedikit
-        }
-        return 1; // Normal kalau luckBonus nggak aktif
-      });
-
-
-      // Pity: setelah 15 tanpa Rare+, gandakan Rare/Epic/Legend. Setelah 40 tanpa Epic+, x3 untuk Epic/Legend
-      const pityMul = ITEMS.map(it => {
-        const rk = (typeof it.rarity === 'string') ? it.rarity : it.rarity?.key;
-        let m = 1;
-        if (rk === 'rare' || rk === 'epic' || rk === 'legend') {
-          if (sinceRare >= 15) m *= 2;
-          if ((rk === 'epic' || rk === 'legend') && sinceEpic >= 40) m *= 3;
-        }
-        return m;
-      });
-
-      // Gabungkan
-      const weights = baseW.map((w, i) => w * luckMul[i] * pityMul[i]);
-      const total = weights.reduce((a, b) => a + b, 0);
-      let r = Math.random() * total, acc = 0;
-      for (let i = 0; i < ITEMS.length; i++) {
-        acc += weights[i];
-        if (r <= acc) return toItemObject(ITEMS[i]);
+    if (isLuckPotionActive()) {
+      const mult = getLuckMultiplier();
+      if (LUCK_EFFECTS[mult] && LUCK_EFFECTS[mult][rk] !== undefined) {
+        return LUCK_EFFECTS[mult][rk];
       }
-      return toItemObject(ITEMS[ITEMS.length - 1]);
     }
+
+    // Luck bonus lama (2x tiap 10 roll)
+    if (luckBonus === 2 && (rk === 'rare' || rk === 'epic' || rk === 'legend')) {
+      return 2;
+    } else if (luckBonus === 2 && (rk === 'common' || rk === 'uncommon')) {
+      return 0.8;
+    }
+
+    return 1;
+  });
+
+  // Pity: setelah 15 tanpa Rare+, gandakan Rare/Epic/Legend. Setelah 40 tanpa Epic+, x3 untuk Epic/Legend
+  const pityMul = ITEMS.map(it => {
+    const rk = (typeof it.rarity === 'string') ? it.rarity : it.rarity?.key;
+    let m = 1;
+    if (rk === 'rare' || rk === 'epic' || rk === 'legend') {
+      if (sinceRare >= 15) m *= 2;
+      if ((rk === 'epic' || rk === 'legend') && sinceEpic >= 40) m *= 3;
+    }
+    return m;
+  });
+
+  // Gabungkan
+  const weights = baseW.map((w, i) => w * luckMul[i] * pityMul[i]);
+  const total = weights.reduce((a, b) => a + b, 0);
+  let r = Math.random() * total, acc = 0;
+  for (let i = 0; i < ITEMS.length; i++) {
+    acc += weights[i];
+    if (r <= acc) return toItemObject(ITEMS[i]);
+  }
+  return toItemObject(ITEMS[ITEMS.length - 1]);
+}
+
 
     // Set tampilan hasil (gambar, nama, frame, badge)
     function setDisplay(item) {
@@ -622,84 +747,99 @@ luck: {
       });
     }
 
-
-    function playRarityAnimation(rarity) {
-      const wrapper = document.getElementById('rarityAnimation');
-      const bg = wrapper?.querySelector('.rarity-bg');
-      const star = wrapper?.querySelector('.rarity-star');
-      const body = document.body;
-
-      if (!wrapper || !bg || !star) return;
-
-      // Tampilkan elemen efek
-      wrapper.classList.remove('hidden');
-      star.style.display = 'block';
-      isRarityAnimationPlaying = true;
-
-      // Atur efek visual berdasarkan rarity
-      bg.classList.remove('epic', 'legend', 'mythical');
-
-      switch (rarity) {
-        case 'epic':
-          bg.classList.add('epic');
-          star.style.filter = 'hue-rotate(270deg)';
-          break;
-        case 'legend':
-        case 'legendary':
-          bg.classList.add('legend');
-          star.style.filter = 'hue-rotate(35deg)';
-          break;
-        case 'mythical':
-          bg.classList.add('mythical');
-          break;
-      }
-
-      toggleUI(true); // Sembunyikan UI saat efek dimulai
-
-      const music = document.getElementById('gachaMusic');
-      if (music) {
-        music.currentTime = 0;
-        music.volume = 0.6; // volume bisa kamu atur
-        music.play().catch(e => console.warn("Music error:", e));
-      }
-
-
-      // Jalankan moveOut (zoom kecil)
-      star.style.animation = 'moveOut 6.23s ease-in forwards';
-
-      // Setelah 5 detik, jalankan moveIn (zoom besar)
-      setTimeout(() => {
-        star.style.animation = '';
-        void star.offsetWidth;
-        star.style.animation = 'moveIn 6.23s ease forwards';
-      }, 6230);
-
-      // Setelah 11.5 detik, hilangkan star + munculkan UI + guncang
-      rarityEffectTimeout = setTimeout(() => {
-
-        star.style.display = 'none';
-        star.style.animation = '';
-        star.style.transform = '';
-
-        toggleUI(false);
-        body.classList.add('shake-body');
-
-        setTimeout(() => {
-          body.classList.remove('shake-body');
-          isRarityAnimationPlaying = false;
-          body.classList.add('shake-fade');
-        }, 1000);
-
-        setTimeout(() => {
-          body.classList.remove('shake-fade');
-          if (music) {
-            music.pause();
-            music.currentTime = 0;
-          }
-        }, 3000);
-
-      }, 12560);
+    function unlockAllAudio() {
+  [resultSfx, document.getElementById('gachaMusic')].forEach(audio => {
+    if (audio) {
+      audio.play().then(() => {
+        audio.pause();
+        audio.currentTime = 0;
+      }).catch(e => {});
     }
+  });
+}
+
+
+function playRarityAnimation(rarity) {
+  const wrapper = document.getElementById('rarityAnimation');
+  const bg = wrapper?.querySelector('.rarity-bg');
+  const star = wrapper?.querySelector('.rarity-star');
+  const body = document.body;
+
+  if (!wrapper || !bg || !star) return;
+
+  wrapper.classList.remove('hidden');
+  star.style.display = 'block';
+  isRarityAnimationPlaying = true;
+
+  bg.classList.remove('epic', 'legend', 'mythical');
+
+  switch (rarity) {
+    case 'epic':
+      bg.classList.add('epic');
+      star.style.filter = 'hue-rotate(270deg)';
+      break;
+    case 'legend':
+    case 'legendary':
+      bg.classList.add('legend');
+      star.style.filter = 'hue-rotate(35deg)';
+      break;
+    case 'mythical':
+      bg.classList.add('mythical');
+      break;
+  }
+
+  toggleUI(true);
+
+  // 🎵 Putar musik gacha
+  const music = document.getElementById('gachaMusic');
+  if (music) {
+    music.currentTime = 0;
+    music.volume = 0.6;
+    music.play().catch(e => console.warn("Music error:", e));
+  }
+
+  // 🎵 Putar suara star awal
+  try {
+    if (resultSfx) {
+      resultSfx.currentTime = 0;
+      resultSfx.play();
+    }
+  } catch (e) { console.warn("Gagal play resultSfx", e); }
+
+  // Animasi keluar-masuk
+  star.style.animation = 'moveOut 6.23s ease-in forwards';
+
+  setTimeout(() => {
+    star.style.animation = '';
+    void star.offsetWidth;
+    star.style.animation = 'moveIn 6.23s ease forwards';
+  }, 6230);
+
+  rarityEffectTimeout = setTimeout(() => {
+    star.style.display = 'none';
+    star.style.animation = '';
+    star.style.transform = '';
+
+    toggleUI(false);
+    body.classList.add('shake-body');
+
+    setTimeout(() => {
+      body.classList.remove('shake-body');
+      isRarityAnimationPlaying = false;
+      body.classList.add('shake-fade');
+    }, 1000);
+
+    setTimeout(() => {
+      body.classList.remove('shake-fade');
+      if (music) {
+        music.pause();
+        music.currentTime = 0;
+      }
+    }, 3000);
+
+  }, 12560);
+}
+
 
 
     function stopRarityEffect() {
@@ -725,57 +865,57 @@ luck: {
 
     // Rolling 5 detik dengan SFX
 function rollRNG() {
-  // Reset background efek rarity (jika ada)
-  const rarityAnim = document.getElementById('rarityAnimation');
-  if (rarityAnim) {
-    const bg = rarityAnim.querySelector('.rarity-bg');
-    const star = rarityAnim.querySelector('.rarity-star');
-    if (bg) {
-      bg.classList.remove('epic', 'legend', 'mythical');
-      bg.removeAttribute("style");
-    }
-    if (star) {
-      star.style.display = 'none';
-      star.style.animation = '';
-      star.style.transform = '';
-    }
-    rarityAnim.classList.add('hidden');
-    document.body.classList.remove('shake-body');
-  }
-
+  stopRarityEffect();
   if (rolling) return;
   rolling = true;
 
 rollCount++;
-if (el('rollCounter')) el('rollCounter').textContent = rollCount % 10;
+const isTenth = (rollCount % 10 === 0 && rollCount > 0);
 
-// ⬇ FIX INI
-if (activeEffects.luck) {
-  luckBonus = 2;
-  luckSource = 'potion';
+if (el('rollCounter')) {
+  const displayCount = isTenth ? 10 : (rollCount % 10);
+  el('rollCounter').textContent = displayCount;
+}
+
+const rollBtnRainbow = document.getElementById('rollBtn');
+if ((rollCount % 10) === 0 && rollCount > 0) {
+  rollBtn.classList.add('rainbow-border');
 } else {
-  if (rollCount % 10 === 0) {
-    luckBonus = 2;
-    luckSource = 'cengkrink';
-  } else {
-    luckBonus = 1;
-    luckSource = 'none';
-  }
+  rollBtn.classList.remove('rainbow-border');
 }
 
 
-const luckBadge = el('luckBadge');
-if (luckBadge) {
-  if (luckBonus === 2) {
-    luckBadge.classList.remove('hidden');
-  } else {
-    luckBadge.classList.add('hidden');
-  }
+// ==========================
+// Hitung multiplier luck (potion + bonus roll ke-10)
+// gunakan potion aktif kalau ada, fallback ke luckBonus (legacy)
+let finalLuckMult = getLuckMultiplier();
+if (isTenth) {
+  finalLuckMult *= 2; // gandakan kalau benar-benar roll ke-10
 }
 
-  const wrap = el('rngWrap');
+  currentLuckMultiplier = finalLuckMult;
+
+  // Update badge luck di tombol
+  updateLuckBadge(finalLuckMult);
+
+  // Tentukan hasil akhir
+  const selected = weightedPick(finalLuckMult); // pastikan weightedPick bisa terima multiplier
+
+  // Sembunyikan UI awal
+  el('rngFrame').style.opacity = 0;
+  el('rngText').style.opacity = 0;
+  el('rngBadge').style.display = 'none';
+  el('rngNumber').style.display = 'none';
+  el('rngImage').src = '';
+
+  // Siapkan elemen animasi teks
+  const rollingEl = el('rollingText');
+  rollingEl.style.display = 'block';
+  rollingEl.textContent = '';
+  rollingEl.style.color = '#fff';
+
+  // SFX roll
   const rollSfx = el('rollSfx');
-
   try {
     if (rollSfx) {
       rollSfx.currentTime = 0;
@@ -784,24 +924,31 @@ if (luckBadge) {
     }
   } catch (e) {}
 
-  // Tambahkan efek animasi
-  if (fastRollActive) {
-    wrap?.classList.add('fast-spin');
-  } else {
-    wrap?.classList.add('spin');
-  }
+  const mult = getFastRollMultiplier();
+let effect = FAST_ROLL_EFFECTS[mult] || FAST_ROLL_EFFECTS[Math.max(...Object.keys(FAST_ROLL_EFFECTS).map(Number))];
+let shuffleSpeed = Math.max(effect.shuffleSpeed, 100); // batas minimal 30ms
+let rollDuration = effect.rollDuration;
 
+
+  // ======================================================
+
+  // Animasi teks item + rarity
   const shuf = setInterval(() => {
-    const rr = pickRarityWeighted();
-    setDisplay(pickItemByRarity(rr.key));
-  }, 100);
+    const rr = pickRarityWeighted(finalLuckMult);
+    const randomItem = getRandomItemByRarity(rr.key);
 
-  // ⏱️ Tentukan durasi berdasarkan efek potion
-  const rollDuration = fastRollActive ? 4500 : 7000;
+    rollingEl.textContent = `${randomItem.text} (${rr.name})`;
+    rollingEl.style.color = rarityTextColor(rr.key);
+
+    rollingEl.classList.remove('rolling-text');
+    void rollingEl.offsetWidth;
+    rollingEl.classList.add('rolling-text');
+  }, shuffleSpeed);
 
   setTimeout(() => {
     clearInterval(shuf);
-    wrap?.classList.remove('spin', 'fast-spin');
+    rollingEl.style.display = 'none';
+
     try {
       if (rollSfx) {
         rollSfx.pause();
@@ -809,8 +956,7 @@ if (luckBadge) {
       }
     } catch (e) {}
 
-    const selected = weightedPick();
-
+    // Ambil nomor item jika ada di inventory
     function getSavedItemNumber(item) {
       let inv = [];
       try {
@@ -819,49 +965,95 @@ if (luckBadge) {
       const found = inv.find(i => i.text === item.text);
       return found ? found.number : null;
     }
-
     const savedNumber = getSavedItemNumber(selected);
-    selected.number = savedNumber ? savedNumber : getNextItemNumber(selected);
+    selected.number = savedNumber || getNextItemNumber(selected);
 
+    // Tampilkan hasil akhir
     setDisplay(selected);
+    el('rngFrame').style.opacity = 1;
+    el('rngText').style.opacity = 1;
+    el('rngBadge').style.display = 'inline-block';
+    el('rngNumber').style.display = 'block';
 
-    // 🔊 Mainkan suara CENGKRINK kalau bonus luck-nya dari cengkrink
-// 🔊 Mainkan suara hasil roll (default)
-try {
-  if (resultSfx) {
-    resultSfx.currentTime = 0;
-    resultSfx.play();
-  }
-} catch (e) {}
+    // SFX hasil
+    try {
+      if (resultSfx) {
+        resultSfx.currentTime = 0;
+        resultSfx.play();
+      }
+    } catch (e) {}
 
-
-
+    // Efek rarity
     const rk = selected.rarity.key;
     if (['epic', 'legend', 'legendary', 'mythical'].includes(rk)) {
       playRarityAnimation(rk);
     }
 
-
+    // Simpan ke inventory
     saveInventory(selected);
 
-    if (['rare', 'epic', 'legend'].includes(selected.rarity.key)) {
+    // Update pity
+    if (['rare', 'epic', 'legend'].includes(rk)) {
       sinceRare = 0;
     } else {
       sinceRare++;
     }
-
-    if (['epic', 'legend'].includes(selected.rarity.key)) {
+    if (['epic', 'legend'].includes(rk)) {
       sinceEpic = 0;
     } else {
       sinceEpic++;
     }
 
+    // Refresh inventory jika dibuka
     if (el('inventoryOverlay')?.classList.contains('show')) {
       renderInventory();
     }
 
     rolling = false;
   }, rollDuration);
+}
+
+function updateLuckBadge() {
+  const badge = document.getElementById('luckBadge');
+  if (!badge) return;
+
+  const mult = getLuckMultiplier();
+  const isTenth = (typeof rollCount !== 'undefined') && (rollCount % 10 === 0) && rollCount > 0;
+
+  if (mult > 1) {
+    badge.textContent = `x${mult} Luck`;
+
+    if (isTenth) {
+      badge.style.background = "linear-gradient(135deg, gold, #2ad980)";
+      badge.style.webkitBackgroundClip = "text";
+      badge.style.webkitTextFillColor = "transparent";
+    }
+    else if (mult >= 50) {
+      badge.style.background = "var(--g-mythical)";
+      badge.style.webkitBackgroundClip = "text";
+      badge.style.webkitTextFillColor = "transparent";
+    }
+    else if (mult >= 25) {
+      badge.style.background = "var(--g-legend)";
+      badge.style.webkitBackgroundClip = "text";
+      badge.style.webkitTextFillColor = "transparent";
+    }
+    else if (mult >= 10) {
+      badge.style.background = "var(--g-epic)";
+      badge.style.webkitBackgroundClip = "text";
+      badge.style.webkitTextFillColor = "transparent";
+    }
+    else {
+      badge.style.background = "";
+      badge.style.webkitBackgroundClip = "";
+      badge.style.webkitTextFillColor = "";
+      badge.style.color = "#2ad980";
+    }
+
+    badge.classList.remove('hidden');
+  } else {
+    badge.classList.add('hidden');
+  }
 }
 
 
@@ -1234,7 +1426,6 @@ try {
           if (selectedTimes.includes(it.time)) {
             const rKey = typeof it.rarity === 'string' ? it.rarity : it.rarity.key;
             const count = getItemCount(it.text);
-            gained += getSellValue(rKey);
 
 gained += getSellValue(rKey) * count;
 localStorage.removeItem(counterKey(it.text));
@@ -1410,7 +1601,7 @@ return false; // hapus item
         if (!rolling && !isRarityAnimationPlaying) {
           rollRNG();
         }
-      }, 5000); // 3 detik antar cek
+      }, 4000); // 4 detik antar cek
     }
 
 
@@ -1442,12 +1633,42 @@ return false; // hapus item
       }
     }
 
+
+    /*************************************
+     * ======= Potion Logical =======
+     *************************************/
+
     let activeEffects = {};
 let effectTimers = {};
 
+function renderPotionStore() {
+  const grid = document.querySelector('#storeOverlay .grid');
+  grid.innerHTML = '';
 
-function buyPotion(type) {
-  const potion = POTIONS[type];
+  ['luck', 'fast'].forEach(type => {
+    POTIONS[type].forEach((p, i) => {
+      grid.innerHTML += `
+        <div class="card">
+          <div class="frame" style="background:${p.color}">
+            <img src="${p.icon}" alt="${p.name}">
+          </div>
+          <div class="name">${p.name}</div>
+          <div class="rarity-badge">Selama 5 menit</div>
+          <div class="actions">
+            <div class="pill" onclick="buyPotion('${type}', ${i})">💰 ${p.price} • BUY</div>
+          </div>
+        </div>
+      `;
+    });
+  });
+}
+function openStore() {
+  renderPotionStore();
+  document.getElementById("storeOverlay").classList.add("show");
+}
+
+function buyPotion(type, idx = 0) {
+  const potion = POTIONS[type][idx];
   if (!potion) return;
 
   if (coins < potion.price) {
@@ -1459,33 +1680,85 @@ function buyPotion(type) {
   saveCoins();
   updateCoinUI();
 
-  // ⛔ PERBAIKI BAGIAN INI — ambil & ubah dalam bentuk objek
+  // 🎵 SFX coin
+try {
+    const coinSfx = document.getElementById('coinSfx');
+    coinSfx.currentTime = 0;
+    coinSfx.play();
+} catch (e) {}
+
+// ✅ Popup pembelian sukses
+showPopup(`Berhasil membeli ${potion.name}!`);
+
+if (coins < potion.price) {
+    showPopup('💸 Uang tidak cukup!', true); // isError = true
+    try {
+        const errorSfx = document.getElementById('errorSfx');
+        errorSfx.currentTime = 0;
+        errorSfx.play();
+    } catch (e) {}
+    return; // stop proses beli
+}
+
+function showPopup(message, isError = false) {
+    const popup = document.getElementById('coinPopup');
+    popup.textContent = message;
+    popup.classList.remove('hidden');
+    if (isError) popup.classList.add('error'); 
+    else popup.classList.remove('error');
+    setTimeout(() => popup.classList.add('hidden'), 1500);
+}
+
+
   let potions = {};
-  try {
-    const raw = localStorage.getItem('potions');
-    potions = raw ? JSON.parse(raw) : {};
-    if (!potions || typeof potions !== 'object' || Array.isArray(potions)) {
-      potions = {};
-    }
-  } catch (e) {
-    potions = {};
-  }
+  try { potions = JSON.parse(localStorage.getItem('potions')) || {}; } catch { potions = {}; }
 
-  // Tambahkan potion
-  if (!potions[type]) potions[type] = 0;
-  potions[type]++;
+  const key = `${type}_${potion.mult}`;
+  if (!potions[key]) potions[key] = 0;
+  potions[key]++;
 
-  // Simpan kembali
   localStorage.setItem('potions', JSON.stringify(potions));
 
-  // Update inventory jika terbuka
   if (document.getElementById('potionInventoryOverlay')?.classList.contains('show')) {
     renderPotionInventory();
   }
-
-  // Optional: buka inventory
-  openPotionInventory();
 }
+
+function equipPotion(type, idx) {
+
+  // 🎵 SFX cengkrink
+try {
+    const cengkrinkSfx = document.getElementById('resultSfx');
+    cengkrinkSfx.currentTime = 0;
+    cengkrinkSfx.play();
+} catch (e) {}
+
+  // ambil potion yang benar
+  const potion = POTIONS[type] && POTIONS[type][idx];
+  if (!potion) return;
+
+  // cek inventory
+  let potions = {};
+  try { potions = JSON.parse(localStorage.getItem('potions') || '{}'); } catch { potions = {}; }
+  const key = `${type}_${potion.mult}`;
+  if (!potions[key] || potions[key] <= 0) return;
+
+  // kurangi jumlah
+  potions[key]--;
+  if (potions[key] <= 0) delete potions[key];
+  localStorage.setItem('potions', JSON.stringify(potions));
+
+  // safety: pastikan duration numeric (ms)
+  const duration = Number(potion.duration) || 0;
+
+  // aktifkan efek (pakai type asli: 'luck' atau 'fast')
+  activatePotionEffect(type, duration, potion.mult);
+
+  // UI refresh
+  renderPotionInventory();
+  updateLuckBadge();
+}
+
 
 
   const potionInv = document.getElementById("potionInventoryOverlay");
@@ -1512,88 +1785,33 @@ function closePotionInventory() {
   document.getElementById("potionInventoryOverlay").classList.remove("show");
 }
 
-let activePotion = null;
-let potionTimeout = null;
-
-let fastRollActive = false;
-let fastRollTimeout = null;
-
-function activateFastRoll(duration) {
-  fastRollActive = true;
-  document.body.classList.add('fast-roll'); // atau ke elemen lain
-
-  if (fastRollTimeout) clearTimeout(fastRollTimeout);
-  fastRollTimeout = setTimeout(() => {
-    fastRollActive = false;
-    document.body.classList.remove('fast-roll');
-  }, duration);
-}
-
-let luckPotionActive = false;
-let luckPotionTimeout = null;
-
-function activateLuckBonus(duration) {
-  luckPotionActive = true;
-  luckBonus = 2;
-
-  const badge = document.getElementById('luckBadge');
-  if (badge) badge.classList.remove('hidden');
-
-  if (luckPotionTimeout) clearTimeout(luckPotionTimeout);
-  luckPotionTimeout = setTimeout(() => {
-    luckPotionActive = false;
-    luckBonus = 1;
-
-    const badge = document.getElementById('luckBadge');
-    if (badge) badge.classList.add('hidden');
-  }, duration);
-}
-
-
-
-function equipPotion(type) {
-  const potions = JSON.parse(localStorage.getItem('potions') || '{}');
-  if (!potions[type] || potions[type] <= 0) return;
-
-  // Jangan kurangi di sini — efeknya tetap berjalan, potions disimpan agar tidak double pakai
-  potions[type]--;
-if (potions[type] <= 0) {
-  delete potions[type];
-}
-  localStorage.setItem('potions', JSON.stringify(potions));
-
-  activatePotionEffect(type, 5 * 60 * 1000); // 5 menit
-  renderPotionInventory();
-}
-
-
 
 function renderPotionInventory() {
   const grid = document.getElementById("potionGrid");
   if (!grid) return;
-
   grid.innerHTML = '';
 
   const potions = JSON.parse(localStorage.getItem('potions') || '{}');
-  console.log("Potions in storage:", potions);
-console.log("Defined POTIONS:", POTIONS);
 
-  Object.entries(POTIONS).forEach(([key, def]) => {
-    const count = potions[key] || 0;
-    if (count > 0) {
-      const card = document.createElement('div');
-      card.className = 'card';
-      card.innerHTML = `
-        <div class="frame" style="background:${def.color}">
-          <img src="${def.icon}" alt="${def.name}">
-        </div>
-        <div class="name">${def.name}</div>
-        <div class="rarity-badge">x${count}</div>
-        <div class="actions">
-          <div class="pill" onclick="equipPotion('${key}')">EQUIP</div>
-        </div>`;
-      grid.appendChild(card);
-    }
+  ['luck', 'fast'].forEach(type => {
+    POTIONS[type].forEach((p, i) => {
+      const key = `${type}_${p.mult}`;
+      const count = potions[key] || 0;
+      if (count > 0) {
+        grid.innerHTML += `
+          <div class="card">
+            <div class="frame" style="background:${p.color}">
+              <img src="${p.icon}" alt="${p.name}">
+            </div>
+            <div class="name">${p.name}</div>
+            <div class="rarity-badge">x${count}</div>
+            <div class="actions">
+              <div class="pill" onclick="equipPotion('${type}', ${i})">EQUIP</div>
+            </div>
+          </div>
+        `;
+      }
+    });
   });
 }
 
@@ -1606,142 +1824,239 @@ function openPotionInventory() {
 function closePotionInventory() {
   document.getElementById("potionInventoryOverlay").classList.remove("show");
 }
+let effectUIRunning = false;
 
-function updateEffectStatusUI() {
-  const el = document.getElementById("activeEffectsStatus");
-  if (!el) return;
-
-  let html = '';
-  for (const [type, endTime] of Object.entries(activeEffects)) {
-    const left = Math.max(0, endTime - Date.now());
-    const min = Math.floor(left / 60000);
-    const sec = Math.floor((left % 60000) / 1000);
-    const timeStr = `${min.toString().padStart(2, '0')}.${sec.toString().padStart(2, '0')}`;
-
-    if (type === 'luck') html += `<div>🧪 2x Luck Potion: ${timeStr}</div>`;
-    if (type === 'fast') html += `<div>⚡ Fast Roll: ${timeStr}</div>`;
-  }
-
-  el.innerHTML = html.trim();
-}
-
-
-function activatePotionEffect(type, duration) {
+function getLuckMultiplier() {
   const now = Date.now();
-  const currentEnd = activeEffects[type] || now;
-  const endTime = currentEnd + duration;
+  // buang efek kadaluarsa
+  window.activeEffects.luck = window.activeEffects.luck.filter(e => e.expire > now);
 
-  activeEffects[type] = endTime;
+  if (window.activeEffects.luck.length === 0) return 1;
 
+  // jumlahkan semua multiplier aktif
+  return window.activeEffects.luck.reduce((total, e) => total + e.mult, 0);
+}
+
+
+function getFastRollMultiplier() {
+  const now = Date.now();
+  if (!Array.isArray(window.activeEffects.fast)) return 1;
+
+  // hapus yang expired
+  window.activeEffects.fast = window.activeEffects.fast.filter(e => e.expire > now);
+
+  if (window.activeEffects.fast.length === 0) return 1;
+
+  return window.activeEffects.fast.reduce((total, e) => total + e.mult, 0);
+}
+
+
+// 📟 Update UI efek aktif
+function updateEffectStatusUI() {
+  const elStatus = document.getElementById("activeEffectsStatus");
+  if (!elStatus) return;
+
+  let html = "";
+  const now = Date.now();
+
+  // Luck
+  if (Array.isArray(window.activeEffects.luck)) {
+    window.activeEffects.luck = window.activeEffects.luck.filter(e => e.expire > now);
+    window.activeEffects.luck.forEach(e => {
+      const min = Math.floor((e.expire - now) / 60000);
+      const sec = Math.floor(((e.expire - now) % 60000) / 1000).toString().padStart(2, "0");
+
+      // warna ungu kalau x5 - x10
+      const color = (e.mult >= 7 && e.mult <= 10) ? "violet" : "lime";
+      html += `<div style="color:${color}">Luck x${e.mult}: ${min}:${sec}</div>`;
+    });
+  }
+
+  // Fast Roll
+  if (Array.isArray(window.activeEffects.fast)) {
+    window.activeEffects.fast = window.activeEffects.fast.filter(e => e.expire > now);
+    window.activeEffects.fast.forEach(e => {
+      const min = Math.floor((e.expire - now) / 60000);
+      const sec = Math.floor(((e.expire - now) % 60000) / 1000).toString().padStart(2, "0");
+
+      // warna ungu kalau x5 - x10
+      const color = (e.mult >= 7 && e.mult <= 10) ? "violet" : "cyan";
+      html += `<div style="color:${color}">Fast x${e.mult}: ${min}:${sec}</div>`;
+    });
+  }
+
+  elStatus.innerHTML = html;
+}
+
+
+function activatePotionEffect(type, duration, mult = 2) {
+  const now = Date.now();
+
+  // Pastikan struktur array ada
+  if (!window.activeEffects) window.activeEffects = {};
+  if (!Array.isArray(window.activeEffects[type])) {
+    window.activeEffects[type] = [];
+  }
+
+  // Tambahkan efek baru (durasi dan multiplier terpisah)
+  window.activeEffects[type].push({
+    mult: mult,
+    expire: now + duration
+  });
+
+  // Jika luck → update badge multiplier total
   if (type === 'luck') {
-    luckBonus = 2;
-    document.getElementById('luckBadge')?.classList.remove('hidden');
+    updateLuckBadge(getLuckMultiplier());
   }
 
+  // Jika fast → update speed multiplier
   if (type === 'fast') {
-    fastRollActive = true;
+    getFastRollMultiplier();
   }
 
+  // Refresh UI status efek
   updateEffectStatusUI();
-
-  if (effectTimers[type]) clearInterval(effectTimers[type]);
-
-  effectTimers[type] = setInterval(() => {
-    const left = activeEffects[type] - Date.now();
-    if (left <= 0) {
-      clearInterval(effectTimers[type]);
-      delete activeEffects[type];
-
-      if (type === 'luck') {
-        luckBonus = 1;
-        document.getElementById('luckBadge')?.classList.add('hidden');
-      }
-      if (type === 'fast') {
-        fastRollActive = false;
-      }
-
-      updateEffectStatusUI();
-    } else {
-      updateEffectStatusUI();
-    }
-  }, 1000);
 }
 
 
+function debugActivePotions() {
+  const now = Date.now();
 
+  const active = [];
 
-function activatePotion(type) {
-  const p = POTIONS[type];
-  if (!p) return;
+  // Luck
+  if (Array.isArray(window.activeEffects.luck) && window.activeEffects.luck.length > 0) {
+    const totalLuckMult = window.activeEffects.luck.reduce((sum, e) => sum + e.mult, 0);
+    window.activeEffects.luck.forEach((e, i) => {
+      active.push({
+        type: `Luck #${i + 1}`,
+        multiplier: e.mult,
+        remainingMs: e.expire - now,
+        remainingSec: Math.max(0, Math.floor((e.expire - now) / 1000))
+      });
+    });
+    console.log(`%cLuck Total: x${totalLuckMult}`, 'color: cyan; font-weight: bold;');
+  }
 
-  activePotion = { ...p, expires: Date.now() + p.duration }; // FIXED: spread operator
-  localStorage.setItem('activePotion', JSON.stringify(activePotion));
-  updatePotionStatus();
+  // Fast Roll
+  if (Array.isArray(window.activeEffects.fast) && window.activeEffects.fast.length > 0) {
+    const totalFastMult = window.activeEffects.fast.reduce((sum, e) => sum + e.mult, 0);
+    window.activeEffects.fast.forEach((e, i) => {
+      active.push({
+        type: `Fast Roll #${i + 1}`,
+        multiplier: e.mult,
+        remainingMs: e.expire - now,
+        remainingSec: Math.max(0, Math.floor((e.expire - now) / 1000))
+      });
+    });
+    console.log(`%cFast Roll Total: x${totalFastMult}`, 'color: magenta; font-weight: bold;');
+  }
 
-  if (potionTimeout) clearInterval(potionTimeout);
-  potionTimeout = setInterval(updatePotionStatus, 1000);
-
-  if (p.effect === 'luck') {
-    luckBonus = 2;
-  } else if (p.effect === 'fast') {
-    if (autoRollInterval) {
-      clearInterval(autoRollInterval);
-      autoRollInterval = setInterval(() => {
-        if (!rolling && !isRarityAnimationPlaying) {
-          rollRNG();
-        }
-      }, 5000); // dipercepat
-    }
+  if (active.length === 0) {
+    console.log('%c[Debug Potion] Tidak ada efek aktif.', 'color: gray');
+  } else {
+    console.log('%c[Debug Potion] Efek aktif:', 'color: lime; font-weight: bold;');
+    console.table(active);
   }
 }
 
 
-function updatePotionStatus() {
-  const status = document.getElementById("potionStatus") || createPotionStatus();
-  if (!activePotion) {
-    const saved = localStorage.getItem('activePotion');
-    if (saved) {
-      activePotion = JSON.parse(saved);
-    } else {
-      status.remove();
-      clearInterval(potionTimeout);
-      return;
-    }
+// ========= UPDATE LOG DATA =========
+const UPDATE_LOGS = [
+  // {
+  //   version: 'UPD 3.2',
+  //   image: 'icon.png',
+  //   notes: [
+  //     '🎣 Event fishing dimulai!',
+  //     '🌈 Godzilla Fish ditambahkan!',
+  //     '🐛 Bug inventory diperbaiki',
+  //   ],
+  //   isNew: true
+  // },
+  {
+    version: 'UPD FULL-BETA',
+    image: 'full-beta.jpg',
+    notes: [
+      '🎲 Fixing render roll nya agar tidak boros kuota!',
+      '🎲 Adding effect UI di roll 10/10!',
+      '🍀 Fixing tombol luck yang di roll 10/10 bertambah!',
+      '🍀 Adding potion luck x3,x5,x7 & x10!',
+      '👟 Adding potion fast roll x3,x5,x7 & x10!',
+      '🧩 Potion bisa ke stackable!',
+      '🎴 New 10 Plenger Card!'
+    ]
+  },
+  {
+    version: 'Release BETA',
+    image: 'icon.png',
+    notes: [
+      '🎲🎴 Game telah dipublikasikan! Kumpulkan semua Plenger! 🎴🎲',
+    ]
   }
+];
 
-  const sisa = activePotion.expires - Date.now();
-  if (sisa <= 0) {
-    localStorage.removeItem('activePotion');
-    activePotion = null;
-    status.remove();
-    clearInterval(potionTimeout);
-    luckBonus = 1;
-    stopAutoRolling(); // jika fast potion
-    return;
-  }
+function openUpdateLog() {
+  const overlay = document.getElementById('updateLogOverlay');
+  if (!overlay) return;
+  overlay.classList.add('show');
 
-  const m = Math.floor(sisa / 60000);
-  const s = Math.floor((sisa % 60000) / 1000);
-  status.textContent = `${activePotion.name}: ${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+  const updateContent = document.getElementById('updateContent');
+  const updateList = document.getElementById('updateList');
+  updateContent.innerHTML = '';
+  updateList.innerHTML = '';
+
+  UPDATE_LOGS.forEach((log, index) => {
+    const btn = document.createElement('div');
+    btn.className = 'card';
+    btn.style.cursor = 'pointer';
+    btn.style.border = index === 0 ? '2px solid yellow' : '';
+btn.innerHTML = `
+  <div style="display:flex; align-items:center; gap:6px;">
+    <div class="active-dot" style="width:10px; height:10px; border-radius:50%; background:transparent;"></div>
+    <div>
+      <div class="frame">
+        <img src="${log.image}" style="width: 100%; height: 60px; object-fit: cover;" />
+      </div>
+      <div style="font-size: 9px; text-align: center; margin-top: 4px;">${log.version}</div>
+    </div>
+  </div>
+`;
+
+btn.onclick = () => {
+  renderUpdateDetail(log);
+
+  // Hapus border dan indikator dari semua
+  const allButtons = updateList.querySelectorAll('.card');
+  allButtons.forEach(b => {
+    b.style.border = '';
+    const dot = b.querySelector('.active-dot');
+    if (dot) dot.style.background = 'transparent';
+  });
+
+  // Tambahkan ke tombol aktif
+  btn.style.border = '2px solid yellow';
+  const dot = btn.querySelector('.active-dot');
+  if (dot) dot.style.background = 'deepskyblue';
+};
+
+
+    updateList.appendChild(btn);
+
+    if (index === 0) renderUpdateDetail(log);
+  });
 }
 
-function createPotionStatus() {
-  const el = document.createElement('div');
-  el.id = 'potionStatus';
-  el.style.position = 'fixed';
-  el.style.top = '14px';
-  el.style.right = '12px';
-  el.style.fontSize = '10px';
-  el.style.background = 'rgba(0,0,0,0.6)';
-  el.style.padding = '6px 12px';
-  el.style.borderRadius = '10px';
-  el.style.zIndex = 999;
-  el.style.border = '1px solid rgba(255,255,255,0.2)';
-  el.style.fontFamily = `'Press Start 2P', monospace`;
-  document.body.appendChild(el);
-  return el;
+function renderUpdateDetail(log) {
+  const updateContent = document.getElementById('updateContent');
+  updateContent.innerHTML = `
+    <h3 style="margin-bottom: 12px;">${log.version}</h3>
+    <ul style="font-size: 10px; padding-left: 16px;">
+      ${log.notes.map(note => `<li style="margin-bottom: 6px;">${note}</li>`).join('')}
+    </ul>
+  `;
 }
 
-
-
+function closeUpdateLog() {
+  document.getElementById('updateLogOverlay')?.classList.remove('show');
+}
 
