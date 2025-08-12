@@ -14,18 +14,18 @@
 
     const POTIONS = {
   luck: [
-    { mult: 2, name: '2x Luck Potion',  icon: 'luck-potion.png', effect: 'luck', duration: 5*60*1000, price: 100,  color: 'linear-gradient(135deg, #93da96, #3a3a3a)' },
-    { mult: 3, name: '3x Luck Potion',  icon: 'x3-luck.png', effect: 'luck', duration: 5*60*1000, price: 7000,  color: 'linear-gradient(135deg, #55a600, #fdd501)' },
-    { mult: 5, name: '5x Luck Potion',  icon: 'x5-luck.png', effect: 'luck', duration: 5*60*1000, price: 18000, color: 'linear-gradient(135deg, #72de00, #ffd500)' },
-    { mult: 7, name: '7x Luck Potion',  icon: 'x7-luck.png', effect: 'luck', duration: 5*60*1000, price: 36000, color: 'linear-gradient(135deg, #ffffff, #5FD3CB)' },
-    { mult:10, name: '10x Luck Potion', icon: 'x10-luck.png', effect: 'luck', duration: 5*60*1000, price: 72000, color: 'linear-gradient(135deg, #98fcfc, #006bff)' }
+    { mult: 2, name: '2x Luck Potion',  icon: 'luck-potion.png', effect: 'luck', duration: 5*60*1000, price: 5000,  color: 'linear-gradient(135deg, #93da96, #3a3a3a)' },
+    { mult: 3, name: '3x Luck Potion',  icon: 'x3-luck.png', effect: 'luck', duration: 5*60*1000, price: 8000,  color: 'linear-gradient(135deg, #55a600, #fdd501)' },
+    { mult: 5, name: '5x Luck Potion',  icon: 'x5-luck.png', effect: 'luck', duration: 5*60*1000, price: 16000, color: 'linear-gradient(135deg, #72de00, #ffd500)' },
+    { mult: 7, name: '7x Luck Potion',  icon: 'x7-luck.png', effect: 'luck', duration: 5*60*1000, price: 35000, color: 'linear-gradient(135deg, #ffffff, #5FD3CB)' },
+    { mult:10, name: '10x Luck Potion', icon: 'x10-luck.png', effect: 'luck', duration: 5*60*1000, price: 70000, color: 'linear-gradient(135deg, #98fcfc, #006bff)' }
   ],
   fast: [
-    { mult: 2, name: '2x Fast Roll Potion',  icon: 'fast-roll.png', effect: 'fast', duration: 5*60*1000, price: 4000,  color: 'linear-gradient(135deg, #91D9D4, #3a3a3a)' },
+    { mult: 2, name: '2x Fast Roll Potion',  icon: 'fast-roll.png', effect: 'fast', duration: 5*60*1000, price: 5000,  color: 'linear-gradient(135deg, #91D9D4, #3a3a3a)' },
     { mult: 3, name: '3x Fast Roll Potion',  icon: 'x3-roll.png', effect: 'fast', duration: 5*60*1000, price: 6000,  color: 'linear-gradient(135deg, #93da96, #5f936c)' },
-    { mult: 5, name: '5x Fast Roll Potion',  icon: 'x5-roll.png', effect: 'fast', duration: 5*60*1000, price: 18000, color: 'linear-gradient(135deg, #56d44c, #285e2d)' },
-    { mult: 7, name: '7x Fast Roll Potion',  icon: 'x7-roll.png', effect: 'fast', duration: 5*60*1000, price: 27000, color: 'linear-gradient(135deg, #007583, #002e5f)' },
-    { mult:10, name: '10x Fast Roll Potion', icon: 'x10-roll.png', effect: 'fast', duration: 5*60*1000, price: 50000, color: 'linear-gradient(135deg, #0192af, #01446f)' }
+    { mult: 5, name: '5x Fast Roll Potion',  icon: 'x5-roll.png', effect: 'fast', duration: 5*60*1000, price: 17000, color: 'linear-gradient(135deg, #56d44c, #285e2d)' },
+    { mult: 7, name: '7x Fast Roll Potion',  icon: 'x7-roll.png', effect: 'fast', duration: 5*60*1000, price: 29000, color: 'linear-gradient(135deg, #007583, #002e5f)' },
+    { mult:10, name: '10x Fast Roll Potion', icon: 'x10-roll.png', effect: 'fast', duration: 5*60*1000, price: 48000, color: 'linear-gradient(135deg, #0192af, #01446f)' }
   ]
 };
 
