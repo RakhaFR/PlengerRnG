@@ -2059,32 +2059,3 @@ function renderUpdateDetail(log) {
 function closeUpdateLog() {
   document.getElementById('updateLogOverlay')?.classList.remove('show');
 }
-
-
-function renderPotionStore() {
-  const grid = document.querySelector('#storeOverlay .grid');
-  if (!grid) return;
-  grid.innerHTML = '';
-
-  ['luck', 'fast'].forEach(type => {
-    POTIONS[type].forEach((p, i) => {
-      grid.innerHTML += `
-        <div class="card">
-          <div class="frame" style="background:${p.color}">
-            <img src="${p.icon}" alt="${p.name}">
-          </div>
-          <div class="name">${p.name}</div>
-          <div class="rarity-badge">Selama 5 menit</div>
-          <div class="actions">
-            <div class="pill" onclick="buyPotion('${type}', ${i})">💰 ${p.price} • BUY</div>
-          </div>
-        </div>
-      `;
-    });
-  });
-}
-
-function openStore() {
-  renderPotionStore();
-  document.getElementById("storeOverlay").classList.add("show");
-}
