@@ -1643,6 +1643,7 @@ let effectTimers = {};
 
 function renderPotionStore() {
   const grid = document.querySelector('#storeOverlay .grid');
+  if (!grid) return;
   grid.innerHTML = '';
 
   ['luck', 'fast'].forEach(type => {
@@ -1662,10 +1663,12 @@ function renderPotionStore() {
     });
   });
 }
+
 function openStore() {
   renderPotionStore();
   document.getElementById("storeOverlay").classList.add("show");
 }
+
 
 function buyPotion(type, idx = 0) {
   const potion = POTIONS[type][idx];
