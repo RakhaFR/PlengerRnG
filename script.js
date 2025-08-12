@@ -1645,33 +1645,38 @@ function buyPotion(type, idx = 0) {
   const potion = POTIONS[type][idx];
   if (!potion) return;
 
+  // 💰 Cek dulu sebelum potong coin
   if (coins < potion.price) {
     showErrorPopup('Koin tidak cukup!');
     return;
   }
 
+  // Baru kurangi
   coins -= potion.price;
   saveCoins();
   updateCoinUI();
 
   // 🎵 SFX coin
-try {
+  try {
     const coinSfx = document.getElementById('coinSfx');
     coinSfx.currentTime = 0;
     coinSfx.play();
-} catch (e) {}
+  } catch (e) {}
 
-// ✅ Popup pembelian sukses
-showPopup(`Berhasil membeli ${potion.name}!`);
+  // ✅ Popup pembelian sukses
+  showPopup(`Berhasil membeli ${potion.name}!`);
 
-if (coins < potion.price) {
-    showPopup('💸 Uang tidak cukup!', true); // isError = true
-    try {
-        const errorSfx = document.getElementById('errorSfx');
-        errorSfx.currentTime = 0;
-        errorSfx.play();
-    } catch (e) {}
-    return; // stop proses beli
+  // Simpan ke inventory potion
+  let potions = {};
+  try { potions = JSON.parse(localStorage.getItem('potions')) || {}; } catch { potions = {}; }
+  const key = `${type}_${potion.mult}`;
+  if (!potions[key]) potions[key] = 0;
+  potions[key]++;
+  localStorage.setItem('potions', JSON.stringify(potions));
+
+  if (document.getElementById('potionInventoryOverlay')?.classList.contains('show')) {
+    renderPotionInventory();
+  }
 }
 
 function showPopup(message, isError = false) {
@@ -1681,21 +1686,6 @@ function showPopup(message, isError = false) {
     if (isError) popup.classList.add('error'); 
     else popup.classList.remove('error');
     setTimeout(() => popup.classList.add('hidden'), 1500);
-}
-
-
-  let potions = {};
-  try { potions = JSON.parse(localStorage.getItem('potions')) || {}; } catch { potions = {}; }
-
-  const key = `${type}_${potion.mult}`;
-  if (!potions[key]) potions[key] = 0;
-  potions[key]++;
-
-  localStorage.setItem('potions', JSON.stringify(potions));
-
-  if (document.getElementById('potionInventoryOverlay')?.classList.contains('show')) {
-    renderPotionInventory();
-  }
 }
 
 function equipPotion(type, idx) {
