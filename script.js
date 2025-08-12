@@ -1,4 +1,3 @@
-<script>
     /*******************************
      * ======= KONFIGURASI =======
      *******************************/
@@ -2062,4 +2061,3 @@ function renderUpdateDetail(log) {
 function closeUpdateLog() {
   document.getElementById('updateLogOverlay')?.classList.remove('show');
 }
-</script>
