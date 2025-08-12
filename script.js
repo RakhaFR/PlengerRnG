@@ -14,7 +14,7 @@
 
     const POTIONS = {
   luck: [
-    { mult: 2, name: '2x Luck Potion',  icon: 'luck-potion.png', effect: 'luck', duration: 5*60*1000, price: 5000,  color: 'linear-gradient(135deg, #93da96, #3a3a3a)' },
+    { mult: 2, name: '2x Luck Potion',  icon: 'luck-potion.png', effect: 'luck', duration: 5*60*1000, price: 100,  color: 'linear-gradient(135deg, #93da96, #3a3a3a)' },
     { mult: 3, name: '3x Luck Potion',  icon: 'x3-luck.png', effect: 'luck', duration: 5*60*1000, price: 7000,  color: 'linear-gradient(135deg, #55a600, #fdd501)' },
     { mult: 5, name: '5x Luck Potion',  icon: 'x5-luck.png', effect: 'luck', duration: 5*60*1000, price: 18000, color: 'linear-gradient(135deg, #72de00, #ffd500)' },
     { mult: 7, name: '7x Luck Potion',  icon: 'x7-luck.png', effect: 'luck', duration: 5*60*1000, price: 36000, color: 'linear-gradient(135deg, #ffffff, #5FD3CB)' },
