@@ -4,12 +4,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>PLENGER RnG — FULLBETA</title>
-  <link rel="icon" type="image/png" href="icon.png">
+  <title>PLENGER RnG — UPD-1</title>
+  <link rel="icon" type="image/png" href="update-1.jpg">
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+  <div class="fullscreen-prismatic hidden"></div>
+  <div class="fullscreen-secret hidden"></div>
+
+
   <video class="bg-video" autoplay loop muted>
     <source src="bgVid.mp4" type="video/mp4" />
   </video>
@@ -25,28 +29,49 @@
   <audio id="errorSfx" src="error.mp3" preload="auto"></audio>
   <audio id="gachaMusic" src="gacha-music.mp3" preload="auto"></audio>
 
+  <!-- Prismatic -->
+  <video id="prismaticVideo" class="rarity-video hidden desktop-only" playsinline muted>
+    <source src="prismatic.mp4" type="video/mp4">
+  </video>
+  <video id="prismaticVideoMobile" class="rarity-video hidden mobile-only" playsinline muted>
+    <source src="prismatic-vert.mp4" type="video/mp4">
+  </video>
+
+  <!-- Secret -->
+  <video id="secretVideo" class="rarity-video hidden desktop-only" playsinline muted>
+    <source src="secret.mp4" type="video/mp4">
+  </video>
+  <video id="secretVideoMobile" class="rarity-video hidden mobile-only" playsinline muted>
+    <source src="secret-vert.mp4" type="video/mp4">
+  </video>
+
+
+  <audio id="prismaticSfx" src="animation set/prismatic-anim/prismatic-anim.MP3" preload="auto"></audio>
+  <audio id="secretSfx" src="animation set/secret-anim/secret-anim.MP3" preload="auto"></audio>
+
   <div id="coinPopup" class="popup hidden">+0 Coins</div>
 
   <!-- Sidebar Atas Kiri -->
-<div class="sidebar-top-left" id="topSidebar" style="display: none;">
-  <button class="side-btn" onclick="openStore()">
-    <img src="luck-potion.png" alt="Shop" class="side-icon">
-    <span class="side-label">Store</span>
-  </button>
-  <button class="side-btn" onclick="openPotionInventory()">
-    <img src="fast-roll.png" alt="Inventory" class="side-icon">
-    <span class="side-label">Inventory</span>
-  </button>
-  <button class="side-btn" onclick="openUpdateLog()">
-  <img src="update.png" alt="Update" class="side-icon">
-  <span class="side-label">Update Log</span>
-</button>
-</div>
+  <div class="sidebar-top-left" id="topSidebar" style="display: none;">
+    <button class="side-btn" onclick="openStore()">
+      <img src="luck-potion.png" alt="Shop" class="side-icon">
+      <span class="side-label">Store</span>
+    </button>
+    <button class="side-btn" onclick="openPotionInventory()">
+      <img src="fast-roll.png" alt="Inventory" class="side-icon">
+      <span class="side-label">Inventory</span>
+    </button>
+    <button class="side-btn" onclick="openUpdateLog()">
+      <img src="update.png" alt="Update" class="side-icon">
+      <span class="side-label">Update Log</span>
+    </button>
+  </div>
 
 
   <section class="lobby" id="lobby">
     <div class="panel">
       <h1>PLENGER RnG</h1>
+      <h3 style="color: rgb(139, 255, 139);">🎴UPDATE 1.0🎲</h3>
       <div style="margin-top:16px">
         <button onclick="startGame()"
           style="background:rgba(10,10,10,.65); border:1px solid var(--glass-brd); border-radius:14px; color: white; padding: 20px 80px 20px 80px; cursor: pointer;">Mulai</button>
@@ -58,19 +83,20 @@
     <div class="coin-bar">
       🪙 <span id="coinAmount">0</span> Coins
     </div>
-<div class="rng-wrap" id="rngWrap">
-  <div id="rollingText" class="rolling-text" style="display:none;"></div>
-  <div class="rng-frame" id="rngFrame">
-    <img id="rngImage" src="" alt="" />
-  </div>
-  <div class="rng-text" id="rngText"></div>
-  <div id="rngBadge" class="badge" style="background:var(--g-common)">Common</div>
-  <div id="rngNumber" class="number-text"></div>
-</div>
+    <div class="rng-wrap" id="rngWrap">
+      <div id="rollingText" class="rolling-text" style="display:none;"></div>
+      <div class="rng-frame" id="rngFrame">
+        <img id="rngImage" src="" alt="" />
+      </div>
+      <div class="rng-text" id="rngText"></div>
+      <div id="rngBadge" class="badge" style="background:var(--g-common)">Common</div>
+      <div id="rngNumber" class="number-text"></div>
+    </div>
 
 
     <div class="hud">
-      <div class="pill pill-left" onclick="toggleAutoRoll()">Gulir Otomatis: MATI <span class="sub">Bayar 10 Coins</span></div>
+      <div class="pill pill-left" onclick="toggleAutoRoll()">Gulir Otomatis: MATI <span class="sub">Bayar 10
+          Coins</span></div>
       <div class="pill pill-center" id="rollBtn">
         <div id="luckBadge" class="luck-badge hidden">2x LUCK</div>
         <div class="title">Gulir</div>
@@ -89,15 +115,20 @@
       </div>
       <div class="toolbar">
         <div class="search"><input id="searchInput" placeholder="Ketik untuk mencari" /></div>
-        <div class="filter" id="chips">
-          <div class="chip" data-r="all">Semua</div>
-          <div class="chip" data-r="common">Common</div>
-          <div class="chip" data-r="uncommon">Uncommon</div>
-          <div class="chip" data-r="rare">Rare</div>
-          <div class="chip" data-r="epic">Epic</div>
-          <div class="chip" data-r="legend">Legend</div>
-          <div class="chip" data-r="mythical">Mythical</div>
+        <div id="chips" class="filter">
+          <select id="rarityFilter" onchange="updateFilterFromDropdown(this)">
+            <option class="chip active" data-r="all">Semua</option>
+            <option class="chip" data-r="common">Common</option>
+            <option class="chip" data-r="uncommon">Uncommon</option>
+            <option class="chip" data-r="rare">Rare</option>
+            <option class="chip" data-r="epic">Epic</option>
+            <option class="chip" data-r="legend">Legend</option>
+            <option class="chip" data-r="mythical">Mythical</option>
+            <option class="chip" data-r="prismatic">Prismatic</option>
+            <option class="chip" data-r="secret">Secret</option>
+          </select>
         </div>
+
 
         <div class="sell-buttons">
           <button id="sellBtn">Menjual</button>
@@ -109,50 +140,91 @@
       <div id="gridWrap" class="grid"></div>
     </div>
   </div>
+
   <div class="overlay" id="storeOverlay">
-  <div class="modal">
-    <div class="modal-header">
-      <div class="modal-title">🛒 Store Potion</div>
-      <div class="close-x" onclick="closeStore()">✕</div>
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title">🛒 Store Potion</div>
+        <div class="close-x" onclick="closeStore()">✕</div>
+      </div>
+      <div class="grid">
+        <!-- lewat js -->
+      </div>
     </div>
-    <div class="grid">
-      <!-- lewat js -->
+  </div>
+
+  <!-- Setelah overlay store dan inventory -->
+  <div class="overlay" id="updateLogOverlay">
+    <div class="modal">
+      <!-- header -->
+      <div class="modal-header">
+        <div class="modal-title">📢 Update Announcement</div>
+        <div class="close-x" onclick="closeUpdateLog()">✕</div>
+      </div>
+
+      <!-- isi update -->
+      <div style="display: flex; gap: 12px; padding: 14px 18px; flex: 1; overflow: hidden;">
+        <div id="updateContent" style="flex: 2; overflow-y: auto;"></div>
+        <div id="updateList" style="flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 8px;"></div>
+      </div>
     </div>
+  </div>
+
+
+  <div class="overlay" id="potionInventoryOverlay">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title">🧪 Potion Inventory</div>
+        <div class="close-x" onclick="closePotionInventory()">✕</div>
+      </div>
+      <div class="grid" id="potionGrid">
+        <!-- akan dirender lewat JS -->
+      </div>
+    </div>
+  </div>
+
+  <div id="activeEffectsStatus"></div>
+
+<div id="inspectOverlay">
+  <div style="position:relative;">
+    <img id="inspectImage" src="" alt="Inspect" />
+    <button id="inspectClose"
+      style="position:absolute; top:-10px; right:-10px; width:36px; height:36px; border:none;
+             border-radius:999px; background:#111; color:#fff; cursor:pointer;">✕</button>
   </div>
 </div>
 
-<!-- Setelah overlay store dan inventory -->
-<div class="overlay" id="updateLogOverlay">
-  <div class="modal">
-    <!-- header -->
-    <div class="modal-header">
-      <div class="modal-title">📢 Update Announcement</div>
-      <div class="close-x" onclick="closeUpdateLog()">✕</div>
-    </div>
+<!-- EVENT BANNER (DESKTOP) -->
+<!-- EVENT BANNER (satu elemen saja) -->
+<div id="eventBanner" class="event-banner">
+  <div class="event-slider">
+    <picture>
+      <!-- versi HP -->
+      <source srcset="banner1-hp.jpg" media="(max-width: 784px)">
+      <!-- versi Tablet -->
+      <source srcset="banner1-tab.jpg" media="(max-width: 864px)">
+      <!-- versi Desktop (default) -->
+      <img src="banner1.jpg" alt="Event 1">
+    </picture>
 
-    <!-- isi update -->
-    <div style="display: flex; gap: 12px; padding: 14px 18px; flex: 1; overflow: hidden;">
-      <div id="updateContent" style="flex: 2; overflow-y: auto;"></div>
-      <div id="updateList" style="flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 8px;"></div>
-    </div>
+    <picture>
+      <source srcset="banner2-hp.jpg" media="(max-width: 784px)">
+      <source srcset="banner2-tab.jpg" media="(max-width: 864px)">
+      <img src="banner2.jpg" alt="Event 2">
+    </picture>
+
+    <picture>
+      <source srcset="banner1-hp.jpg" media="(max-width: 784px)">
+      <source srcset="banner1-tab.jpg" media="(max-width: 864px)">
+      <img src="banner1.jpg" alt="Event 3">
+    </picture>
   </div>
 </div>
 
-
-<div class="overlay" id="potionInventoryOverlay">
-  <div class="modal">
-    <div class="modal-header">
-      <div class="modal-title">🧪 Potion Inventory</div>
-      <div class="close-x" onclick="closePotionInventory()">✕</div>
-    </div>
-    <div class="grid" id="potionGrid">
-      <!-- akan dirender lewat JS -->
-    </div>
-  </div>
-</div>
+<!-- Tombol Toggle -->
+<button id="bannerToggle" class="banner-toggle right">&gt;</button>
 
 
-<div id="activeEffectsStatus"></div>
 
   <footer>© 2025 by <strong>Rakha FR</strong> — PLENGER RnG 🎲
   </footer>
