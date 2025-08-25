@@ -131,7 +131,7 @@
         numberRange: [1, 5999]
       },
       {
-        image: 'Agra umhehe.jpg',
+        image: 'agra umhehe.jpg',
         text: 'agra umhehe!',
         rarity: 'mythical',
         numberRange: [1, 1000000]
@@ -149,7 +149,7 @@
         numberRange: [1, 25]
       },
       {
-        image: 'Alfon mm.jpg',
+        image: 'alfon mm.jpg',
         text: 'alfon mm',
         rarity: 'common',
         numberRange: [1, 3]
@@ -197,7 +197,7 @@
         numberRange: [1, 139]
       },
       {
-        image: 'Gatel euy.jpg',
+        image: 'gatel euy.jpg',
         text: 'gatel euyyy..',
         rarity: 'rare',
         numberRange: [1, 157]
@@ -221,7 +221,7 @@
         numberRange: [1, 123]
       },
       {
-        image: 'Hilmi.jpg',
+        image: 'hilmi.jpg',
         text: 'HILMI...',
         rarity: 'uncommon',
         numberRange: [1, 461]
@@ -251,7 +251,7 @@
         numberRange: [1, 569]
       },
       {
-        image: 'Rafi chad.jpg',
+        image: 'rafi chad.jpg',
         text: 'RAFI CHAD',
         rarity: 'legend',
         numberRange: [1, 200999]
@@ -269,13 +269,13 @@
         numberRange: [1, 120999]
       },
       {
-        image: 'Rasya lier.jpg',
+        image: 'rasya lier.jpg',
         text: 'RASYA LAGI LIER',
         rarity: 'rare',
         numberRange: [1, 679]
       },
       {
-        image: 'Restu side_eye.jpg',
+        image: 'restu side_eye.jpg',
         text: 'restu side eye..',
         rarity: 'common',
         numberRange: [1, 35]
@@ -293,7 +293,7 @@
         numberRange: [1, 217]
       },
       {
-        image: 'Virqi apa itu bang.jpg',
+        image: 'virqi apa itu bang.jpg',
         text: 'apa itu bang?',
         rarity: 'common',
         numberRange: [1, 43]
@@ -508,60 +508,6 @@
         rarity: 'secret',
         numberRange: [1, 990000000]
       },
-                  {
-        image: 'agra-stiker.jpg',
-        text: 'agra stiker',
-        rarity: 'prismatic',
-        numberRange: [1, 60990000]
-      },
-                  {
-        image: 'Bwahaha.jpg',
-        text: 'Bwahaha',
-        rarity: 'mythical',
-        numberRange: [1, 3400000]
-      },
-                  {
-        image: 'deki-80.jpg',
-        text: 'deki tahun 80an',
-        rarity: 'legend',
-        numberRange: [1, 292000]
-      },
-                  {
-        image: 'dzaki-kesambet.jpg',
-        text: 'dzaki kesambet',
-        rarity: 'secret',
-        numberRange: [1, 120000000]
-      },
-                  {
-        image: 'fathian-prof.jpg',
-        text: 'profesor fathian',
-        rarity: 'epic',
-        numberRange: [1, 80100]
-      },
-                  {
-        image: 'mahluk-asing.jpg',
-        text: 'mahluk asing',
-        rarity: 'secret',
-        numberRange: [1, 490000000]
-      },
-                  {
-        image: 'mira-melet.jpg',
-        text: 'mira melet',
-        rarity: 'mythical',
-        numberRange: [1, 6500000]
-      },
-                  {
-        image: 'pensil-jumbo.jpg',
-        text: 'jumbo wanjir!',
-        rarity: 'legend',
-        numberRange: [1, 670100]
-      },
-                  {
-        image: 'restu-turu.jpg',
-        text: 'restu turu',
-        rarity: 'epic',
-        numberRange: [1, 23300]
-      },
     ];
 
     // LocalStorage keys
@@ -694,29 +640,31 @@
     /******************************************
      * ======= LOBBY → GAME TRANSITION =======
      ******************************************/
-    function startGame() {
-      el('lobby')?.classList.add('hidden');
-      el('game')?.classList.remove('hidden');
-      migrateOldKey();
-      loadCoins();
-      updateAutoRollUI();
-      loadAutoRollUnlock();
+function startGame() {
+  showLoading(5500, () => { // kasih durasi loading (2.5 detik)
+    el('lobby')?.classList.add('hidden');
+    el('game')?.classList.remove('hidden');
+    migrateOldKey();
+    loadCoins();
+    updateAutoRollUI();
+    loadAutoRollUnlock();
 
-      document.getElementById("topSidebar").style.display = "block";
+    document.getElementById("topSidebar").style.display = "block";
 
-      // Kosongkan gambar, tampilkan teks pembuka
-      const img = el('rngImage');
-      if (img) img.src = '';
+    // Kosongkan gambar, tampilkan teks pembuka          
+    const img = el('rngImage');
+    if (img) img.src = '';
 
-      const text = el('rngText');
-      if (text) text.textContent = 'MULAI PLENGER ROLL. KLIK TOMBOL DI BAWAH';
+    const text = el('rngText');
+    if (text) text.textContent = 'MULAI PLENGER ROLL, KLIK TOMBOL DI BAWAH';
 
-      const badge = el('rngBadge');
-      if (badge) badge.style.display = 'none';
+    const badge = el('rngBadge');
+    if (badge) badge.style.display = 'none';
 
-      const frame = el('rngFrame');
-      if (frame) frame.style.background = 'var(--g-common)';
-    }
+    const frame = el('rngFrame');
+    if (frame) frame.style.background = 'var(--g-common)';
+  });
+}
 
 
     /************************************
@@ -2517,3 +2465,17 @@ function hideBannerToggle() {
 function showBannerToggle() {
   toggleBtn.classList.remove('hidden');
 }
+// === LOADING SCREEN HANDLER ===
+function showLoading(duration = 2000, callback = null) {
+  const loading = document.getElementById("loadingScreen");
+  loading.classList.remove("hidden");
+  setTimeout(() => {
+    loading.classList.add("hidden");
+    if (callback) callback();
+  }, duration);
+}
+
+// Tampilkan loading saat pertama kali buka
+window.addEventListener("load", () => {
+  showLoading(5500); // 2.5 detik
+});
