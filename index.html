@@ -4,8 +4,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>PLENGER RnG — UPD-1</title>
-  <link rel="icon" type="image/png" href="update-1.jpg">
+  <title>PLENGER RnG — UPD-1.2</title>
+  <link rel="icon" type="image/png" href="update-1.2.jpg">
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -23,20 +23,21 @@
   </div>
 
   <!-- LOADING SCREEN -->
-<div id="loadingScreen" class="overlay show">
-  <div class="card">
-<div class="loader">
-  <p>Loading:</p>
-  <div class="words">
-    <span class="word">Assets</span>
-    <span class="word">Mechanic</span>
-    <span class="word">Switches</span>
-    <span class="word">Cards</span>
-    <span class="word">Buttons</span>
+  <div id="loadingScreen" class="overlay show">
+    <div class="card">
+      <div class="loader">
+        <p>Loading:</p>
+        <div class="words">
+          <span class="word">Assets</span>
+          <span class="word">Assets</span>
+          <span class="word">Mechanic</span>
+          <span class="word">Switches</span>
+          <span class="word">Cards</span>
+          <span class="word">Buttons</span>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
-  </div>
-</div>
 
 
 
@@ -70,6 +71,17 @@
 
   <!-- Sidebar Atas Kiri -->
   <div class="sidebar-top-left" id="topSidebar" style="display: none;">
+    <button class="side-btn" onclick="openProfile()">
+      <img src="user.png" alt="Profile" class="side-icon">
+      <span class="side-label">Profile</span>
+    </button>
+
+    <button class="side-btn" onclick="openDailyReward()">
+      <img src="gift.png" alt="Shop" class="side-icon">
+      <span class="side-label">Hadiah</span>
+       <div id="rewardIndicator" class="reward-indicator hidden">!</div>
+    </button>
+
     <button class="side-btn" onclick="openStore()">
       <img src="luck-potion.png" alt="Shop" class="side-icon">
       <span class="side-label">Store</span>
@@ -88,7 +100,7 @@
   <section class="lobby" id="lobby">
     <div class="panel">
       <h1>PLENGER RnG</h1>
-      <h3 style="color: rgb(139, 255, 139);">🎴UPDATE 1.0🎲</h3>
+      <h3 style="color: rgb(139, 238, 255);">🎴UPDATE 1.2🎲</h3>
       <div style="margin-top:16px">
         <button onclick="startGame()"
           style="background:rgba(10,10,10,.65); border:1px solid var(--glass-brd); border-radius:14px; color: white; padding: 20px 80px 20px 80px; cursor: pointer;">Mulai</button>
@@ -202,52 +214,144 @@
 
   <div id="activeEffectsStatus"></div>
 
-<div id="inspectOverlay">
-  <div style="position:relative;">
-    <img id="inspectImage" src="" alt="Inspect" />
-    <button id="inspectClose"
-      style="position:absolute; top:-10px; right:-10px; width:36px; height:36px; border:none;
+  <div id="inspectOverlay">
+    <div style="position:relative;">
+      <img id="inspectImage" src="" alt="Inspect" />
+      <button id="inspectClose" style="position:absolute; top:-10px; right:-10px; width:36px; height:36px; border:none;
              border-radius:999px; background:#111; color:#fff; cursor:pointer;">✕</button>
+    </div>
   </div>
-</div>
 
-<!-- EVENT BANNER (DESKTOP) -->
-<!-- EVENT BANNER (satu elemen saja) -->
-<div id="eventBanner" class="event-banner">
-  <div class="event-slider">
-    <picture>
-      <!-- versi HP -->
-      <source srcset="banner1-hp.jpg" media="(max-width: 784px)">
-      <!-- versi Tablet -->
-      <source srcset="banner1-tab.jpg" media="(max-width: 864px)">
-      <!-- versi Desktop (default) -->
-      <img src="banner1.jpg" alt="Event 1">
-    </picture>
+  <!-- EVENT BANNER (DESKTOP) -->
+  <!-- EVENT BANNER (satu elemen saja) -->
+  <div id="eventBanner" class="event-banner">
+    <div class="event-slider">
+      <picture>
+        <!-- versi HP -->
+        <source srcset="banner1-hp.jpg" media="(max-width: 784px)">
+        <!-- versi Tablet -->
+        <source srcset="banner1-tab.jpg" media="(max-width: 864px)">
+        <!-- versi Desktop (default) -->
+        <img src="banner1.jpg" alt="Event 1">
+      </picture>
 
-    <picture>
-      <source srcset="banner2-hp.jpg" media="(max-width: 784px)">
-      <source srcset="banner2-tab.jpg" media="(max-width: 864px)">
-      <img src="banner2.jpg" alt="Event 2">
-    </picture>
+      <picture>
+        <source srcset="banner2-hp.jpg" media="(max-width: 784px)">
+        <source srcset="banner2-tab.jpg" media="(max-width: 864px)">
+        <img src="banner2.jpg" alt="Event 2">
+      </picture>
 
-    <picture>
-      <source srcset="banner1-hp.jpg" media="(max-width: 784px)">
-      <source srcset="banner1-tab.jpg" media="(max-width: 864px)">
-      <img src="banner1.jpg" alt="Event 3">
-    </picture>
+      <picture>
+        <source srcset="banner1-hp.jpg" media="(max-width: 784px)">
+        <source srcset="banner1-tab.jpg" media="(max-width: 864px)">
+        <img src="banner1.jpg" alt="Event 3">
+      </picture>
+    </div>
   </div>
-</div>
 
-<!-- Tombol Toggle -->
-<button id="bannerToggle" class="banner-toggle right">&gt;</button>
-
+  <!-- Tombol Toggle -->
+  <button id="bannerToggle" class="banner-toggle right">&gt;</button>
 
 
-  <footer>© 2025 by <strong>Rakha FR</strong> — PLENGER RnG 🎲
-  </footer>
+
+  <footer>© 2025 by <strong>Rakha FR</strong> — PLENGER RnG 🎲</footer>
+
+  <!-- DAILY REWARD POPUP -->
+  <div class="overlay" id="dailyRewardOverlay">
+    <div class="modal" style="max-width:600px;">
+      <div class="modal-header">
+        <div class="modal-title">🎁 HADIAH HARIAN</div>
+        <div class="close-x" onclick="closeDailyReward()">✕</div>
+      </div>
+      <div style="padding:20px;">
+        <div class="reward-grid">
+          <div class="reward-box" id="rewardDay1">
+            Hari 1<br>
+            <span>500 Coins</span>
+            <img src="coins1.png" alt="Coins" class="reward-icon">
+          </div>
+
+          <div class="reward-box" id="rewardDay2">
+            Hari 2<br>
+            <span>Potion x2</span>
+            <img src="luck-potion.png" alt="Potion x2" class="reward-icon">
+          </div>
+
+          <div class="reward-box" id="rewardDay3">
+            Hari 3<br>
+            <span>1000 Coins</span>
+            <img src="coins2.png" alt="Coins" class="reward-icon">
+          </div>
+
+          <div class="reward-box" id="rewardDay4">
+            Hari 4<br>
+            <span>Potion x2</span>
+            <img src="luck-potion.png" alt="Potion x2" class="reward-icon">
+          </div>
+
+          <div class="reward-box" id="rewardDay5">
+            Hari 5<br>
+            <span>1500 Coins</span>
+            <img src="coins3.png" alt="Coins" class="reward-icon">
+          </div>
+
+          <div class="reward-box" id="rewardDay6">
+            Hari 6<br>
+            <span>Potion x5</span>
+            <img src="x5-luck.png" alt="Potion x5" class="reward-icon">
+          </div>
+
+          <div class="reward-box day7" id="rewardDay7">
+            Hari 7<br>
+            <span>2x Potion x5 🎉</span>
+            <img src="x5-luck.png" alt="Potion x5" class="reward-icon">
+          </div>
+        </div>
+        <div style="text-align:center; margin-top:15px;">
+          <button class="pill" id="dailyClaimBtn" onclick="claimDailyReward()">Klaim Hadiah</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- PLAYER PROFILE POPUP -->
+  <div class="overlay" id="profileOverlay">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title">👤 Player Profile</div>
+        <div class="close-x" onclick="closeProfile()">✕</div>
+      </div>
+      <div style="padding:20px; font-size:12px; line-height:1.6;">
+        <p><strong>Username:</strong> <span id="profileName">Guest</span></p>
+        <p><strong>Total Rolls:</strong> <span id="profileRolls">0</span></p>
+        <p><strong>Legendary:</strong> <span id="profileLegendary">0</span></p>
+        <p><strong>Mythical:</strong> <span id="profileMythical">0</span></p>
+        <p><strong>Prismatic:</strong> <span id="profilePrismatic">0</span></p>
+        <p><strong>Secret:</strong> <span id="profileSecret">0</span></p>
+        <p><strong>Total Coins Earned:</strong> <span id="profileCoins">0</span></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- USERNAME POPUP -->
+  <div class="overlay" id="usernameOverlay">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title">👤 Masukkan Username</div>
+      </div>
+      <div style="padding:20px; text-align:center;">
+        <input type="text" id="usernameInput" placeholder="Username kamu"
+          style="padding:8px 12px; border-radius:6px; font-size:12px; width:80%;">
+        <div style="margin-top:14px;">
+          <button class="pill" onclick="saveUsername()">Simpan</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="script.js"></script>
 </body>
 
 </html>
-
 
