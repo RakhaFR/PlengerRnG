@@ -2,6 +2,8 @@
  * ======= KONFIGURASI =======
  *******************************/
 
+    const CURRENT_UPDATE_VERSION = "1.2";
+
     // Rarity & tampilannya
     const RARITIES = [
       { key: 'common', name: 'Common', grad: 'var(--g-common)', weight: 50 },
@@ -2402,60 +2404,64 @@ addPotion(type, potion.mult, 1);
       }
     ];
 
-    function openUpdateLog() {
-      const overlay = document.getElementById('updateLogOverlay');
-      if (!overlay) return;
-      overlay.classList.add('show');
+function openUpdateLog() {
+  const overlay = document.getElementById('updateLogOverlay');
+  if (!overlay) return;
+  overlay.classList.add('show');
 
-      const updateContent = document.getElementById('updateContent');
-      const updateList = document.getElementById('updateList');
-      updateContent.innerHTML = '';
-      updateList.innerHTML = '';
+  // 🔥 Tandai sudah lihat update terbaru
+  localStorage.setItem("lastSeenUpdateVersion", CURRENT_UPDATE_VERSION);
 
-      UPDATE_LOGS.forEach((log, index) => {
-        const btn = document.createElement('div');
-        btn.className = 'card';
-        btn.style.cursor = 'pointer';
-        btn.style.border = index === 0 ? '2px solid yellow' : '';
-        btn.innerHTML = `
-  <div style="display:flex; align-items:center; gap:6px;">
-    <div class="active-dot" style="width:10px; height:10px; border-radius:50%; background:transparent;"></div>
-<div style="max-width:190px; max-height:170px;">
-  <div class="frame">
-    <img src="${log.image}" style="width:100%; height:90%; object-fit:cover;" />
-  </div>
-  <div style="font-size:9px; text-align:center; margin-top:4px; word-wrap:break-word;">
-    ${log.version}
-  </div>
-</div>
+  // 🔥 Hilangkan indikator merah
+  const updateIndicator = document.getElementById("updateIndicator");
+  if (updateIndicator) updateIndicator.classList.add("hidden");
 
-  </div>
-`;
+  const updateContent = document.getElementById('updateContent');
+  const updateList = document.getElementById('updateList');
+  updateContent.innerHTML = '';
+  updateList.innerHTML = '';
 
+  UPDATE_LOGS.forEach((log, index) => {
+    const btn = document.createElement('div');
+    btn.className = 'card';
+    btn.style.cursor = 'pointer';
+    btn.style.border = index === 0 ? '2px solid yellow' : '';
+    btn.innerHTML = `
+      <div style="display:flex; align-items:center; gap:6px;">
+        <div class="active-dot" style="width:10px; height:10px; border-radius:50%; background:transparent;"></div>
+        <div style="max-width:190px; max-height:170px;">
+          <div class="frame">
+            <img src="${log.image}" style="width:100%; height:90%; object-fit:cover;" />
+          </div>
+          <div style="font-size:9px; text-align:center; margin-top:4px; word-wrap:break-word;">
+            ${log.version}
+          </div>
+        </div>
+      </div>
+    `;
 
-        btn.onclick = () => {
-          renderUpdateDetail(log);
+    btn.onclick = () => {
+      renderUpdateDetail(log);
 
-          // Hapus border dan indikator dari semua
-          const allButtons = updateList.querySelectorAll('.card');
-          allButtons.forEach(b => {
-            b.style.border = '';
-            const dot = b.querySelector('.active-dot');
-            if (dot) dot.style.background = 'transparent';
-          });
-
-          // Tambahkan ke tombol aktif
-          btn.style.border = '2px solid yellow';
-          const dot = btn.querySelector('.active-dot');
-          if (dot) dot.style.background = 'deepskyblue';
-        };
-
-
-        updateList.appendChild(btn);
-
-        if (index === 0) renderUpdateDetail(log);
+      // Hapus border dan indikator dari semua
+      const allButtons = updateList.querySelectorAll('.card');
+      allButtons.forEach(b => {
+        b.style.border = '';
+        const dot = b.querySelector('.active-dot');
+        if (dot) dot.style.background = 'transparent';
       });
-    }
+
+      // Tambahkan ke tombol aktif
+      btn.style.border = '2px solid yellow';
+      const dot = btn.querySelector('.active-dot');
+      if (dot) dot.style.background = 'deepskyblue';
+    };
+
+    updateList.appendChild(btn);
+
+    if (index === 0) renderUpdateDetail(log);
+  });
+}
 
     function renderUpdateDetail(log) {
       const updateContent = document.getElementById('updateContent');
@@ -2470,6 +2476,22 @@ addPotion(type, potion.mult, 1);
     function closeUpdateLog() {
       document.getElementById('updateLogOverlay')?.classList.remove('show');
     }
+
+    function checkUpdateLogIndicator() {
+  const lastSeen = localStorage.getItem("lastSeenUpdateVersion");
+  const indicator = document.getElementById("updateIndicator");
+
+  if (lastSeen !== CURRENT_UPDATE_VERSION) {
+    indicator.classList.remove("hidden"); // tampilkan bulat merah !
+  } else {
+    indicator.classList.add("hidden");
+  }
+}
+
+window.addEventListener("load", () => {
+  checkUpdateLogIndicator();
+});
+
     /*******************************
      * ======= CUSTOMIZAION =======
      *******************************/
@@ -2838,4 +2860,5 @@ function openDailyReward() {
       const profileNameEl = document.getElementById("profileName");
       if (profileNameEl) profileNameEl.innerText = name;
     }
+
 
