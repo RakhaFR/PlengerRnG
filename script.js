@@ -64,6 +64,18 @@
       //   rarity: 'secret',
       //   numberRange: [1, 120000000]
       // },
+      // {
+      //   image: 'ac.jpg',
+      //   text: 'AC secret',
+      //   rarity: 'legend',
+      //   numberRange: [1, 120000]
+      // },
+      // {
+      //   image: 'ac.jpg',
+      //   text: 'AC secret',
+      //   rarity: 'mythical',
+      //   numberRange: [1, 1200000]
+      // },
       {
         image: 'agra sigma.jpg',
         text: 'agra Sigma',
@@ -310,203 +322,269 @@
         rarity: 'common',
         numberRange: [1, 88]
       },
-            {
+      {
         image: 'bagas-chad.jpg',
         text: 'bagas chad',
         rarity: 'legend',
         numberRange: [1, 199900]
       },
-            {
+      {
         image: 'bagas-virtual.jpg',
         text: 'bagas jadi AI 2030',
         rarity: 'epic',
         numberRange: [1, 70089]
       },
-            {
+      {
         image: 'berpikir-keras.jpg',
         text: 'mikir apa fi?',
         rarity: 'common',
         numberRange: [1, 67]
       },
-            {
+      {
         image: 'deki-fuckhd.jpg',
         text: 'deki fuck & melet',
         rarity: 'mythical',
         numberRange: [1, 1099000]
       },
-            {
+      {
         image: 'deki-nerd.jpg',
         text: 'deki mau jadi pinter',
         rarity: 'rare',
         numberRange: [1, 5610]
       },
-            {
+      {
         image: 'join-roblox.jpg',
         text: 'join roblox kuy! gak disponsor',
         rarity: 'epic',
         numberRange: [1, 23900]
       },
-            {
+      {
         image: 'alif-sen.jpg',
         text: 'alif senyum 2',
         rarity: 'rare',
         numberRange: [1, 346]
       },
-            {
+      {
         image: 'marvin-mangap.jpg',
         text: 'marvin mangap',
         rarity: 'uncommon',
         numberRange: [1, 481]
       },
-            {
+      {
         image: 'mira-megang.jpg',
         text: 'mira megang alat',
         rarity: 'rare',
         numberRange: [1, 1201]
       },
-            {
+      {
         image: 'mirip-guru.jpg',
         text: 'mirip guru gw kayaknya',
         rarity: 'epic',
         numberRange: [1, 23001]
       },
-            {
+      {
         image: 'plenger-group.jpg',
         text: 'para plenger sedang berpose',
         rarity: 'legend',
         numberRange: [1, 561000]
       },
-            {
+      {
         image: 'rasya-nyu.jpg',
         text: 'ichi nya!',
         rarity: 'uncommon',
         numberRange: [1, 258]
       },
-            {
+      {
         image: 'syafal.jpg',
         text: 'rasya & naufal',
         rarity: 'uncommon',
         numberRange: [1, 415]
       },
-            {
+      {
         image: 'syeima-merem.jpg',
         text: 'syeima ngapain merem?',
         rarity: 'epic',
         numberRange: [1, 21200]
       },
-            {
+      {
         image: 'tiga-senyuman.jpg',
         text: 'tiga senyuman..',
         rarity: 'rare',
         numberRange: [1, 794]
       },
-            {
+      {
         image: 'yan-turu.jpg',
         text: 'yan turu',
         rarity: 'rare',
         numberRange: [1, 473]
       },
-            {
+      {
         image: 'zaky-sigma.jpg',
         text: 'zaki sigma',
         rarity: 'epic',
         numberRange: [1, 11260]
       },
-            {
+      {
         image: 'agra-rock.jpg',
         text: 'agra rock lenger',
         rarity: 'epic',
         numberRange: [1, 32330]
       },
-            {
+      {
         image: 'alif-dance.jpg',
         text: 'alif dancing..',
         rarity: 'rare',
         numberRange: [1, 2451]
       },
-            {
+      {
         image: 'again-migra.jpg',
         text: 'lagi-lagi mereka nih',
         rarity: 'legend',
         numberRange: [1, 241100]
       },
-                  {
+      {
         image: 'deki-melet.jpg',
         text: 'deki melet',
         rarity: 'rare',
         numberRange: [1, 1450]
       },
-                  {
+      {
         image: 'marvin-bengong.jpg',
         text: 'marvin bengong',
         rarity: 'epic',
         numberRange: [1, 10299]
       },
-                  {
+      {
         image: 'surya-sad.jpg',
         text: 'surya 😭',
         rarity: 'epic',
         numberRange: [1, 30199]
       },
-                  {
+      {
         image: 'axel.jpg',
         text: 'Hitam Putih',
         rarity: 'mythical',
         numberRange: [1, 1450000]
       },
-                  {
+      {
         image: 'naufal-side.jpg',
         text: 'Naufal side eye',
         rarity: 'epic',
         numberRange: [1, 58400]
       },
-                  {
+      {
         image: 'yan-.jpg',
         text: 'fathian..',
         rarity: 'common',
         numberRange: [1, 29]
       },
-                  {
+      {
         image: 'benq.jpg',
         text: 'ben!',
         rarity: 'rare',
         numberRange: [1, 6151]
       },
-                  {
+      {
         image: 'gak-kenal.jpg',
         text: 'hehehe 😭',
         rarity: 'rare',
         numberRange: [1, 1892]
       },
-                  {
+      {
         image: 'hilmi-takut.jpg',
         text: 'hilmi takut. mama..',
         rarity: 'epic',
         numberRange: [1, 50292]
       },
-                  {
+      {
         image: 'gihun-sigma.jpg',
         text: "i'm feeling sigma",
         rarity: 'secret',
         numberRange: [1, 190000000]
       },
-                  {
+      {
         image: 'hacker.jpg',
         text: 'damcuk pristel!',
         rarity: 'prismatic',
         numberRange: [1, 30190000]
       },
-                  {
+      {
         image: 'deki-walawe.jpg',
         text: 'walaweh',
         rarity: 'prismatic',
         numberRange: [1, 45000000]
       },
-                  {
+      {
         image: 'sesosok-dev.jpg',
         text: 'SANG DEV',
         rarity: 'secret',
         numberRange: [1, 990000000]
+      },
+      {
+        image: 'naufal-byat.jpg',
+        text: 'naufal BYAtch!',
+        rarity: 'secret',
+        numberRange: [1, 871000000]
+      },
+      {
+        image: 'rifa-byat.jpg',
+        text: 'rifa-BYActh!',
+        rarity: 'prismatic',
+        numberRange: [1, 32100000]
+      },
+      {
+        image: 'agra-imut.jpg',
+        text: 'imutnyoo!',
+        rarity: 'mythical',
+        numberRange: [1, 5010000]
+      },
+      {
+        image: 'mahluk-asing.jpg',
+        text: 'mahluk asing COEG!',
+        rarity: 'secret',
+        numberRange: [1, 521000000]
+      },
+      {
+        image: 'bagas-sigma.jpg',
+        text: 'Bagas Sigma',
+        rarity: 'mythical',
+        numberRange: [1, 6120000]
+      },
+      {
+        image: 'nafis-gepeng.jpg',
+        text: 'nafis Yeah!',
+        rarity: 'legend',
+        numberRange: [1, 310100]
+      },
+      {
+        image: 'rasya-wink.jpg',
+        text: 'rasya Wink!',
+        rarity: 'legend',
+        numberRange: [1, 409199]
+      },
+            {
+        image: 'wahh.jpg',
+        text: 'huwahh',
+        rarity: 'rare',
+        numberRange: [1, 810]
+      },
+            {
+        image: 'alfon-present.jpg',
+        text: 'alfon Present!',
+        rarity: 'rare',
+        numberRange: [1, 992]
+      },
+            {
+        image: 'gihun-hs.jpg',
+        text: 'gihun and 01 meme!',
+        rarity: 'mythical',
+        numberRange: [1, 8300000]
+      },
+            {
+        image: 'reporter-ketawa.jpg',
+        text: 'bahasa inggris bukan bahasa asing lagi yah?',
+        rarity: 'legend',
+        numberRange: [1, 700100]
       },
     ];
 
@@ -634,37 +712,65 @@
       }
     }
 
+function addCoins(amount) {
+  let currentCoins = parseInt(localStorage.getItem("coins") || "0");
+  currentCoins += amount;
+  localStorage.setItem("coins", currentCoins);
 
+  coins = currentCoins; // update variabel global
+  updateCoinUI();
+}
+
+
+function addPotion(type, mult, amount = 1) {
+  let potions = {};
+  try {
+    potions = JSON.parse(localStorage.getItem('potions')) || {};
+  } catch {
+    potions = {};
+  }
+
+  const key = `${type}_${mult}`;
+  if (!potions[key]) potions[key] = 0;
+  potions[key] += amount;
+
+  localStorage.setItem('potions', JSON.stringify(potions));
+
+  // auto-refresh kalau inventory terbuka
+  if (document.getElementById('potionInventoryOverlay')?.classList.contains('show')) {
+    renderPotionInventory();
+  }
+}
 
 
     /******************************************
      * ======= LOBBY → GAME TRANSITION =======
      ******************************************/
-function startGame() {
-  showLoading(5500, () => { // kasih durasi loading (2.5 detik)
-    el('lobby')?.classList.add('hidden');
-    el('game')?.classList.remove('hidden');
-    migrateOldKey();
-    loadCoins();
-    updateAutoRollUI();
-    loadAutoRollUnlock();
+    function startGame() {
+      showLoading(5500, () => { // kasih durasi loading (2.5 detik)
+        el('lobby')?.classList.add('hidden');
+        el('game')?.classList.remove('hidden');
+        migrateOldKey();
+        loadCoins();
+        updateAutoRollUI();
+        loadAutoRollUnlock();
 
-    document.getElementById("topSidebar").style.display = "block";
+        document.getElementById("topSidebar").style.display = "block";
 
-    // Kosongkan gambar, tampilkan teks pembuka          
-    const img = el('rngImage');
-    if (img) img.src = '';
+        // Kosongkan gambar, tampilkan teks pembuka          
+        const img = el('rngImage');
+        if (img) img.src = '';
 
-    const text = el('rngText');
-    if (text) text.textContent = 'MULAI PLENGER ROLL, KLIK TOMBOL DI BAWAH';
+        const text = el('rngText');
+        if (text) text.textContent = 'MULAI PLENGER ROLL, KLIK TOMBOL DI BAWAH';
 
-    const badge = el('rngBadge');
-    if (badge) badge.style.display = 'none';
+        const badge = el('rngBadge');
+        if (badge) badge.style.display = 'none';
 
-    const frame = el('rngFrame');
-    if (frame) frame.style.background = 'var(--g-common)';
-  });
-}
+        const frame = el('rngFrame');
+        if (frame) frame.style.background = 'var(--g-common)';
+      });
+    }
 
 
     /************************************
@@ -814,41 +920,41 @@ function startGame() {
     }
 
 
-function playRarityAnimation(rarity) {
-  const wrapper = document.getElementById('rarityAnimation');
-  const bg = wrapper?.querySelector('.rarity-bg');
-  const star = wrapper?.querySelector('.rarity-star');
-  const body = document.body;
+    function playRarityAnimation(rarity) {
+      const wrapper = document.getElementById('rarityAnimation');
+      const bg = wrapper?.querySelector('.rarity-bg');
+      const star = wrapper?.querySelector('.rarity-star');
+      const body = document.body;
 
-  if (!wrapper || !bg || !star) return;
+      if (!wrapper || !bg || !star) return;
 
-  // 🔥 SEMBUNYIKAN BANNER SAAT ANIMASI MULAI
-  hideBannerToggle();
-  const banner = document.getElementById("eventBanner");
-  if (banner) banner.classList.add("hidden");
+      // 🔥 SEMBUNYIKAN BANNER SAAT ANIMASI MULAI
+      hideBannerToggle();
+      const banner = document.getElementById("eventBanner");
+      if (banner) banner.classList.add("hidden");
 
-  wrapper.classList.remove('hidden');
-  star.style.display = 'block';
-  isRarityAnimationPlaying = true;
+      wrapper.classList.remove('hidden');
+      star.style.display = 'block';
+      isRarityAnimationPlaying = true;
 
-  bg.classList.remove('epic', 'legend', 'mythical');
+      bg.classList.remove('epic', 'legend', 'mythical');
 
-  switch (rarity) {
-    case 'epic':
-      bg.classList.add('epic');
-      star.style.filter = 'hue-rotate(270deg)';
-      break;
-    case 'legend':
-    case 'legendary':
-      bg.classList.add('legend');
-      star.style.filter = 'hue-rotate(35deg)';
-      break;
-    case 'mythical':
-      bg.classList.add('mythical');
-      break;
-  }
+      switch (rarity) {
+        case 'epic':
+          bg.classList.add('epic');
+          star.style.filter = 'hue-rotate(270deg)';
+          break;
+        case 'legend':
+        case 'legendary':
+          bg.classList.add('legend');
+          star.style.filter = 'hue-rotate(35deg)';
+          break;
+        case 'mythical':
+          bg.classList.add('mythical');
+          break;
+      }
 
-  toggleUI(true);
+      toggleUI(true);
 
 
       // 🎵 Putar musik gacha
@@ -876,35 +982,35 @@ function playRarityAnimation(rarity) {
         star.style.animation = 'moveIn 6.23s ease forwards';
       }, 6230);
 
-  rarityEffectTimeout = setTimeout(() => {
-    star.style.display = 'none';
-    star.style.animation = '';
-    star.style.transform = '';
+      rarityEffectTimeout = setTimeout(() => {
+        star.style.display = 'none';
+        star.style.animation = '';
+        star.style.transform = '';
 
-    toggleUI(false);
-    body.classList.add('shake-body');
+        toggleUI(false);
+        body.classList.add('shake-body');
 
-    setTimeout(() => {
-      body.classList.remove('shake-body');
-      isRarityAnimationPlaying = false;
-      body.classList.add('shake-fade');
+        setTimeout(() => {
+          body.classList.remove('shake-body');
+          isRarityAnimationPlaying = false;
+          body.classList.add('shake-fade');
 
-      // 🔥 TAMPILKAN BANNER LAGI SETELAH ANIMASI SELESAI
-      if (banner) banner.classList.remove("hidden");
-      showBannerToggle();
-    }, 1000);
+          // 🔥 TAMPILKAN BANNER LAGI SETELAH ANIMASI SELESAI
+          if (banner) banner.classList.remove("hidden");
+          showBannerToggle();
+        }, 1000);
 
-    setTimeout(() => {
-      body.classList.remove('shake-fade');
-      const music = document.getElementById('gachaMusic');
-      if (music) {
-        music.pause();
-        music.currentTime = 0;
-      }
-    }, 3000);
+        setTimeout(() => {
+          body.classList.remove('shake-fade');
+          const music = document.getElementById('gachaMusic');
+          if (music) {
+            music.pause();
+            music.currentTime = 0;
+          }
+        }, 3000);
 
-  }, 12560);
-}
+      }, 12560);
+    }
 
 
     function showFullscreenAura(type) {
@@ -922,45 +1028,45 @@ function playRarityAnimation(rarity) {
       stopSecretSparkle();
     }
 
-function playVideoRarity(rarity) {
-  const isMobile = window.innerWidth <= 768;
-  const videoId = rarity + "Video" + (isMobile ? "Mobile" : "");
-  const video = document.getElementById(videoId);
-  const sfx = document.getElementById(rarity + 'Sfx');
-  const body = document.body;
-  hideBannerToggle();
+    function playVideoRarity(rarity) {
+      const isMobile = window.innerWidth <= 768;
+      const videoId = rarity + "Video" + (isMobile ? "Mobile" : "");
+      const video = document.getElementById(videoId);
+      const sfx = document.getElementById(rarity + 'Sfx');
+      const body = document.body;
+      hideBannerToggle();
 
-  let auraEl = null;
-  if (rarity === 'prismatic') {
-    auraEl = document.querySelector('.fullscreen-prismatic');
-  }
-  if (rarity === 'secret') {
-    auraEl = document.querySelector('.fullscreen-secret');
-  }
+      let auraEl = null;
+      if (rarity === 'prismatic') {
+        auraEl = document.querySelector('.fullscreen-prismatic');
+      }
+      if (rarity === 'secret') {
+        auraEl = document.querySelector('.fullscreen-secret');
+      }
 
-  if (!video) return;
+      if (!video) return;
 
-  // 🔥 SEMBUNYIKAN BANNER SAAT VIDEO MULAI
-  const banner = document.getElementById("eventBanner");
-  if (banner) banner.classList.add("hidden");
+      // 🔥 SEMBUNYIKAN BANNER SAAT VIDEO MULAI
+      const banner = document.getElementById("eventBanner");
+      if (banner) banner.classList.add("hidden");
 
-  toggleUI(true);
-  video.classList.remove('hidden');
-  video.currentTime = 0;
-  video.play().catch(e => console.warn("Video play error:", e));
+      toggleUI(true);
+      video.classList.remove('hidden');
+      video.currentTime = 0;
+      video.play().catch(e => console.warn("Video play error:", e));
 
-  if (sfx) {
-    sfx.currentTime = 0;
-    sfx.play().catch(e => console.warn("SFX play error:", e));
-  }
+      if (sfx) {
+        sfx.currentTime = 0;
+        sfx.play().catch(e => console.warn("SFX play error:", e));
+      }
 
-  video.onended = () => {
-    video.classList.add('hidden');
-    toggleUI(false);
+      video.onended = () => {
+        video.classList.add('hidden');
+        toggleUI(false);
 
-    if (auraEl) {
-      auraEl.classList.remove('hidden');
-    }
+        if (auraEl) {
+          auraEl.classList.remove('hidden');
+        }
         // Efek shake
         body.classList.add('shake-body');
         setTimeout(() => {
@@ -981,14 +1087,14 @@ function playVideoRarity(rarity) {
           }
         }, 1000);
 
-    setTimeout(() => {
-      body.classList.remove('shake-fade');
-      // 🔥 TAMPILKAN BANNER LAGI SETELAH VIDEO SELESAI
-      if (banner) banner.classList.remove("hidden");
-        showBannerToggle(); // ⬅️ disini pas!
-    }, 3000);
-  };
-}
+        setTimeout(() => {
+          body.classList.remove('shake-fade');
+          // 🔥 TAMPILKAN BANNER LAGI SETELAH VIDEO SELESAI
+          if (banner) banner.classList.remove("hidden");
+          showBannerToggle(); // ⬅️ disini pas!
+        }, 3000);
+      };
+    }
 
     function setRollingText(rarity, text) {
       const rollingText = document.getElementById('rollingText');
@@ -1004,20 +1110,20 @@ function playVideoRarity(rarity) {
     }
 
     // Untuk shuffle saja
-function pickRarityForShuffle() {
-  const rarities = [
-    { key: 'common', name: 'Common' },
-    { key: 'uncommon', name: 'Uncommon' },
-    { key: 'rare', name: 'Rare' },
-    { key: 'epic', name: 'Epic' },
-    { key: 'legend', name: 'Legend' },
-    { key: 'mythical', name: 'Mythical' },
-    { key: 'prismatic', name: 'Prismatic' },
-    { key: 'secret', name: 'Secret' }
-  ];
+    function pickRarityForShuffle() {
+      const rarities = [
+        { key: 'common', name: 'Common' },
+        { key: 'uncommon', name: 'Uncommon' },
+        { key: 'rare', name: 'Rare' },
+        { key: 'epic', name: 'Epic' },
+        { key: 'legend', name: 'Legend' },
+        { key: 'mythical', name: 'Mythical' },
+        { key: 'prismatic', name: 'Prismatic' },
+        { key: 'secret', name: 'Secret' }
+      ];
 
-  return rarities[Math.floor(Math.random() * rarities.length)];
-}
+      return rarities[Math.floor(Math.random() * rarities.length)];
+    }
 
 
 
@@ -1170,9 +1276,9 @@ function pickRarityForShuffle() {
       // Animasi teks item + rarity
       const shuf = setInterval(() => {
 
-const rr = pickRarityForShuffle();
-const randomItem = getRandomItemByRarity(rr.key);
-setRollingText(rr.key, randomItem.text, rr.name);
+        const rr = pickRarityForShuffle();
+        const randomItem = getRandomItemByRarity(rr.key);
+        setRollingText(rr.key, randomItem.text, rr.name);
 
 
         setRollingText(rr.key, randomItem.text, rr.name);
@@ -1213,6 +1319,7 @@ setRollingText(rr.key, randomItem.text, rr.name);
         el('rngBadge').style.display = 'inline-block';
         el('rngNumber').style.display = 'block';
 
+        updateStats(selected.rarity.key);
 
         if (selected.rarity.key === 'prismatic') {
           playVideoRarity('prismatic');
@@ -1524,7 +1631,7 @@ setRollingText(rr.key, randomItem.text, rr.name);
         const isPrismatic = (r.key === 'prismatic');
         const isSecret = (r.key === 'secret');
 
-card.innerHTML = `
+        card.innerHTML = `
   <div class="frame ${isPrismatic ? 'rainbow-frame' : ''} ${isSecret ? 'secret-frame' : ''}"
        style="${(isPrismatic || isSecret) ? '' : `background:${r.grad};`} position:relative;">
     <img src="${it.image}" alt="${it.text}">
@@ -1546,13 +1653,13 @@ card.innerHTML = `
 `;
 
         grid.appendChild(card);
-const inspectBtn = card.querySelector('.item-inspect-toggle');
-if (inspectBtn) {
-  inspectBtn.addEventListener('click', (e) => {
-    const imgSrc = e.currentTarget.getAttribute('data-img');
-    openInspect(imgSrc);
-  });
-}
+        const inspectBtn = card.querySelector('.item-inspect-toggle');
+        if (inspectBtn) {
+          inspectBtn.addEventListener('click', (e) => {
+            const imgSrc = e.currentTarget.getAttribute('data-img');
+            openInspect(imgSrc);
+          });
+        }
 
       });
     }
@@ -1570,30 +1677,30 @@ if (inspectBtn) {
       renderInventory();
     }
 
-function ensureInspectOverlay() {
-  if (document.getElementById('inspectOverlay')) return;
-  // (Kalau mau, bisa buat overlay via JS. Tapi karena kita sudah taruh HTML-nya, ini opsional.)
-}
+    function ensureInspectOverlay() {
+      if (document.getElementById('inspectOverlay')) return;
+      // (Kalau mau, bisa buat overlay via JS. Tapi karena kita sudah taruh HTML-nya, ini opsional.)
+    }
 
-function openInspect(src) {
-  ensureInspectOverlay();
-  const o = document.getElementById('inspectOverlay');
-  const img = document.getElementById('inspectImage');
-  if (!o || !img) return;
-  img.src = src || '';
-  o.style.display = 'grid';
-}
+    function openInspect(src) {
+      ensureInspectOverlay();
+      const o = document.getElementById('inspectOverlay');
+      const img = document.getElementById('inspectImage');
+      if (!o || !img) return;
+      img.src = src || '';
+      o.style.display = 'grid';
+    }
 
-function closeInspect() {
-  const o = document.getElementById('inspectOverlay');
-  if (o) o.style.display = 'none';
-}
+    function closeInspect() {
+      const o = document.getElementById('inspectOverlay');
+      if (o) o.style.display = 'none';
+    }
 
-document.addEventListener('click', (e) => {
-  if (e.target && e.target.id === 'inspectClose') closeInspect();
-  // klik area gelap utk tutup
-  if (e.target && e.target.id === 'inspectOverlay') closeInspect();
-});
+    document.addEventListener('click', (e) => {
+      if (e.target && e.target.id === 'inspectClose') closeInspect();
+      // klik area gelap utk tutup
+      if (e.target && e.target.id === 'inspectOverlay') closeInspect();
+    });
 
 
 
@@ -1683,9 +1790,14 @@ document.addEventListener('click', (e) => {
 
 
         localStorage.setItem(LS_KEY_INVENTORY, JSON.stringify(updated));
-        coins += gained;
+        // 💰 Tambahkan koin (selalu sync dengan localStorage dulu)
+        let currentCoins = parseInt(localStorage.getItem("coins") || "0");
+        currentCoins += gained;
+        localStorage.setItem("coins", currentCoins);
         saveCoins();
         updateCoinUI();
+        // setelah hitung gained
+        addCoins(gained);
         renderInventory();
         showCoinPopup(gained);
       }
@@ -1738,11 +1850,16 @@ document.addEventListener('click', (e) => {
         localStorage.setItem(LS_KEY_INVENTORY, JSON.stringify(updated));
 
         // 💰 Tambahkan koin
-        coins += gained;
+        // 💰 Tambahkan koin (selalu sync dengan localStorage dulu)
+        let currentCoins = parseInt(localStorage.getItem("coins") || "0");
+        currentCoins += gained;
+        localStorage.setItem("coins", currentCoins);
         saveCoins();
         updateCoinUI();
+        // setelah hitung gained
+        addCoins(gained);
         renderInventory();
-        showCoinPopup(gained); // Tampilkan jumlah koin yang didapat
+        showCoinPopup(gained);
       }
     });
 
@@ -1851,9 +1968,11 @@ document.addEventListener('click', (e) => {
       localStorage.setItem('coins', coins);
     }
 
-    function updateCoinUI() {
-      el('coinAmount').textContent = coins;
-    }
+function updateCoinUI() {
+  const currentCoins = parseInt(localStorage.getItem("coins") || "0");
+  el('coinAmount').textContent = currentCoins;
+}
+
 
     /*************************************
      * ======= AUTO ROLL TOGGLE =======
@@ -1960,12 +2079,7 @@ document.addEventListener('click', (e) => {
       showPopup(`Berhasil membeli ${potion.name}!`);
 
       // Simpan ke inventory potion
-      let potions = {};
-      try { potions = JSON.parse(localStorage.getItem('potions')) || {}; } catch { potions = {}; }
-      const key = `${type}_${potion.mult}`;
-      if (!potions[key]) potions[key] = 0;
-      potions[key]++;
-      localStorage.setItem('potions', JSON.stringify(potions));
+addPotion(type, potion.mult, 1);
 
       if (document.getElementById('potionInventoryOverlay')?.classList.contains('show')) {
         renderPotionInventory();
@@ -2249,6 +2363,15 @@ document.addEventListener('click', (e) => {
     // ========= UPDATE LOG DATA =========
     const UPDATE_LOGS = [
       {
+        version: 'UPD-1.2',
+        image: 'update-1.2.jpg',
+        notes: [
+          '📱 Adding Day Log-In!',
+          '📱 Adding User Stats!',
+          '🎴 New 10 plenger card!' 
+        ]
+      },
+      {
         version: 'UPD-1',
         image: 'update-1.jpg',
         notes: [
@@ -2294,7 +2417,7 @@ document.addEventListener('click', (e) => {
         btn.className = 'card';
         btn.style.cursor = 'pointer';
         btn.style.border = index === 0 ? '2px solid yellow' : '';
-btn.innerHTML = `
+        btn.innerHTML = `
   <div style="display:flex; align-items:center; gap:6px;">
     <div class="active-dot" style="width:10px; height:10px; border-radius:50%; background:transparent;"></div>
 <div style="max-width:190px; max-height:170px;">
@@ -2391,91 +2514,318 @@ btn.innerHTML = `
     }, 400);
 
     function toggleEventMini() {
-  document.getElementById("eventBanner").classList.toggle("show");
-}
-const slider = document.querySelector('.event-slider');
-const slides = slider.querySelectorAll('img');
-let currentIndex = 0;
+      document.getElementById("eventBanner").classList.toggle("show");
+    }
+    const slider = document.querySelector('.event-slider');
+    const slides = slider.querySelectorAll('img');
+    let currentIndex = 0;
 
-function showSlide(index) {
-  const containerHeight = document.querySelector('.event-banner').offsetHeight;
-  const offset = -index * containerHeight;
-  slider.style.transform = `translateY(${offset}px)`;
-}
+    function showSlide(index) {
+      const containerHeight = document.querySelector('.event-banner').offsetHeight;
+      const offset = -index * containerHeight;
+      slider.style.transform = `translateY(${offset}px)`;
+    }
 
-setInterval(() => {
-  currentIndex = (currentIndex + 1) % slides.length;
-  showSlide(currentIndex);
-}, 5000); // pindah tiap 5 detik
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % slides.length;
+      showSlide(currentIndex);
+    }, 5000); // pindah tiap 5 detik
 
-const banner = document.getElementById('eventBanner');
-const toggleBtn = document.getElementById('bannerToggle');
+    const banner = document.getElementById('eventBanner');
+    const toggleBtn = document.getElementById('bannerToggle');
 
-// default: banner terlihat
-let bannerVisible = true;
+    // default: banner terlihat
+    let bannerVisible = true;
 
-// Set posisi awal tombol sesuai status banner
-function syncToggleButton() {
-  if (bannerVisible) {
-    toggleBtn.innerHTML = '&gt;';   // tampil banner → tombol panah ke kanan
-    toggleBtn.classList.add('right');
-    toggleBtn.classList.remove('left');
-    banner.classList.remove('hidden-slide');
-  } else {
-    toggleBtn.innerHTML = '&lt;';   // hidden → tombol panah ke kiri
-    toggleBtn.classList.add('left');
-    toggleBtn.classList.remove('right');
-    banner.classList.add('hidden-slide');
-  }
-}
+    // Set posisi awal tombol sesuai status banner
+    function syncToggleButton() {
+      if (bannerVisible) {
+        toggleBtn.innerHTML = '&gt;';   // tampil banner → tombol panah ke kanan
+        toggleBtn.classList.add('right');
+        toggleBtn.classList.remove('left');
+        banner.classList.remove('hidden-slide');
+      } else {
+        toggleBtn.innerHTML = '&lt;';   // hidden → tombol panah ke kiri
+        toggleBtn.classList.add('left');
+        toggleBtn.classList.remove('right');
+        banner.classList.add('hidden-slide');
+      }
+    }
 
-// Jalankan saat halaman load
-syncToggleButton();
+    // Jalankan saat halaman load
+    syncToggleButton();
 
-// Event klik tombol
-toggleBtn.addEventListener('click', () => {
-  bannerVisible = !bannerVisible;
-  syncToggleButton();
-});
+    // Event klik tombol
+    toggleBtn.addEventListener('click', () => {
+      bannerVisible = !bannerVisible;
+      syncToggleButton();
+    });
 
-const rarityVideos = [
-  document.getElementById('prismaticVideo'),
-  document.getElementById('prismaticVideoMobile'),
-  document.getElementById('secretVideo'),
-  document.getElementById('secretVideoMobile'),
-  // tambahin kalau ada video epic/legend/mythical juga
-];
+    const rarityVideos = [
+      document.getElementById('prismaticVideo'),
+      document.getElementById('prismaticVideoMobile'),
+      document.getElementById('secretVideo'),
+      document.getElementById('secretVideoMobile'),
+      // tambahin kalau ada video epic/legend/mythical juga
+    ];
 
-rarityVideos.forEach(video => {
-  if (video) {
-    // Saat video mulai play → sembunyikan tombol panah
-    video.addEventListener('play', () => {
+    rarityVideos.forEach(video => {
+      if (video) {
+        // Saat video mulai play → sembunyikan tombol panah
+        video.addEventListener('play', () => {
+          toggleBtn.classList.add('hidden');
+        });
+
+        // Saat video selesai → tampilkan tombol panah lagi
+        video.addEventListener('ended', () => {
+          toggleBtn.classList.remove('hidden');
+        });
+      }
+    });
+    function hideBannerToggle() {
       toggleBtn.classList.add('hidden');
-    });
-
-    // Saat video selesai → tampilkan tombol panah lagi
-    video.addEventListener('ended', () => {
+    }
+    function showBannerToggle() {
       toggleBtn.classList.remove('hidden');
+    }
+    // === LOADING SCREEN HANDLER ===
+    function showLoading(duration = 2000, callback = null) {
+      const loading = document.getElementById("loadingScreen");
+      loading.classList.remove("hidden");
+      setTimeout(() => {
+        loading.classList.add("hidden");
+        if (callback) callback();
+      }, duration);
+    }
+
+    // Tampilkan loading saat pertama kali buka
+    window.addEventListener("load", () => {
+      showLoading(5500); // 2.5 detik
+      checkUsername();
+      updateUsernameUI();
     });
+
+
+    const rewards = [
+      { type: "coin", amount: 500 },
+      { type: "potion", potion: "x2", amount: 1 },
+      { type: "coin", amount: 1000 },
+      { type: "potion", potion: "x2", amount: 2 },
+      { type: "coin", amount: 1500 },
+      { type: "potion", potion: "x2", amount: 3 },
+      { type: "potion", potion: "x5", amount: 2 }, // Hari 7 = Potion x5 (2 buah)
+    ];
+
+
+function checkDailyReward() {
+  const lastClaim = localStorage.getItem("lastDailyClaim");
+  const today = new Date().toDateString();
+  let streak = parseInt(localStorage.getItem("dailyStreak") || "0");
+
+  // highlight kotak hari ini
+  document.querySelectorAll(".reward-box").forEach((el, idx) => {
+    el.classList.remove("active", "claimed");
+    if (idx === streak) {
+      el.classList.add("active");
+    }
+  });
+
+  const btn = document.getElementById("dailyClaimBtn");
+  if (lastClaim === today) {
+    btn.disabled = true;
+    btn.innerText = "Sudah di-claim ✔️";
+  } else {
+    btn.disabled = false;
+    btn.innerText = "Klaim Hadiah";
   }
-});
-function hideBannerToggle() {
-  toggleBtn.classList.add('hidden');
-}
-function showBannerToggle() {
-  toggleBtn.classList.remove('hidden');
-}
-// === LOADING SCREEN HANDLER ===
-function showLoading(duration = 2000, callback = null) {
-  const loading = document.getElementById("loadingScreen");
-  loading.classList.remove("hidden");
-  setTimeout(() => {
-    loading.classList.add("hidden");
-    if (callback) callback();
-  }, duration);
+    const indicator = document.getElementById("rewardIndicator");
+
+  if (lastClaim !== today) {
+    // Belum klaim → tampilkan popup + indikator merah
+    document.getElementById("dailyRewardOverlay").classList.add("show");
+    if (indicator) indicator.classList.remove("hidden");
+  } else {
+    // Sudah klaim → sembunyikan indikator
+    if (indicator) indicator.classList.add("hidden");
+  }
 }
 
-// Tampilkan loading saat pertama kali buka
-window.addEventListener("load", () => {
-  showLoading(5500); // 2.5 detik
-});
+
+    function highlightRewardBox(streak) {
+      rewards.forEach((_, i) => {
+        const box = document.getElementById(`rewardDay${i + 1}`);
+        box.classList.remove("claimed", "active");
+        if (i < streak) box.classList.add("claimed");
+        if (i === streak) box.classList.add("active");
+      });
+    }
+
+
+function claimDailyReward() {
+  const today = new Date().toDateString();
+  localStorage.setItem("lastDailyClaim", today);
+
+  let day = parseInt(localStorage.getItem("dailyDay") || "1");
+  if (day > rewards.length) day = 1;
+
+  const reward = rewards[day - 1];
+
+  if (reward.type === "coin") {
+    addCoins(reward.amount);
+    showPopup(`🎉 Kamu dapat ${reward.amount} Coins!`);
+  } else if (reward.type === "potion") {
+    const mult = parseInt(reward.potion.replace("x", ""));
+    addPotion("luck", mult, reward.amount);
+    showPopup(`✨ Kamu dapat ${reward.amount} Potion ${reward.potion}!`);
+  }
+
+  // ⏭ Simpan hari berikutnya
+  localStorage.setItem("dailyDay", day + 1);
+
+  // 🔒 Ubah tombol jadi sudah diklaim
+  const claimBtn = document.querySelector("#dailyRewardOverlay button");
+  if (claimBtn) {
+    claimBtn.textContent = "✅ Sudah Diklaim";
+    claimBtn.disabled = true;
+    claimBtn.style.opacity = "0.6";
+    claimBtn.style.cursor = "not-allowed";
+  }
+    const indicator = document.getElementById("rewardIndicator");
+  if (indicator) indicator.classList.add("hidden");
+
+  closeDailyReward();
+  updateDailyUI(); // refresh grid highlight
+}
+
+function updateDailyUI() {
+  let day = parseInt(localStorage.getItem("dailyDay") || "1");
+  if (day > rewards.length) day = 1;
+
+  // reset semua
+  document.querySelectorAll(".reward-box").forEach((box, i) => {
+    box.classList.remove("active", "claimed");
+    if (i + 1 < day) {
+      box.classList.add("claimed"); // hari sebelumnya
+    }
+    if (i + 1 === day) {
+      box.classList.add("active"); // hari ini
+    }
+  });
+}
+
+
+    function closeDailyReward() {
+      document.getElementById("dailyRewardOverlay").classList.remove("show");
+    }
+
+    // Panggil saat game start
+    window.addEventListener("load", () => {
+      checkDailyReward();
+    });
+
+function openDailyReward() {
+  updateDailyUI();
+
+  const today = new Date().toDateString();
+  const lastClaim = localStorage.getItem("lastDailyClaim");
+  const claimBtn = document.querySelector("#dailyRewardOverlay button");
+
+  if (lastClaim === today) {
+    // sudah klaim
+    claimBtn.textContent = "✅ Sudah Diklaim";
+    claimBtn.disabled = true;
+    claimBtn.style.opacity = "0.6";
+    claimBtn.style.cursor = "not-allowed";
+  } else {
+    claimBtn.textContent = "Klaim Hadiah";
+    claimBtn.disabled = false;
+    claimBtn.style.opacity = "1";
+    claimBtn.style.cursor = "pointer";
+  }
+
+  document.getElementById("dailyRewardOverlay").classList.add("show");
+}
+
+
+
+
+    function updateStats(rarity) {
+      // Total roll
+      let rolls = parseInt(localStorage.getItem("totalRolls") || "0");
+      localStorage.setItem("totalRolls", rolls + 1);
+
+      // Legendary
+      if (rarity === "legend") {
+        let legendaryCount = parseInt(localStorage.getItem("legendCount") || "0");
+        localStorage.setItem("legendaryCount", legendaryCount + 1);
+      }
+
+      // Mythical
+      if (rarity === "mythical") {
+        let mythicalCount = parseInt(localStorage.getItem("mythicalCount") || "0");
+        localStorage.setItem("mythicalCount", mythicalCount + 1);
+      }
+
+      // Prismatic
+      if (rarity === "prismatic") {
+        let prismaticCount = parseInt(localStorage.getItem("prismaticCount") || "0");
+        localStorage.setItem("prismaticCount", prismaticCount + 1);
+      }
+
+      // Secret
+      if (rarity === "secret") {
+        let secretCount = parseInt(localStorage.getItem("secretCount") || "0");
+        localStorage.setItem("secretCount", secretCount + 1);
+      }
+    }
+
+
+
+    // ===== PLAYER PROFILE =====
+    function openProfile() {
+      document.getElementById("profileName").innerText = localStorage.getItem("username") || "Guest";
+      document.getElementById("profileRolls").innerText = localStorage.getItem("totalRolls") || 0;
+      document.getElementById("profileLegendary").innerText = localStorage.getItem("legendaryCount") || 0;
+      document.getElementById("profileMythical").innerText = localStorage.getItem("mythicalCount") || 0;
+      document.getElementById("profilePrismatic").innerText = localStorage.getItem("prismaticCount") || 0;
+      document.getElementById("profileSecret").innerText = localStorage.getItem("secretCount") || 0;
+      document.getElementById("profileCoins").innerText = localStorage.getItem("coins") || 0;
+
+      document.getElementById("profileOverlay").classList.add("show");
+    }
+
+
+    function closeProfile() {
+      document.getElementById("profileOverlay").classList.remove("show");
+    }
+
+    // ===== Pemanggilan awal saat game start =====
+    window.addEventListener("load", () => {
+      checkDailyReward();
+    });
+
+    // ===== USERNAME =====
+    function checkUsername() {
+      const savedName = localStorage.getItem("username");
+      if (!savedName) {
+        // Belum ada username → tampilkan popup
+        document.getElementById("usernameOverlay").classList.add("show");
+      }
+    }
+
+    function saveUsername() {
+      const name = document.getElementById("usernameInput").value.trim();
+      if (name.length < 1) return alert("Username tidak boleh kosong!");
+
+      localStorage.setItem("username", name);
+      document.getElementById("usernameOverlay").classList.remove("show");
+
+      // Update UI kalau ada label username (misalnya di profile atau lobby)
+      updateUsernameUI();
+    }
+
+    function updateUsernameUI() {
+      const name = localStorage.getItem("username") || "Guest";
+      const profileNameEl = document.getElementById("profileName");
+      if (profileNameEl) profileNameEl.innerText = name;
+    }
