@@ -2690,6 +2690,15 @@ function claimDailyReward() {
     claimBtn.style.opacity = "0.6";
     claimBtn.style.cursor = "not-allowed";
   }
+    // 🎵 SFX cengkrink
+  try {
+    const sfx = document.getElementById("resultSfx");
+    if (sfx) {
+      sfx.currentTime = 0;
+      sfx.play();
+    }
+  } catch (e) { console.warn("SFX gagal dimainkan:", e); }
+    
     const indicator = document.getElementById("rewardIndicator");
   if (indicator) indicator.classList.add("hidden");
 
@@ -2829,3 +2838,4 @@ function openDailyReward() {
       const profileNameEl = document.getElementById("profileName");
       if (profileNameEl) profileNameEl.innerText = name;
     }
+
