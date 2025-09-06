@@ -1184,7 +1184,6 @@ function addPotion(type, mult, amount = 1) {
 
     // Rolling 5 detik dengan SFX
     function rollRNG() {
-      
       const frame = document.getElementById('rngFrame');
 
       if (frame) {
@@ -1228,6 +1227,7 @@ function addPotion(type, mult, amount = 1) {
       document.querySelector('.fullscreen-prismatic').classList.add('hidden');
       document.querySelector('.fullscreen-secret').classList.add('hidden');
 
+
       // ==========================
       // Hitung multiplier luck (potion + bonus roll ke-10)
       // gunakan potion aktif kalau ada, fallback ke luckBonus (legacy)
@@ -1249,31 +1249,7 @@ function addPotion(type, mult, amount = 1) {
       el('rngText').style.opacity = 0;
       el('rngBadge').style.display = 'none';
       el('rngNumber').style.display = 'none';
-      el('rngImage').src = '';  
-
-      const rk = selected?.rarity?.key || null;
-      updateQuestProgress('roll20', 1);
-      updateQuestProgress('roll100', 1);
-      updateQuestProgress('roll500', 1);
-      updateQuestProgress('roll200', 1);
-      if (rk) {
-        // contoh mapping (sesuaikan id quest/achievement dengan yang kamu definisikan)
-        if (rk === 'rare') {
-          updateQuestProgress('rare3', 1);
-          updateAchievementProgress('rare10', 1);
-        } else if (rk === 'epic') {
-          updateQuestProgress('epic1', 1);
-          updateAchievementProgress('epic20', 1);
-        } else if (rk === 'legend') {
-          updateQuestProgress('getLegend', 1);
-          updateQuestProgress('legend3', 1);
-          updateAchievementProgress('legend5', 1);
-          updateAchievementProgress('legend10', 1);
-        } else if (rk === 'mythical') {
-          updateQuestProgress('mythical1', 1);
-          updateAchievementProgress('mythical3', 1);
-        }
-      }
+      el('rngImage').src = '';
 
       // Siapkan elemen animasi teks
       const rollingEl = el('rollingText');
@@ -1826,10 +1802,6 @@ function addPotion(type, mult, amount = 1) {
         addCoins(gained);
         renderInventory();
         showCoinPopup(gained);
-        // di sellBtn
-        const jumlahTerjual = selectedCards.length;
-        updateQuestProgress('sell5', jumlahTerjual);
-        updateQuestProgress('sell20', jumlahTerjual);
       }
 
 
@@ -1890,10 +1862,6 @@ function addPotion(type, mult, amount = 1) {
         addCoins(gained);
         renderInventory();
         showCoinPopup(gained);
-        // di sellAllBtn
-        const jumlahTerjual = unlocked.length;
-        updateQuestProgress('sell5', jumlahTerjual);
-        updateQuestProgress('sell20', jumlahTerjual);
       }
     });
 
@@ -2162,8 +2130,6 @@ addPotion(type, potion.mult, 1);
       // UI refresh
       renderPotionInventory();
       updateLuckBadge();
-      updateQuestProgress('usePotion1', 1);
-      updateQuestProgress('usePotion5', 1);
     }
 
 
@@ -2526,7 +2492,6 @@ window.addEventListener("load", () => {
   checkUpdateLogIndicator();
 });
 
-
     /*******************************
      * ======= CUSTOMIZAION =======
      *******************************/
@@ -2663,16 +2628,15 @@ window.addEventListener("load", () => {
     });
 
 
-const rewards = [
-  { type: "coin", amount: 500 },
-  { type: "potion", potionType: "luck", potion: "x2", amount: 1 },
-  { type: "coin", amount: 1000 },
-  { type: "potion", potionType: "fast", potion: "x2", amount: 2 },
-  { type: "coin", amount: 1500 },
-  { type: "potion", potionType: "luck", potion: "x3", amount: 2 },
-  { type: "potion", potionType: "luck", potion: "x5", amount: 2 }
-];
-
+    const rewards = [
+      { type: "coin", amount: 500 },
+      { type: "potion", potion: "x2", amount: 1 },
+      { type: "coin", amount: 1000 },
+      { type: "potion", potion: "x2", amount: 2 },
+      { type: "coin", amount: 1500 },
+      { type: "potion", potion: "x2", amount: 3 },
+      { type: "potion", potion: "x5", amount: 2 }, // Hari 7 = Potion x5 (2 buah)
+    ];
 
 
 function checkDailyReward() {
@@ -2680,8 +2644,13 @@ function checkDailyReward() {
   const today = new Date().toDateString();
   let streak = parseInt(localStorage.getItem("dailyStreak") || "0");
 
-  // 👉 tambahkan baris ini biar sinkron dengan dailyDay
-  updateDailyUI();
+  // highlight kotak hari ini
+  document.querySelectorAll(".reward-box").forEach((el, idx) => {
+    el.classList.remove("active", "claimed");
+    if (idx === streak) {
+      el.classList.add("active");
+    }
+  });
 
   const btn = document.getElementById("dailyClaimBtn");
   if (lastClaim === today) {
@@ -2691,8 +2660,7 @@ function checkDailyReward() {
     btn.disabled = false;
     btn.innerText = "Klaim Hadiah";
   }
-
-  const indicator = document.getElementById("rewardIndicator");
+    const indicator = document.getElementById("rewardIndicator");
 
   if (lastClaim !== today) {
     // Belum klaim → tampilkan popup + indikator merah
@@ -2703,6 +2671,7 @@ function checkDailyReward() {
     if (indicator) indicator.classList.add("hidden");
   }
 }
+
 
     function highlightRewardBox(streak) {
       rewards.forEach((_, i) => {
@@ -2726,19 +2695,11 @@ function claimDailyReward() {
   if (reward.type === "coin") {
     addCoins(reward.amount);
     showPopup(`🎉 Kamu dapat ${reward.amount} Coins!`);
-} else if (reward.type === "potion") {
-  const mult = parseInt(reward.potion.replace("x", ""));
-  addPotion(reward.potionType, mult, reward.amount);
-
-  // refresh UI kalau inventory terbuka
-  if (document.getElementById("potionInventoryOverlay")?.classList.contains("show")) {
-    renderPotionInventory();
+  } else if (reward.type === "potion") {
+    const mult = parseInt(reward.potion.replace("x", ""));
+    addPotion("luck", mult, reward.amount);
+    showPopup(`✨ Kamu dapat ${reward.amount} Potion ${reward.potion}!`);
   }
-
-  showPopup(`✨ Kamu dapat ${reward.amount} Potion ${reward.potion} (${reward.potionType})!`);
-}
-
-
 
   // ⏭ Simpan hari berikutnya
   localStorage.setItem("dailyDay", day + 1);
@@ -2815,6 +2776,9 @@ function openDailyReward() {
 
   document.getElementById("dailyRewardOverlay").classList.add("show");
 }
+
+
+
 
     function updateStats(rarity) {
       // Total roll
@@ -2896,319 +2860,3 @@ function openDailyReward() {
       const profileNameEl = document.getElementById("profileName");
       if (profileNameEl) profileNameEl.innerText = name;
     }
-
-
-
-// === QUEST & ACHIEVEMENTS DATA ===
-const QUEST_POOL = {
-  daily: [
-    { id: 'roll20', title: 'Lakukan 20 roll', target: 20, reward: { coins: 500 } },
-    { id: 'usePotion1', title: 'Gunakan 1 potion', target: 1, reward: { coins: 300 } },
-    { id: 'usePotion5', title: 'Gunakan 5 potion', target: 5, reward: { coins: 3000, potions: [{ type: "luck-x7", amount: 1 }] } },
-    { id: 'sell5', title: 'Menjual 5 item', target: 5, reward: { coins: 400 } },
-    { id: 'rare3', title: 'Dapatkan 3 Rare', target: 3, reward: { coins: 600 } },
-    { id: 'epic1', title: 'Dapatkan 1 Epic', target: 1, reward: { coins: 1000 } },
-    { id: 'epic20', title: 'Dapatkan 20 Epic', target: 20, reward: { coins: 800, potions: [{ type: "fast-roll", amount: 1 }] } },
-    { id: 'roll200', title: 'Lakukan 200 roll', target: 200, reward: { coins: 1000, potions: [{ type: "luck-x5", amount: 2 }] } },
-  ],
-  weekly: [
-    { id: 'roll100', title: 'Lakukan 100 roll', target: 100, reward: { coins: 2000 } },
-    { id: 'getLegend', title: 'Dapatkan 1 Legend', target: 1, reward: { coins: 3000 } },
-    { id: 'legend3', title: 'Dapatkan 3 Legend', target: 3, reward: { coins: 9000 } },
-    { id: 'sell20', title: 'Menjual 20 item', target: 20, reward: { coins: 1500 } }
-  ],
-  monthly: [
-    { id: 'roll500', title: 'Lakukan 500 roll', target: 500, reward: { coins: 8000 } },
-    { id: 'getLegend10', title: 'Dapatkan 10 Legend', target: 10, reward: { coins: 3000, potions: [{ type: "luck-x5", amount: 2 }] } },
-    { id: 'mythical1', title: 'Dapatkan 1 Mythical', target: 1, reward: { coins: 12000 } }
-  ]
-};
-
-const ACHIEVEMENTS = [
-  { id: 'rare10', title: 'Dapatkan 10 Rare', target: 10, progress: 0, badge: 'rare-badge.png', reward: { coins: 2000 } },
-  { id: 'legend5', title: 'Dapatkan 5 Legend', target: 5, progress: 0, badge: 'legend-badge.png', reward: { coins: 5000 } },
-  { id: 'epic20', title: 'Dapatkan 20 Epic', target: 20, progress: 0, badge: 'epic-badge.png', reward: { coins: 4000 } },
-  { id: 'mythical3', title: 'Dapatkan 3 Mythical', target: 3, progress: 0, badge: 'mythical-badge.png', reward: { coins: 10000 } }
-];
-
-
-// === Local Storage System ===
-function loadQuests() {
-  let data = JSON.parse(localStorage.getItem("quests")) || {};
-  const now = new Date();
-  const today = now.toDateString();
-  const week = getWeekNumber(now);
-  const month = now.getMonth();
-
-  if (!data.meta || data.meta.daily !== today) {
-    data.daily = getRandomQuests(QUEST_POOL.daily, 3);
-    data.meta = {...(data.meta||{}), daily: today};
-  }
-  if (!data.meta.weekly || data.meta.weekly !== week) {
-    data.weekly = getRandomQuests(QUEST_POOL.weekly, 2);
-    data.meta.weekly = week;
-  }
-  if (!data.meta.monthly || data.meta.monthly !== month) {
-    data.monthly = getRandomQuests(QUEST_POOL.monthly, 1);
-    data.meta.monthly = month;
-  }
-
-  localStorage.setItem("quests", JSON.stringify(data));
-  return data;
-}
-
-function getWeekNumber(d) {
-  d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
-  let dayNum = d.getUTCDay() || 7;
-  d.setUTCDate(d.getUTCDate() + 4 - dayNum);
-  let yearStart = new Date(Date.UTC(d.getUTCFullYear(),0,1));
-  return Math.ceil((((d - yearStart) / 86400000) + 1)/7);
-}
-
-function saveQuests(data) {
-  localStorage.setItem("quests", JSON.stringify(data));
-}
-
-function loadAchievements() {
-  let saved = [];
-  try {
-    saved = JSON.parse(localStorage.getItem("achievements") || "[]");
-  } catch (e) { }
-
-  // merge: pastikan semua dari ACHIEVEMENTS ada
-  ACHIEVEMENTS.forEach(def => {
-    let found = saved.find(a => a.id === def.id);
-    if (!found) {
-      saved.push({ ...def, progress: 0, claimed: false });
-    }
-  });
-
-  // simpan balik supaya konsisten
-  localStorage.setItem("achievements", JSON.stringify(saved));
-  return saved;
-}
-
-
-function saveAchievements(data) {
-  localStorage.setItem("achievements", JSON.stringify(data));
-}
-
-function getRandomQuests(pool, count) {
-  let shuffled = pool.sort(() => 0.5 - Math.random());
-  return shuffled.slice(0, count).map(q => ({...q, progress:0, claimed:false}));
-}
-
-// === Progress Update ===
-function updateQuestProgress(id, amount) {
-  let quests = loadQuests();
-  ['daily','weekly','monthly'].forEach(cat => {
-    quests[cat].forEach(q => {
-      if (q.id === id && !q.claimed) {
-        q.progress = Math.min(q.target, q.progress + amount);
-      }
-    });
-  });
-  saveQuests(quests);
-  renderQuests();
-}
-
-function updateAchievementProgress(id, amount) {
-  let ach = loadAchievements();
-  ach.forEach(a => {
-    if (a.id === id && !a.claimed) {
-      a.progress = Math.min(a.target, a.progress + amount);
-    }
-  });
-  saveAchievements(ach);
-  renderAchievements();
-}
-
-
-// === Claim ===
-function claimQuest(id) {
-  let quests = loadQuests();
-  ['daily','weekly','monthly'].forEach(cat => {
-    quests[cat].forEach(q => {
-      if (q.id === id && !q.claimed && q.progress >= q.target) {
-        // add coins
-        if (q.reward.coins) {
-          let coins = parseInt(localStorage.getItem("coins") || "0");
-          coins += q.reward.coins;
-          localStorage.setItem("coins", coins);
-          updateCoinUI();
-          showCoinPopup(q.reward.coins);
-        }
-
-        // add potion
-          // potion reward
-          if (q.reward.potions) {
-            q.reward.potions.forEach(p => {
-              addPotion(p.type, p.amount);
-              alert(`Kamu mendapatkan ${p.amount}x Potion (${p.type})`);
-            });
-          }
-
-
-        q.claimed = true;
-      }
-    });
-  });
-  saveQuests(quests);
-  renderQuests();
-}
-
-
-function claimAchievement(id) {
-  let data = loadAchievements();
-  data.forEach(a => {
-    if (a.id === id && a.progress >= a.target && !a.claimed) {
-      a.claimed = true;
-      addCoins(a.reward.coins);
-      showPopup("Achievement Unlocked! +" + a.reward.coins + " Coins");
-    }
-  });
-  saveAchievements(data);
-  renderAchievements();
-}
-
-// === Render UI ===
-// === Render UI ===
-function renderQuests() {
-  let data = loadQuests();
-  let container = document.getElementById("questTab");
-  container.innerHTML = "";
-
-  const categories = [
-    { key: 'daily', title: "☀️ Daily Quests" },
-    { key: 'weekly', title: "📆 Weekly Quests" },
-    { key: 'monthly', title: "🌙 Monthly Quest" }
-  ];
-
-  categories.forEach(cat => {
-    let list = data[cat.key];
-    if (!list) return;
-
-    container.innerHTML += `<h3 class="quest-section">${cat.title}</h3>`;
-    list.forEach(q => {
-      let percent = (q.progress/q.target)*100;
-      container.innerHTML += `
-        <div class="quest-card">
-          <div class="quest-title">${q.title}</div>
-          <div class="progress-text">Progress: ${q.progress} / ${q.target}</div>
-          <div class="progress-bar"><div class="fill" style="width:${percent}%"></div></div>
-          <div class="reward-text">
-            Reward:
-            ${q.reward.coins ? q.reward.coins + " 💰" : ""}
-            ${q.reward.potions ? q.reward.potions.map(p => ` + ${p.amount}🧪(${p.type})`).join("") : ""}
-          </div>
-          <button class="pill claim-btn" onclick="claimQuest('${q.id}')" ${q.claimed?"disabled":""}>
-            ${q.claimed?"✔ Claimed":"Claim"}
-          </button>
-        </div>
-      `;
-    });
-  });
-};
-
-
-
-function renderAchievements() {
-  let data = loadAchievements();
-  let container = document.getElementById("achievementTab");
-  container.innerHTML = "";
-
-  container.innerHTML += `<h3 class="quest-section">🏆 Achievements</h3>`;
-  data.forEach(a => {
-    let percent = (a.progress / a.target) * 100;
-    container.innerHTML += `
-      <div class="quest-card">
-        <div class="quest-title">${a.title}</div>
-        <div class="progress-text">Progress: ${a.progress} / ${a.target}</div>
-        <div class="progress-bar"><div class="fill" style="width:${percent}%"></div></div>
-        <div class="reward-text">Reward:</div>
-        <div class="badge-preview">
-          <img src="${a.badge}" alt="Badge Reward" />
-        </div>
-        <button class="pill claim-btn" onclick="claimAchievement('${a.id}')" ${a.claimed?"disabled":""}>
-          ${a.claimed ? "🏅 Unlocked" : "Claim"}
-        </button>
-      </div>
-    `;
-  });
-}
-
-
-// === Tab Switch ===
-function switchQuestTab(tab) {
-  document.getElementById("questTab").classList.add("hidden");
-  document.getElementById("achievementTab").classList.add("hidden");
-  document.getElementById(tab+"Tab").classList.remove("hidden");
-}
-
-// === Overlay ===
-function openQuestOverlay() {
-  document.getElementById("questOverlay").classList.add("show");
-  renderQuests();
-  renderAchievements();
-}
-function closeQuestOverlay() {
-  document.getElementById("questOverlay").classList.remove("show");
-}
-
-function getPotions() {
-  return JSON.parse(localStorage.getItem("potions") || "{}");
-}
-
-function savePotions(potions) {
-  localStorage.setItem("potions", JSON.stringify(potions));
-}
-
-function addPotion(type, amount) {
-  let potions = getPotions();
-  potions[type] = (potions[type] || 0) + amount;
-  savePotions(potions);
-}
-
-// ======================
-// 🔧 DEBUG DAILY REWARD
-// ======================
-window.debugDailyReward = {
-  reset: () => {
-    localStorage.removeItem("lastDailyClaim");
-    localStorage.setItem("dailyDay", "1");
-    console.log("🔄 Daily Reward direset ke Hari 1");
-    updateDailyUI();
-    forceEnableClaimButton();
-  },
-  skipDay: () => {
-    let day = parseInt(localStorage.getItem("dailyDay") || "1");
-    localStorage.setItem("dailyDay", day + 1);
-    localStorage.removeItem("lastDailyClaim"); // biar bisa klaim lagi
-    console.log(`⏭ Skip → Daily Reward sekarang di Hari ${day + 1}`);
-    updateDailyUI();
-    forceEnableClaimButton();
-  },
-  setDay: (n) => {
-    localStorage.setItem("dailyDay", n);
-    localStorage.removeItem("lastDailyClaim"); // reset klaim
-    console.log(`🎯 Daily Reward diatur manual ke Hari ${n}`);
-    updateDailyUI();
-    forceEnableClaimButton();
-  }
-};
-
-// debugDailyReward.reset() → kembali ke hari 1.
-
-// debugDailyReward.skipDay() → lompat ke hari berikutnya.
-
-// debugDailyReward.setDay(5) → langsung set ke hari 5.
-
-function forceEnableClaimButton() {
-  const claimBtn = document.querySelector("#dailyRewardOverlay button");
-  if (claimBtn) {
-    claimBtn.textContent = "Klaim Hadiah";
-    claimBtn.disabled = false;
-    claimBtn.style.opacity = "1";
-    claimBtn.style.cursor = "pointer";
-  }
-}
