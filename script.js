@@ -2644,15 +2644,8 @@ function checkDailyReward() {
   const today = new Date().toDateString();
   let streak = parseInt(localStorage.getItem("dailyStreak") || "0");
 
-updateDailyUI();
-
-  // highlight kotak hari ini
-  document.querySelectorAll(".reward-box").forEach((el, idx) => {
-    el.classList.remove("active", "claimed");
-    if (idx === streak) {
-      el.classList.add("active");
-    }
-  });
+  // 👉 tambahkan baris ini biar sinkron dengan dailyDay
+  updateDailyUI();
 
   const btn = document.getElementById("dailyClaimBtn");
   if (lastClaim === today) {
@@ -2662,7 +2655,8 @@ updateDailyUI();
     btn.disabled = false;
     btn.innerText = "Klaim Hadiah";
   }
-    const indicator = document.getElementById("rewardIndicator");
+
+  const indicator = document.getElementById("rewardIndicator");
 
   if (lastClaim !== today) {
     // Belum klaim → tampilkan popup + indikator merah
@@ -2673,7 +2667,6 @@ updateDailyUI();
     if (indicator) indicator.classList.add("hidden");
   }
 }
-
 
     function highlightRewardBox(streak) {
       rewards.forEach((_, i) => {
@@ -2863,5 +2856,48 @@ function openDailyReward() {
       if (profileNameEl) profileNameEl.innerText = name;
     }
 
+// ======================
+// 🔧 DEBUG DAILY REWARD
+// ======================
+window.debugDailyReward = {
+  reset: () => {
+    localStorage.removeItem("lastDailyClaim");
+    localStorage.setItem("dailyDay", "1");
+    console.log("🔄 Daily Reward direset ke Hari 1");
+    updateDailyUI();
+    forceEnableClaimButton();
+  },
+  skipDay: () => {
+    let day = parseInt(localStorage.getItem("dailyDay") || "1");
+    localStorage.setItem("dailyDay", day + 1);
+    localStorage.removeItem("lastDailyClaim"); // biar bisa klaim lagi
+    console.log(`⏭ Skip → Daily Reward sekarang di Hari ${day + 1}`);
+    updateDailyUI();
+    forceEnableClaimButton();
+  },
+  setDay: (n) => {
+    localStorage.setItem("dailyDay", n);
+    localStorage.removeItem("lastDailyClaim"); // reset klaim
+    console.log(`🎯 Daily Reward diatur manual ke Hari ${n}`);
+    updateDailyUI();
+    forceEnableClaimButton();
+  }
+};
+
+// debugDailyReward.reset() → kembali ke hari 1.
+
+// debugDailyReward.skipDay() → lompat ke hari berikutnya.
+
+// debugDailyReward.setDay(5) → langsung set ke hari 5.
+
+function forceEnableClaimButton() {
+  const claimBtn = document.querySelector("#dailyRewardOverlay button");
+  if (claimBtn) {
+    claimBtn.textContent = "Klaim Hadiah";
+    claimBtn.disabled = false;
+    claimBtn.style.opacity = "1";
+    claimBtn.style.cursor = "pointer";
+  }
+}
 
 
