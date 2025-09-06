@@ -2644,6 +2644,8 @@ function checkDailyReward() {
   const today = new Date().toDateString();
   let streak = parseInt(localStorage.getItem("dailyStreak") || "0");
 
+updateDailyUI();
+
   // highlight kotak hari ini
   document.querySelectorAll(".reward-box").forEach((el, idx) => {
     el.classList.remove("active", "claimed");
@@ -2860,5 +2862,6 @@ function openDailyReward() {
       const profileNameEl = document.getElementById("profileName");
       if (profileNameEl) profileNameEl.innerText = name;
     }
+
 
 
