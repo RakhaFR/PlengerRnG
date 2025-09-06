@@ -2628,15 +2628,16 @@ window.addEventListener("load", () => {
     });
 
 
-    const rewards = [
-      { type: "coin", amount: 500 },
-      { type: "potion", potion: "x2", amount: 1 },
-      { type: "coin", amount: 1000 },
-      { type: "potion", potion: "x2", amount: 2 },
-      { type: "coin", amount: 1500 },
-      { type: "potion", potion: "x2", amount: 3 },
-      { type: "potion", potion: "x5", amount: 2 }, // Hari 7 = Potion x5 (2 buah)
-    ];
+const rewards = [
+  { type: "coin", amount: 500 },
+  { type: "potion", potionType: "luck", potion: "x2", amount: 1 },
+  { type: "coin", amount: 1000 },
+  { type: "potion", potionType: "fast", potion: "x2", amount: 2 },
+  { type: "coin", amount: 1500 },
+  { type: "potion", potionType: "luck", potion: "x3", amount: 2 },
+  { type: "potion", potionType: "luck", potion: "x5", amount: 2 }
+];
+
 
 
 function checkDailyReward() {
@@ -2690,11 +2691,19 @@ function claimDailyReward() {
   if (reward.type === "coin") {
     addCoins(reward.amount);
     showPopup(`🎉 Kamu dapat ${reward.amount} Coins!`);
-  } else if (reward.type === "potion") {
-    const mult = parseInt(reward.potion.replace("x", ""));
-    addPotion("luck", mult, reward.amount);
-    showPopup(`✨ Kamu dapat ${reward.amount} Potion ${reward.potion}!`);
+} else if (reward.type === "potion") {
+  const mult = parseInt(reward.potion.replace("x", ""));
+  addPotion(reward.potionType, mult, reward.amount);
+
+  // refresh UI kalau inventory terbuka
+  if (document.getElementById("potionInventoryOverlay")?.classList.contains("show")) {
+    renderPotionInventory();
   }
+
+  showPopup(`✨ Kamu dapat ${reward.amount} Potion ${reward.potion} (${reward.potionType})!`);
+}
+
+
 
   // ⏭ Simpan hari berikutnya
   localStorage.setItem("dailyDay", day + 1);
@@ -2899,5 +2908,6 @@ function forceEnableClaimButton() {
     claimBtn.style.cursor = "pointer";
   }
 }
+
 
 
