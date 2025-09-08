@@ -4,8 +4,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>PLENGER RnG — UPD-1.2</title>
-  <link rel="icon" type="image/png" href="update-1.2.jpg">
+  <title>PLENGER RnG — UPD-1.8</title>
+  <link rel="icon" type="image/png" href="update-1.8.jpg">
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -77,30 +77,35 @@
     </button>
 
     <button class="side-btn" onclick="openDailyReward()">
-      <img src="gift.png" alt="Shop" class="side-icon">
+      <img src="daily.png" alt="Shop" class="side-icon">
       <span class="side-label">Hadiah</span>
        <div id="rewardIndicator" class="reward-indicator hidden">!</div>
     </button>
+    <button class="side-btn" onclick="openQuestOverlay()">
+  <img src="quest.png" alt="Quest" class="side-icon">
+  <span class="side-label">Quest</span>
+</button>
 
     <button class="side-btn" onclick="openStore()">
-      <img src="luck-potion.png" alt="Shop" class="side-icon">
+      <img src="shop.png" alt="Shop" class="side-icon">
       <span class="side-label">Store</span>
     </button>
     <button class="side-btn" onclick="openPotionInventory()">
-      <img src="fast-roll.png" alt="Inventory" class="side-icon">
+      <img src="inventory.png" alt="Inventory" class="side-icon">
       <span class="side-label">Inventory</span>
     </button>
     <button class="side-btn" onclick="openUpdateLog()">
       <img src="update.png" alt="Update" class="side-icon">
       <span class="side-label">Update Log</span>
+      <div id="updateIndicator" class="reward-indicator hidden">!</div>
     </button>
   </div>
 
 
   <section class="lobby" id="lobby">
     <div class="panel">
-      <h1>PLENGER RnG</h1>
-      <h3 style="color: rgb(139, 238, 255);">🎴UPDATE 1.2🎲</h3>
+      <h1 style="-webkit-text-stroke: 1.3px #ff6565; font-weight: 900;">PLENGER RnG</h1>
+      <h3 style="color: #ffffff; -webkit-text-stroke: 1px #65ffe5; ">🎴UPDATE 1.8🎲</h3>
       <div style="margin-top:16px">
         <button onclick="startGame()"
           style="background:rgba(10,10,10,.65); border:1px solid var(--glass-brd); border-radius:14px; color: white; padding: 20px 80px 20px 80px; cursor: pointer;">Mulai</button>
@@ -112,6 +117,7 @@
     <div class="coin-bar">
       🪙 <span id="coinAmount">0</span> Coins
     </div>
+    <div id="potionCounter"></div>
     <div class="rng-wrap" id="rngWrap">
       <div id="rollingText" class="rolling-text" style="display:none;"></div>
       <div class="rng-frame" id="rngFrame">
@@ -242,9 +248,9 @@
       </picture>
 
       <picture>
-        <source srcset="banner1-hp.jpg" media="(max-width: 784px)">
-        <source srcset="banner1-tab.jpg" media="(max-width: 864px)">
-        <img src="banner1.jpg" alt="Event 3">
+        <source srcset="banner3-hp.jpg" media="(max-width: 784px)">
+        <source srcset="banner3-tab.jpg" media="(max-width: 864px)">
+        <img src="banner3.jpg" alt="Event 3">
       </picture>
     </div>
   </div>
@@ -273,7 +279,7 @@
 
           <div class="reward-box" id="rewardDay2">
             Hari 2<br>
-            <span>Potion x2</span>
+            <span>1 Luck x2</span>
             <img src="luck-potion.png" alt="Potion x2" class="reward-icon">
           </div>
 
@@ -285,8 +291,8 @@
 
           <div class="reward-box" id="rewardDay4">
             Hari 4<br>
-            <span>Potion x2</span>
-            <img src="luck-potion.png" alt="Potion x2" class="reward-icon">
+            <span>2 fast x2</span>
+            <img src="fast-roll.png" alt="Potion x2" class="reward-icon">
           </div>
 
           <div class="reward-box" id="rewardDay5">
@@ -297,13 +303,13 @@
 
           <div class="reward-box" id="rewardDay6">
             Hari 6<br>
-            <span>Potion x5</span>
-            <img src="x5-luck.png" alt="Potion x5" class="reward-icon">
+            <span>2 Luck x3</span>
+            <img src="x3-luck.png" alt="Potion x5" class="reward-icon">
           </div>
 
           <div class="reward-box day7" id="rewardDay7">
             Hari 7<br>
-            <span>2x Potion x5 🎉</span>
+            <span>2 Luck x5  🎉</span>
             <img src="x5-luck.png" alt="Potion x5" class="reward-icon">
           </div>
         </div>
@@ -316,13 +322,16 @@
 
 
   <!-- PLAYER PROFILE POPUP -->
-  <div class="overlay" id="profileOverlay">
-    <div class="modal">
-      <div class="modal-header">
-        <div class="modal-title">👤 Player Profile</div>
-        <div class="close-x" onclick="closeProfile()">✕</div>
-      </div>
-      <div style="padding:20px; font-size:12px; line-height:1.6;">
+<!-- PLAYER PROFILE POPUP -->
+<div class="overlay" id="profileOverlay">
+  <div class="modal profile-modal">
+    <div class="modal-header">
+      <div class="modal-title">👤 Player Profile</div>
+      <div class="close-x" onclick="closeProfile()">✕</div>
+    </div>
+
+    <div class="profile-body">
+      <div class="profile-stats">
         <p><strong>Username:</strong> <span id="profileName">Guest</span></p>
         <p><strong>Total Rolls:</strong> <span id="profileRolls">0</span></p>
         <p><strong>Legendary:</strong> <span id="profileLegendary">0</span></p>
@@ -331,8 +340,15 @@
         <p><strong>Secret:</strong> <span id="profileSecret">0</span></p>
         <p><strong>Total Coins Earned:</strong> <span id="profileCoins">0</span></p>
       </div>
+
+      <div class="profile-achievements">
+        <h3>🏆 Achievements</h3>
+        <div id="profileAchievements" class="badge-grid"></div>
+      </div>
     </div>
   </div>
+</div>
+
 
   <!-- USERNAME POPUP -->
   <div class="overlay" id="usernameOverlay">
@@ -350,8 +366,24 @@
     </div>
   </div>
 
+
+
+<div class="overlay" id="questOverlay">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">📜 Quest & Achievements</div>
+      <div class="close-x" onclick="closeQuestOverlay()">✕</div>
+    </div>
+    <div class="toolbar toolbar-quest">
+      <button class="pill pill-quest" onclick="switchQuestTab('quest')">Quest</button>
+      <button class="pill pill-achievement" onclick="switchQuestTab('achievement')">Achievements</button>
+    </div>
+    <div id="questTab" class="grid"></div>
+    <div id="achievementTab" class="grid hidden"></div>
+  </div>
+</div>
+
   <script src="script.js"></script>
 </body>
 
 </html>
-
