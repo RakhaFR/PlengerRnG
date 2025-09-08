@@ -2,7 +2,7 @@
  * ======= KONFIGURASI =======
  *******************************/
 
-    const CURRENT_UPDATE_VERSION = "1.2";
+    const CURRENT_UPDATE_VERSION = "1.8";
 
     // Rarity & tampilannya
     const RARITIES = [
@@ -588,6 +588,43 @@
         rarity: 'legend',
         numberRange: [1, 700100]
       },
+            {
+        image: 'surya-minkem.jpg',
+        text: 'sur Minkem!',
+        rarity: 'legend',
+        numberRange: [1, 612100]
+      },
+            {
+        image: 'alif-songong.jpg',
+        text: 'lip songong',
+        rarity: 'epic',
+        numberRange: [1, 31190]
+      },
+            {
+        image: 'dzaki-anomali.jpg',
+        text: 'BM ALOMANI REAL',
+        rarity: 'mythical',
+        numberRange: [1, 1661880]
+      },
+            {
+        image: 'fathian-wink.jpg',
+        text: 'yan wink!',
+        rarity: 'legend',
+        numberRange: [1, 301880]
+      },
+            {
+        image: 'menariklah.jpg',
+        text: 'menariklah',
+        rarity: 'legend',
+        numberRange: [1, 455280]
+      },
+            {
+        image: 'nafis-hah.jpg',
+        text: 'HAH?!',
+        rarity: 'mythical',
+        numberRange: [1, 8910000]
+      },
+
     ];
 
     // LocalStorage keys
@@ -606,6 +643,7 @@
     let sinceEpic = 0;     // pity counter Epic+
     let luckSource = 'none'; // 'cengkrink' | 'potion' | 'none'
     let fastRollActive = false;
+    let isSpecialAnimation = false;
     // Pastikan variabel global ada
     // Efek aktif: luck & fast disimpan dalam array
     window.activeEffects = {
@@ -922,97 +960,95 @@ function addPotion(type, mult, amount = 1) {
     }
 
 
-    function playRarityAnimation(rarity) {
-      const wrapper = document.getElementById('rarityAnimation');
-      const bg = wrapper?.querySelector('.rarity-bg');
-      const star = wrapper?.querySelector('.rarity-star');
-      const body = document.body;
+function playRarityAnimation(rarity) {
+  const wrapper = document.getElementById('rarityAnimation');
+  const bg = wrapper?.querySelector('.rarity-bg');
+  const star = wrapper?.querySelector('.rarity-star');
+  const body = document.body;
 
-      if (!wrapper || !bg || !star) return;
+  if (!wrapper || !bg || !star) return;
 
-      // 🔥 SEMBUNYIKAN BANNER SAAT ANIMASI MULAI
-      hideBannerToggle();
-      const banner = document.getElementById("eventBanner");
-      if (banner) banner.classList.add("hidden");
+  hideBannerToggle();
+  const banner = document.getElementById("eventBanner");
+  if (banner) banner.classList.add("hidden");
 
-      wrapper.classList.remove('hidden');
-      star.style.display = 'block';
-      isRarityAnimationPlaying = true;
+  wrapper.classList.remove('hidden');
+  star.style.display = 'block';
 
-      bg.classList.remove('epic', 'legend', 'mythical');
+  // 🚨 gunakan flag global yang sama
+  isSpecialAnimation = true;
 
-      switch (rarity) {
-        case 'epic':
-          bg.classList.add('epic');
-          star.style.filter = 'hue-rotate(270deg)';
-          break;
-        case 'legend':
-        case 'legendary':
-          bg.classList.add('legend');
-          star.style.filter = 'hue-rotate(35deg)';
-          break;
-        case 'mythical':
-          bg.classList.add('mythical');
-          break;
-      }
+  bg.classList.remove('epic', 'legend', 'mythical');
 
-      toggleUI(true);
+  switch (rarity) {
+    case 'epic':
+      bg.classList.add('epic');
+      star.style.filter = 'hue-rotate(270deg)';
+      break;
+    case 'legend':
+    case 'legendary':
+      bg.classList.add('legend');
+      star.style.filter = 'hue-rotate(35deg)';
+      break;
+    case 'mythical':
+      bg.classList.add('mythical');
+      break;
+  }
 
+  toggleUI(true);
 
-      // 🎵 Putar musik gacha
-      const music = document.getElementById('gachaMusic');
-      if (music) {
-        music.currentTime = 0;
-        music.volume = 0.6;
-        music.play().catch(e => console.warn("Music error:", e));
-      }
+  const music = document.getElementById('gachaMusic');
+  if (music) {
+    music.currentTime = 0;
+    music.volume = 0.6;
+    music.play().catch(e => console.warn("Music error:", e));
+  }
 
-      // 🎵 Putar suara star awal
-      try {
-        if (resultSfx) {
-          resultSfx.currentTime = 0;
-          resultSfx.play();
-        }
-      } catch (e) { console.warn("Gagal play resultSfx", e); }
-
-      // Animasi keluar-masuk
-      star.style.animation = 'moveOut 6.23s ease-in forwards';
-
-      setTimeout(() => {
-        star.style.animation = '';
-        void star.offsetWidth;
-        star.style.animation = 'moveIn 6.23s ease forwards';
-      }, 6230);
-
-      rarityEffectTimeout = setTimeout(() => {
-        star.style.display = 'none';
-        star.style.animation = '';
-        star.style.transform = '';
-
-        toggleUI(false);
-        body.classList.add('shake-body');
-
-        setTimeout(() => {
-          body.classList.remove('shake-body');
-          isRarityAnimationPlaying = false;
-          body.classList.add('shake-fade');
-
-          // 🔥 TAMPILKAN BANNER LAGI SETELAH ANIMASI SELESAI
-          if (banner) banner.classList.remove("hidden");
-          showBannerToggle();
-        }, 1000);
-
-        setTimeout(() => {
-          body.classList.remove('shake-fade');
-          const music = document.getElementById('gachaMusic');
-          if (music) {
-            music.pause();
-            music.currentTime = 0;
-          }
-        }, 3000);
-
-      }, 12560);
+  try {
+    if (resultSfx) {
+      resultSfx.currentTime = 0;
+      resultSfx.play();
     }
+  } catch (e) { console.warn("Gagal play resultSfx", e); }
+
+  star.style.animation = 'moveOut 6.23s ease-in forwards';
+
+  setTimeout(() => {
+    star.style.animation = '';
+    void star.offsetWidth;
+    star.style.animation = 'moveIn 6.23s ease forwards';
+  }, 6230);
+
+  rarityEffectTimeout = setTimeout(() => {
+    star.style.display = 'none';
+    star.style.animation = '';
+    star.style.transform = '';
+
+    toggleUI(false);
+    body.classList.add('shake-body');
+
+    setTimeout(() => {
+      body.classList.remove('shake-body');
+      body.classList.add('shake-fade');
+
+      // 🔥 reset flag setelah animasi selesai
+      isSpecialAnimation = false;
+
+      if (banner) banner.classList.remove("hidden");
+      showBannerToggle();
+    }, 1000);
+
+    setTimeout(() => {
+      body.classList.remove('shake-fade');
+      if (music) {
+        music.pause();
+        music.currentTime = 0;
+      }
+    }, 3000);
+
+  }, 12560);
+}
+
 
 
     function showFullscreenAura(type) {
@@ -1030,73 +1066,81 @@ function addPotion(type, mult, amount = 1) {
       stopSecretSparkle();
     }
 
-    function playVideoRarity(rarity) {
-      const isMobile = window.innerWidth <= 768;
-      const videoId = rarity + "Video" + (isMobile ? "Mobile" : "");
-      const video = document.getElementById(videoId);
-      const sfx = document.getElementById(rarity + 'Sfx');
-      const body = document.body;
-      hideBannerToggle();
+function playVideoRarity(rarity) {
+  const isMobile = window.innerWidth <= 768;
+  const videoId = rarity + "Video" + (isMobile ? "Mobile" : "");
+  const video = document.getElementById(videoId);
+  const sfx = document.getElementById(rarity + 'Sfx');
+  const body = document.body;
+  hideBannerToggle();
 
-      let auraEl = null;
-      if (rarity === 'prismatic') {
-        auraEl = document.querySelector('.fullscreen-prismatic');
-      }
-      if (rarity === 'secret') {
-        auraEl = document.querySelector('.fullscreen-secret');
-      }
+  let auraEl = null;
+  if (rarity === 'prismatic') {
+    auraEl = document.querySelector('.fullscreen-prismatic');
+  }
+  if (rarity === 'secret') {
+    auraEl = document.querySelector('.fullscreen-secret');
+  }
 
-      if (!video) return;
+  if (!video) return;
 
-      // 🔥 SEMBUNYIKAN BANNER SAAT VIDEO MULAI
-      const banner = document.getElementById("eventBanner");
-      if (banner) banner.classList.add("hidden");
+  // 🔥 SEMBUNYIKAN BANNER SAAT VIDEO MULAI
+  const banner = document.getElementById("eventBanner");
+  if (banner) banner.classList.add("hidden");
 
-      toggleUI(true);
-      video.classList.remove('hidden');
-      video.currentTime = 0;
-      video.play().catch(e => console.warn("Video play error:", e));
+  toggleUI(true);
+  video.classList.remove('hidden');
+  video.currentTime = 0;
+  video.play().catch(e => console.warn("Video play error:", e));
 
-      if (sfx) {
-        sfx.currentTime = 0;
-        sfx.play().catch(e => console.warn("SFX play error:", e));
-      }
+  if (sfx) {
+    sfx.currentTime = 0;
+    sfx.play().catch(e => console.warn("SFX play error:", e));
+  }
 
-      video.onended = () => {
-        video.classList.add('hidden');
-        toggleUI(false);
+  // 🚨 Set flag animasi spesial
+  isSpecialAnimation = true;
 
-        if (auraEl) {
-          auraEl.classList.remove('hidden');
-        }
-        // Efek shake
-        body.classList.add('shake-body');
-        setTimeout(() => {
-          body.classList.remove('shake-body');
-          body.classList.add('shake-fade');
+  video.onended = () => {
+    video.classList.add('hidden');
+    toggleUI(false);
 
-          // ✨ Sparkle untuk secret
-          if (rarity === 'secret') {
-            const frame = document.getElementById('rngFrame');
-            if (frame) {
-              frame.classList.add('secret-frame');
-              frame.style.position = 'relative';
-              stopSecretSparkle();
-              secretSparkleInterval = setInterval(() => {
-                spawnSecretSparkle(frame);
-              }, 300);
-            }
-          }
-        }, 1000);
-
-        setTimeout(() => {
-          body.classList.remove('shake-fade');
-          // 🔥 TAMPILKAN BANNER LAGI SETELAH VIDEO SELESAI
-          if (banner) banner.classList.remove("hidden");
-          showBannerToggle(); // ⬅️ disini pas!
-        }, 3000);
-      };
+    if (auraEl) {
+      auraEl.classList.remove('hidden');
     }
+
+    // Efek shake
+    body.classList.add('shake-body');
+    setTimeout(() => {
+      body.classList.remove('shake-body');
+      body.classList.add('shake-fade');
+
+      // ✨ Sparkle untuk secret
+      if (rarity === 'secret') {
+        const frame = document.getElementById('rngFrame');
+        if (frame) {
+          frame.classList.add('secret-frame');
+          frame.style.position = 'relative';
+          stopSecretSparkle();
+          secretSparkleInterval = setInterval(() => {
+            spawnSecretSparkle(frame);
+          }, 300);
+        }
+      }
+    }, 1000);
+
+    setTimeout(() => {
+      body.classList.remove('shake-fade');
+      // 🔥 TAMPILKAN BANNER LAGI SETELAH VIDEO SELESAI
+      if (banner) banner.classList.remove("hidden");
+      showBannerToggle();
+    }, 3000);
+
+    // 🚨 Reset flag → auto roll bisa lanjut lagi
+    isSpecialAnimation = false;
+  };
+}
+
 
     function setRollingText(rarity, text) {
       const rollingText = document.getElementById('rollingText');
@@ -1184,6 +1228,7 @@ function addPotion(type, mult, amount = 1) {
 
     // Rolling 5 detik dengan SFX
     function rollRNG() {
+      
       const frame = document.getElementById('rngFrame');
 
       if (frame) {
@@ -1203,13 +1248,16 @@ function addPotion(type, mult, amount = 1) {
         const displayCount = isTenth ? 10 : (rollCount % 10);
         el('rollCounter').textContent = displayCount;
       }
+const badge = document.getElementById('luckBadge');
+const rollBtn = document.getElementById('rollBtn');
 
-      const rollBtnRainbow = document.getElementById('rollBtn');
-      if ((rollCount % 10) === 0 && rollCount > 0) {
-        rollBtn.classList.add('rainbow-border');
-      } else {
-        rollBtn.classList.remove('rainbow-border');
-      }
+if ((rollCount % 10) === 0 && rollCount > 0) {
+  rollBtn.classList.add('rainbow-border');
+  badge?.classList.add('gold-badge');
+} else {
+  rollBtn.classList.remove('rainbow-border');
+  badge?.classList.remove('gold-badge');
+}
 
       if (activeSecretFrame) {
         activeSecretFrame.classList.remove('secret-frame');
@@ -1227,19 +1275,20 @@ function addPotion(type, mult, amount = 1) {
       document.querySelector('.fullscreen-prismatic').classList.add('hidden');
       document.querySelector('.fullscreen-secret').classList.add('hidden');
 
-
       // ==========================
       // Hitung multiplier luck (potion + bonus roll ke-10)
       // gunakan potion aktif kalau ada, fallback ke luckBonus (legacy)
-      let finalLuckMult = getLuckMultiplier();
-      if (isTenth) {
-        finalLuckMult *= 2; // gandakan kalau benar-benar roll ke-10
-      }
+let baseMult = getLuckMultiplier();
+let finalLuckMult = baseMult;
 
-      currentLuckMultiplier = finalLuckMult;
+if (isTenth) {
+  finalLuckMult *= 2;
+}
 
-      // Update badge luck di tombol
-      updateLuckBadge(finalLuckMult);
+currentLuckMultiplier = finalLuckMult;
+updateLuckBadge(finalLuckMult, isTenth);
+
+
 
       // Tentukan hasil akhir
       const selected = weightedPick(finalLuckMult); // pastikan weightedPick bisa terima multiplier
@@ -1249,7 +1298,31 @@ function addPotion(type, mult, amount = 1) {
       el('rngText').style.opacity = 0;
       el('rngBadge').style.display = 'none';
       el('rngNumber').style.display = 'none';
-      el('rngImage').src = '';
+      el('rngImage').src = '';  
+
+      const rk = selected?.rarity?.key || null;
+      updateQuestProgress('roll20', 1);
+      updateQuestProgress('roll100', 1);
+      updateQuestProgress('roll500', 1);
+      updateQuestProgress('roll200', 1);
+      if (rk) {
+        // contoh mapping (sesuaikan id quest/achievement dengan yang kamu definisikan)
+        if (rk === 'rare') {
+          updateQuestProgress('rare3', 1);
+          updateAchievementProgress('rare10', 1);
+        } else if (rk === 'epic') {
+          updateQuestProgress('epic1', 1);
+          updateAchievementProgress('epic20', 1);
+        } else if (rk === 'legend') {
+          updateQuestProgress('getLegend', 1);
+          updateQuestProgress('legend3', 1);
+          updateAchievementProgress('legend5', 1);
+          updateAchievementProgress('legend10', 1);
+        } else if (rk === 'mythical') {
+          updateQuestProgress('mythical1', 1);
+          updateAchievementProgress('mythical3', 1);
+        }
+      }
 
       // Siapkan elemen animasi teks
       const rollingEl = el('rollingText');
@@ -1373,48 +1446,58 @@ function addPotion(type, mult, amount = 1) {
       }, rollDuration);
     }
 
-    function updateLuckBadge() {
-      const badge = document.getElementById('luckBadge');
-      if (!badge) return;
+function updateLuckBadge(mult, isTenth) {
+  const badge = document.getElementById('luckBadge');
+  if (!badge) return;
 
-      const mult = getLuckMultiplier();
-      const isTenth = (typeof rollCount !== 'undefined') && (rollCount % 10 === 0) && rollCount > 0;
+  // Reset styling
+  badge.classList.remove('gold-badge');
+  badge.style.background = "";
+  badge.style.webkitBackgroundClip = "";
+  badge.style.webkitTextFillColor = "";
+  badge.style.color = "#2ad980";
 
-      if (mult > 1) {
-        badge.textContent = `x${mult} Luck`;
+  // === CASE 1: tanpa potion & bukan roll ke-10 → sembunyikan ===
+  if ((!mult || mult <= 1) && !isTenth) {
+    badge.textContent = "";
+    badge.classList.add('hidden');
+    return;
+  }
 
-        if (isTenth) {
-          badge.style.background = "linear-gradient(135deg, gold, #2ad980)";
-          badge.style.webkitBackgroundClip = "text";
-          badge.style.webkitTextFillColor = "transparent";
-        }
-        else if (mult >= 50) {
-          badge.style.background = "var(--g-mythical)";
-          badge.style.webkitBackgroundClip = "text";
-          badge.style.webkitTextFillColor = "transparent";
-        }
-        else if (mult >= 25) {
-          badge.style.background = "var(--g-legend)";
-          badge.style.webkitBackgroundClip = "text";
-          badge.style.webkitTextFillColor = "transparent";
-        }
-        else if (mult >= 10) {
-          badge.style.background = "var(--g-epic)";
-          badge.style.webkitBackgroundClip = "text";
-          badge.style.webkitTextFillColor = "transparent";
-        }
-        else {
-          badge.style.background = "";
-          badge.style.webkitBackgroundClip = "";
-          badge.style.webkitTextFillColor = "";
-          badge.style.color = "#2ad980";
-        }
+  // === CASE 2: roll ke-10 TANPA potion → tampil x2 Luck dengan emas ===
+  if ((!mult || mult <= 1) && isTenth) {
+    badge.textContent = "x2 Luck";
+    badge.classList.add('gold-badge');
+    badge.classList.remove('hidden');
+    return;
+  }
 
-        badge.classList.remove('hidden');
-      } else {
-        badge.classList.add('hidden');
-      }
+  // === CASE 3: ada potion / multiplier aktif → teks sesuai multiplier ===
+  badge.textContent = `x${mult} Luck`;
+  badge.classList.remove('hidden');
+
+  if (isTenth) {
+    // === CASE 4: ada potion + roll ke-10 → gandakan dan tampil emas ===
+    badge.textContent = `x${mult} Luck`;
+    badge.classList.add('gold-badge');
+  } else {
+    // === Styling warna sesuai besar multiplier potion ===
+    if (mult >= 50) {
+      badge.style.background = "var(--g-mythical)";
+      badge.style.webkitBackgroundClip = "text";
+      badge.style.webkitTextFillColor = "transparent";
+    } else if (mult >= 25) {
+      badge.style.background = "var(--g-legend)";
+      badge.style.webkitBackgroundClip = "text";
+      badge.style.webkitTextFillColor = "transparent";
+    } else if (mult >= 10) {
+      badge.style.background = "var(--g-epic)";
+      badge.style.webkitBackgroundClip = "text";
+      badge.style.webkitTextFillColor = "transparent";
     }
+  }
+}
+
 
 
     /*****************************************
@@ -1802,6 +1885,10 @@ function addPotion(type, mult, amount = 1) {
         addCoins(gained);
         renderInventory();
         showCoinPopup(gained);
+        // di sellBtn
+        const jumlahTerjual = selectedCards.length;
+        updateQuestProgress('sell5', jumlahTerjual);
+        updateQuestProgress('sell20', jumlahTerjual);
       }
 
 
@@ -1862,6 +1949,10 @@ function addPotion(type, mult, amount = 1) {
         addCoins(gained);
         renderInventory();
         showCoinPopup(gained);
+        // di sellAllBtn
+        const jumlahTerjual = unlocked.length;
+        updateQuestProgress('sell5', jumlahTerjual);
+        updateQuestProgress('sell20', jumlahTerjual);
       }
     });
 
@@ -2009,14 +2100,16 @@ function updateCoinUI() {
     }
 
 
-    function startAutoRolling() {
-      if (autoRollInterval) clearInterval(autoRollInterval);
-      autoRollInterval = setInterval(() => {
-        if (!rolling && !isRarityAnimationPlaying) {
-          rollRNG();
-        }
-      }, 4000); // 4 detik antar cek
-    }
+function startAutoRolling() {
+  if (autoRollInterval) clearInterval(autoRollInterval);
+
+autoRollInterval = setInterval(() => {
+  if (!rolling && !isSpecialAnimation) {
+    rollRNG();
+  }
+}, 4000);
+}
+
 
 
     function stopAutoRolling() {
@@ -2097,40 +2190,51 @@ addPotion(type, potion.mult, 1);
       setTimeout(() => popup.classList.add('hidden'), 1500);
     }
 
-    function equipPotion(type, idx) {
+function equipPotion(type, idx) {
+  // 🎵 SFX cengkrink
+  try {
+    const cengkrinkSfx = document.getElementById('resultSfx');
+    cengkrinkSfx.currentTime = 0;
+    cengkrinkSfx.play();
+  } catch (e) { }
 
-      // 🎵 SFX cengkrink
-      try {
-        const cengkrinkSfx = document.getElementById('resultSfx');
-        cengkrinkSfx.currentTime = 0;
-        cengkrinkSfx.play();
-      } catch (e) { }
+  // ambil potion yang benar
+  const potion = POTIONS[type] && POTIONS[type][idx];
+  if (!potion) return;
 
-      // ambil potion yang benar
-      const potion = POTIONS[type] && POTIONS[type][idx];
-      if (!potion) return;
+  // cek inventory
+  let potions = {};
+  try { 
+    potions = JSON.parse(localStorage.getItem('potions') || '{}'); 
+  } catch { 
+    potions = {}; 
+  }
+  const key = `${type}_${potion.mult}`;
+  if (!potions[key] || potions[key] <= 0) return;
 
-      // cek inventory
-      let potions = {};
-      try { potions = JSON.parse(localStorage.getItem('potions') || '{}'); } catch { potions = {}; }
-      const key = `${type}_${potion.mult}`;
-      if (!potions[key] || potions[key] <= 0) return;
+  // kurangi jumlah
+  potions[key]--;
+  if (potions[key] <= 0) delete potions[key];
+  localStorage.setItem('potions', JSON.stringify(potions));
 
-      // kurangi jumlah
-      potions[key]--;
-      if (potions[key] <= 0) delete potions[key];
-      localStorage.setItem('potions', JSON.stringify(potions));
+  // safety: pastikan duration numeric (ms)
+  const duration = Number(potion.duration) || 0;
 
-      // safety: pastikan duration numeric (ms)
-      const duration = Number(potion.duration) || 0;
+  // aktifkan efek (pakai type asli: 'luck' atau 'fast')
+  activatePotionEffect(type, duration, potion.mult);
 
-      // aktifkan efek (pakai type asli: 'luck' atau 'fast')
-      activatePotionEffect(type, duration, potion.mult);
+  // UI refresh
+  renderPotionInventory();
 
-      // UI refresh
-      renderPotionInventory();
-      updateLuckBadge();
-    }
+  // 🚀 langsung update badge dengan multiplier terbaru
+  const mult = getLuckMultiplier();   // multiplier sekarang setelah potion diaktifkan
+  updateLuckBadge(mult, false);       // false karena bukan roll ke-10
+
+  // quest progress
+  updateQuestProgress('usePotion1', 1);
+  updateQuestProgress('usePotion5', 1);
+}
+
 
 
 
@@ -2364,6 +2468,17 @@ addPotion(type, potion.mult, 1);
 
     // ========= UPDATE LOG DATA =========
     const UPDATE_LOGS = [
+      {
+        version: 'UPD-1.8',
+        image: 'update-1.8.jpg',
+        notes: [
+          '📱 Adding Quest & Achievements EVERY Day,Week, & Month',
+          '🌟 Remade Icon Every UI',
+          '✨ New Profile Style',
+          '⚙️ Fixing all bugs in the game',
+          '🎴 New 6 plenger card!' 
+        ]
+      },
       {
         version: 'UPD-1.2',
         image: 'update-1.2.jpg',
@@ -2629,13 +2744,14 @@ window.addEventListener("load", () => {
     });
 
 
+
     const rewards = [
       { type: "coin", amount: 500 },
       { type: "potion", potion: "x2", amount: 1 },
       { type: "coin", amount: 1000 },
       { type: "potion", potion: "x2", amount: 2 },
       { type: "coin", amount: 1500 },
-      { type: "potion", potion: "x2", amount: 3 },
+      { type: "potion", potion: "x3", amount: 2 },
       { type: "potion", potion: "x5", amount: 2 }, // Hari 7 = Potion x5 (2 buah)
     ];
 
@@ -2643,15 +2759,9 @@ window.addEventListener("load", () => {
 function checkDailyReward() {
   const lastClaim = localStorage.getItem("lastDailyClaim");
   const today = new Date().toDateString();
-  let streak = parseInt(localStorage.getItem("dailyStreak") || "0");
 
-  // highlight kotak hari ini
-  document.querySelectorAll(".reward-box").forEach((el, idx) => {
-    el.classList.remove("active", "claimed");
-    if (idx === streak) {
-      el.classList.add("active");
-    }
-  });
+  // Pastikan UI sync sama dailyDay
+  updateDailyUI();
 
   const btn = document.getElementById("dailyClaimBtn");
   if (lastClaim === today) {
@@ -2661,17 +2771,16 @@ function checkDailyReward() {
     btn.disabled = false;
     btn.innerText = "Klaim Hadiah";
   }
-    const indicator = document.getElementById("rewardIndicator");
 
+  const indicator = document.getElementById("rewardIndicator");
   if (lastClaim !== today) {
-    // Belum klaim → tampilkan popup + indikator merah
     document.getElementById("dailyRewardOverlay").classList.add("show");
     if (indicator) indicator.classList.remove("hidden");
   } else {
-    // Sudah klaim → sembunyikan indikator
     if (indicator) indicator.classList.add("hidden");
   }
 }
+
 
 
     function highlightRewardBox(streak) {
@@ -2696,11 +2805,12 @@ function claimDailyReward() {
   if (reward.type === "coin") {
     addCoins(reward.amount);
     showPopup(`🎉 Kamu dapat ${reward.amount} Coins!`);
-  } else if (reward.type === "potion") {
-    const mult = parseInt(reward.potion.replace("x", ""));
-    addPotion("luck", mult, reward.amount);
-    showPopup(`✨ Kamu dapat ${reward.amount} Potion ${reward.potion}!`);
-  }
+} else if (reward.type === "potion") {
+  const mult = parseInt(reward.potion.replace("x", ""));
+  addDailyPotion("luck", mult, reward.amount);
+  showPopup(`✨ Kamu dapat ${reward.amount} Potion ${reward.potion}!`);
+}
+
 
   // ⏭ Simpan hari berikutnya
   localStorage.setItem("dailyDay", day + 1);
@@ -2780,6 +2890,13 @@ function openDailyReward() {
 }
 
 
+// === Daily Reward Potion ===
+function addDailyPotion(type, mult, amount) {
+  let potions = JSON.parse(localStorage.getItem("potions") || "{}");
+  const key = `${type}_${mult}`;
+  potions[key] = (potions[key] || 0) + amount;
+  localStorage.setItem("potions", JSON.stringify(potions));
+}
 
 
     function updateStats(rarity) {
@@ -2814,18 +2931,24 @@ function openDailyReward() {
 
 
 
-    // ===== PLAYER PROFILE =====
-    function openProfile() {
-      document.getElementById("profileName").innerText = localStorage.getItem("username") || "Guest";
-      document.getElementById("profileRolls").innerText = localStorage.getItem("totalRolls") || 0;
-      document.getElementById("profileLegendary").innerText = localStorage.getItem("legendaryCount") || 0;
-      document.getElementById("profileMythical").innerText = localStorage.getItem("mythicalCount") || 0;
-      document.getElementById("profilePrismatic").innerText = localStorage.getItem("prismaticCount") || 0;
-      document.getElementById("profileSecret").innerText = localStorage.getItem("secretCount") || 0;
-      document.getElementById("profileCoins").innerText = localStorage.getItem("coins") || 0;
+// ===== PLAYER PROFILE =====
+function openProfile() {
+  document.getElementById("profileName").innerText = localStorage.getItem("username") || "Guest";
+  document.getElementById("profileRolls").innerText = localStorage.getItem("totalRolls") || 0;
+  document.getElementById("profileLegendary").innerText = localStorage.getItem("legendaryCount") || 0;
+  document.getElementById("profileMythical").innerText = localStorage.getItem("mythicalCount") || 0;
+  document.getElementById("profilePrismatic").innerText = localStorage.getItem("prismaticCount") || 0;
+  document.getElementById("profileSecret").innerText = localStorage.getItem("secretCount") || 0;
+  document.getElementById("profileCoins").innerText = localStorage.getItem("coins") || 0;
 
-      document.getElementById("profileOverlay").classList.add("show");
-    }
+  // render achievements (badges)
+  if (typeof renderProfileAchievements === "function") {
+    renderProfileAchievements();
+  }
+
+  document.getElementById("profileOverlay").classList.add("show");
+}
+
 
 
     function closeProfile() {
@@ -2863,46 +2986,403 @@ function openDailyReward() {
       if (profileNameEl) profileNameEl.innerText = name;
     }
 
-    // ======================
-// 🔧 DEBUG DAILY REWARD
-// ======================
-window.debugDailyReward = {
-  reset: () => {
-    localStorage.removeItem("lastDailyClaim");
-    localStorage.setItem("dailyDay", "1");
-    console.log("🔄 Daily Reward direset ke Hari 1");
-    updateDailyUI();
-    forceEnableClaimButton();
-  },
-  skipDay: () => {
-    let day = parseInt(localStorage.getItem("dailyDay") || "1");
-    localStorage.setItem("dailyDay", day + 1);
-    localStorage.removeItem("lastDailyClaim"); // biar bisa klaim lagi
-    console.log(`⏭ Skip → Daily Reward sekarang di Hari ${day + 1}`);
-    updateDailyUI();
-    forceEnableClaimButton();
-  },
-  setDay: (n) => {
-    localStorage.setItem("dailyDay", n);
-    localStorage.removeItem("lastDailyClaim"); // reset klaim
-    console.log(`🎯 Daily Reward diatur manual ke Hari ${n}`);
-    updateDailyUI();
-    forceEnableClaimButton();
-  }
+
+
+// === QUEST & ACHIEVEMENTS DATA ===
+const QUEST_POOL = {
+  daily: [
+    { id: 'roll20', title: 'Lakukan 20 roll', target: 20, reward: { coins: 500 } },
+    { id: 'usePotion1', title: 'Gunakan 1 potion', target: 1, reward: { coins: 300 } },
+    { id: 'usePotion5', title: 'Gunakan 5 potion', target: 5, reward: { coins: 3000, potions: [{ type: "luck", mult: 7, amount: 1 }] } },
+    { id: 'sell5', title: 'Menjual 5 item', target: 5, reward: { coins: 400 } },
+    { id: 'rare3', title: 'Dapatkan 3 Rare', target: 3, reward: { coins: 600 } },
+    { id: 'epic1', title: 'Dapatkan 1 Epic', target: 1, reward: { coins: 1000 } },
+    { id: 'epic20', title: 'Dapatkan 20 Epic', target: 20, reward: { coins: 800, potions: [{ type: "fast", mult: 1, amount: 1 }] } },
+    { id: 'roll200', title: 'Lakukan 200 roll', target: 200, reward: { coins: 1000, potions: [{ type: "luck", mult: 5, amount: 2 }] } },
+  ],
+  weekly: [
+    { id: 'roll100', title: 'Lakukan 100 roll', target: 100, reward: { coins: 2000 } },
+    { id: 'getLegend', title: 'Dapatkan 1 Legend', target: 1, reward: { coins: 3000 } },
+    { id: 'legend3', title: 'Dapatkan 3 Legend', target: 3, reward: { coins: 9000 } },
+    { id: 'sell20', title: 'Menjual 20 item', target: 20, reward: { coins: 1500 } }
+  ],
+  monthly: [
+    { id: 'roll500', title: 'Lakukan 500 roll', target: 500, reward: { coins: 8000 } },
+    { id: 'getLegend10', title: 'Dapatkan 10 Legend', target: 10, reward: { coins: 3000, potions: [{ type: "luck", mult: 5, amount: 2 }] } },
+    { id: 'mythical1', title: 'Dapatkan 1 Mythical', target: 1, reward: { coins: 12000 } }
+  ]
 };
 
-// debugDailyReward.reset() → kembali ke hari 1.
+const ACHIEVEMENTS = [
+  { id: 'rare10', title: 'Dapatkan 10 Rare', target: 10, progress: 0, badge: 'rare-badge.png', reward: { coins: 5000 } },
+  { id: 'epic20', title: 'Dapatkan 20 Epic', target: 20, progress: 0, badge: 'epic-badge.png', reward: { coins: 8000 } },
+  { id: 'legend5', title: 'Dapatkan 5 Legend', target: 5, progress: 0, badge: 'legend-badge.png', reward: { coins: 15000 } },
+  { id: 'mythical3', title: 'Dapatkan 3 Mythical', target: 3, progress: 0, badge: 'mythical-badge.png', reward: { coins: 30000 } }
+];
 
-// debugDailyReward.skipDay() → lompat ke hari berikutnya.
+function generateDailyQuests() {
+  return JSON.parse(JSON.stringify(QUEST_POOL.daily));
+}
 
-// debugDailyReward.setDay(5) → langsung set ke hari 5.
+function generateWeeklyQuests() {
+  return JSON.parse(JSON.stringify(QUEST_POOL.weekly));
+}
 
-function forceEnableClaimButton() {
-  const claimBtn = document.querySelector("#dailyRewardOverlay button");
-  if (claimBtn) {
-    claimBtn.textContent = "Klaim Hadiah";
-    claimBtn.disabled = false;
-    claimBtn.style.opacity = "1";
-    claimBtn.style.cursor = "pointer";
+function generateMonthlyQuests() {
+  return JSON.parse(JSON.stringify(QUEST_POOL.monthly));
+}
+
+
+// === Local Storage System ===
+function loadQuests() {
+  let data = JSON.parse(localStorage.getItem("quests")) || {};
+  const now = new Date();
+  const today = now.toDateString();
+  const week = getWeekNumber(now);
+  const month = now.getMonth();
+
+  if (!data.meta || data.meta.daily !== today) {
+    data.daily = getRandomQuests(QUEST_POOL.daily, 3);
+    data.meta = {...(data.meta||{}), daily: today};
+  }
+  if (!data.meta.weekly || data.meta.weekly !== week) {
+    data.weekly = getRandomQuests(QUEST_POOL.weekly, 2);
+    data.meta.weekly = week;
+  }
+  if (!data.meta.monthly || data.meta.monthly !== month) {
+    data.monthly = getRandomQuests(QUEST_POOL.monthly, 1);
+    data.meta.monthly = month;
+  }
+
+  localStorage.setItem("quests", JSON.stringify(data));
+  return data;
+}
+
+function getWeekNumber(d) {
+  d = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+  let dayNum = d.getUTCDay() || 7;
+  d.setUTCDate(d.getUTCDate() + 4 - dayNum);
+  let yearStart = new Date(Date.UTC(d.getUTCFullYear(),0,1));
+  return Math.ceil((((d - yearStart) / 86400000) + 1)/7);
+}
+
+function saveQuests(data) {
+  localStorage.setItem("quests", JSON.stringify(data));
+}
+
+function loadAchievements() {
+  let saved = [];
+  try {
+    saved = JSON.parse(localStorage.getItem("achievements") || "[]");
+  } catch (e) { }
+
+  // merge: pastikan semua dari ACHIEVEMENTS ada
+  ACHIEVEMENTS.forEach(def => {
+    let found = saved.find(a => a.id === def.id);
+    if (!found) {
+      saved.push({ ...def, progress: 0, claimed: false });
+    }
+  });
+
+  // simpan balik supaya konsisten
+  localStorage.setItem("achievements", JSON.stringify(saved));
+  return saved;
+}
+
+
+function saveAchievements(data) {
+  localStorage.setItem("achievements", JSON.stringify(data));
+}
+
+function getRandomQuests(pool, count) {
+  let shuffled = pool.sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, count).map(q => ({...q, progress:0, claimed:false}));
+}
+
+// === Progress Update ===
+function updateQuestProgress(id, amount) {
+  let quests = loadQuests();
+  ['daily','weekly','monthly'].forEach(cat => {
+    quests[cat].forEach(q => {
+      if (q.id === id && !q.claimed) {
+        q.progress = Math.min(q.target, q.progress + amount);
+      }
+    });
+  });
+  saveQuests(quests);
+  renderQuests();
+}
+
+function updateAchievementProgress(id, amount) {
+  let ach = loadAchievements();
+  ach.forEach(a => {
+    if (a.id === id && !a.claimed) {
+      a.progress = Math.min(a.target, a.progress + amount);
+    }
+  });
+  saveAchievements(ach);
+  renderAchievements();
+}
+
+
+// === Claim ===
+function claimQuest(id) {
+  let quests = loadQuests();
+  ['daily', 'weekly', 'monthly'].forEach(cat => {
+    quests[cat].forEach(q => {
+      if (q.id === id && !q.claimed && q.progress >= q.target) {
+        // 🎁 Coin reward
+        if (q.reward.coins) {
+          let coins = parseInt(localStorage.getItem("coins") || "0");
+          coins += q.reward.coins;
+          localStorage.setItem("coins", coins);
+          updateCoinUI();
+          showCoinPopup(q.reward.coins);
+        }
+
+        // 🧪 Potion reward
+        if (q.reward.potions) {
+          q.reward.potions.forEach(p => {
+            addQuestPotion(p.type, p.mult || 1, p.amount);
+          });
+
+          // refresh UI setelah potion masuk
+          if (typeof renderPotionInventory === "function") {
+            renderPotionInventory();
+          }
+          if (typeof updatePotionUI === "function") {
+            updatePotionUI();
+          }
+        }
+
+        // tandai quest sebagai claimed
+        q.claimed = true;
+      }
+    });
+  });
+  saveQuests(quests);
+  renderQuests();
+}
+
+
+
+function claimAchievement(id) {
+  let data = loadAchievements();
+  data.forEach(a => {
+    if (a.id === id && a.progress >= a.target && !a.claimed) {
+      a.claimed = true;
+      addCoins(a.reward.coins);
+      showPopup("Achievement Unlocked! +" + a.reward.coins + " Coins");
+
+      // 🔊 mainkan suara cengkrink
+      const sfx = document.getElementById("resultSfx");
+      if (sfx) {
+        sfx.currentTime = 0;
+        sfx.play().catch(err => console.warn("SFX blocked:", err));
+      }
+    }
+  });
+  saveAchievements(data);
+  renderAchievements();
+  renderProfileAchievements();
+}
+
+
+
+// === Render UI ===
+// === Render UI ===
+function renderQuests() {
+  let data = loadQuests();
+  let container = document.getElementById("questTab");
+  container.innerHTML = "";
+
+  const categories = [
+    { key: 'daily', title: "☀️ Daily Quests" },
+    { key: 'weekly', title: "📆 Weekly Quests" },
+    { key: 'monthly', title: "🌙 Monthly Quest" }
+  ];
+
+  categories.forEach(cat => {
+    let list = data[cat.key];
+    if (!list) return;
+
+    container.innerHTML += `<h3 class="quest-section">${cat.title}</h3>`;
+    list.forEach(q => {
+      let percent = (q.progress/q.target)*100;
+      container.innerHTML += `
+        <div class="quest-card">
+          <div class="quest-title">${q.title}</div>
+          <div class="progress-text">Progress: ${q.progress} / ${q.target}</div>
+          <div class="progress-bar"><div class="fill" style="width:${percent}%"></div></div>
+          <div class="reward-text">
+            Reward:
+            ${q.reward.coins ? q.reward.coins + " 💰" : ""}
+            ${q.reward.potions ? q.reward.potions.map(p => ` + ${p.amount}🧪(${p.type}${p.mult ? " x" + p.mult : ""})`).join("") : ""}
+          </div>
+          <button class="pill claim-btn" onclick="claimQuest('${q.id}')" ${q.claimed?"disabled":""}>
+            ${q.claimed?"✔ Claimed":"Claim"}
+          </button>
+        </div>
+      `;
+    });
+  });
+};
+
+
+
+function renderAchievements() {
+  let data = loadAchievements();
+  let container = document.getElementById("achievementTab");
+  container.innerHTML = "";
+
+  container.innerHTML += `<h3 class="quest-section">🏆 Achievements</h3>`;
+  data.forEach(a => {
+    let percent = (a.progress / a.target) * 100;
+    container.innerHTML += `
+      <div class="quest-card">
+        <div class="quest-title">${a.title}</div>
+        <div class="progress-text">Progress: ${a.progress} / ${a.target}</div>
+        <div class="progress-bar"><div class="fill" style="width:${percent}%"></div></div>
+        
+        <div class="reward-text">Reward:</div>
+        <div style="display:flex; flex-direction:column; align-items:center; gap:6px;">
+          <div class="coin-reward">🪙 ${a.reward.coins} Coins</div>
+          <div class="badge-preview">
+            <img src="${a.badge}" alt="Badge Reward" />
+          </div>
+        </div>
+
+        <button class="pill claim-btn" onclick="claimAchievement('${a.id}')" ${a.claimed?"disabled":""}>
+          ${a.claimed ? "🏅 Unlocked" : "Claim"}
+        </button>
+      </div>
+    `;
+  });
+}
+
+
+function renderProfileAchievements() {
+  const container = document.getElementById("profileAchievements");
+  if (!container) return;
+
+  const data = loadAchievements(); // ✅ ambil dari fungsi sama
+  container.innerHTML = "";
+
+  data.forEach(a => {
+    const img = document.createElement("img");
+    img.src = a.badge;
+    img.alt = a.title;
+    img.className = "achievement-badge";
+
+    if (a.progress >= a.target || a.claimed) {
+      img.classList.add("unlocked");
+    } else {
+      img.classList.add("locked");
+    }
+
+    container.appendChild(img);
+  });
+}
+
+
+
+function updateAchievements(event, value = 1) {
+  let achievements = JSON.parse(localStorage.getItem("achievements") || "{}");
+
+  ACHIEVEMENTS.forEach(a => {
+    // pastikan objek achievement ada
+    if (!achievements[a.id]) {
+      achievements[a.id] = { progress: 0, claimed: false };
+    }
+
+    // logika update progres sesuai event
+    if (event === "rare" && a.id === "rare10") {
+      achievements[a.id].progress += value;
+    }
+    if (event === "legend" && a.id === "legend5") {
+      achievements[a.id].progress += value;
+    }
+    if (event === "epic" && a.id === "epic20") {
+      achievements[a.id].progress += value;
+    }
+    if (event === "mythical" && a.id === "mythical3") {
+      achievements[a.id].progress += value;
+    }
+  });
+
+  localStorage.setItem("achievements", JSON.stringify(achievements));
+}
+
+
+
+// === Tab Switch ===
+function switchQuestTab(tab) {
+  document.getElementById("questTab").classList.add("hidden");
+  document.getElementById("achievementTab").classList.add("hidden");
+  document.getElementById(tab+"Tab").classList.remove("hidden");
+}
+
+// === Overlay ===
+function openQuestOverlay() {
+  document.getElementById("questOverlay").classList.add("show");
+  renderQuests();
+  renderAchievements();
+}
+function closeQuestOverlay() {
+  document.getElementById("questOverlay").classList.remove("show");
+}
+
+function getPotions() {
+  return JSON.parse(localStorage.getItem("potions") || "{}");
+}
+
+function savePotions(potions) {
+  localStorage.setItem("potions", JSON.stringify(potions));
+}
+
+function addQuestPotion(type, mult = 1, amount = 1) {
+  let potions = getPotions();
+  const key = `${type}_${mult}`;
+  potions[key] = (potions[key] || 0) + amount;
+  savePotions(potions);
+
+  showPopup(`🎯 Kamu dapat ${amount} Potion ${type} dari Quest!`);
+}
+
+// === Quest Reset System ===
+function maybeResetQuests() {
+  const now = Date.now();
+  const lastReset = parseInt(localStorage.getItem("lastQuestReset") || "0");
+
+  const ONE_DAY = 86400000;   // 24 jam
+  const ONE_WEEK = 7 * ONE_DAY;
+  const ONE_MONTH = 30 * ONE_DAY; // kira-kira, bisa diganti kalender beneran
+
+  let quests = loadQuests();
+  let didReset = false;
+
+  // Reset Daily
+  if (now - lastReset >= ONE_DAY) {
+    quests.daily = generateDailyQuests(); // bikin ulang quest daily
+    didReset = true;
+  }
+
+  // Reset Weekly
+  if (now - lastReset >= ONE_WEEK) {
+    quests.weekly = generateWeeklyQuests();
+    didReset = true;
+  }
+
+  // Reset Monthly
+  if (now - lastReset >= ONE_MONTH) {
+    quests.monthly = generateMonthlyQuests();
+    didReset = true;
+  }
+
+  if (didReset) {
+    saveQuests(quests);
+    localStorage.setItem("lastQuestReset", now);
+    renderQuests();
+    console.log("✅ Quests refreshed!");
   }
 }
