@@ -3633,28 +3633,6 @@ function refreshQuestGroup(group) {
 }
 
 
-// === DEBUG CHEAT: AUTO COMPLETE QUEST GROUP ===
-function debugCompleteGroup(group) {
-  let quests = loadQuests();
-
-  if (!quests[group]) {
-    console.warn("❌ Group quest tidak ditemukan:", group);
-    return;
-  }
-
-  quests[group] = quests[group].map(q => ({
-    ...q,
-    progress: q.target, // progress penuh
-    claimed: true       // langsung dianggap sudah di-claim
-  }));
-
-  saveQuests(quests);
-  renderQuests();
-
-  console.log(`⚡ DEBUG: Semua quest di group '${group}' diselesaikan & di-claim`);
-}
-
-
       function renderAchievements() {
         let data = loadAchievements();
         let container = document.getElementById("achievementTab");
@@ -3812,3 +3790,4 @@ function debugCompleteGroup(group) {
           console.log("✅ Quests refreshed!");
         }
       }
+
