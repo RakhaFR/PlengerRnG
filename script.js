@@ -1,4 +1,4 @@
-      /*******************************
+/*******************************
        * ======= KONFIGURASI =======
        *******************************/
 
@@ -36,7 +36,7 @@
           {
             mult: 2,
             name: "2x Luck Potion",
-            icon: "luck-potion.png",
+            icon: "ui/luck-potion.png",
             effect: "luck",
             duration: 5 * 60 * 1000,
             price: 5000,
@@ -45,7 +45,7 @@
           {
             mult: 3,
             name: "3x Luck Potion",
-            icon: "x3-luck.png",
+            icon: "ui/x3-luck.png",
             effect: "luck",
             duration: 5 * 60 * 1000,
             price: 8000,
@@ -54,7 +54,7 @@
           {
             mult: 5,
             name: "5x Luck Potion",
-            icon: "x5-luck.png",
+            icon: "ui/x5-luck.png",
             effect: "luck",
             duration: 5 * 60 * 1000,
             price: 16000,
@@ -63,7 +63,7 @@
           {
             mult: 7,
             name: "7x Luck Potion",
-            icon: "x7-luck.png",
+            icon: "ui/x7-luck.png",
             effect: "luck",
             duration: 5 * 60 * 1000,
             price: 35000,
@@ -72,7 +72,7 @@
           {
             mult: 10,
             name: "10x Luck Potion",
-            icon: "x10-luck.png",
+            icon: "ui/x10-luck.png",
             effect: "luck",
             duration: 5 * 60 * 1000,
             price: 70000,
@@ -83,7 +83,7 @@
           {
             mult: 2,
             name: "2x Fast Roll Potion",
-            icon: "fast-roll.png",
+            icon: "ui/fast-roll.png",
             effect: "fast",
             duration: 5 * 60 * 1000,
             price: 5000,
@@ -92,7 +92,7 @@
           {
             mult: 3,
             name: "3x Fast Roll Potion",
-            icon: "x3-roll.png",
+            icon: "ui/x3-roll.png",
             effect: "fast",
             duration: 5 * 60 * 1000,
             price: 6000,
@@ -101,7 +101,7 @@
           {
             mult: 5,
             name: "5x Fast Roll Potion",
-            icon: "x5-roll.png",
+            icon: "ui/x5-roll.png",
             effect: "fast",
             duration: 5 * 60 * 1000,
             price: 17000,
@@ -110,7 +110,7 @@
           {
             mult: 7,
             name: "7x Fast Roll Potion",
-            icon: "x7-roll.png",
+            icon: "ui/x7-roll.png",
             effect: "fast",
             duration: 5 * 60 * 1000,
             price: 29000,
@@ -119,7 +119,7 @@
           {
             mult: 10,
             name: "10x Fast Roll Potion",
-            icon: "x10-roll.png",
+            icon: "ui/x10-roll.png",
             effect: "fast",
             duration: 5 * 60 * 1000,
             price: 48000,
@@ -217,547 +217,547 @@
         //   numberRange: [1, 1200000]
         // },
         {
-          image: "agra sigma.jpg",
+          image: "images/agra sigma.jpg",
           text: "agra Sigma",
           rarity: "epic",
           numberRange: [1, 12000],
         },
         {
-          image: "ac.jpg",
+          image: "images/ac.jpg",
           text: "lu kenapa jadi mythical",
           rarity: "mythical",
           numberRange: [1, 999999],
         },
         {
-          image: "alif senyum.jpg",
+          image: "images/alif senyum.jpg",
           text: "Alif Senyum",
           rarity: "uncommon",
           numberRange: [1, 399],
         },
         {
-          image: "bagas bengong.jpg",
+          image: "images/bagas bengong.jpg",
           text: "Bagas Bengong",
           rarity: "rare",
           numberRange: [1, 750],
         },
         {
-          image: "deki nyengir.jpg",
+          image: "images/deki nyengir.jpg",
           text: "Deki Nyengir",
           rarity: "epic",
           numberRange: [1, 25000],
         },
         {
-          image: "marvin wink.jpg",
+          image: "images/marvin wink.jpg",
           text: "Marvin Wink",
           rarity: "uncommon",
           numberRange: [1, 300],
         },
         {
-          image: "2 apit.jpg",
+          image: "images/2 apit.jpg",
           text: "alif di apit",
           rarity: "rare",
           numberRange: [1, 900],
         },
         {
-          image: "2 Senyuman.jpg",
+          image: "images/2 Senyuman.jpg",
           text: "2 senyuman manis",
           rarity: "uncommon",
           numberRange: [1, 500],
         },
         {
-          image: "ac.jpg",
+          image: "images/ac.jpg",
           text: "YA AC",
           rarity: "common",
           numberRange: [1, 10],
         },
         {
-          image: "agra & amira.jpg",
+          image: "images/agra & amira.jpg",
           text: "cieee lopyu",
           rarity: "legend",
           numberRange: [1, 100000],
         },
         {
-          image: "agra shalat.jpg",
+          image: "images/agra shalat.jpg",
           text: "agra shalat",
           rarity: "epic",
           numberRange: [1, 5999],
         },
         {
-          image: "agra umhehe.jpg",
+          image: "images/agra umhehe.jpg",
           text: "agra umhehe!",
           rarity: "mythical",
           numberRange: [1, 1000000],
         },
         {
-          image: "agra velocity.jpg",
+          image: "images/agra velocity.jpg",
           text: "velocity boy!",
           rarity: "epic",
           numberRange: [1, 9999],
         },
         {
-          image: "akbar minkem.jpg",
+          image: "images/akbar minkem.jpg",
           text: "akbar minkem",
           rarity: "common",
           numberRange: [1, 25],
         },
         {
-          image: "alfon mm.jpg",
+          image: "images/alfon mm.jpg",
           text: "alfon mm",
           rarity: "common",
           numberRange: [1, 3],
         },
         {
-          image: "bagas melet.jpg",
+          image: "images/bagas melet.jpg",
           text: "bagas melet",
           rarity: "rare",
           numberRange: [1, 399],
         },
         {
-          image: "bm alomani.jpg",
+          image: "images/bm alomani.jpg",
           text: "BM ALOMANI",
           rarity: "uncommon",
           numberRange: [1, 99],
         },
         {
-          image: "deki fuck.jpg",
+          image: "images/deki fuck.jpg",
           text: "deki fucking",
           rarity: "uncommon",
           numberRange: [1, 129],
         },
         {
-          image: "deki selfie.jpg",
+          image: "images/deki selfie.jpg",
           text: "deki lagi nyelfi ges",
           rarity: "uncommon",
           numberRange: [1, 301],
         },
         {
-          image: "deki chatgpt.jpg",
+          image: "images/deki chatgpt.jpg",
           text: "deki lagi mencari jawaban",
           rarity: "common",
           numberRange: [1, 50],
         },
         {
-          image: "duh ada yang nyelip.jpg",
+          image: "images/duh ada yang nyelip.jpg",
           text: "duh ada yang nyelip",
           rarity: "rare",
           numberRange: [1, 450],
         },
         {
-          image: "dzaki cool.jpg",
+          image: "images/dzaki cool.jpg",
           text: "dzaki cool",
           rarity: "uncommon",
           numberRange: [1, 139],
         },
         {
-          image: "gatel euy.jpg",
+          image: "images/gatel euy.jpg",
           text: "gatel euyyy..",
           rarity: "rare",
           numberRange: [1, 157],
         },
         {
-          image: "hafi ketawi.jpg",
+          image: "images/hafi ketawi.jpg",
           text: "hafi ketawi",
           rarity: "rare",
           numberRange: [1, 340],
         },
         {
-          image: "hafi mengkece.jpg",
+          image: "images/hafi mengkece.jpg",
           text: "hafi mengkece",
           rarity: "common",
           numberRange: [1, 21],
         },
         {
-          image: "hafi merenung.jpg",
+          image: "images/hafi merenung.jpg",
           text: "hafi merenung",
           rarity: "uncommon",
           numberRange: [1, 123],
         },
         {
-          image: "hilmi.jpg",
+          image: "images/hilmi.jpg",
           text: "HILMI...",
           rarity: "uncommon",
           numberRange: [1, 461],
         },
         {
-          image: "lip and deki.jpg",
+          image: "images/lip and deki.jpg",
           text: "lip and deki",
           rarity: "uncommon",
           numberRange: [1, 232],
         },
         {
-          image: "marvin ape lu.jpg",
+          image: "images/marvin ape lu.jpg",
           text: "apelu liat-liat",
           rarity: "epic",
           numberRange: [1, 4289],
         },
         {
-          image: "menghirup ke surga.jpg",
+          image: "images/menghirup ke surga.jpg",
           text: "menghirup ke surga",
           rarity: "epic",
           numberRange: [1, 6790],
         },
         {
-          image: "mira bobo.jpg",
+          image: "images/mira bobo.jpg",
           text: "mira bobo..",
           rarity: "rare",
           numberRange: [1, 569],
         },
         {
-          image: "rafi chad.jpg",
+          image: "images/rafi chad.jpg",
           text: "RAFI CHAD",
           rarity: "legend",
           numberRange: [1, 200999],
         },
         {
-          image: "rakha mmm.jpg",
+          image: "images/rakha mmm.jpg",
           text: "rakha mmm",
           rarity: "uncommon",
           numberRange: [1, 211],
         },
         {
-          image: "rasya hooo.jpg",
+          image: "images/rasya hooo.jpg",
           text: "rasya hooo...",
           rarity: "legend",
           numberRange: [1, 120999],
         },
         {
-          image: "rasya lier.jpg",
+          image: "images/rasya lier.jpg",
           text: "RASYA LAGI LIER",
           rarity: "rare",
           numberRange: [1, 679],
         },
         {
-          image: "restu side_eye.jpg",
+          image: "images/restu side_eye.jpg",
           text: "restu side eye..",
           rarity: "common",
           numberRange: [1, 35],
         },
         {
-          image: "surya menjelaskan.jpg",
+          image: "images/surya menjelaskan.jpg",
           text: "surya sedang menjelaskan",
           rarity: "common",
           numberRange: [1, 76],
         },
         {
-          image: "view 2.jpg",
+          image: "images/view 2.jpg",
           text: "view dari rakha di deki selfie",
           rarity: "uncommon",
           numberRange: [1, 217],
         },
         {
-          image: "virqi apa itu bang.jpg",
+          image: "images/virqi apa itu bang.jpg",
           text: "apa itu bang?",
           rarity: "common",
           numberRange: [1, 43],
         },
         {
-          image: "virqi turu.jpg",
+          image: "images/virqi turu.jpg",
           text: "virqi sedang turu ges",
           rarity: "rare",
           numberRange: [1, 345],
         },
         {
-          image: "yan mikir.jpg",
+          image: "images/yan mikir.jpg",
           text: "mikir dulu",
           rarity: "common",
           numberRange: [1, 88],
         },
         {
-          image: "bagas-chad.jpg",
+          image: "images/bagas-chad.jpg",
           text: "bagas chad",
           rarity: "legend",
           numberRange: [1, 199900],
         },
         {
-          image: "bagas-virtual.jpg",
+          image: "images/bagas-virtual.jpg",
           text: "bagas jadi AI 2030",
           rarity: "epic",
           numberRange: [1, 70089],
         },
         {
-          image: "berpikir-keras.jpg",
+          image: "images/berpikir-keras.jpg",
           text: "mikir apa fi?",
           rarity: "common",
           numberRange: [1, 67],
         },
         {
-          image: "deki-fuckhd.jpg",
+          image: "images/deki-fuckhd.jpg",
           text: "deki fuck & melet",
           rarity: "mythical",
           numberRange: [1, 1099000],
         },
         {
-          image: "deki-nerd.jpg",
+          image: "images/deki-nerd.jpg",
           text: "deki mau jadi pinter",
           rarity: "rare",
           numberRange: [1, 5610],
         },
         {
-          image: "join-roblox.jpg",
+          image: "images/join-roblox.jpg",
           text: "join roblox kuy! gak disponsor",
           rarity: "epic",
           numberRange: [1, 23900],
         },
         {
-          image: "alif-sen.jpg",
+          image: "images/alif-sen.jpg",
           text: "alif senyum 2",
           rarity: "rare",
           numberRange: [1, 346],
         },
         {
-          image: "marvin-mangap.jpg",
+          image: "images/marvin-mangap.jpg",
           text: "marvin mangap",
           rarity: "uncommon",
           numberRange: [1, 481],
         },
         {
-          image: "mira-megang.jpg",
+          image: "images/mira-megang.jpg",
           text: "mira megang alat",
           rarity: "rare",
           numberRange: [1, 1201],
         },
         {
-          image: "mirip-guru.jpg",
+          image: "images/mirip-guru.jpg",
           text: "mirip guru gw kayaknya",
           rarity: "epic",
           numberRange: [1, 23001],
         },
         {
-          image: "plenger-group.jpg",
+          image: "images/plenger-group.jpg",
           text: "para plenger sedang berpose",
           rarity: "legend",
           numberRange: [1, 561000],
         },
         {
-          image: "rasya-nyu.jpg",
+          image: "images/rasya-nyu.jpg",
           text: "ichi nya!",
           rarity: "uncommon",
           numberRange: [1, 258],
         },
         {
-          image: "syafal.jpg",
+          image: "images/syafal.jpg",
           text: "rasya & naufal",
           rarity: "uncommon",
           numberRange: [1, 415],
         },
         {
-          image: "syeima-merem.jpg",
+          image: "images/syeima-merem.jpg",
           text: "syeima ngapain merem?",
           rarity: "epic",
           numberRange: [1, 21200],
         },
         {
-          image: "tiga-senyuman.jpg",
+          image: "images/tiga-senyuman.jpg",
           text: "tiga senyuman..",
           rarity: "rare",
           numberRange: [1, 794],
         },
         {
-          image: "yan-turu.jpg",
+          image: "images/yan-turu.jpg",
           text: "yan turu",
           rarity: "rare",
           numberRange: [1, 473],
         },
         {
-          image: "zaky-sigma.jpg",
+          image: "images/zaky-sigma.jpg",
           text: "zaki sigma",
           rarity: "epic",
           numberRange: [1, 11260],
         },
         {
-          image: "agra-rock.jpg",
+          image: "images/agra-rock.jpg",
           text: "agra rock lenger",
           rarity: "epic",
           numberRange: [1, 32330],
         },
         {
-          image: "alif-dance.jpg",
+          image: "images/alif-dance.jpg",
           text: "alif dancing..",
           rarity: "rare",
           numberRange: [1, 2451],
         },
         {
-          image: "again-migra.jpg",
+          image: "images/again-migra.jpg",
           text: "lagi-lagi mereka nih",
           rarity: "legend",
           numberRange: [1, 241100],
         },
         {
-          image: "deki-melet.jpg",
+          image: "images/deki-melet.jpg",
           text: "deki melet",
           rarity: "rare",
           numberRange: [1, 1450],
         },
         {
-          image: "marvin-bengong.jpg",
+          image: "images/marvin-bengong.jpg",
           text: "marvin bengong",
           rarity: "epic",
           numberRange: [1, 10299],
         },
         {
-          image: "surya-sad.jpg",
+          image: "images/surya-sad.jpg",
           text: "surya 😭",
           rarity: "epic",
           numberRange: [1, 30199],
         },
         {
-          image: "axel.jpg",
+          image: "images/axel.jpg",
           text: "Hitam Putih",
           rarity: "mythical",
           numberRange: [1, 1450000],
         },
         {
-          image: "naufal-side.jpg",
+          image: "images/naufal-side.jpg",
           text: "Naufal side eye",
           rarity: "epic",
           numberRange: [1, 58400],
         },
         {
-          image: "yan-.jpg",
+          image: "images/yan-.jpg",
           text: "fathian..",
           rarity: "common",
           numberRange: [1, 29],
         },
         {
-          image: "benq.jpg",
+          image: "images/benq.jpg",
           text: "ben!",
           rarity: "rare",
           numberRange: [1, 6151],
         },
         {
-          image: "gak-kenal.jpg",
+          image: "images/gak-kenal.jpg",
           text: "hehehe 😭",
           rarity: "rare",
           numberRange: [1, 1892],
         },
         {
-          image: "hilmi-takut.jpg",
+          image: "images/hilmi-takut.jpg",
           text: "hilmi takut. mama..",
           rarity: "epic",
           numberRange: [1, 50292],
         },
         {
-          image: "gihun-sigma.jpg",
+          image: "images/gihun-sigma.jpg",
           text: "i'm feeling sigma",
           rarity: "secret",
           numberRange: [1, 190000000],
         },
         {
-          image: "hacker.jpg",
+          image: "images/hacker.jpg",
           text: "damcuk pristel!",
           rarity: "prismatic",
           numberRange: [1, 30190000],
         },
         {
-          image: "deki-walawe.jpg",
+          image: "images/deki-walawe.jpg",
           text: "walaweh",
           rarity: "prismatic",
           numberRange: [1, 45000000],
         },
         {
-          image: "sesosok-dev.jpg",
+          image: "images/sesosok-dev.jpg",
           text: "SANG DEV",
           rarity: "secret",
           numberRange: [1, 990000000],
         },
         {
-          image: "naufal-byat.jpg",
+          image: "images/naufal-byat.jpg",
           text: "naufal BYAtch!",
           rarity: "secret",
           numberRange: [1, 871000000],
         },
         {
-          image: "rifa-byat.jpg",
+          image: "images/rifa-byat.jpg",
           text: "rifa-BYActh!",
           rarity: "prismatic",
           numberRange: [1, 32100000],
         },
         {
-          image: "agra-imut.jpg",
+          image: "images/agra-imut.jpg",
           text: "imutnyoo!",
           rarity: "mythical",
           numberRange: [1, 5010000],
         },
         {
-          image: "mahluk-asing.jpg",
+          image: "images/mahluk-asing.jpg",
           text: "mahluk asing COEG!",
           rarity: "secret",
           numberRange: [1, 521000000],
         },
         {
-          image: "bagas-sigma.jpg",
+          image: "images/bagas-sigma.jpg",
           text: "Bagas Sigma",
           rarity: "mythical",
           numberRange: [1, 6120000],
         },
         {
-          image: "nafis-gepeng.jpg",
+          image: "images/nafis-gepeng.jpg",
           text: "nafis Yeah!",
           rarity: "legend",
           numberRange: [1, 310100],
         },
         {
-          image: "rasya-wink.jpg",
+          image: "images/rasya-wink.jpg",
           text: "rasya Wink!",
           rarity: "legend",
           numberRange: [1, 409199],
         },
         {
-          image: "wahh.jpg",
+          image: "images/wahh.jpg",
           text: "huwahh",
           rarity: "rare",
           numberRange: [1, 810],
         },
         {
-          image: "alfon-present.jpg",
+          image: "images/alfon-present.jpg",
           text: "alfon Present!",
           rarity: "rare",
           numberRange: [1, 992],
         },
         {
-          image: "gihun-hs.jpg",
+          image: "images/gihun-hs.jpg",
           text: "gihun and 01 meme!",
           rarity: "mythical",
           numberRange: [1, 8300000],
         },
         {
-          image: "reporter-ketawa.jpg",
+          image: "images/reporter-ketawa.jpg",
           text: "bahasa inggris bukan bahasa asing lagi yah?",
           rarity: "legend",
           numberRange: [1, 700100],
         },
         {
-          image: "surya-minkem.jpg",
+          image: "images/surya-minkem.jpg",
           text: "sur Minkem!",
           rarity: "legend",
           numberRange: [1, 612100],
         },
         {
-          image: "alif-songong.jpg",
+          image: "images/alif-songong.jpg",
           text: "lip songong",
           rarity: "epic",
           numberRange: [1, 31190],
         },
         {
-          image: "dzaki-anomali.jpg",
+          image: "images/dzaki-anomali.jpg",
           text: "BM ALOMANI REAL",
           rarity: "mythical",
           numberRange: [1, 1661880],
         },
         {
-          image: "fathian-wink.jpg",
+          image: "images/fathian-wink.jpg",
           text: "yan wink!",
           rarity: "legend",
           numberRange: [1, 301880],
         },
         {
-          image: "menariklah.jpg",
+          image: "images/menariklah.jpg",
           text: "menariklah",
           rarity: "legend",
           numberRange: [1, 455280],
         },
         {
-          image: "nafis-hah.jpg",
+          image: "images/nafis-hah.jpg",
           text: "HAH?!",
           rarity: "mythical",
           numberRange: [1, 8910000],
@@ -2687,14 +2687,14 @@
       const UPDATE_LOGS = [
         {
           version: "UPD-1.9",
-          image: "update-1.9.jpg",
+          image: "ui/update-1.9.jpg",
           notes: [
             "⚙️ Fixing bugs, in quest overlay systems",
           ],
         },
         {
           version: "UPD-1.8",
-          image: "update-1.8.jpg",
+          image: "ui/update-1.8.jpg",
           notes: [
             "📱 Adding Quest & Achievements EVERY Day,Week, & Month",
             "🌟 Remade Icon Every UI",
@@ -2705,7 +2705,7 @@
         },
         {
           version: "UPD-1.2",
-          image: "update-1.2.jpg",
+          image: "ui/update-1.2.jpg",
           notes: [
             "📱 Adding Day Log-In!",
             "📱 Adding User Stats!",
@@ -2714,7 +2714,7 @@
         },
         {
           version: "UPD-1",
-          image: "update-1.jpg",
+          image: "ui/update-1.jpg",
           notes: [
             "🎴 Adding new rarity-card : prismatic & secret!",
             "🎴 New 15 plenger card! include prismatic & secret!",
@@ -2723,7 +2723,7 @@
         },
         {
           version: "UPD FULL-BETA",
-          image: "full-beta.jpg",
+          image: "ui/full-beta.jpg",
           notes: [
             "🎲 Fixing the render roll so it doesnt waste your data quota",
             "🎲 Adding effect UI di roll 10/10!",
@@ -2736,7 +2736,7 @@
         },
         {
           version: "Release BETA",
-          image: "icon.png",
+          image: "ui/icon.png",
           notes: [
             "🎲🎴 Game has been release! collect all Plenger and earn coins! 🎴🎲",
           ],
@@ -3341,7 +3341,7 @@
           title: "Dapatkan 10 Rare",
           target: 10,
           progress: 0,
-          badge: "rare-badge.png",
+          badge: "ui/rare-badge.png",
           reward: { coins: 5000 },
         },
         {
@@ -3349,7 +3349,7 @@
           title: "Dapatkan 20 Epic",
           target: 20,
           progress: 0,
-          badge: "epic-badge.png",
+          badge: "ui/epic-badge.png",
           reward: { coins: 8000 },
         },
         {
@@ -3357,7 +3357,7 @@
           title: "Dapatkan 5 Legend",
           target: 5,
           progress: 0,
-          badge: "legend-badge.png",
+          badge: "ui/legend-badge.png",
           reward: { coins: 15000 },
         },
         {
@@ -3365,7 +3365,7 @@
           title: "Dapatkan 3 Mythical",
           target: 3,
           progress: 0,
-          badge: "mythical-badge.png",
+          badge: "ui/mythical-badge.png",
           reward: { coins: 30000 },
         },
       ];
@@ -3425,11 +3425,14 @@
           saved = JSON.parse(localStorage.getItem("achievements") || "[]");
         } catch (e) {}
 
-        // merge: pastikan semua dari ACHIEVEMENTS ada
+        // merge: pastikan semua dari ACHIEVEMENTS ada, dan badge selalu di-sync
         ACHIEVEMENTS.forEach((def) => {
           let found = saved.find((a) => a.id === def.id);
           if (!found) {
             saved.push({ ...def, progress: 0, claimed: false });
+          } else {
+            // selalu update badge dari definisi terbaru supaya path tidak stale
+            found.badge = def.badge;
           }
         });
 
@@ -3501,16 +3504,8 @@
             }
           });
 
-          // ✅ cek per group: kalau semua selesai & claimed → refresh group itu saja
-          const allDone = quests[cat].every(
-            (q) => q.claimed && q.progress >= q.target
-          );
-          if (allDone) {
-            console.log(`🎉 Semua quest ${cat} selesai → refresh ${cat} baru!`);
-            if (cat === "daily") quests.daily = generateDailyQuests();
-            if (cat === "weekly") quests.weekly = generateWeeklyQuests();
-            if (cat === "monthly") quests.monthly = generateMonthlyQuests();
-          }
+          // ✅ TIDAK auto-refresh di sini — biarkan user lihat status "semua claimed"
+          // refresh hanya terjadi via tombol Refresh atau saat timer habis
         });
 
         saveQuests(quests);
@@ -3539,41 +3534,65 @@
       }
 
       // === Render UI ===
-      // === Render UI ===
 function renderQuests() {
   let data = loadQuests();
   let container = document.getElementById("questTab");
   container.innerHTML = "";
 
+  const now = new Date();
+
+  // hitung sisa waktu untuk tiap periode
+  function timeUntilMidnight() {
+    const tomorrow = new Date(now);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    tomorrow.setHours(0, 0, 0, 0);
+    return formatDuration(tomorrow - now);
+  }
+  function timeUntilEndOfWeek() {
+    const day = now.getDay(); // 0=minggu
+    const daysUntilMonday = day === 0 ? 1 : 8 - day;
+    const next = new Date(now);
+    next.setDate(next.getDate() + daysUntilMonday);
+    next.setHours(0, 0, 0, 0);
+    return formatDuration(next - now);
+  }
+  function timeUntilEndOfMonth() {
+    const next = new Date(now.getFullYear(), now.getMonth() + 1, 1);
+    return formatDuration(next - now);
+  }
+  function formatDuration(ms) {
+    const totalSec = Math.floor(ms / 1000);
+    const h = Math.floor(totalSec / 3600);
+    const m = Math.floor((totalSec % 3600) / 60);
+    if (h >= 24) return `${Math.floor(h/24)}h ${h%24}j`;
+    if (h > 0) return `${h}j ${m}m`;
+    return `${m}m`;
+  }
+
   const categories = [
-    { key: 'daily', title: "☀️ Daily Quests", generator: generateDailyQuests },
-    { key: 'weekly', title: "📆 Weekly Quests", generator: generateWeeklyQuests },
-    { key: 'monthly', title: "🌙 Monthly Quests", generator: generateMonthlyQuests }
+    { key: 'daily',   title: "☀️ Daily Quests",   timer: timeUntilMidnight() },
+    { key: 'weekly',  title: "📆 Weekly Quests",  timer: timeUntilEndOfWeek() },
+    { key: 'monthly', title: "🌙 Monthly Quests", timer: timeUntilEndOfMonth() }
   ];
 
   categories.forEach(cat => {
     let list = data[cat.key];
     if (!list) return;
 
-    // cek apakah semua quest sudah claimed
     let allClaimed = list.every(q => q.claimed);
 
-container.innerHTML += ` 
-  <div class="quest-section">
-    <div class="quest-header">
-      <span>${cat.title}</span>
-    </div>
-    ${allClaimed ? `
-      <div class="quest-actions">
-        <button class="refresh-btn" onclick="refreshQuestGroup('${cat.key}')">
-          🔄 Refresh
-        </button>
+    // header section — tombol refresh di dalam header (tidak terpisah)
+    container.innerHTML += `
+      <div class="quest-section">
+        <div class="quest-header">
+          <span>${cat.title}</span>
+          ${allClaimed
+            ? `<button class="refresh-btn" onclick="refreshQuestGroup('${cat.key}')">🔄 Refresh</button>`
+            : `<span class="quest-timer">⏳ ${cat.timer}</span>`
+          }
+        </div>
       </div>
-    ` : ""}
-  </div>
-`;
-
-
+    `;
 
     list.forEach(q => {
       let percent = (q.progress / q.target) * 100;
@@ -3587,7 +3606,7 @@ container.innerHTML += `
             ${q.reward.coins ? q.reward.coins + " 💰" : ""}
             ${q.reward.potions ? q.reward.potions.map(p => ` + ${p.amount}🧪(${p.type}${p.mult ? " x" + p.mult : ""})`).join("") : ""}
           </div>
-          <button class="pill claim-btn" onclick="claimQuest('${q.id}')" ${q.claimed ? "disabled" : ""}>
+          <button class="pill claim-btn" onclick="claimQuest('${q.id}')" ${q.claimed || q.progress < q.target ? "disabled" : ""}>
             ${q.claimed ? "✔ Claimed" : "Claim"}
           </button>
         </div>
@@ -3624,8 +3643,20 @@ function refreshQuestGroup(group) {
     poolCopy.splice(idx, 1);
   }
 
-  // simpan
+  // simpan quest baru
   quests[group] = selected;
+
+  // ✅ reset timer meta supaya loadQuests() tidak overwrite quest baru ini
+  const now = new Date();
+  if (!quests.meta) quests.meta = {};
+  if (group === "daily") {
+    quests.meta.daily = now.toDateString();
+  } else if (group === "weekly") {
+    quests.meta.weekly = getWeekNumber(now);
+  } else if (group === "monthly") {
+    quests.meta.monthly = now.getMonth();
+  }
+
   saveQuests(quests);
   renderQuests();
 
@@ -3790,4 +3821,3 @@ function refreshQuestGroup(group) {
           console.log("✅ Quests refreshed!");
         }
       }
-

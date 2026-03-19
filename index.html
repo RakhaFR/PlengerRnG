@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>PLENGER RnG — UPD-1.9</title>
-  <link rel="icon" type="image/png" href="icon-game.jpg">
+  <link rel="icon" type="image/png" href="ui/icon-game.jpg">
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -15,11 +15,11 @@
 
 
   <video class="bg-video" autoplay loop muted>
-    <source src="bgVid.mp4" type="video/mp4" />
+    <source src="video/bgVid.mp4" type="video/mp4" />
   </video>
   <div id="rarityAnimation" class="rarity-anim hidden">
     <div class="rarity-bg"></div>
-    <img src="star.png" alt="Star" class="rarity-star" />
+    <img src="ui/star.png" alt="Star" class="rarity-star" />
   </div>
 
   <!-- LOADING SCREEN -->
@@ -41,61 +41,61 @@
 
 
 
-  <audio id="rollSfx" src="spinning-reel.mp3" preload="auto"></audio>
-  <audio id="resultSfx" src="cengkrink.mp3" preload="auto"></audio>
-  <audio id="coinSfx" src="coin.mp3" preload="auto"></audio>
-  <audio id="errorSfx" src="error.mp3" preload="auto"></audio>
-  <audio id="gachaMusic" src="gacha-music.mp3" preload="auto"></audio>
+  <audio id="rollSfx" src="sound/spinning-reel.mp3" preload="auto"></audio>
+  <audio id="resultSfx" src="sound/cengkrink.mp3" preload="auto"></audio>
+  <audio id="coinSfx" src="sound/coin.mp3" preload="auto"></audio>
+  <audio id="errorSfx" src="sound/error.mp3" preload="auto"></audio>
+  <audio id="gachaMusic" src="sound/gacha-music.mp3" preload="auto"></audio>
 
   <!-- Prismatic -->
   <video id="prismaticVideo" class="rarity-video hidden desktop-only" playsinline muted>
-    <source src="prismatic.mp4" type="video/mp4">
+    <source src="video/prismatic.mp4" type="video/mp4">
   </video>
   <video id="prismaticVideoMobile" class="rarity-video hidden mobile-only" playsinline muted>
-    <source src="prismatic-vert.mp4" type="video/mp4">
+    <source src="video/prismatic-vert.mp4" type="video/mp4">
   </video>
 
   <!-- Secret -->
   <video id="secretVideo" class="rarity-video hidden desktop-only" playsinline muted>
-    <source src="secret.mp4" type="video/mp4">
+    <source src="video/secret.mp4" type="video/mp4">
   </video>
   <video id="secretVideoMobile" class="rarity-video hidden mobile-only" playsinline muted>
-    <source src="secret-vert.mp4" type="video/mp4">
+    <source src="video/secret-vert.mp4" type="video/mp4">
   </video>
 
 
-  <audio id="prismaticSfx" src="prismatic-anim.mp3" preload="auto"></audio>
-  <audio id="secretSfx" src="secret-anim.mp3" preload="auto"></audio>
+  <audio id="prismaticSfx" src="sound/prismatic-anim.mp3" preload="auto"></audio>
+  <audio id="secretSfx" src="sound/secret-anim.mp3" preload="auto"></audio>
 
   <div id="coinPopup" class="popup hidden">+0 Coins</div>
 
   <!-- Sidebar Atas Kiri -->
   <div class="sidebar-top-left" id="topSidebar" style="display: none;">
     <button class="side-btn" onclick="openProfile()">
-      <img src="user.png" alt="Profile" class="side-icon">
+      <img src="ui/user.png" alt="Profile" class="side-icon">
       <span class="side-label">Profile</span>
     </button>
 
     <button class="side-btn" onclick="openDailyReward()">
-      <img src="daily.png" alt="Shop" class="side-icon">
+      <img src="ui/daily.png" alt="Shop" class="side-icon">
       <span class="side-label">Hadiah</span>
        <div id="rewardIndicator" class="reward-indicator hidden">!</div>
     </button>
     <button class="side-btn" onclick="openQuestOverlay()">
-  <img src="quest.png" alt="Quest" class="side-icon">
+  <img src="ui/quest.png" alt="Quest" class="side-icon">
   <span class="side-label">Quest</span>
 </button>
 
     <button class="side-btn" onclick="openStore()">
-      <img src="shop.png" alt="Shop" class="side-icon">
+      <img src="ui/shop.png" alt="Shop" class="side-icon">
       <span class="side-label">Store</span>
     </button>
     <button class="side-btn" onclick="openPotionInventory()">
-      <img src="inventory.png" alt="Inventory" class="side-icon">
+      <img src="ui/inventory.png" alt="Inventory" class="side-icon">
       <span class="side-label">Inventory</span>
     </button>
     <button class="side-btn" onclick="openUpdateLog()">
-      <img src="update.png" alt="Update" class="side-icon">
+      <img src="ui/update.png" alt="Update" class="side-icon">
       <span class="side-label">Update Log</span>
       <div id="updateIndicator" class="reward-indicator hidden">!</div>
     </button>
@@ -247,24 +247,24 @@
   <div id="eventBanner" class="event-banner">
     <div class="event-slider">
       <picture>
-        <source srcset="banner5-hp.jpg" media="(max-width: 784px)">
-        <source srcset="banner5-tab.jpg" media="(max-width: 864px)">
-        <img src="banner5.jpg" alt="Event 2">
+        <source srcset="ui/banner5-hp.jpg.jpg" media="(max-width: 784px)">
+        <source srcset="ui/banner5-tab.jpg" media="(max-width: 864px)">
+        <img src="ui/banner5.jpg" alt="Event 2">
       </picture>
       <picture>
         <!-- versi HP -->
-        <source srcset="banner4-hp.jpg" media="(max-width: 784px)">
+        <source srcset="ui/banner4-hp.jpg" media="(max-width: 784px)">
         <!-- versi Tablet -->
-        <source srcset="banner4-tab.jpg" media="(max-width: 864px)">
+        <source srcset="ui/banner4-tab.jpg" media="(max-width: 864px)">
         <!-- versi Desktop (default) -->
-        <img src="banner4.jpg" alt="Event 1">
+        <img src="ui/banner4.jpg" alt="Event 1">
       </picture>
 
 
       <picture>
-        <source srcset="banner5-hp.jpg" media="(max-width: 784px)">
-        <source srcset="banner5-tab.jpg" media="(max-width: 864px)">
-        <img src="banner5.jpg" alt="Event 3">
+        <source srcset="ui/banner5-hp.jpg" media="(max-width: 784px)">
+        <source srcset="ui/banner5-tab.jpg" media="(max-width: 864px)">
+        <img src="ui/banner5.jpg" alt="Event 3">
       </picture>
     </div>
   </div>
@@ -288,43 +288,43 @@
           <div class="reward-box" id="rewardDay1">
             Hari 1<br>
             <span>500 Coins</span>
-            <img src="coins1.png" alt="Coins" class="reward-icon">
+            <img src="ui/coins1.png" alt="Coins" class="reward-icon">
           </div>
 
           <div class="reward-box" id="rewardDay2">
             Hari 2<br>
             <span>1 Luck x2</span>
-            <img src="luck-potion.png" alt="Potion x2" class="reward-icon">
+            <img src="ui/luck-potion.png" alt="Potion x2" class="reward-icon">
           </div>
 
           <div class="reward-box" id="rewardDay3">
             Hari 3<br>
             <span>1000 Coins</span>
-            <img src="coins2.png" alt="Coins" class="reward-icon">
+            <img src="ui/coins2.png" alt="Coins" class="reward-icon">
           </div>
 
           <div class="reward-box" id="rewardDay4">
             Hari 4<br>
             <span>2 fast x2</span>
-            <img src="fast-roll.png" alt="Potion x2" class="reward-icon">
+            <img src="ui/fast-roll.png" alt="Potion x2" class="reward-icon">
           </div>
 
           <div class="reward-box" id="rewardDay5">
             Hari 5<br>
             <span>1500 Coins</span>
-            <img src="coins3.png" alt="Coins" class="reward-icon">
+            <img src="ui/coins3.png" alt="Coins" class="reward-icon">
           </div>
 
           <div class="reward-box" id="rewardDay6">
             Hari 6<br>
             <span>2 Luck x3</span>
-            <img src="x3-luck.png" alt="Potion x5" class="reward-icon">
+            <img src="ui/x3-luck.png" alt="Potion x5" class="reward-icon">
           </div>
 
           <div class="reward-box day7" id="rewardDay7">
             Hari 7<br>
             <span>2 Luck x5  🎉</span>
-            <img src="x5-luck.png" alt="Potion x5" class="reward-icon">
+            <img src="ui/x5-luck.png" alt="Potion x5" class="reward-icon">
           </div>
         </div>
         <div style="text-align:center; margin-top:15px;">
