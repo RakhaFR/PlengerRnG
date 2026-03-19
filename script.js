@@ -1754,6 +1754,57 @@
         }
       }
 
+      // ✅ REPAIR: sync semua image path di localStorage ke definisi ITEMS terbaru
+      // Jalan otomatis saat load — item lama tidak perlu dijual dulu
+      function repairInventoryImages() {
+        let inv = [];
+        try {
+          inv = JSON.parse(localStorage.getItem(LS_KEY_INVENTORY) || "[]");
+        } catch (e) { return; }
+
+        let changed = false;
+
+        inv.forEach((it) => {
+          const master = ITEMS.find((def) => def.text === it.text);
+          if (master) {
+            // update image kalau berbeda
+            if (it.image !== master.image) {
+              it.image = master.image;
+              changed = true;
+            }
+            // update rarity juga kalau berubah
+            const masterRarityKey = typeof master.rarity === "string"
+              ? master.rarity
+              : master.rarity?.key;
+            const itRarityKey = typeof it.rarity === "string"
+              ? it.rarity
+              : it.rarity?.key;
+            if (masterRarityKey && masterRarityKey !== itRarityKey) {
+              it.rarity = master.rarity;
+              changed = true;
+            }
+            // hapus flag orphan kalau item sudah balik ke pool
+            if (it._orphan) {
+              delete it._orphan;
+              changed = true;
+            }
+          } else {
+            // item tidak ada di ITEMS pool (mungkin dihapus developer)
+            // tandai sebagai orphan supaya masih bisa dijual, tapi image diganti placeholder
+            if (!it._orphan) {
+              it._orphan = true;
+              it.image = "ui/icon-game.jpg"; // fallback ke icon game
+              changed = true;
+            }
+          }
+        });
+
+        if (changed) {
+          localStorage.setItem(LS_KEY_INVENTORY, JSON.stringify(inv));
+          console.log("✅ repairInventoryImages: inventory di-sync ke ITEMS terbaru");
+        }
+      }
+
       function dedupeInventory() {
         let inv = [];
         try {
@@ -1878,7 +1929,7 @@
         }
 
         list.forEach((it) => {
-          // selalu sync image dari definisi ITEMS terbaru berdasarkan nama item
+          // ✅ selalu sync image dari definisi ITEMS terbaru berdasarkan nama item
           // supaya kalau path gambar berubah, inventory tidak 404
           const masterItem = ITEMS.find(
             (def) => def.text === it.text
@@ -2984,6 +3035,7 @@
         showLoading(5500); // 2.5 detik
         checkUsername();
         updateUsernameUI();
+        repairInventoryImages(); // ✅ repair semua image lama di localStorage
       });
 
       const rewards = [
