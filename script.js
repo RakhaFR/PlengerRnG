@@ -1878,6 +1878,15 @@
         }
 
         list.forEach((it) => {
+          // selalu sync image dari definisi ITEMS terbaru berdasarkan nama item
+          // supaya kalau path gambar berubah, inventory tidak 404
+          const masterItem = ITEMS.find(
+            (def) => def.text === it.text
+          );
+          if (masterItem && masterItem.image) {
+            it.image = masterItem.image;
+          }
+
           const r =
             typeof it.rarity === "object"
               ? it.rarity
@@ -3533,6 +3542,7 @@
         renderProfileAchievements();
       }
 
+      // === Render UI ===
       // === Render UI ===
 function renderQuests() {
   let data = loadQuests();
