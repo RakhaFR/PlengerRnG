@@ -198,12 +198,12 @@
         //   rarity: 'prismatic',
         //   numberRange: [1, 1200000]
         // },
-        // {
-        //   image: 'ac.jpg',
-        //   text: 'AC secret',
-        //   rarity: 'secret',
-        //   numberRange: [1, 120000000]
-        // },
+        {
+          image: 'ac.jpg',
+          text: 'AC secret',
+          rarity: 'secret',
+          numberRange: [1, 120000000]
+        },
         // {
         //   image: 'ac.jpg',
         //   text: 'AC secret',
@@ -216,552 +216,552 @@
         //   rarity: 'mythical',
         //   numberRange: [1, 1200000]
         // },
-        {
-          image: "images/agra sigma.jpg",
-          text: "agra Sigma",
-          rarity: "epic",
-          numberRange: [1, 12000],
-        },
-        {
-          image: "images/ac.jpg",
-          text: "lu kenapa jadi mythical",
-          rarity: "mythical",
-          numberRange: [1, 999999],
-        },
-        {
-          image: "images/alif senyum.jpg",
-          text: "Alif Senyum",
-          rarity: "uncommon",
-          numberRange: [1, 399],
-        },
-        {
-          image: "images/bagas bengong.jpg",
-          text: "Bagas Bengong",
-          rarity: "rare",
-          numberRange: [1, 750],
-        },
-        {
-          image: "images/deki nyengir.jpg",
-          text: "Deki Nyengir",
-          rarity: "epic",
-          numberRange: [1, 25000],
-        },
-        {
-          image: "images/marvin wink.jpg",
-          text: "Marvin Wink",
-          rarity: "uncommon",
-          numberRange: [1, 300],
-        },
-        {
-          image: "images/2 apit.jpg",
-          text: "alif di apit",
-          rarity: "rare",
-          numberRange: [1, 900],
-        },
-        {
-          image: "images/2 Senyuman.jpg",
-          text: "2 senyuman manis",
-          rarity: "uncommon",
-          numberRange: [1, 500],
-        },
-        {
-          image: "images/ac.jpg",
-          text: "YA AC",
-          rarity: "common",
-          numberRange: [1, 10],
-        },
-        {
-          image: "images/agra & amira.jpg",
-          text: "cieee lopyu",
-          rarity: "legend",
-          numberRange: [1, 100000],
-        },
-        {
-          image: "images/agra shalat.jpg",
-          text: "agra shalat",
-          rarity: "epic",
-          numberRange: [1, 5999],
-        },
-        {
-          image: "images/agra umhehe.jpg",
-          text: "agra umhehe!",
-          rarity: "mythical",
-          numberRange: [1, 1000000],
-        },
-        {
-          image: "images/agra velocity.jpg",
-          text: "velocity boy!",
-          rarity: "epic",
-          numberRange: [1, 9999],
-        },
-        {
-          image: "images/akbar minkem.jpg",
-          text: "akbar minkem",
-          rarity: "common",
-          numberRange: [1, 25],
-        },
-        {
-          image: "images/alfon mm.jpg",
-          text: "alfon mm",
-          rarity: "common",
-          numberRange: [1, 3],
-        },
-        {
-          image: "images/bagas melet.jpg",
-          text: "bagas melet",
-          rarity: "rare",
-          numberRange: [1, 399],
-        },
-        {
-          image: "images/bm alomani.jpg",
-          text: "BM ALOMANI",
-          rarity: "uncommon",
-          numberRange: [1, 99],
-        },
-        {
-          image: "images/deki fuck.jpg",
-          text: "deki fucking",
-          rarity: "uncommon",
-          numberRange: [1, 129],
-        },
-        {
-          image: "images/deki selfie.jpg",
-          text: "deki lagi nyelfi ges",
-          rarity: "uncommon",
-          numberRange: [1, 301],
-        },
-        {
-          image: "images/deki chatgpt.jpg",
-          text: "deki lagi mencari jawaban",
-          rarity: "common",
-          numberRange: [1, 50],
-        },
-        {
-          image: "images/duh ada yang nyelip.jpg",
-          text: "duh ada yang nyelip",
-          rarity: "rare",
-          numberRange: [1, 450],
-        },
-        {
-          image: "images/dzaki cool.jpg",
-          text: "dzaki cool",
-          rarity: "uncommon",
-          numberRange: [1, 139],
-        },
-        {
-          image: "images/gatel euy.jpg",
-          text: "gatel euyyy..",
-          rarity: "rare",
-          numberRange: [1, 157],
-        },
-        {
-          image: "images/hafi ketawi.jpg",
-          text: "hafi ketawi",
-          rarity: "rare",
-          numberRange: [1, 340],
-        },
-        {
-          image: "images/hafi mengkece.jpg",
-          text: "hafi mengkece",
-          rarity: "common",
-          numberRange: [1, 21],
-        },
-        {
-          image: "images/hafi merenung.jpg",
-          text: "hafi merenung",
-          rarity: "uncommon",
-          numberRange: [1, 123],
-        },
-        {
-          image: "images/hilmi.jpg",
-          text: "HILMI...",
-          rarity: "uncommon",
-          numberRange: [1, 461],
-        },
-        {
-          image: "images/lip and deki.jpg",
-          text: "lip and deki",
-          rarity: "uncommon",
-          numberRange: [1, 232],
-        },
-        {
-          image: "images/marvin ape lu.jpg",
-          text: "apelu liat-liat",
-          rarity: "epic",
-          numberRange: [1, 4289],
-        },
-        {
-          image: "images/menghirup ke surga.jpg",
-          text: "menghirup ke surga",
-          rarity: "epic",
-          numberRange: [1, 6790],
-        },
-        {
-          image: "images/mira bobo.jpg",
-          text: "mira bobo..",
-          rarity: "rare",
-          numberRange: [1, 569],
-        },
-        {
-          image: "images/rafi chad.jpg",
-          text: "RAFI CHAD",
-          rarity: "legend",
-          numberRange: [1, 200999],
-        },
-        {
-          image: "images/rakha mmm.jpg",
-          text: "rakha mmm",
-          rarity: "uncommon",
-          numberRange: [1, 211],
-        },
-        {
-          image: "images/rasya hooo.jpg",
-          text: "rasya hooo...",
-          rarity: "legend",
-          numberRange: [1, 120999],
-        },
-        {
-          image: "images/rasya lier.jpg",
-          text: "RASYA LAGI LIER",
-          rarity: "rare",
-          numberRange: [1, 679],
-        },
-        {
-          image: "images/restu side_eye.jpg",
-          text: "restu side eye..",
-          rarity: "common",
-          numberRange: [1, 35],
-        },
-        {
-          image: "images/surya menjelaskan.jpg",
-          text: "surya sedang menjelaskan",
-          rarity: "common",
-          numberRange: [1, 76],
-        },
-        {
-          image: "images/view 2.jpg",
-          text: "view dari rakha di deki selfie",
-          rarity: "uncommon",
-          numberRange: [1, 217],
-        },
-        {
-          image: "images/virqi apa itu bang.jpg",
-          text: "apa itu bang?",
-          rarity: "common",
-          numberRange: [1, 43],
-        },
-        {
-          image: "images/virqi turu.jpg",
-          text: "virqi sedang turu ges",
-          rarity: "rare",
-          numberRange: [1, 345],
-        },
-        {
-          image: "images/yan mikir.jpg",
-          text: "mikir dulu",
-          rarity: "common",
-          numberRange: [1, 88],
-        },
-        {
-          image: "images/bagas-chad.jpg",
-          text: "bagas chad",
-          rarity: "legend",
-          numberRange: [1, 199900],
-        },
-        {
-          image: "images/bagas-virtual.jpg",
-          text: "bagas jadi AI 2030",
-          rarity: "epic",
-          numberRange: [1, 70089],
-        },
-        {
-          image: "images/berpikir-keras.jpg",
-          text: "mikir apa fi?",
-          rarity: "common",
-          numberRange: [1, 67],
-        },
-        {
-          image: "images/deki-fuckhd.jpg",
-          text: "deki fuck & melet",
-          rarity: "mythical",
-          numberRange: [1, 1099000],
-        },
-        {
-          image: "images/deki-nerd.jpg",
-          text: "deki mau jadi pinter",
-          rarity: "rare",
-          numberRange: [1, 5610],
-        },
-        {
-          image: "images/join-roblox.jpg",
-          text: "join roblox kuy! gak disponsor",
-          rarity: "epic",
-          numberRange: [1, 23900],
-        },
-        {
-          image: "images/alif-sen.jpg",
-          text: "alif senyum 2",
-          rarity: "rare",
-          numberRange: [1, 346],
-        },
-        {
-          image: "images/marvin-mangap.jpg",
-          text: "marvin mangap",
-          rarity: "uncommon",
-          numberRange: [1, 481],
-        },
-        {
-          image: "images/mira-megang.jpg",
-          text: "mira megang alat",
-          rarity: "rare",
-          numberRange: [1, 1201],
-        },
-        {
-          image: "images/mirip-guru.jpg",
-          text: "mirip guru gw kayaknya",
-          rarity: "epic",
-          numberRange: [1, 23001],
-        },
-        {
-          image: "images/plenger-group.jpg",
-          text: "para plenger sedang berpose",
-          rarity: "legend",
-          numberRange: [1, 561000],
-        },
-        {
-          image: "images/rasya-nyu.jpg",
-          text: "ichi nya!",
-          rarity: "uncommon",
-          numberRange: [1, 258],
-        },
-        {
-          image: "images/syafal.jpg",
-          text: "rasya & naufal",
-          rarity: "uncommon",
-          numberRange: [1, 415],
-        },
-        {
-          image: "images/syeima-merem.jpg",
-          text: "syeima ngapain merem?",
-          rarity: "epic",
-          numberRange: [1, 21200],
-        },
-        {
-          image: "images/tiga-senyuman.jpg",
-          text: "tiga senyuman..",
-          rarity: "rare",
-          numberRange: [1, 794],
-        },
-        {
-          image: "images/yan-turu.jpg",
-          text: "yan turu",
-          rarity: "rare",
-          numberRange: [1, 473],
-        },
-        {
-          image: "images/zaky-sigma.jpg",
-          text: "zaki sigma",
-          rarity: "epic",
-          numberRange: [1, 11260],
-        },
-        {
-          image: "images/agra-rock.jpg",
-          text: "agra rock lenger",
-          rarity: "epic",
-          numberRange: [1, 32330],
-        },
-        {
-          image: "images/alif-dance.jpg",
-          text: "alif dancing..",
-          rarity: "rare",
-          numberRange: [1, 2451],
-        },
-        {
-          image: "images/again-migra.jpg",
-          text: "lagi-lagi mereka nih",
-          rarity: "legend",
-          numberRange: [1, 241100],
-        },
-        {
-          image: "images/deki-melet.jpg",
-          text: "deki melet",
-          rarity: "rare",
-          numberRange: [1, 1450],
-        },
-        {
-          image: "images/marvin-bengong.jpg",
-          text: "marvin bengong",
-          rarity: "epic",
-          numberRange: [1, 10299],
-        },
-        {
-          image: "images/surya-sad.jpg",
-          text: "surya 😭",
-          rarity: "epic",
-          numberRange: [1, 30199],
-        },
-        {
-          image: "images/axel.jpg",
-          text: "Hitam Putih",
-          rarity: "mythical",
-          numberRange: [1, 1450000],
-        },
-        {
-          image: "images/naufal-side.jpg",
-          text: "Naufal side eye",
-          rarity: "epic",
-          numberRange: [1, 58400],
-        },
-        {
-          image: "images/yan-.jpg",
-          text: "fathian..",
-          rarity: "common",
-          numberRange: [1, 29],
-        },
-        {
-          image: "images/benq.jpg",
-          text: "ben!",
-          rarity: "rare",
-          numberRange: [1, 6151],
-        },
-        {
-          image: "images/gak-kenal.jpg",
-          text: "hehehe 😭",
-          rarity: "rare",
-          numberRange: [1, 1892],
-        },
-        {
-          image: "images/hilmi-takut.jpg",
-          text: "hilmi takut. mama..",
-          rarity: "epic",
-          numberRange: [1, 50292],
-        },
-        {
-          image: "images/gihun-sigma.jpg",
-          text: "i'm feeling sigma",
-          rarity: "secret",
-          numberRange: [1, 190000000],
-        },
-        {
-          image: "images/hacker.jpg",
-          text: "damcuk pristel!",
-          rarity: "prismatic",
-          numberRange: [1, 30190000],
-        },
-        {
-          image: "images/deki-walawe.jpg",
-          text: "walaweh",
-          rarity: "prismatic",
-          numberRange: [1, 45000000],
-        },
-        {
-          image: "images/sesosok-dev.jpg",
-          text: "SANG DEV",
-          rarity: "secret",
-          numberRange: [1, 990000000],
-        },
-        {
-          image: "images/naufal-byat.jpg",
-          text: "naufal BYAtch!",
-          rarity: "secret",
-          numberRange: [1, 871000000],
-        },
-        {
-          image: "images/rifa-byat.jpg",
-          text: "rifa-BYActh!",
-          rarity: "prismatic",
-          numberRange: [1, 32100000],
-        },
-        {
-          image: "images/agra-imut.jpg",
-          text: "imutnyoo!",
-          rarity: "mythical",
-          numberRange: [1, 5010000],
-        },
-        {
-          image: "images/mahluk-asing.jpg",
-          text: "mahluk asing COEG!",
-          rarity: "secret",
-          numberRange: [1, 521000000],
-        },
-        {
-          image: "images/bagas-sigma.jpg",
-          text: "Bagas Sigma",
-          rarity: "mythical",
-          numberRange: [1, 6120000],
-        },
-        {
-          image: "images/nafis-gepeng.jpg",
-          text: "nafis Yeah!",
-          rarity: "legend",
-          numberRange: [1, 310100],
-        },
-        {
-          image: "images/rasya-wink.jpg",
-          text: "rasya Wink!",
-          rarity: "legend",
-          numberRange: [1, 409199],
-        },
-        {
-          image: "images/wahh.jpg",
-          text: "huwahh",
-          rarity: "rare",
-          numberRange: [1, 810],
-        },
-        {
-          image: "images/alfon-present.jpg",
-          text: "alfon Present!",
-          rarity: "rare",
-          numberRange: [1, 992],
-        },
-        {
-          image: "images/gihun-hs.jpg",
-          text: "gihun and 01 meme!",
-          rarity: "mythical",
-          numberRange: [1, 8300000],
-        },
-        {
-          image: "images/reporter-ketawa.jpg",
-          text: "bahasa inggris bukan bahasa asing lagi yah?",
-          rarity: "legend",
-          numberRange: [1, 700100],
-        },
-        {
-          image: "images/surya-minkem.jpg",
-          text: "sur Minkem!",
-          rarity: "legend",
-          numberRange: [1, 612100],
-        },
-        {
-          image: "images/alif-songong.jpg",
-          text: "lip songong",
-          rarity: "epic",
-          numberRange: [1, 31190],
-        },
-        {
-          image: "images/dzaki-anomali.jpg",
-          text: "BM ALOMANI REAL",
-          rarity: "mythical",
-          numberRange: [1, 1661880],
-        },
-        {
-          image: "images/fathian-wink.jpg",
-          text: "yan wink!",
-          rarity: "legend",
-          numberRange: [1, 301880],
-        },
-        {
-          image: "images/menariklah.jpg",
-          text: "menariklah",
-          rarity: "legend",
-          numberRange: [1, 455280],
-        },
-        {
-          image: "images/nafis-hah.jpg",
-          text: "HAH?!",
-          rarity: "mythical",
-          numberRange: [1, 8910000],
-        },
+        // {
+        //   image: "images/agra sigma.jpg",
+        //   text: "agra Sigma",
+        //   rarity: "epic",
+        //   numberRange: [1, 12000],
+        // },
+        // {
+        //   image: "images/ac.jpg",
+        //   text: "lu kenapa jadi mythical",
+        //   rarity: "mythical",
+        //   numberRange: [1, 999999],
+        // },
+        // {
+        //   image: "images/alif senyum.jpg",
+        //   text: "Alif Senyum",
+        //   rarity: "uncommon",
+        //   numberRange: [1, 399],
+        // },
+        // {
+        //   image: "images/bagas bengong.jpg",
+        //   text: "Bagas Bengong",
+        //   rarity: "rare",
+        //   numberRange: [1, 750],
+        // },
+        // {
+        //   image: "images/deki nyengir.jpg",
+        //   text: "Deki Nyengir",
+        //   rarity: "epic",
+        //   numberRange: [1, 25000],
+        // },
+        // {
+        //   image: "images/marvin wink.jpg",
+        //   text: "Marvin Wink",
+        //   rarity: "uncommon",
+        //   numberRange: [1, 300],
+        // },
+        // {
+        //   image: "images/2 apit.jpg",
+        //   text: "alif di apit",
+        //   rarity: "rare",
+        //   numberRange: [1, 900],
+        // },
+        // {
+        //   image: "images/2 Senyuman.jpg",
+        //   text: "2 senyuman manis",
+        //   rarity: "uncommon",
+        //   numberRange: [1, 500],
+        // },
+        // {
+        //   image: "images/ac.jpg",
+        //   text: "YA AC",
+        //   rarity: "common",
+        //   numberRange: [1, 10],
+        // },
+        // {
+        //   image: "images/agra & amira.jpg",
+        //   text: "cieee lopyu",
+        //   rarity: "legend",
+        //   numberRange: [1, 100000],
+        // },
+        // {
+        //   image: "images/agra shalat.jpg",
+        //   text: "agra shalat",
+        //   rarity: "epic",
+        //   numberRange: [1, 5999],
+        // },
+        // {
+        //   image: "images/agra umhehe.jpg",
+        //   text: "agra umhehe!",
+        //   rarity: "mythical",
+        //   numberRange: [1, 1000000],
+        // },
+        // {
+        //   image: "images/agra velocity.jpg",
+        //   text: "velocity boy!",
+        //   rarity: "epic",
+        //   numberRange: [1, 9999],
+        // },
+        // {
+        //   image: "images/akbar minkem.jpg",
+        //   text: "akbar minkem",
+        //   rarity: "common",
+        //   numberRange: [1, 25],
+        // },
+        // {
+        //   image: "images/alfon mm.jpg",
+        //   text: "alfon mm",
+        //   rarity: "common",
+        //   numberRange: [1, 3],
+        // },
+        // {
+        //   image: "images/bagas melet.jpg",
+        //   text: "bagas melet",
+        //   rarity: "rare",
+        //   numberRange: [1, 399],
+        // },
+        // {
+        //   image: "images/bm alomani.jpg",
+        //   text: "BM ALOMANI",
+        //   rarity: "uncommon",
+        //   numberRange: [1, 99],
+        // },
+        // {
+        //   image: "images/deki fuck.jpg",
+        //   text: "deki fucking",
+        //   rarity: "uncommon",
+        //   numberRange: [1, 129],
+        // },
+        // {
+        //   image: "images/deki selfie.jpg",
+        //   text: "deki lagi nyelfi ges",
+        //   rarity: "uncommon",
+        //   numberRange: [1, 301],
+        // },
+        // {
+        //   image: "images/deki chatgpt.jpg",
+        //   text: "deki lagi mencari jawaban",
+        //   rarity: "common",
+        //   numberRange: [1, 50],
+        // },
+        // {
+        //   image: "images/duh ada yang nyelip.jpg",
+        //   text: "duh ada yang nyelip",
+        //   rarity: "rare",
+        //   numberRange: [1, 450],
+        // },
+        // {
+        //   image: "images/dzaki cool.jpg",
+        //   text: "dzaki cool",
+        //   rarity: "uncommon",
+        //   numberRange: [1, 139],
+        // },
+        // {
+        //   image: "images/gatel euy.jpg",
+        //   text: "gatel euyyy..",
+        //   rarity: "rare",
+        //   numberRange: [1, 157],
+        // },
+        // {
+        //   image: "images/hafi ketawi.jpg",
+        //   text: "hafi ketawi",
+        //   rarity: "rare",
+        //   numberRange: [1, 340],
+        // },
+        // {
+        //   image: "images/hafi mengkece.jpg",
+        //   text: "hafi mengkece",
+        //   rarity: "common",
+        //   numberRange: [1, 21],
+        // },
+        // {
+        //   image: "images/hafi merenung.jpg",
+        //   text: "hafi merenung",
+        //   rarity: "uncommon",
+        //   numberRange: [1, 123],
+        // },
+        // {
+        //   image: "images/hilmi.jpg",
+        //   text: "HILMI...",
+        //   rarity: "uncommon",
+        //   numberRange: [1, 461],
+        // },
+        // {
+        //   image: "images/lip and deki.jpg",
+        //   text: "lip and deki",
+        //   rarity: "uncommon",
+        //   numberRange: [1, 232],
+        // },
+        // {
+        //   image: "images/marvin ape lu.jpg",
+        //   text: "apelu liat-liat",
+        //   rarity: "epic",
+        //   numberRange: [1, 4289],
+        // },
+        // {
+        //   image: "images/menghirup ke surga.jpg",
+        //   text: "menghirup ke surga",
+        //   rarity: "epic",
+        //   numberRange: [1, 6790],
+        // },
+        // {
+        //   image: "images/mira bobo.jpg",
+        //   text: "mira bobo..",
+        //   rarity: "rare",
+        //   numberRange: [1, 569],
+        // },
+        // {
+        //   image: "images/rafi chad.jpg",
+        //   text: "RAFI CHAD",
+        //   rarity: "legend",
+        //   numberRange: [1, 200999],
+        // },
+        // {
+        //   image: "images/rakha mmm.jpg",
+        //   text: "rakha mmm",
+        //   rarity: "uncommon",
+        //   numberRange: [1, 211],
+        // },
+        // {
+        //   image: "images/rasya hooo.jpg",
+        //   text: "rasya hooo...",
+        //   rarity: "legend",
+        //   numberRange: [1, 120999],
+        // },
+        // {
+        //   image: "images/rasya lier.jpg",
+        //   text: "RASYA LAGI LIER",
+        //   rarity: "rare",
+        //   numberRange: [1, 679],
+        // },
+        // {
+        //   image: "images/restu side_eye.jpg",
+        //   text: "restu side eye..",
+        //   rarity: "common",
+        //   numberRange: [1, 35],
+        // },
+        // {
+        //   image: "images/surya menjelaskan.jpg",
+        //   text: "surya sedang menjelaskan",
+        //   rarity: "common",
+        //   numberRange: [1, 76],
+        // },
+        // {
+        //   image: "images/view 2.jpg",
+        //   text: "view dari rakha di deki selfie",
+        //   rarity: "uncommon",
+        //   numberRange: [1, 217],
+        // },
+        // {
+        //   image: "images/virqi apa itu bang.jpg",
+        //   text: "apa itu bang?",
+        //   rarity: "common",
+        //   numberRange: [1, 43],
+        // },
+        // {
+        //   image: "images/virqi turu.jpg",
+        //   text: "virqi sedang turu ges",
+        //   rarity: "rare",
+        //   numberRange: [1, 345],
+        // },
+        // {
+        //   image: "images/yan mikir.jpg",
+        //   text: "mikir dulu",
+        //   rarity: "common",
+        //   numberRange: [1, 88],
+        // },
+        // {
+        //   image: "images/bagas-chad.jpg",
+        //   text: "bagas chad",
+        //   rarity: "legend",
+        //   numberRange: [1, 199900],
+        // },
+        // {
+        //   image: "images/bagas-virtual.jpg",
+        //   text: "bagas jadi AI 2030",
+        //   rarity: "epic",
+        //   numberRange: [1, 70089],
+        // },
+        // {
+        //   image: "images/berpikir-keras.jpg",
+        //   text: "mikir apa fi?",
+        //   rarity: "common",
+        //   numberRange: [1, 67],
+        // },
+        // {
+        //   image: "images/deki-fuckhd.jpg",
+        //   text: "deki fuck & melet",
+        //   rarity: "mythical",
+        //   numberRange: [1, 1099000],
+        // },
+        // {
+        //   image: "images/deki-nerd.jpg",
+        //   text: "deki mau jadi pinter",
+        //   rarity: "rare",
+        //   numberRange: [1, 5610],
+        // },
+        // {
+        //   image: "images/join-roblox.jpg",
+        //   text: "join roblox kuy! gak disponsor",
+        //   rarity: "epic",
+        //   numberRange: [1, 23900],
+        // },
+        // {
+        //   image: "images/alif-sen.jpg",
+        //   text: "alif senyum 2",
+        //   rarity: "rare",
+        //   numberRange: [1, 346],
+        // },
+        // {
+        //   image: "images/marvin-mangap.jpg",
+        //   text: "marvin mangap",
+        //   rarity: "uncommon",
+        //   numberRange: [1, 481],
+        // },
+        // {
+        //   image: "images/mira-megang.jpg",
+        //   text: "mira megang alat",
+        //   rarity: "rare",
+        //   numberRange: [1, 1201],
+        // },
+        // {
+        //   image: "images/mirip-guru.jpg",
+        //   text: "mirip guru gw kayaknya",
+        //   rarity: "epic",
+        //   numberRange: [1, 23001],
+        // },
+        // {
+        //   image: "images/plenger-group.jpg",
+        //   text: "para plenger sedang berpose",
+        //   rarity: "legend",
+        //   numberRange: [1, 561000],
+        // },
+        // {
+        //   image: "images/rasya-nyu.jpg",
+        //   text: "ichi nya!",
+        //   rarity: "uncommon",
+        //   numberRange: [1, 258],
+        // },
+        // {
+        //   image: "images/syafal.jpg",
+        //   text: "rasya & naufal",
+        //   rarity: "uncommon",
+        //   numberRange: [1, 415],
+        // },
+        // {
+        //   image: "images/syeima-merem.jpg",
+        //   text: "syeima ngapain merem?",
+        //   rarity: "epic",
+        //   numberRange: [1, 21200],
+        // },
+        // {
+        //   image: "images/tiga-senyuman.jpg",
+        //   text: "tiga senyuman..",
+        //   rarity: "rare",
+        //   numberRange: [1, 794],
+        // },
+        // {
+        //   image: "images/yan-turu.jpg",
+        //   text: "yan turu",
+        //   rarity: "rare",
+        //   numberRange: [1, 473],
+        // },
+        // {
+        //   image: "images/zaky-sigma.jpg",
+        //   text: "zaki sigma",
+        //   rarity: "epic",
+        //   numberRange: [1, 11260],
+        // },
+        // {
+        //   image: "images/agra-rock.jpg",
+        //   text: "agra rock lenger",
+        //   rarity: "epic",
+        //   numberRange: [1, 32330],
+        // },
+        // {
+        //   image: "images/alif-dance.jpg",
+        //   text: "alif dancing..",
+        //   rarity: "rare",
+        //   numberRange: [1, 2451],
+        // },
+        // {
+        //   image: "images/again-migra.jpg",
+        //   text: "lagi-lagi mereka nih",
+        //   rarity: "legend",
+        //   numberRange: [1, 241100],
+        // },
+        // {
+        //   image: "images/deki-melet.jpg",
+        //   text: "deki melet",
+        //   rarity: "rare",
+        //   numberRange: [1, 1450],
+        // },
+        // {
+        //   image: "images/marvin-bengong.jpg",
+        //   text: "marvin bengong",
+        //   rarity: "epic",
+        //   numberRange: [1, 10299],
+        // },
+        // {
+        //   image: "images/surya-sad.jpg",
+        //   text: "surya 😭",
+        //   rarity: "epic",
+        //   numberRange: [1, 30199],
+        // },
+        // {
+        //   image: "images/axel.jpg",
+        //   text: "Hitam Putih",
+        //   rarity: "mythical",
+        //   numberRange: [1, 1450000],
+        // },
+        // {
+        //   image: "images/naufal-side.jpg",
+        //   text: "Naufal side eye",
+        //   rarity: "epic",
+        //   numberRange: [1, 58400],
+        // },
+        // {
+        //   image: "images/yan-.jpg",
+        //   text: "fathian..",
+        //   rarity: "common",
+        //   numberRange: [1, 29],
+        // },
+        // {
+        //   image: "images/benq.jpg",
+        //   text: "ben!",
+        //   rarity: "rare",
+        //   numberRange: [1, 6151],
+        // },
+        // {
+        //   image: "images/gak-kenal.jpg",
+        //   text: "hehehe 😭",
+        //   rarity: "rare",
+        //   numberRange: [1, 1892],
+        // },
+        // {
+        //   image: "images/hilmi-takut.jpg",
+        //   text: "hilmi takut. mama..",
+        //   rarity: "epic",
+        //   numberRange: [1, 50292],
+        // },
+        // {
+        //   image: "images/gihun-sigma.jpg",
+        //   text: "i'm feeling sigma",
+        //   rarity: "secret",
+        //   numberRange: [1, 190000000],
+        // },
+        // {
+        //   image: "images/hacker.jpg",
+        //   text: "damcuk pristel!",
+        //   rarity: "prismatic",
+        //   numberRange: [1, 30190000],
+        // },
+        // {
+        //   image: "images/deki-walawe.jpg",
+        //   text: "walaweh",
+        //   rarity: "prismatic",
+        //   numberRange: [1, 45000000],
+        // },
+        // {
+        //   image: "images/sesosok-dev.jpg",
+        //   text: "SANG DEV",
+        //   rarity: "secret",
+        //   numberRange: [1, 990000000],
+        // },
+        // {
+        //   image: "images/naufal-byat.jpg",
+        //   text: "naufal BYAtch!",
+        //   rarity: "secret",
+        //   numberRange: [1, 871000000],
+        // },
+        // {
+        //   image: "images/rifa-byat.jpg",
+        //   text: "rifa-BYActh!",
+        //   rarity: "prismatic",
+        //   numberRange: [1, 32100000],
+        // },
+        // {
+        //   image: "images/agra-imut.jpg",
+        //   text: "imutnyoo!",
+        //   rarity: "mythical",
+        //   numberRange: [1, 5010000],
+        // },
+        // {
+        //   image: "images/mahluk-asing.jpg",
+        //   text: "mahluk asing COEG!",
+        //   rarity: "secret",
+        //   numberRange: [1, 521000000],
+        // },
+        // {
+        //   image: "images/bagas-sigma.jpg",
+        //   text: "Bagas Sigma",
+        //   rarity: "mythical",
+        //   numberRange: [1, 6120000],
+        // },
+        // {
+        //   image: "images/nafis-gepeng.jpg",
+        //   text: "nafis Yeah!",
+        //   rarity: "legend",
+        //   numberRange: [1, 310100],
+        // },
+        // {
+        //   image: "images/rasya-wink.jpg",
+        //   text: "rasya Wink!",
+        //   rarity: "legend",
+        //   numberRange: [1, 409199],
+        // },
+        // {
+        //   image: "images/wahh.jpg",
+        //   text: "huwahh",
+        //   rarity: "rare",
+        //   numberRange: [1, 810],
+        // },
+        // {
+        //   image: "images/alfon-present.jpg",
+        //   text: "alfon Present!",
+        //   rarity: "rare",
+        //   numberRange: [1, 992],
+        // },
+        // {
+        //   image: "images/gihun-hs.jpg",
+        //   text: "gihun and 01 meme!",
+        //   rarity: "mythical",
+        //   numberRange: [1, 8300000],
+        // },
+        // {
+        //   image: "images/reporter-ketawa.jpg",
+        //   text: "bahasa inggris bukan bahasa asing lagi yah?",
+        //   rarity: "legend",
+        //   numberRange: [1, 700100],
+        // },
+        // {
+        //   image: "images/surya-minkem.jpg",
+        //   text: "sur Minkem!",
+        //   rarity: "legend",
+        //   numberRange: [1, 612100],
+        // },
+        // {
+        //   image: "images/alif-songong.jpg",
+        //   text: "lip songong",
+        //   rarity: "epic",
+        //   numberRange: [1, 31190],
+        // },
+        // {
+        //   image: "images/dzaki-anomali.jpg",
+        //   text: "BM ALOMANI REAL",
+        //   rarity: "mythical",
+        //   numberRange: [1, 1661880],
+        // },
+        // {
+        //   image: "images/fathian-wink.jpg",
+        //   text: "yan wink!",
+        //   rarity: "legend",
+        //   numberRange: [1, 301880],
+        // },
+        // {
+        //   image: "images/menariklah.jpg",
+        //   text: "menariklah",
+        //   rarity: "legend",
+        //   numberRange: [1, 455280],
+        // },
+        // {
+        //   image: "images/nafis-hah.jpg",
+        //   text: "HAH?!",
+        //   rarity: "mythical",
+        //   numberRange: [1, 8910000],
+        // },
       ];
 
       // LocalStorage keys
@@ -1115,7 +1115,7 @@
 
       function toggleUI(hidden) {
         const uiElements = document.querySelectorAll(
-          ".coin-bar, .hud, #rngWrap"
+          ".coin-bar, .hud, #rngWrap, #topSidebar"
         );
         uiElements.forEach((el) => {
           if (hidden) el.classList.add("ui-hidden");
@@ -1135,6 +1135,21 @@
               .catch((e) => {});
           }
         });
+      }
+
+      function spawnAmbientFlash(rarity) {
+        // Remove existing flashes
+        document.querySelectorAll(".ambient-flash, .vignette-flash").forEach(el => el.remove());
+
+        const flash = document.createElement("div");
+        flash.className = `ambient-flash ${rarity}`;
+        document.body.appendChild(flash);
+        flash.addEventListener("animationend", () => flash.remove());
+
+        const vignette = document.createElement("div");
+        vignette.className = `vignette-flash ${rarity}`;
+        document.body.appendChild(vignette);
+        vignette.addEventListener("animationend", () => vignette.remove());
       }
 
       function playRarityAnimation(rarity) {
@@ -1157,6 +1172,8 @@
 
         bg.classList.remove("epic", "legend", "mythical");
 
+        const rarityKey = rarity === "legendary" ? "legend" : rarity;
+
         switch (rarity) {
           case "epic":
             bg.classList.add("epic");
@@ -1171,6 +1188,9 @@
             bg.classList.add("mythical");
             break;
         }
+
+        // 🌟 Spawn ambient flash immediately
+        spawnAmbientFlash(rarityKey);
 
         toggleUI(true);
 
@@ -1190,29 +1210,32 @@
           console.warn("Gagal play resultSfx", e);
         }
 
-        star.style.animation = "moveOut 6.23s ease-in forwards";
+        const MOVE_OUT_MS = 6230;
+        const MOVE_IN_MS  = 6230;
+
+        star.style.animation = `moveOut ${MOVE_OUT_MS / 1000}s ease-in forwards`;
 
         setTimeout(() => {
           star.style.animation = "";
           void star.offsetWidth;
-          star.style.animation = "moveIn 6.23s ease forwards";
-        }, 6230);
+          star.style.animation = `moveIn ${MOVE_IN_MS / 1000}s ease-in forwards`;
+          spawnAmbientFlash(rarityKey);
+        }, MOVE_OUT_MS);
 
+        if (rarityEffectTimeout) clearTimeout(rarityEffectTimeout);
         rarityEffectTimeout = setTimeout(() => {
           star.style.display = "none";
           star.style.animation = "";
           star.style.transform = "";
 
           toggleUI(false);
-          body.classList.add("shake-body");
+          const isInsane = ["legend", "legendary", "mythical"].includes(rarity);
+          body.classList.add(isInsane ? "shake-insane" : "shake-body");
 
           setTimeout(() => {
-            body.classList.remove("shake-body");
+            body.classList.remove("shake-insane", "shake-body");
             body.classList.add("shake-fade");
-
-            // 🔥 reset flag setelah animasi selesai
             isSpecialAnimation = false;
-
             if (banner) banner.classList.remove("hidden");
             showBannerToggle();
           }, 1000);
@@ -1224,7 +1247,7 @@
               music.currentTime = 0;
             }
           }, 3000);
-        }, 12560);
+        }, MOVE_OUT_MS + MOVE_IN_MS);
       }
 
       function showFullscreenAura(type) {
@@ -1285,10 +1308,11 @@
             auraEl.classList.remove("hidden");
           }
 
-          // Efek shake
-          body.classList.add("shake-body");
+          // Efek shake — prismatic/secret lebih gila
+          const isInsaneRarity = ["prismatic", "secret"].includes(rarity);
+          body.classList.add(isInsaneRarity ? "shake-insane" : "shake-body");
           setTimeout(() => {
-            body.classList.remove("shake-body");
+            body.classList.remove("shake-insane", "shake-body");
             body.classList.add("shake-fade");
 
             // ✨ Sparkle untuk secret
@@ -1973,7 +1997,7 @@
        style="${
          isPrismatic || isSecret ? "" : `background:${r.grad};`
        } position:relative;">
-    <img src="${it.image}" alt="${it.text}">
+    <img src="${it.image}" alt="${it.text}" loading="lazy">
     <div class="item-count">x${count}</div>
 
     <!-- 🔒 lock -->
@@ -2231,66 +2255,54 @@
       let autoRollInterval = null;
       let autoRollUnlocked = false;
 
-      function showErrorPopup(message) {
-        const popup = document.getElementById("errorPopup");
-        if (!popup) return;
+      /* ===== UNIFIED TOAST SYSTEM ===== */
+      function showToast(message, type = "info", duration = 2200) {
+        const container = document.getElementById("toast-container");
+        if (!container) return;
 
-        popup.textContent = message;
-        popup.classList.add("show");
+        const icons = { success: "✔", error: "✖", coin: "🪙", warn: "⚠", info: "ℹ" };
 
-        // Hilang otomatis setelah 2.5 detik
-        setTimeout(() => {
-          popup.classList.remove("show");
-        }, 2500);
+        const toast = document.createElement("div");
+        toast.className = `toast ${type}`;
+        toast.innerHTML = `
+          <span class="t-corner-tr"></span>
+          <span class="t-corner-bl"></span>
+          <span class="toast-icon">${icons[type] || icons.info}</span>
+          <span class="toast-msg">${message}</span>
+        `;
+        container.appendChild(toast);
+
+        // Play sfx
+        try {
+          if (type === "error" || type === "warn") {
+            const sfx = document.getElementById("errorSfx");
+            if (sfx) { sfx.currentTime = 0; sfx.play(); }
+          } else if (type === "coin") {
+            const sfx = document.getElementById("coinSfx");
+            if (sfx) { sfx.currentTime = 0; sfx.play(); }
+          }
+        } catch(e) {}
+
+        // Auto remove
+        const remove = () => {
+          toast.classList.add("dying");
+          toast.addEventListener("animationend", () => toast.remove(), { once: true });
+        };
+        setTimeout(remove, duration);
       }
 
+      // Keep old names as aliases for backward compat
+      function showPopup(message, isError = false) {
+        showToast(message, isError ? "error" : "success");
+      }
       function showCoinPopup(amount) {
-        const popup = document.getElementById("coinPopup");
-        const sfx = document.getElementById("coinSfx");
-        if (!popup) return;
-
-        popup.textContent = `+${amount} Coins`;
-        popup.classList.remove("hidden");
-        popup.style.animation = "none";
-        void popup.offsetWidth; // force reflow
-        popup.style.animation = "popup-fade 1s ease-out forwards";
-
-        try {
-          sfx.currentTime = 0;
-          sfx.play();
-        } catch (e) {
-          console.warn("SFX error:", e);
-        }
-
-        setTimeout(() => {
-          popup.classList.add("hidden");
-        }, 1200);
+        showToast(`+${amount} Coins`, "coin");
       }
-
       function showErrorPopup(message) {
-        const popup = document.getElementById("coinPopup");
-        const sfx = document.getElementById("errorSfx");
-        if (!popup) return;
-
-        popup.textContent = message;
-        popup.classList.remove("hidden");
-        popup.classList.add("error");
-        popup.style.animation = "none";
-        void popup.offsetWidth; // force reflow
-        popup.style.animation = "popup-fade 1s ease-out forwards";
-
-        try {
-          sfx.currentTime = 0;
-          sfx.play();
-        } catch (e) {
-          console.warn("SFX error:", e);
-        }
-
-        setTimeout(() => {
-          popup.classList.add("hidden");
-          popup.classList.remove("error");
-        }, 1200);
+        showToast(message, "error");
       }
+
+      // showCoinPopup, showErrorPopup, showPopup → handled by unified showToast above
 
       function loadAutoRollUnlock() {
         autoRollUnlocked = localStorage.getItem("autoRollUnlocked") === "true";
@@ -2428,14 +2440,7 @@
         }
       }
 
-      function showPopup(message, isError = false) {
-        const popup = document.getElementById("coinPopup");
-        popup.textContent = message;
-        popup.classList.remove("hidden");
-        if (isError) popup.classList.add("error");
-        else popup.classList.remove("error");
-        setTimeout(() => popup.classList.add("hidden"), 1500);
-      }
+      // ↑ showPopup already defined above as alias to showToast
 
       function equipPotion(type, idx) {
         // 🎵 SFX cengkrink
@@ -2520,7 +2525,7 @@
               grid.innerHTML += `
           <div class="card">
             <div class="frame" style="background:${p.color}">
-              <img src="${p.icon}" alt="${p.name}">
+              <img src="${p.icon}" alt="${p.name}" loading="lazy">
             </div>
             <div class="name">${p.name}</div>
             <div class="rarity-badge">x${count}</div>
@@ -2663,7 +2668,7 @@
             grid.innerHTML += `
         <div class="card">
           <div class="frame" style="background:${p.color}">
-            <img src="${p.icon}" alt="${p.name}">
+            <img src="${p.icon}" alt="${p.name}" loading="lazy">
           </div>
           <div class="name">${p.name}</div>
           <div class="rarity-badge">Selama 5 menit</div>
@@ -2830,7 +2835,7 @@
         <div class="active-dot" style="width:10px; height:10px; border-radius:50%; background:transparent;"></div>
         <div style="max-width:190px; max-height:170px;">
           <div class="frame">
-            <img src="${log.image}" style="width:100%; height:90%; object-fit:cover;" />
+            <img src="${log.image}" style="width:100%; height:90%; object-fit:cover;" loading="lazy" />
           </div>
           <div style="font-size:9px; text-align:center; margin-top:4px; word-wrap:break-word;">
             ${log.version}
@@ -3030,12 +3035,54 @@
         }, duration);
       }
 
-      // Tampilkan loading saat pertama kali buka
-      window.addEventListener("load", () => {
-        showLoading(5500); // 2.5 detik
-        checkUsername();
-        updateUsernameUI();
-        repairInventoryImages(); // ✅ repair semua image lama di localStorage
+      // Preload semua gambar dari ITEMS array
+      function preloadItemImages() {
+        const images = ITEMS
+          .map(it => it.image)
+          .filter(Boolean)
+          .filter((v, i, a) => a.indexOf(v) === i); // deduplicate
+
+        if (images.length === 0) return Promise.resolve();
+
+        let loaded = 0;
+        const total = images.length;
+        const loadingText = document.querySelector("#loadingScreen .loader p");
+
+        return new Promise((resolve) => {
+          images.forEach((src) => {
+            const img = new Image();
+            img.onload = img.onerror = () => {
+              loaded++;
+              if (loadingText) {
+                const pct = Math.round((loaded / total) * 100);
+                loadingText.textContent = `Loading: ${pct}%`;
+              }
+              if (loaded >= total) resolve();
+            };
+            img.src = src;
+          });
+        });
+      }
+
+      // Tampilkan loading saat pertama kali buka — tunggu asset beneran selesai
+      window.addEventListener("load", async () => {
+        const loading = document.getElementById("loadingScreen");
+        loading.classList.remove("hidden");
+
+        const MIN_DISPLAY = 1500; // minimal loading screen tampil 1.5 detik
+        const start = Date.now();
+
+        await preloadItemImages();
+
+        const elapsed = Date.now() - start;
+        const remaining = Math.max(0, MIN_DISPLAY - elapsed);
+
+        setTimeout(() => {
+          loading.classList.add("hidden");
+          checkUsername();
+          updateUsernameUI();
+          repairInventoryImages();
+        }, remaining);
       });
 
       const rewards = [
@@ -3744,7 +3791,7 @@ function refreshQuestGroup(group) {
         <div style="display:flex; flex-direction:column; align-items:center; gap:6px;">
           <div class="coin-reward">🪙 ${a.reward.coins} Coins</div>
           <div class="badge-preview">
-            <img src="${a.badge}" alt="Badge Reward" />
+            <img src="${a.badge}" alt="Badge Reward" loading="lazy" />
           </div>
         </div>
 
@@ -3769,6 +3816,7 @@ function refreshQuestGroup(group) {
           const img = document.createElement("img");
           img.src = a.badge;
           img.alt = a.title;
+          img.loading = "lazy";
           img.className = "achievement-badge";
 
           if (a.progress >= a.target || a.claimed) {

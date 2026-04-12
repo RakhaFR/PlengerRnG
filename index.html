@@ -14,9 +14,9 @@
   <div class="fullscreen-secret hidden"></div>
 
 
-  <video class="bg-video" autoplay loop muted>
-    <source src="video/bgVid.mp4" type="video/mp4" />
-  </video>
+  <!-- Background bintang jatuh (menggantikan bg-video) -->
+  <div class="bg-stars" id="bgStars"></div>
+  <div class="bg-night" id="bgNight"></div>
   <div id="rarityAnimation" class="rarity-anim hidden">
     <div class="rarity-bg"></div>
     <img src="ui/star.png" alt="Star" class="rarity-star" />
@@ -67,69 +67,73 @@
   <audio id="prismaticSfx" src="sound/prismatic-anim.mp3" preload="auto"></audio>
   <audio id="secretSfx" src="sound/secret-anim.mp3" preload="auto"></audio>
 
-  <div id="coinPopup" class="popup hidden">+0 Coins</div>
+  <div id="toast-container"></div>
 
   <!-- Sidebar Atas Kiri -->
   <div class="sidebar-top-left" id="topSidebar" style="display: none;">
     <button class="side-btn" onclick="openProfile()">
-      <img src="ui/user.png" alt="Profile" class="side-icon">
+      <span class="corner-tr"></span><span class="corner-bl"></span>
+      <img loading="lazy" src="ui/user.png" alt="Profile" class="side-icon">
       <span class="side-label">Profile</span>
     </button>
 
     <button class="side-btn" onclick="openDailyReward()">
-      <img src="ui/daily.png" alt="Shop" class="side-icon">
+      <span class="corner-tr"></span><span class="corner-bl"></span>
+      <img loading="lazy" src="ui/daily.png" alt="Shop" class="side-icon">
       <span class="side-label">Hadiah</span>
-       <div id="rewardIndicator" class="reward-indicator hidden">!</div>
+      <div id="rewardIndicator" class="reward-indicator hidden">!</div>
     </button>
     <button class="side-btn" onclick="openQuestOverlay()">
-  <img src="ui/quest.png" alt="Quest" class="side-icon">
-  <span class="side-label">Quest</span>
-</button>
+      <span class="corner-tr"></span><span class="corner-bl"></span>
+      <img loading="lazy" src="ui/quest.png" alt="Quest" class="side-icon">
+      <span class="side-label">Quest</span>
+    </button>
 
     <button class="side-btn" onclick="openStore()">
-      <img src="ui/shop.png" alt="Shop" class="side-icon">
+      <span class="corner-tr"></span><span class="corner-bl"></span>
+      <img loading="lazy" src="ui/shop.png" alt="Shop" class="side-icon">
       <span class="side-label">Store</span>
     </button>
     <button class="side-btn" onclick="openPotionInventory()">
-      <img src="ui/inventory.png" alt="Inventory" class="side-icon">
+      <span class="corner-tr"></span><span class="corner-bl"></span>
+      <img loading="lazy" src="ui/inventory.png" alt="Inventory" class="side-icon">
       <span class="side-label">Inventory</span>
     </button>
     <button class="side-btn" onclick="openUpdateLog()">
-      <img src="ui/update.png" alt="Update" class="side-icon">
+      <span class="corner-tr"></span><span class="corner-bl"></span>
+      <img loading="lazy" src="ui/update.png" alt="Update" class="side-icon">
       <span class="side-label">Update Log</span>
       <div id="updateIndicator" class="reward-indicator hidden">!</div>
     </button>
   </div>
 
 
-    <section class="lobby" id="lobby">
-      <div class="panel">
-        <h1 style="-webkit-text-stroke: 1px #ff6565; font-weight: 900">
-          PLENGER RnG
-        </h1>
-        <h3 style="color: #ffffff; -webkit-text-stroke: .7px #65ffe5">
-          🎴UPDATE 1.9🎲
-        </h3>
-        <div style="margin-top: 16px">
-          <button
-            onclick="startGame()"
-            style="
+  <section class="lobby" id="lobby">
+    <div class="panel">
+      <h1 style="-webkit-text-stroke: 1px #ff6565; font-weight: 900">
+        PLENGER RnG
+      </h1>
+      <h3 style="color: #ffffff; -webkit-text-stroke: .7px #65ffe5">
+        🎴UPDATE 1.9🎲
+      </h3>
+      <div style="margin-top: 16px">
+        <button onclick="startGame()" style="
               background: rgba(10, 10, 10, 0.65);
               border: 1px solid var(--glass-brd);
               border-radius: 14px;
               color: white;
               padding: 20px 80px 20px 80px;
               cursor: pointer;
-            "
-          >
-            Mulai
-          </button>
-        </div>
+            ">
+          Mulai
+        </button>
       </div>
-    </section>
+    </div>
+  </section>
 
   <section class="game hidden" id="game">
     <div class="coin-bar">
+      <span class="corner-tr"></span><span class="corner-bl"></span>
       🪙 <span id="coinAmount">0</span> Coins
     </div>
     <div id="potionCounter"></div>
@@ -145,14 +149,17 @@
 
 
     <div class="hud">
-      <div class="pill pill-left" onclick="toggleAutoRoll()">Gulir Otomatis: MATI <span class="sub">Bayar 10
+      <div class="pill pill-left" onclick="toggleAutoRoll()"><span class="corner-tr"></span><span
+          class="corner-bl"></span>Gulir Otomatis: MATI <span class="sub">Bayar 10
           Coins</span></div>
       <div class="pill pill-center" id="rollBtn">
+        <span class="corner-tr"></span><span class="corner-bl"></span>
         <div id="luckBadge" class="luck-badge hidden">2x LUCK</div>
         <div class="title">Gulir</div>
         <div class="counter"><span id="rollCounter">0</span>/10</div>
       </div>
-      <div class="pill pill-right" onclick="openInventory()">Koleksi</div>
+      <div class="pill pill-right" onclick="openInventory()"><span class="corner-tr"></span><span
+          class="corner-bl"></span>Koleksi</div>
     </div>
   </section>
 
@@ -247,9 +254,9 @@
   <div id="eventBanner" class="event-banner">
     <div class="event-slider">
       <picture>
-        <source srcset="ui/banner5-hp.jpg.jpg" media="(max-width: 784px)">
+        <source srcset="ui/banner5-hp.jpg" media="(max-width: 784px)">
         <source srcset="ui/banner5-tab.jpg" media="(max-width: 864px)">
-        <img src="ui/banner5.jpg" alt="Event 2">
+        <img loading="lazy" src="ui/banner5.jpg" alt="Event 2">
       </picture>
       <picture>
         <!-- versi HP -->
@@ -257,18 +264,18 @@
         <!-- versi Tablet -->
         <source srcset="ui/banner4-tab.jpg" media="(max-width: 864px)">
         <!-- versi Desktop (default) -->
-        <img src="ui/banner4.jpg" alt="Event 1">
+        <img loading="lazy" src="ui/banner4.jpg" alt="Event 1">
       </picture>
 
 
       <picture>
         <source srcset="ui/banner5-hp.jpg" media="(max-width: 784px)">
         <source srcset="ui/banner5-tab.jpg" media="(max-width: 864px)">
-        <img src="ui/banner5.jpg" alt="Event 3">
+        <img loading="lazy" src="ui/banner5.jpg" alt="Event 3">
       </picture>
     </div>
   </div>
-  
+
   <!-- Tombol Toggle -->
   <button id="bannerToggle" class="banner-toggle right">&gt;</button>
 
@@ -288,43 +295,43 @@
           <div class="reward-box" id="rewardDay1">
             Hari 1<br>
             <span>500 Coins</span>
-            <img src="ui/coins1.png" alt="Coins" class="reward-icon">
+            <img loading="lazy" src="ui/coins1.png" alt="Coins" class="reward-icon">
           </div>
 
           <div class="reward-box" id="rewardDay2">
             Hari 2<br>
             <span>1 Luck x2</span>
-            <img src="ui/luck-potion.png" alt="Potion x2" class="reward-icon">
+            <img loading="lazy" src="ui/luck-potion.png" alt="Potion x2" class="reward-icon">
           </div>
 
           <div class="reward-box" id="rewardDay3">
             Hari 3<br>
             <span>1000 Coins</span>
-            <img src="ui/coins2.png" alt="Coins" class="reward-icon">
+            <img loading="lazy" src="ui/coins2.png" alt="Coins" class="reward-icon">
           </div>
 
           <div class="reward-box" id="rewardDay4">
             Hari 4<br>
             <span>2 fast x2</span>
-            <img src="ui/fast-roll.png" alt="Potion x2" class="reward-icon">
+            <img loading="lazy" src="ui/fast-roll.png" alt="Potion x2" class="reward-icon">
           </div>
 
           <div class="reward-box" id="rewardDay5">
             Hari 5<br>
             <span>1500 Coins</span>
-            <img src="ui/coins3.png" alt="Coins" class="reward-icon">
+            <img loading="lazy" src="ui/coins3.png" alt="Coins" class="reward-icon">
           </div>
 
           <div class="reward-box" id="rewardDay6">
             Hari 6<br>
             <span>2 Luck x3</span>
-            <img src="ui/x3-luck.png" alt="Potion x5" class="reward-icon">
+            <img loading="lazy" src="ui/x3-luck.png" alt="Potion x5" class="reward-icon">
           </div>
 
           <div class="reward-box day7" id="rewardDay7">
             Hari 7<br>
-            <span>2 Luck x5  🎉</span>
-            <img src="ui/x5-luck.png" alt="Potion x5" class="reward-icon">
+            <span>2 Luck x5 🎉</span>
+            <img loading="lazy" src="ui/x5-luck.png" alt="Potion x5" class="reward-icon">
           </div>
         </div>
         <div style="text-align:center; margin-top:15px;">
@@ -336,32 +343,32 @@
 
 
   <!-- PLAYER PROFILE POPUP -->
-<!-- PLAYER PROFILE POPUP -->
-<div class="overlay" id="profileOverlay">
-  <div class="modal profile-modal">
-    <div class="modal-header">
-      <div class="modal-title">👤 Player Profile</div>
-      <div class="close-x" onclick="closeProfile()">✕</div>
-    </div>
-
-    <div class="profile-body">
-      <div class="profile-stats">
-        <p><strong>Username:</strong> <span id="profileName">Guest</span></p>
-        <p><strong>Total Rolls:</strong> <span id="profileRolls">0</span></p>
-        <p><strong>Legendary:</strong> <span id="profileLegendary">0</span></p>
-        <p><strong>Mythical:</strong> <span id="profileMythical">0</span></p>
-        <p><strong>Prismatic:</strong> <span id="profilePrismatic">0</span></p>
-        <p><strong>Secret:</strong> <span id="profileSecret">0</span></p>
-        <p><strong>Total Coins Earned:</strong> <span id="profileCoins">0</span></p>
+  <!-- PLAYER PROFILE POPUP -->
+  <div class="overlay" id="profileOverlay">
+    <div class="modal profile-modal">
+      <div class="modal-header">
+        <div class="modal-title">👤 Player Profile</div>
+        <div class="close-x" onclick="closeProfile()">✕</div>
       </div>
 
-      <div class="profile-achievements">
-        <h3>🏆 Achievements</h3>
-        <div id="profileAchievements" class="badge-grid"></div>
+      <div class="profile-body">
+        <div class="profile-stats">
+          <p><strong>Username:</strong> <span id="profileName">Guest</span></p>
+          <p><strong>Total Rolls:</strong> <span id="profileRolls">0</span></p>
+          <p><strong>Legendary:</strong> <span id="profileLegendary">0</span></p>
+          <p><strong>Mythical:</strong> <span id="profileMythical">0</span></p>
+          <p><strong>Prismatic:</strong> <span id="profilePrismatic">0</span></p>
+          <p><strong>Secret:</strong> <span id="profileSecret">0</span></p>
+          <p><strong>Total Coins Earned:</strong> <span id="profileCoins">0</span></p>
+        </div>
+
+        <div class="profile-achievements">
+          <h3>🏆 Achievements</h3>
+          <div id="profileAchievements" class="badge-grid"></div>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
 
   <!-- USERNAME POPUP -->
@@ -382,26 +389,53 @@
 
 
 
-<div class="overlay" id="questOverlay">
-  <div class="modal">
-    <div class="modal-header">
-      <div class="modal-title">📜 Quest & Achievements</div>
-      <div class="close-x" onclick="closeQuestOverlay()">✕</div>
+  <div class="overlay" id="questOverlay">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title">📜 Quest & Achievements</div>
+        <div class="close-x" onclick="closeQuestOverlay()">✕</div>
+      </div>
+      <div class="toolbar toolbar-quest">
+        <button class="pill pill-quest" onclick="switchQuestTab('quest')">Quest</button>
+        <button class="pill pill-achievement" onclick="switchQuestTab('achievement')">Achievements</button>
+      </div>
+      <div id="questTab" class="grid"></div>
+      <div id="achievementTab" class="grid hidden"></div>
     </div>
-    <div class="toolbar toolbar-quest">
-      <button class="pill pill-quest" onclick="switchQuestTab('quest')">Quest</button>
-      <button class="pill pill-achievement" onclick="switchQuestTab('achievement')">Achievements</button>
-    </div>
-    <div id="questTab" class="grid"></div>
-    <div id="achievementTab" class="grid hidden"></div>
   </div>
-</div>
+
+  <!-- Spawn background bintang jatuh -->
+  <script>
+    (function () {
+      const starsEl = document.getElementById("bgStars");
+      for (let i = 0; i < 200; i++) {
+        const s = document.createElement("div");
+        s.className = "bg-star-dot";
+        s.style.left = Math.random() * 100 + "%";
+        s.style.top = Math.random() * 100 + "%";
+        s.style.animationDelay = Math.random() * 4 + "s";
+        s.style.animationDuration = (Math.random() * 3 + 2) + "s";
+        starsEl.appendChild(s);
+      }
+      const nightEl = document.getElementById("bgNight");
+      const colors = ["", "blue", "purple", "gold"];
+      for (let i = 0; i < 50; i++) {
+        const ss = document.createElement("div");
+        ss.className = "bg-shooting-star";
+        if (Math.random() > 0.4) {
+          const c = colors[Math.floor(Math.random() * colors.length)];
+          if (c) ss.classList.add(c);
+        }
+        ss.style.top = (Math.random() * 100 - 50) + "%";
+        ss.style.left = (Math.random() * 100 - 50) + "%";
+        ss.style.animationDelay = (Math.random() * 5) + "s";
+        ss.style.animationDuration = (Math.random() * 2 + 3) + "s";
+        nightEl.appendChild(ss);
+      }
+    })();
+  </script>
 
   <script src="script.js"></script>
 </body>
 
 </html>
-
-
-
-
