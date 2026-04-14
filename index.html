@@ -198,14 +198,43 @@
     </div>
   </div>
 
+  <!-- ═══ STORE POPUP ═══ -->
   <div class="overlay" id="storeOverlay">
-    <div class="modal">
-      <div class="modal-header">
-        <div class="modal-title">🛒 Store Potion</div>
-        <div class="close-x" onclick="closeStore()">✕</div>
+    <div class="store-modal">
+
+      <!-- LEFT PANEL: item detail -->
+      <div class="store-panel-left">
+        <div class="store-shop-label">SHOP</div>
+        <div class="store-shop-divider"></div>
+
+        <div class="store-detail-wrap" id="storeDetailWrap">
+          <!-- JS fills this -->
+        </div>
       </div>
-      <div class="grid">
-        <!-- lewat js -->
+
+      <!-- VERTICAL DIVIDER -->
+      <div class="store-vdivider"></div>
+
+      <!-- RIGHT PANEL: tabs + banner + grid -->
+      <div class="store-panel-right">
+
+        <!-- Tabs row (top-right) -->
+        <div class="store-tab-row">
+          <button class="store-tab-btn luck-tab active-store-tab" id="storeTabLuck" onclick="switchStoreTab('luck')">LUCK</button>
+          <button class="store-tab-btn fast-tab" id="storeTabFast" onclick="switchStoreTab('fast')">FAST-ROLL</button>
+          <div class="close-x store-close-x" onclick="closeStore()">✕</div>
+        </div>
+
+        <!-- LIMITED banner (luck only) -->
+        <div class="store-limited-banner" id="storeBanner">
+          <!-- JS fills -->
+        </div>
+
+        <!-- 2-column item grid -->
+        <div class="store-grid-2col" id="storeItemGrid">
+          <!-- JS fills -->
+        </div>
+
       </div>
     </div>
   </div>

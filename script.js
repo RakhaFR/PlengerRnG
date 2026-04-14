@@ -78,6 +78,15 @@
             price: 70000,
             color: "linear-gradient(135deg, #98fcfc, #006bff)",
           },
+          {
+            mult: 25,
+            name: "25x Luck Potion",
+            icon: "ui/x25-luck.png",
+            effect: "luck",
+            duration: 5 * 60 * 1000,
+            price: 40000,
+            color: "linear-gradient(135deg, #ffe066, #ff00cc, #7b00ff)",
+          },
         ],
         fast: [
           {
@@ -178,6 +187,16 @@
           mythical: 10,
           prismatic: 5,
           secret: 3,
+        },
+        25: {
+          common: 0,
+          uncommon: 0,
+          rare: 4,
+          epic: 7,
+          legend: 22,
+          mythical: 22,
+          prismatic: 10,
+          secret: 6,
         },
       };
 
@@ -2403,18 +2422,20 @@
       let activeEffects = {};
       let effectTimers = {};
 
-      function buyPotion(type, idx = 0) {
+      function buyPotion(type, idx = 0, qty = 1) {
         const potion = POTIONS[type][idx];
         if (!potion) return;
 
+        const totalCost = potion.price * qty;
+
         // 💰 Cek dulu sebelum potong coin
-        if (coins < potion.price) {
+        if (coins < totalCost) {
           showErrorPopup("Koin tidak cukup!");
           return;
         }
 
         // Baru kurangi
-        coins -= potion.price;
+        coins -= totalCost;
         saveCoins();
         updateCoinUI();
 
@@ -2426,10 +2447,10 @@
         } catch (e) {}
 
         // ✅ Popup pembelian sukses
-        showPopup(`Berhasil membeli ${potion.name}!`);
+        showPopup(`Berhasil membeli ${qty > 1 ? qty + 'x ' : ''}${potion.name}!`);
 
         // Simpan ke inventory potion
-        addPotion(type, potion.mult, 1);
+        addPotion(type, potion.mult, qty);
 
         if (
           document
@@ -2493,9 +2514,9 @@
       }
 
       function openStore() {
+        renderPotionStore();
         document.getElementById("storeOverlay").classList.add("show");
       }
-
       function closeStore() {
         document.getElementById("storeOverlay").classList.remove("show");
       }
@@ -2658,33 +2679,123 @@
         updateEffectStatusUI();
       }
 
-      function renderPotionStore() {
-        const grid = document.querySelector("#storeOverlay .grid");
-        if (!grid) return;
-        grid.innerHTML = "";
+      /* ── STORE STATE ── */
+      let _storeTab = 'luck';
+      let _storeSelIdx = 0;
+      let _storeBuyQty = 1;
 
-        ["luck", "fast"].forEach((type) => {
-          POTIONS[type].forEach((p, i) => {
-            grid.innerHTML += `
-        <div class="card">
-          <div class="frame" style="background:${p.color}">
-            <img src="${p.icon}" alt="${p.name}" loading="lazy">
+      /* ── Render left detail panel ── */
+      function _storeRenderLeft(type, idx) {
+        _storeSelIdx = idx;
+        const p = POTIONS[type][idx];
+        if (!p) return;
+        const wrap = document.getElementById('storeDetailWrap');
+        if (!wrap) return;
+        const isFast = type === 'fast';
+
+        const totalPrice = p.price * _storeBuyQty;
+
+        let owned = 0;
+        try { const inv = JSON.parse(localStorage.getItem('potions')||'{}'); owned = inv[`${type}_${p.mult}`]||0; } catch(e){}
+
+        wrap.innerHTML = `
+          <div class="store-detail-img-wrap">
+            <img src="${p.icon}" alt="${p.name}" class="store-detail-img" loading="lazy" style="background:${p.color||'#1a1a1a'}">
           </div>
-          <div class="name">${p.name}</div>
-          <div class="rarity-badge">Selama 5 menit</div>
-          <div class="actions">
-            <div class="pill" onclick="buyPotion('${type}', ${i})">💰 ${p.price} • BUY</div>
+          ${owned > 0 ? `<div class="store-detail-qty">x${owned}</div>` : ''}
+          <div class="store-detail-name">${p.name}</div>
+          <div class="store-detail-dur">Selama 5 menit</div>
+          <div class="store-detail-price">$${totalPrice.toLocaleString()} coins</div>
+          <div class="store-detail-actions">
+            <button class="store-btn-buy${isFast?' fast-mode':''}" onclick="buyPotion('${type}',${idx},_storeBuyQty); _storeBuyQty=1; _storeRenderLeft('${type}',${idx});">BUY</button>
+            <button class="store-btn-minus" onclick="_storeBuyLess('${type}',${idx})">−</button>
+            <span class="store-buy-qty">${_storeBuyQty}</span>
+            <button class="store-btn-plus"  onclick="_storeBuyMore('${type}',${idx})">+</button>
           </div>
-        </div>
-      `;
-          });
+        `;
+      }
+
+      function _storeBuyMore(type, idx) {
+        _storeBuyQty++;
+        _storeRenderLeft(type, idx);
+      }
+      function _storeBuyLess(type, idx) {
+        if (_storeBuyQty > 1) _storeBuyQty--;
+        _storeRenderLeft(type, idx);
+      }
+
+      /* ── Render LIMITED banner (luck only) ── */
+      function _storeRenderBanner(type) {
+        const el = document.getElementById('storeBanner');
+        if (!el) return;
+        if (type !== 'luck') { el.classList.add('hidden'); return; }
+        el.classList.remove('hidden');
+
+        // Banner selalu x25 (banner exclusive)
+        const bannerPotion = POTIONS.luck.find(p => p.mult === 25);
+        const fidx = POTIONS.luck.findIndex(p => p.mult === 25);
+        if (!bannerPotion || fidx < 0) return;
+
+        let owned = 0;
+        try { const inv = JSON.parse(localStorage.getItem('potions')||'{}'); owned = inv[`luck_25`]||0; } catch(e){}
+
+        el.innerHTML = `
+          <div class="banner-bg-stars"></div>
+          <div class="banner-leaf-col">
+            <img src="ui/x25-luck.png" alt="25x Luck" loading="lazy">
+            ${owned > 0 ? `<div class="banner-owned-tag">Punya: x${owned}</div>` : ''}
+          </div>
+          <div class="banner-center-col">
+            <div class="banner-mult-text">25X LUCK</div>
+            <div class="banner-body-text">Luck ultra premium — legend & mythical<br>naik drastis. Common & uncommon hilang.<br>Durasi 5 menit. Stok terbatas!</div>
+          </div>
+          <div class="banner-right-col">
+            <div class="banner-limited-tag">LIMITED!</div>
+            <div class="banner-price-text">$${bannerPotion.price.toLocaleString()} coins</div>
+            <button class="banner-buy-btn" onclick="buyPotion('luck',${fidx},1); _storeRenderBanner('luck'); _storeRenderLeft('luck', _storeSelIdx);">BUY</button>
+          </div>
+        `;
+      }
+
+      /* ── Render 2-col item grid ── */
+      function _storeRenderGrid(type) {
+        const grid = document.getElementById('storeItemGrid');
+        if (!grid) return;
+        grid.innerHTML = '';
+
+        POTIONS[type].forEach((p, i) => {
+          const item = document.createElement('div');
+          item.className = 'store-grid-item' + (i === 0 ? ' selected-store-item' : '');
+          item.innerHTML = `
+            <img src="${p.icon}" alt="${p.name}" class="store-grid-icon" loading="lazy" style="background:${p.color||'#1a1a1a'}">
+            <div class="store-grid-info">
+              <div class="store-grid-name">${p.name}</div>
+              <div class="store-grid-desc">$${p.price.toLocaleString()} coins • 5 menit</div>
+            </div>
+          `;
+          item.onclick = () => {
+            grid.querySelectorAll('.store-grid-item').forEach(r => r.classList.remove('selected-store-item'));
+            item.classList.add('selected-store-item');
+            _storeBuyQty = 1;
+            _storeRenderLeft(type, i);
+          };
+          grid.appendChild(item);
         });
       }
 
-      function openStore() {
-        renderPotionStore();
-        document.getElementById("storeOverlay").classList.add("show");
+      /* ── Switch tab ── */
+      function switchStoreTab(type) {
+        _storeTab = type;
+        _storeBuyQty = 1;
+        document.getElementById('storeTabLuck')?.classList.remove('active-store-tab');
+        document.getElementById('storeTabFast')?.classList.remove('active-store-tab');
+        document.getElementById(type === 'luck' ? 'storeTabLuck' : 'storeTabFast')?.classList.add('active-store-tab');
+        _storeRenderBanner(type);
+        _storeRenderGrid(type);
+        _storeRenderLeft(type, 0);
       }
+
+      function renderPotionStore() { switchStoreTab('luck'); }
 
       function debugActivePotions() {
         const now = Date.now();
