@@ -71,10 +71,22 @@
 
   <!-- Sidebar Atas Kiri -->
   <div class="sidebar-top-left" id="topSidebar" style="display: none;">
-    <button class="side-btn" onclick="openProfile()">
+    <!-- Profile Card — expanded, paling atas -->
+    <button class="side-btn side-btn-profile" onclick="openProfile()">
       <span class="corner-tr"></span><span class="corner-bl"></span>
-      <img loading="lazy" src="ui/user.png" alt="Profile" class="side-icon">
-      <span class="side-label">Profile</span>
+      <!-- Banner background layer -->
+      <div class="side-profile-banner-bg" id="sideProfileBannerBg"></div>
+      <!-- Content row -->
+      <div class="side-profile-content">
+        <div class="side-profile-avatar" id="sideProfileAvatar">
+          <img id="sideProfileImg" src="ui/user.png" alt="Profile" class="side-profile-img">
+          <div class="side-profile-frame" id="sideProfileFrame"></div>
+        </div>
+        <div class="side-profile-info">
+          <span class="side-profile-name" id="sideProfileLabel">Guest</span>
+          <span class="side-profile-level" id="sideProfileLevel">Lv. 1</span>
+        </div>
+      </div>
     </button>
 
     <button class="side-btn" onclick="openDailyReward()">
@@ -165,16 +177,22 @@
 
   <!-- INVENTORY POPUP (LocalStorage) -->
   <div class="overlay" id="inventoryOverlay" aria-hidden="true">
-    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="invTitle">
-      <div class="modal-header">
-        <div class="modal-title" id="invTitle">⭐ Koleksi Plenger</div>
-        <div class="close-x" id="closeInv" title="Tutup">✕</div>
+    <div class="inv-modal" role="dialog" aria-modal="true" aria-labelledby="invTitle">
+
+      <!-- ── HEADER ── -->
+      <div class="inv-header">
+        <span class="inv-title" id="invTitle">⭐ KOLEKSI</span>
+        <div class="inv-close" id="closeInv" title="Tutup">✕</div>
       </div>
-      <div class="toolbar">
-        <div class="search"><input id="searchInput" placeholder="Ketik untuk mencari" /></div>
-        <div id="chips" class="filter">
-          <select id="rarityFilter" onchange="updateFilterFromDropdown(this)">
-            <option class="chip active" data-r="all">Semua</option>
+
+      <!-- ── SEARCH + FILTER ROW ── -->
+      <div class="inv-toolbar">
+        <div class="inv-search-wrap">
+          <input id="searchInput" class="inv-search-input" placeholder="Cari item..." />
+        </div>
+        <div class="inv-filter-wrap" id="chips">
+          <select id="rarityFilter" class="inv-filter-select" onchange="updateFilterFromDropdown(this)">
+            <option class="chip active" data-r="all">Filter</option>
             <option class="chip" data-r="common">Common</option>
             <option class="chip" data-r="uncommon">Uncommon</option>
             <option class="chip" data-r="rare">Rare</option>
@@ -185,16 +203,47 @@
             <option class="chip" data-r="secret">Secret</option>
           </select>
         </div>
+      </div>
 
+      <!-- ── MAIN BODY: Detail Left + Grid Right ── -->
+      <div class="inv-body">
 
-        <div class="sell-buttons">
-          <button id="sellBtn">Menjual</button>
-          <button id="sellAllBtn">Menjual Semua</button>
-          <button id="lockedBtn" class="chip">item yang dikunci</button>
+        <!-- LEFT: Detail selected item -->
+        <div class="inv-detail-panel" id="invDetailPanel">
+          <div class="inv-detail-img-wrap">
+            <div class="inv-detail-img-box" id="invDetailImgBox">
+              <span class="inv-detail-placeholder">?</span>
+            </div>
+          </div>
+          <div class="inv-detail-info" id="invDetailInfo">
+            <div class="inv-detail-name" id="invDetailName">—</div>
+            <div class="inv-detail-rarity" id="invDetailRarity">—</div>
+            <div class="inv-detail-desc" id="invDetailDesc">Pilih item dari grid</div>
+          </div>
+          <div class="inv-detail-actions">
+            <button class="inv-action-btn inv-lock-btn" id="invDetailLockBtn" onclick="invDetailToggleLock()" disabled>Lock</button>
+            <button class="inv-action-btn inv-sell-btn" id="invDetailSellBtn" onclick="invDetailSell()" disabled>Sell</button>
+          </div>
         </div>
+
+        <!-- DIVIDER -->
+        <div class="inv-vdivider"></div>
+
+        <!-- RIGHT: Grid -->
+        <div class="inv-grid-panel">
+          <div id="gridWrap" class="inv-grid"></div>
+        </div>
+
+      </div>
+
+      <!-- ── FOOTER: action buttons ── -->
+      <div class="inv-footer">
+        <button class="inv-footer-btn inv-sell-selected-btn" id="sellBtn">Sell Selected</button>
+        <button class="inv-footer-btn inv-sell-all-btn" id="sellAllBtn">Sell All</button>
+        <button class="inv-footer-btn inv-locked-tab-btn" id="lockedBtn">Locked Tab</button>
         <div id="errorPopup" class="error-popup hidden">Pesan kesalahan</div>
       </div>
-      <div id="gridWrap" class="grid"></div>
+
     </div>
   </div>
 
@@ -222,6 +271,7 @@
         <div class="store-tab-row">
           <button class="store-tab-btn luck-tab active-store-tab" id="storeTabLuck" onclick="switchStoreTab('luck')">LUCK</button>
           <button class="store-tab-btn fast-tab" id="storeTabFast" onclick="switchStoreTab('fast')">FAST-ROLL</button>
+          <button class="store-tab-btn cosmetic-tab" id="storeTabCosmetic" onclick="switchStoreTab('cosmetic')">KOSMETIK</button>
           <div class="close-x store-close-x" onclick="closeStore()">✕</div>
         </div>
 
@@ -314,86 +364,199 @@
 
   <!-- DAILY REWARD POPUP -->
   <div class="overlay" id="dailyRewardOverlay">
-    <div class="modal" style="max-width:600px;">
-      <div class="modal-header">
-        <div class="modal-title">🎁 HADIAH HARIAN</div>
-        <div class="close-x" onclick="closeDailyReward()">✕</div>
+    <div class="dr-modal">
+      <div class="dr-header">
+        <span class="dr-title">HADIAH HARIAN</span>
+        <div class="dr-close" onclick="closeDailyReward()">X</div>
       </div>
-      <div style="padding:20px;">
-        <div class="reward-grid">
-          <div class="reward-box" id="rewardDay1">
-            Hari 1<br>
-            <span>500 Coins</span>
-            <img loading="lazy" src="ui/coins1.png" alt="Coins" class="reward-icon">
-          </div>
-
-          <div class="reward-box" id="rewardDay2">
-            Hari 2<br>
-            <span>1 Luck x2</span>
-            <img loading="lazy" src="ui/luck-potion.png" alt="Potion x2" class="reward-icon">
-          </div>
-
-          <div class="reward-box" id="rewardDay3">
-            Hari 3<br>
-            <span>1000 Coins</span>
-            <img loading="lazy" src="ui/coins2.png" alt="Coins" class="reward-icon">
-          </div>
-
-          <div class="reward-box" id="rewardDay4">
-            Hari 4<br>
-            <span>2 fast x2</span>
-            <img loading="lazy" src="ui/fast-roll.png" alt="Potion x2" class="reward-icon">
-          </div>
-
-          <div class="reward-box" id="rewardDay5">
-            Hari 5<br>
-            <span>1500 Coins</span>
-            <img loading="lazy" src="ui/coins3.png" alt="Coins" class="reward-icon">
-          </div>
-
-          <div class="reward-box" id="rewardDay6">
-            Hari 6<br>
-            <span>2 Luck x3</span>
-            <img loading="lazy" src="ui/x3-luck.png" alt="Potion x5" class="reward-icon">
-          </div>
-
-          <div class="reward-box day7" id="rewardDay7">
-            Hari 7<br>
-            <span>2 Luck x5 🎉</span>
-            <img loading="lazy" src="ui/x5-luck.png" alt="Potion x5" class="reward-icon">
-          </div>
-        </div>
-        <div style="text-align:center; margin-top:15px;">
-          <button class="pill" id="dailyClaimBtn" onclick="claimDailyReward()">Klaim Hadiah</button>
-        </div>
+      <div class="dr-body">
+        <div class="dr-streak-label" id="drStreakLabel">Streak: Hari 1</div>
+        <div class="dr-grid" id="drGrid"></div>
+        <button class="dr-claim-btn" id="dailyClaimBtn" onclick="claimDailyReward()">Klaim Hadiah</button>
       </div>
     </div>
   </div>
 
 
   <!-- PLAYER PROFILE POPUP -->
-  <!-- PLAYER PROFILE POPUP -->
   <div class="overlay" id="profileOverlay">
-    <div class="modal profile-modal">
-      <div class="modal-header">
-        <div class="modal-title">👤 Player Profile</div>
-        <div class="close-x" onclick="closeProfile()">✕</div>
-      </div>
+    <div class="prf-modal">
 
-      <div class="profile-body">
-        <div class="profile-stats">
-          <p><strong>Username:</strong> <span id="profileName">Guest</span></p>
-          <p><strong>Total Rolls:</strong> <span id="profileRolls">0</span></p>
-          <p><strong>Legendary:</strong> <span id="profileLegendary">0</span></p>
-          <p><strong>Mythical:</strong> <span id="profileMythical">0</span></p>
-          <p><strong>Prismatic:</strong> <span id="profilePrismatic">0</span></p>
-          <p><strong>Secret:</strong> <span id="profileSecret">0</span></p>
-          <p><strong>Total Coins Earned:</strong> <span id="profileCoins">0</span></p>
+      <!-- HEADER CARD -->
+      <div class="prf-header">
+        <div class="prf-banner" id="prfBanner"></div>
+        <div class="prf-avatar-row">
+          <div class="prf-avatar-wrap">
+            <div class="prf-avatar" id="prfAvatar">
+              <img id="prfAvatarImg" src="" alt="" style="display:none">
+              <span class="prf-avatar-ph" id="prfAvatarPh">?</span>
+              <div class="prf-avatar-frame" id="prfAvatarFrame"></div>
+            </div>
+          </div>
+          <div class="prf-header-info">
+            <div class="prf-username" id="profileName">Guest</div>
+            <div class="prf-level" id="prfLevel">Lv. 1</div>
+          </div>
+          <div class="prf-close" onclick="closeProfile()">X</div>
         </div>
 
-        <div class="profile-achievements">
-          <h3>🏆 Achievements</h3>
+        <!-- TAB ROW -->
+        <div class="prf-tabs">
+          <button class="prf-tab active" data-tab="identity" onclick="prfSwitchTab(this)">Identity</button>
+          <button class="prf-tab" data-tab="statistik" onclick="prfSwitchTab(this)">Statistik</button>
+          <button class="prf-tab" data-tab="settings" onclick="prfSwitchTab(this)">Settings</button>
+        </div>
+      </div>
+
+      <!-- TAB CONTENTS -->
+      <div class="prf-body">
+
+        <!-- ── IDENTITY ── -->
+        <div class="prf-panel active" id="prfTab-identity">
+
+          <div class="prf-section-title">Foto Profil</div>
+          <div class="prf-avatar-edit-row">
+            <div class="prf-avatar-preview" id="prfAvatarPreview">
+              <img id="prfAvatarPreviewImg" src="" alt="" style="display:none">
+              <span id="prfAvatarPreviewPh">?</span>
+            </div>
+            <div class="prf-avatar-edit-actions">
+              <label class="prf-upload-btn" for="prfAvatarInput">Upload Foto</label>
+              <input type="file" id="prfAvatarInput" accept="image/*" style="display:none" onchange="prfUploadAvatar(this)">
+              <button class="prf-ghost-btn" onclick="prfRemoveAvatar()">Hapus Foto</button>
+            </div>
+          </div>
+
+          <div class="prf-section-title">Username</div>
+          <div class="prf-input-row">
+            <input type="text" id="prfUsernameInput" class="prf-input" placeholder="Username kamu" maxlength="20">
+            <button class="prf-save-btn" onclick="prfSaveUsername()">Simpan</button>
+          </div>
+
+          <div class="prf-section-title">Frame Profil</div>
+          <div class="prf-frame-grid" id="prfFrameGrid"></div>
+
+          <div class="prf-section-title">Banner Profil</div>
+          <div class="prf-banner-grid" id="prfBannerGrid"></div>
+
+        </div>
+
+        <!-- ── STATISTIK ── -->
+        <div class="prf-panel" id="prfTab-statistik">
+
+          <div class="prf-section-title">Rarity Terkumpul</div>
+          <div class="prf-stat-grid">
+            <div class="prf-stat-card">
+              <div class="prf-stat-label">Total Rolls</div>
+              <div class="prf-stat-val" id="profileRolls">0</div>
+            </div>
+            <div class="prf-stat-card prf-stat-uncommon">
+              <div class="prf-stat-label">Uncommon</div>
+              <div class="prf-stat-val" id="profileUncommon">0</div>
+            </div>
+            <div class="prf-stat-card prf-stat-rare">
+              <div class="prf-stat-label">Rare</div>
+              <div class="prf-stat-val" id="profileRare">0</div>
+            </div>
+            <div class="prf-stat-card prf-stat-epic">
+              <div class="prf-stat-label">Epic</div>
+              <div class="prf-stat-val" id="profileEpic">0</div>
+            </div>
+            <div class="prf-stat-card prf-stat-legend">
+              <div class="prf-stat-label">Legend</div>
+              <div class="prf-stat-val" id="profileLegendary">0</div>
+            </div>
+            <div class="prf-stat-card prf-stat-mythical">
+              <div class="prf-stat-label">Mythical</div>
+              <div class="prf-stat-val" id="profileMythical">0</div>
+            </div>
+            <div class="prf-stat-card prf-stat-prismatic">
+              <div class="prf-stat-label">Prismatic</div>
+              <div class="prf-stat-val" id="profilePrismatic">0</div>
+            </div>
+            <div class="prf-stat-card prf-stat-secret">
+              <div class="prf-stat-label">Secret</div>
+              <div class="prf-stat-val" id="profileSecret">0</div>
+            </div>
+          </div>
+
+          <div class="prf-section-title">Ekonomi</div>
+          <div class="prf-stat-grid prf-stat-grid-2">
+            <div class="prf-stat-card prf-stat-coins">
+              <div class="prf-stat-label">Coins Saat Ini</div>
+              <div class="prf-stat-val" id="profileCoins">0</div>
+            </div>
+            <div class="prf-stat-card prf-stat-sold">
+              <div class="prf-stat-label">Item Terjual</div>
+              <div class="prf-stat-val" id="profileSold">0</div>
+            </div>
+          </div>
+
+          <div class="prf-section-title">Achievements</div>
           <div id="profileAchievements" class="badge-grid"></div>
+
+        </div>
+
+        <!-- ── SETTINGS ── -->
+        <div class="prf-panel" id="prfTab-settings">
+
+          <div class="prf-section-title">Audio</div>
+          <div class="prf-settings-grid">
+            <div class="prf-setting-row">
+              <span class="prf-setting-label">Musik Latar</span>
+              <label class="prf-toggle"><input type="checkbox" id="stgMusic" onchange="prfApplySetting('music',this.checked)"><span class="prf-toggle-track"></span></label>
+            </div>
+            <div class="prf-setting-row">
+              <span class="prf-setting-label">Efek Suara</span>
+              <label class="prf-toggle"><input type="checkbox" id="stgSfx" onchange="prfApplySetting('sfx',this.checked)"><span class="prf-toggle-track"></span></label>
+            </div>
+            <div class="prf-setting-row">
+              <span class="prf-setting-label">Volume</span>
+              <input type="range" id="stgVolume" min="0" max="100" step="1" class="prf-slider" oninput="prfApplySetting('volume',this.value)">
+              <span class="prf-slider-val" id="stgVolumeVal">80</span>
+            </div>
+          </div>
+
+          <div class="prf-section-title">Visual</div>
+          <div class="prf-settings-grid">
+            <div class="prf-setting-row">
+              <span class="prf-setting-label">Bintang Jatuh</span>
+              <label class="prf-toggle"><input type="checkbox" id="stgStars" onchange="prfApplySetting('stars',this.checked)"><span class="prf-toggle-track"></span></label>
+            </div>
+            <div class="prf-setting-row">
+              <span class="prf-setting-label">Animasi Rarity</span>
+              <label class="prf-toggle"><input type="checkbox" id="stgAnim" onchange="prfApplySetting('anim',this.checked)"><span class="prf-toggle-track"></span></label>
+            </div>
+            <div class="prf-setting-row">
+              <span class="prf-setting-label">Video Cutscene</span>
+              <label class="prf-toggle"><input type="checkbox" id="stgVideo" onchange="prfApplySetting('video',this.checked)"><span class="prf-toggle-track"></span></label>
+            </div>
+            <div class="prf-setting-row">
+              <span class="prf-setting-label">Partikel Efek</span>
+              <label class="prf-toggle"><input type="checkbox" id="stgParticle" onchange="prfApplySetting('particle',this.checked)"><span class="prf-toggle-track"></span></label>
+            </div>
+          </div>
+
+          <div class="prf-section-title">Performa</div>
+          <div class="prf-settings-grid">
+            <div class="prf-setting-row">
+              <span class="prf-setting-label">Mode Hemat Baterai</span>
+              <label class="prf-toggle"><input type="checkbox" id="stgBattery" onchange="prfApplySetting('battery',this.checked)"><span class="prf-toggle-track"></span></label>
+            </div>
+            <div class="prf-setting-row">
+              <span class="prf-setting-label">Resolusi Gambar</span>
+              <select id="stgQuality" class="prf-select" onchange="prfApplySetting('quality',this.value)">
+                <option value="high">Tinggi</option>
+                <option value="medium">Sedang</option>
+                <option value="low">Rendah</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="prf-settings-footer">
+            <button class="prf-danger-btn" onclick="prfResetSettings()">Reset ke Default</button>
+          </div>
+
         </div>
       </div>
     </div>

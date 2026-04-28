@@ -212,575 +212,575 @@
       // Daftar item contoh (ganti sesuai asetmu)
       const ITEMS = [
         // {
-        //   image: 'ac.jpg',
+        //   image: 'images/ac.jpg',
         //   text: 'AC prismatic',
         //   rarity: 'prismatic',
         //   numberRange: [1, 1200000]
         // },
-        {
-          image: 'ac.jpg',
-          text: 'AC secret',
-          rarity: 'secret',
-          numberRange: [1, 120000000]
-        },
         // {
-        //   image: 'ac.jpg',
+        //   image: 'images/ac.jpg',
+        //   text: 'AC secret',
+        //   rarity: 'secret',
+        //   numberRange: [1, 120000000]
+        // },
+        // {
+        //   image: 'images/ac.jpg',
         //   text: 'AC secret',
         //   rarity: 'legend',
         //   numberRange: [1, 120000]
         // },
         // {
-        //   image: 'ac.jpg',
+        //   image: 'images/ac.jpg',
         //   text: 'AC secret',
         //   rarity: 'mythical',
         //   numberRange: [1, 1200000]
         // },
-        // {
-        //   image: "images/agra sigma.jpg",
-        //   text: "agra Sigma",
-        //   rarity: "epic",
-        //   numberRange: [1, 12000],
-        // },
-        // {
-        //   image: "images/ac.jpg",
-        //   text: "lu kenapa jadi mythical",
-        //   rarity: "mythical",
-        //   numberRange: [1, 999999],
-        // },
-        // {
-        //   image: "images/alif senyum.jpg",
-        //   text: "Alif Senyum",
-        //   rarity: "uncommon",
-        //   numberRange: [1, 399],
-        // },
-        // {
-        //   image: "images/bagas bengong.jpg",
-        //   text: "Bagas Bengong",
-        //   rarity: "rare",
-        //   numberRange: [1, 750],
-        // },
-        // {
-        //   image: "images/deki nyengir.jpg",
-        //   text: "Deki Nyengir",
-        //   rarity: "epic",
-        //   numberRange: [1, 25000],
-        // },
-        // {
-        //   image: "images/marvin wink.jpg",
-        //   text: "Marvin Wink",
-        //   rarity: "uncommon",
-        //   numberRange: [1, 300],
-        // },
-        // {
-        //   image: "images/2 apit.jpg",
-        //   text: "alif di apit",
-        //   rarity: "rare",
-        //   numberRange: [1, 900],
-        // },
-        // {
-        //   image: "images/2 Senyuman.jpg",
-        //   text: "2 senyuman manis",
-        //   rarity: "uncommon",
-        //   numberRange: [1, 500],
-        // },
-        // {
-        //   image: "images/ac.jpg",
-        //   text: "YA AC",
-        //   rarity: "common",
-        //   numberRange: [1, 10],
-        // },
-        // {
-        //   image: "images/agra & amira.jpg",
-        //   text: "cieee lopyu",
-        //   rarity: "legend",
-        //   numberRange: [1, 100000],
-        // },
-        // {
-        //   image: "images/agra shalat.jpg",
-        //   text: "agra shalat",
-        //   rarity: "epic",
-        //   numberRange: [1, 5999],
-        // },
-        // {
-        //   image: "images/agra umhehe.jpg",
-        //   text: "agra umhehe!",
-        //   rarity: "mythical",
-        //   numberRange: [1, 1000000],
-        // },
-        // {
-        //   image: "images/agra velocity.jpg",
-        //   text: "velocity boy!",
-        //   rarity: "epic",
-        //   numberRange: [1, 9999],
-        // },
-        // {
-        //   image: "images/akbar minkem.jpg",
-        //   text: "akbar minkem",
-        //   rarity: "common",
-        //   numberRange: [1, 25],
-        // },
-        // {
-        //   image: "images/alfon mm.jpg",
-        //   text: "alfon mm",
-        //   rarity: "common",
-        //   numberRange: [1, 3],
-        // },
-        // {
-        //   image: "images/bagas melet.jpg",
-        //   text: "bagas melet",
-        //   rarity: "rare",
-        //   numberRange: [1, 399],
-        // },
-        // {
-        //   image: "images/bm alomani.jpg",
-        //   text: "BM ALOMANI",
-        //   rarity: "uncommon",
-        //   numberRange: [1, 99],
-        // },
-        // {
-        //   image: "images/deki fuck.jpg",
-        //   text: "deki fucking",
-        //   rarity: "uncommon",
-        //   numberRange: [1, 129],
-        // },
-        // {
-        //   image: "images/deki selfie.jpg",
-        //   text: "deki lagi nyelfi ges",
-        //   rarity: "uncommon",
-        //   numberRange: [1, 301],
-        // },
-        // {
-        //   image: "images/deki chatgpt.jpg",
-        //   text: "deki lagi mencari jawaban",
-        //   rarity: "common",
-        //   numberRange: [1, 50],
-        // },
-        // {
-        //   image: "images/duh ada yang nyelip.jpg",
-        //   text: "duh ada yang nyelip",
-        //   rarity: "rare",
-        //   numberRange: [1, 450],
-        // },
-        // {
-        //   image: "images/dzaki cool.jpg",
-        //   text: "dzaki cool",
-        //   rarity: "uncommon",
-        //   numberRange: [1, 139],
-        // },
-        // {
-        //   image: "images/gatel euy.jpg",
-        //   text: "gatel euyyy..",
-        //   rarity: "rare",
-        //   numberRange: [1, 157],
-        // },
-        // {
-        //   image: "images/hafi ketawi.jpg",
-        //   text: "hafi ketawi",
-        //   rarity: "rare",
-        //   numberRange: [1, 340],
-        // },
-        // {
-        //   image: "images/hafi mengkece.jpg",
-        //   text: "hafi mengkece",
-        //   rarity: "common",
-        //   numberRange: [1, 21],
-        // },
-        // {
-        //   image: "images/hafi merenung.jpg",
-        //   text: "hafi merenung",
-        //   rarity: "uncommon",
-        //   numberRange: [1, 123],
-        // },
-        // {
-        //   image: "images/hilmi.jpg",
-        //   text: "HILMI...",
-        //   rarity: "uncommon",
-        //   numberRange: [1, 461],
-        // },
-        // {
-        //   image: "images/lip and deki.jpg",
-        //   text: "lip and deki",
-        //   rarity: "uncommon",
-        //   numberRange: [1, 232],
-        // },
-        // {
-        //   image: "images/marvin ape lu.jpg",
-        //   text: "apelu liat-liat",
-        //   rarity: "epic",
-        //   numberRange: [1, 4289],
-        // },
-        // {
-        //   image: "images/menghirup ke surga.jpg",
-        //   text: "menghirup ke surga",
-        //   rarity: "epic",
-        //   numberRange: [1, 6790],
-        // },
-        // {
-        //   image: "images/mira bobo.jpg",
-        //   text: "mira bobo..",
-        //   rarity: "rare",
-        //   numberRange: [1, 569],
-        // },
-        // {
-        //   image: "images/rafi chad.jpg",
-        //   text: "RAFI CHAD",
-        //   rarity: "legend",
-        //   numberRange: [1, 200999],
-        // },
-        // {
-        //   image: "images/rakha mmm.jpg",
-        //   text: "rakha mmm",
-        //   rarity: "uncommon",
-        //   numberRange: [1, 211],
-        // },
-        // {
-        //   image: "images/rasya hooo.jpg",
-        //   text: "rasya hooo...",
-        //   rarity: "legend",
-        //   numberRange: [1, 120999],
-        // },
-        // {
-        //   image: "images/rasya lier.jpg",
-        //   text: "RASYA LAGI LIER",
-        //   rarity: "rare",
-        //   numberRange: [1, 679],
-        // },
-        // {
-        //   image: "images/restu side_eye.jpg",
-        //   text: "restu side eye..",
-        //   rarity: "common",
-        //   numberRange: [1, 35],
-        // },
-        // {
-        //   image: "images/surya menjelaskan.jpg",
-        //   text: "surya sedang menjelaskan",
-        //   rarity: "common",
-        //   numberRange: [1, 76],
-        // },
-        // {
-        //   image: "images/view 2.jpg",
-        //   text: "view dari rakha di deki selfie",
-        //   rarity: "uncommon",
-        //   numberRange: [1, 217],
-        // },
-        // {
-        //   image: "images/virqi apa itu bang.jpg",
-        //   text: "apa itu bang?",
-        //   rarity: "common",
-        //   numberRange: [1, 43],
-        // },
-        // {
-        //   image: "images/virqi turu.jpg",
-        //   text: "virqi sedang turu ges",
-        //   rarity: "rare",
-        //   numberRange: [1, 345],
-        // },
-        // {
-        //   image: "images/yan mikir.jpg",
-        //   text: "mikir dulu",
-        //   rarity: "common",
-        //   numberRange: [1, 88],
-        // },
-        // {
-        //   image: "images/bagas-chad.jpg",
-        //   text: "bagas chad",
-        //   rarity: "legend",
-        //   numberRange: [1, 199900],
-        // },
-        // {
-        //   image: "images/bagas-virtual.jpg",
-        //   text: "bagas jadi AI 2030",
-        //   rarity: "epic",
-        //   numberRange: [1, 70089],
-        // },
-        // {
-        //   image: "images/berpikir-keras.jpg",
-        //   text: "mikir apa fi?",
-        //   rarity: "common",
-        //   numberRange: [1, 67],
-        // },
-        // {
-        //   image: "images/deki-fuckhd.jpg",
-        //   text: "deki fuck & melet",
-        //   rarity: "mythical",
-        //   numberRange: [1, 1099000],
-        // },
-        // {
-        //   image: "images/deki-nerd.jpg",
-        //   text: "deki mau jadi pinter",
-        //   rarity: "rare",
-        //   numberRange: [1, 5610],
-        // },
-        // {
-        //   image: "images/join-roblox.jpg",
-        //   text: "join roblox kuy! gak disponsor",
-        //   rarity: "epic",
-        //   numberRange: [1, 23900],
-        // },
-        // {
-        //   image: "images/alif-sen.jpg",
-        //   text: "alif senyum 2",
-        //   rarity: "rare",
-        //   numberRange: [1, 346],
-        // },
-        // {
-        //   image: "images/marvin-mangap.jpg",
-        //   text: "marvin mangap",
-        //   rarity: "uncommon",
-        //   numberRange: [1, 481],
-        // },
-        // {
-        //   image: "images/mira-megang.jpg",
-        //   text: "mira megang alat",
-        //   rarity: "rare",
-        //   numberRange: [1, 1201],
-        // },
-        // {
-        //   image: "images/mirip-guru.jpg",
-        //   text: "mirip guru gw kayaknya",
-        //   rarity: "epic",
-        //   numberRange: [1, 23001],
-        // },
-        // {
-        //   image: "images/plenger-group.jpg",
-        //   text: "para plenger sedang berpose",
-        //   rarity: "legend",
-        //   numberRange: [1, 561000],
-        // },
-        // {
-        //   image: "images/rasya-nyu.jpg",
-        //   text: "ichi nya!",
-        //   rarity: "uncommon",
-        //   numberRange: [1, 258],
-        // },
-        // {
-        //   image: "images/syafal.jpg",
-        //   text: "rasya & naufal",
-        //   rarity: "uncommon",
-        //   numberRange: [1, 415],
-        // },
-        // {
-        //   image: "images/syeima-merem.jpg",
-        //   text: "syeima ngapain merem?",
-        //   rarity: "epic",
-        //   numberRange: [1, 21200],
-        // },
-        // {
-        //   image: "images/tiga-senyuman.jpg",
-        //   text: "tiga senyuman..",
-        //   rarity: "rare",
-        //   numberRange: [1, 794],
-        // },
-        // {
-        //   image: "images/yan-turu.jpg",
-        //   text: "yan turu",
-        //   rarity: "rare",
-        //   numberRange: [1, 473],
-        // },
-        // {
-        //   image: "images/zaky-sigma.jpg",
-        //   text: "zaki sigma",
-        //   rarity: "epic",
-        //   numberRange: [1, 11260],
-        // },
-        // {
-        //   image: "images/agra-rock.jpg",
-        //   text: "agra rock lenger",
-        //   rarity: "epic",
-        //   numberRange: [1, 32330],
-        // },
-        // {
-        //   image: "images/alif-dance.jpg",
-        //   text: "alif dancing..",
-        //   rarity: "rare",
-        //   numberRange: [1, 2451],
-        // },
-        // {
-        //   image: "images/again-migra.jpg",
-        //   text: "lagi-lagi mereka nih",
-        //   rarity: "legend",
-        //   numberRange: [1, 241100],
-        // },
-        // {
-        //   image: "images/deki-melet.jpg",
-        //   text: "deki melet",
-        //   rarity: "rare",
-        //   numberRange: [1, 1450],
-        // },
-        // {
-        //   image: "images/marvin-bengong.jpg",
-        //   text: "marvin bengong",
-        //   rarity: "epic",
-        //   numberRange: [1, 10299],
-        // },
-        // {
-        //   image: "images/surya-sad.jpg",
-        //   text: "surya 😭",
-        //   rarity: "epic",
-        //   numberRange: [1, 30199],
-        // },
-        // {
-        //   image: "images/axel.jpg",
-        //   text: "Hitam Putih",
-        //   rarity: "mythical",
-        //   numberRange: [1, 1450000],
-        // },
-        // {
-        //   image: "images/naufal-side.jpg",
-        //   text: "Naufal side eye",
-        //   rarity: "epic",
-        //   numberRange: [1, 58400],
-        // },
-        // {
-        //   image: "images/yan-.jpg",
-        //   text: "fathian..",
-        //   rarity: "common",
-        //   numberRange: [1, 29],
-        // },
-        // {
-        //   image: "images/benq.jpg",
-        //   text: "ben!",
-        //   rarity: "rare",
-        //   numberRange: [1, 6151],
-        // },
-        // {
-        //   image: "images/gak-kenal.jpg",
-        //   text: "hehehe 😭",
-        //   rarity: "rare",
-        //   numberRange: [1, 1892],
-        // },
-        // {
-        //   image: "images/hilmi-takut.jpg",
-        //   text: "hilmi takut. mama..",
-        //   rarity: "epic",
-        //   numberRange: [1, 50292],
-        // },
-        // {
-        //   image: "images/gihun-sigma.jpg",
-        //   text: "i'm feeling sigma",
-        //   rarity: "secret",
-        //   numberRange: [1, 190000000],
-        // },
-        // {
-        //   image: "images/hacker.jpg",
-        //   text: "damcuk pristel!",
-        //   rarity: "prismatic",
-        //   numberRange: [1, 30190000],
-        // },
-        // {
-        //   image: "images/deki-walawe.jpg",
-        //   text: "walaweh",
-        //   rarity: "prismatic",
-        //   numberRange: [1, 45000000],
-        // },
-        // {
-        //   image: "images/sesosok-dev.jpg",
-        //   text: "SANG DEV",
-        //   rarity: "secret",
-        //   numberRange: [1, 990000000],
-        // },
-        // {
-        //   image: "images/naufal-byat.jpg",
-        //   text: "naufal BYAtch!",
-        //   rarity: "secret",
-        //   numberRange: [1, 871000000],
-        // },
-        // {
-        //   image: "images/rifa-byat.jpg",
-        //   text: "rifa-BYActh!",
-        //   rarity: "prismatic",
-        //   numberRange: [1, 32100000],
-        // },
-        // {
-        //   image: "images/agra-imut.jpg",
-        //   text: "imutnyoo!",
-        //   rarity: "mythical",
-        //   numberRange: [1, 5010000],
-        // },
-        // {
-        //   image: "images/mahluk-asing.jpg",
-        //   text: "mahluk asing COEG!",
-        //   rarity: "secret",
-        //   numberRange: [1, 521000000],
-        // },
-        // {
-        //   image: "images/bagas-sigma.jpg",
-        //   text: "Bagas Sigma",
-        //   rarity: "mythical",
-        //   numberRange: [1, 6120000],
-        // },
-        // {
-        //   image: "images/nafis-gepeng.jpg",
-        //   text: "nafis Yeah!",
-        //   rarity: "legend",
-        //   numberRange: [1, 310100],
-        // },
-        // {
-        //   image: "images/rasya-wink.jpg",
-        //   text: "rasya Wink!",
-        //   rarity: "legend",
-        //   numberRange: [1, 409199],
-        // },
-        // {
-        //   image: "images/wahh.jpg",
-        //   text: "huwahh",
-        //   rarity: "rare",
-        //   numberRange: [1, 810],
-        // },
-        // {
-        //   image: "images/alfon-present.jpg",
-        //   text: "alfon Present!",
-        //   rarity: "rare",
-        //   numberRange: [1, 992],
-        // },
-        // {
-        //   image: "images/gihun-hs.jpg",
-        //   text: "gihun and 01 meme!",
-        //   rarity: "mythical",
-        //   numberRange: [1, 8300000],
-        // },
-        // {
-        //   image: "images/reporter-ketawa.jpg",
-        //   text: "bahasa inggris bukan bahasa asing lagi yah?",
-        //   rarity: "legend",
-        //   numberRange: [1, 700100],
-        // },
-        // {
-        //   image: "images/surya-minkem.jpg",
-        //   text: "sur Minkem!",
-        //   rarity: "legend",
-        //   numberRange: [1, 612100],
-        // },
-        // {
-        //   image: "images/alif-songong.jpg",
-        //   text: "lip songong",
-        //   rarity: "epic",
-        //   numberRange: [1, 31190],
-        // },
-        // {
-        //   image: "images/dzaki-anomali.jpg",
-        //   text: "BM ALOMANI REAL",
-        //   rarity: "mythical",
-        //   numberRange: [1, 1661880],
-        // },
-        // {
-        //   image: "images/fathian-wink.jpg",
-        //   text: "yan wink!",
-        //   rarity: "legend",
-        //   numberRange: [1, 301880],
-        // },
-        // {
-        //   image: "images/menariklah.jpg",
-        //   text: "menariklah",
-        //   rarity: "legend",
-        //   numberRange: [1, 455280],
-        // },
-        // {
-        //   image: "images/nafis-hah.jpg",
-        //   text: "HAH?!",
-        //   rarity: "mythical",
-        //   numberRange: [1, 8910000],
-        // },
+        {
+          image: "images/agra sigma.jpg",
+          text: "agra Sigma",
+          rarity: "epic",
+          numberRange: [1, 12000],
+        },
+        {
+          image: "images/ac.jpg",
+          text: "lu kenapa jadi mythical",
+          rarity: "mythical",
+          numberRange: [1, 999999],
+        },
+        {
+          image: "images/alif senyum.jpg",
+          text: "Alif Senyum",
+          rarity: "uncommon",
+          numberRange: [1, 399],
+        },
+        {
+          image: "images/bagas bengong.jpg",
+          text: "Bagas Bengong",
+          rarity: "rare",
+          numberRange: [1, 750],
+        },
+        {
+          image: "images/deki nyengir.jpg",
+          text: "Deki Nyengir",
+          rarity: "epic",
+          numberRange: [1, 25000],
+        },
+        {
+          image: "images/marvin wink.jpg",
+          text: "Marvin Wink",
+          rarity: "uncommon",
+          numberRange: [1, 300],
+        },
+        {
+          image: "images/2 apit.jpg",
+          text: "alif di apit",
+          rarity: "rare",
+          numberRange: [1, 900],
+        },
+        {
+          image: "images/2 Senyuman.jpg",
+          text: "2 senyuman manis",
+          rarity: "uncommon",
+          numberRange: [1, 500],
+        },
+        {
+          image: "images/ac.jpg",
+          text: "YA AC",
+          rarity: "common",
+          numberRange: [1, 10],
+        },
+        {
+          image: "images/agra & amira.jpg",
+          text: "cieee lopyu",
+          rarity: "legend",
+          numberRange: [1, 100000],
+        },
+        {
+          image: "images/agra shalat.jpg",
+          text: "agra shalat",
+          rarity: "epic",
+          numberRange: [1, 5999],
+        },
+        {
+          image: "images/agra umhehe.jpg",
+          text: "agra umhehe!",
+          rarity: "mythical",
+          numberRange: [1, 1000000],
+        },
+        {
+          image: "images/agra velocity.jpg",
+          text: "velocity boy!",
+          rarity: "epic",
+          numberRange: [1, 9999],
+        },
+        {
+          image: "images/akbar minkem.jpg",
+          text: "akbar minkem",
+          rarity: "common",
+          numberRange: [1, 25],
+        },
+        {
+          image: "images/alfon mm.jpg",
+          text: "alfon mm",
+          rarity: "common",
+          numberRange: [1, 3],
+        },
+        {
+          image: "images/bagas melet.jpg",
+          text: "bagas melet",
+          rarity: "rare",
+          numberRange: [1, 399],
+        },
+        {
+          image: "images/bm alomani.jpg",
+          text: "BM ALOMANI",
+          rarity: "uncommon",
+          numberRange: [1, 99],
+        },
+        {
+          image: "images/deki fuck.jpg",
+          text: "deki fucking",
+          rarity: "uncommon",
+          numberRange: [1, 129],
+        },
+        {
+          image: "images/deki selfie.jpg",
+          text: "deki lagi nyelfi ges",
+          rarity: "uncommon",
+          numberRange: [1, 301],
+        },
+        {
+          image: "images/deki chatgpt.jpg",
+          text: "deki lagi mencari jawaban",
+          rarity: "common",
+          numberRange: [1, 50],
+        },
+        {
+          image: "images/duh ada yang nyelip.jpg",
+          text: "duh ada yang nyelip",
+          rarity: "rare",
+          numberRange: [1, 450],
+        },
+        {
+          image: "images/dzaki cool.jpg",
+          text: "dzaki cool",
+          rarity: "uncommon",
+          numberRange: [1, 139],
+        },
+        {
+          image: "images/gatel euy.jpg",
+          text: "gatel euyyy..",
+          rarity: "rare",
+          numberRange: [1, 157],
+        },
+        {
+          image: "images/hafi ketawi.jpg",
+          text: "hafi ketawi",
+          rarity: "rare",
+          numberRange: [1, 340],
+        },
+        {
+          image: "images/hafi mengkece.jpg",
+          text: "hafi mengkece",
+          rarity: "common",
+          numberRange: [1, 21],
+        },
+        {
+          image: "images/hafi merenung.jpg",
+          text: "hafi merenung",
+          rarity: "uncommon",
+          numberRange: [1, 123],
+        },
+        {
+          image: "images/hilmi.jpg",
+          text: "HILMI...",
+          rarity: "uncommon",
+          numberRange: [1, 461],
+        },
+        {
+          image: "images/lip and deki.jpg",
+          text: "lip and deki",
+          rarity: "uncommon",
+          numberRange: [1, 232],
+        },
+        {
+          image: "images/marvin ape lu.jpg",
+          text: "apelu liat-liat",
+          rarity: "epic",
+          numberRange: [1, 4289],
+        },
+        {
+          image: "images/menghirup ke surga.jpg",
+          text: "menghirup ke surga",
+          rarity: "epic",
+          numberRange: [1, 6790],
+        },
+        {
+          image: "images/mira bobo.jpg",
+          text: "mira bobo..",
+          rarity: "rare",
+          numberRange: [1, 569],
+        },
+        {
+          image: "images/rafi chad.jpg",
+          text: "RAFI CHAD",
+          rarity: "legend",
+          numberRange: [1, 200999],
+        },
+        {
+          image: "images/rakha mmm.jpg",
+          text: "rakha mmm",
+          rarity: "uncommon",
+          numberRange: [1, 211],
+        },
+        {
+          image: "images/rasya hooo.jpg",
+          text: "rasya hooo...",
+          rarity: "legend",
+          numberRange: [1, 120999],
+        },
+        {
+          image: "images/rasya lier.jpg",
+          text: "RASYA LAGI LIER",
+          rarity: "rare",
+          numberRange: [1, 679],
+        },
+        {
+          image: "images/restu side_eye.jpg",
+          text: "restu side eye..",
+          rarity: "common",
+          numberRange: [1, 35],
+        },
+        {
+          image: "images/surya menjelaskan.jpg",
+          text: "surya sedang menjelaskan",
+          rarity: "common",
+          numberRange: [1, 76],
+        },
+        {
+          image: "images/view 2.jpg",
+          text: "view dari rakha di deki selfie",
+          rarity: "uncommon",
+          numberRange: [1, 217],
+        },
+        {
+          image: "images/virqi apa itu bang.jpg",
+          text: "apa itu bang?",
+          rarity: "common",
+          numberRange: [1, 43],
+        },
+        {
+          image: "images/virqi turu.jpg",
+          text: "virqi sedang turu ges",
+          rarity: "rare",
+          numberRange: [1, 345],
+        },
+        {
+          image: "images/yan mikir.jpg",
+          text: "mikir dulu",
+          rarity: "common",
+          numberRange: [1, 88],
+        },
+        {
+          image: "images/bagas-chad.jpg",
+          text: "bagas chad",
+          rarity: "legend",
+          numberRange: [1, 199900],
+        },
+        {
+          image: "images/bagas-virtual.jpg",
+          text: "bagas jadi AI 2030",
+          rarity: "epic",
+          numberRange: [1, 70089],
+        },
+        {
+          image: "images/berpikir-keras.jpg",
+          text: "mikir apa fi?",
+          rarity: "common",
+          numberRange: [1, 67],
+        },
+        {
+          image: "images/deki-fuckhd.jpg",
+          text: "deki fuck & melet",
+          rarity: "mythical",
+          numberRange: [1, 1099000],
+        },
+        {
+          image: "images/deki-nerd.jpg",
+          text: "deki mau jadi pinter",
+          rarity: "rare",
+          numberRange: [1, 5610],
+        },
+        {
+          image: "images/join-roblox.jpg",
+          text: "join roblox kuy! gak disponsor",
+          rarity: "epic",
+          numberRange: [1, 23900],
+        },
+        {
+          image: "images/alif-sen.jpg",
+          text: "alif senyum 2",
+          rarity: "rare",
+          numberRange: [1, 346],
+        },
+        {
+          image: "images/marvin-mangap.jpg",
+          text: "marvin mangap",
+          rarity: "uncommon",
+          numberRange: [1, 481],
+        },
+        {
+          image: "images/mira-megang.jpg",
+          text: "mira megang alat",
+          rarity: "rare",
+          numberRange: [1, 1201],
+        },
+        {
+          image: "images/mirip-guru.jpg",
+          text: "mirip guru gw kayaknya",
+          rarity: "epic",
+          numberRange: [1, 23001],
+        },
+        {
+          image: "images/plenger-group.jpg",
+          text: "para plenger sedang berpose",
+          rarity: "legend",
+          numberRange: [1, 561000],
+        },
+        {
+          image: "images/rasya-nyu.jpg",
+          text: "ichi nya!",
+          rarity: "uncommon",
+          numberRange: [1, 258],
+        },
+        {
+          image: "images/syafal.jpg",
+          text: "rasya & naufal",
+          rarity: "uncommon",
+          numberRange: [1, 415],
+        },
+        {
+          image: "images/syeima-merem.jpg",
+          text: "syeima ngapain merem?",
+          rarity: "epic",
+          numberRange: [1, 21200],
+        },
+        {
+          image: "images/tiga-senyuman.jpg",
+          text: "tiga senyuman..",
+          rarity: "rare",
+          numberRange: [1, 794],
+        },
+        {
+          image: "images/yan-turu.jpg",
+          text: "yan turu",
+          rarity: "rare",
+          numberRange: [1, 473],
+        },
+        {
+          image: "images/zaky-sigma.jpg",
+          text: "zaki sigma",
+          rarity: "epic",
+          numberRange: [1, 11260],
+        },
+        {
+          image: "images/agra-rock.jpg",
+          text: "agra rock lenger",
+          rarity: "epic",
+          numberRange: [1, 32330],
+        },
+        {
+          image: "images/alif-dance.jpg",
+          text: "alif dancing..",
+          rarity: "rare",
+          numberRange: [1, 2451],
+        },
+        {
+          image: "images/again-migra.jpg",
+          text: "lagi-lagi mereka nih",
+          rarity: "legend",
+          numberRange: [1, 241100],
+        },
+        {
+          image: "images/deki-melet.jpg",
+          text: "deki melet",
+          rarity: "rare",
+          numberRange: [1, 1450],
+        },
+        {
+          image: "images/marvin-bengong.jpg",
+          text: "marvin bengong",
+          rarity: "epic",
+          numberRange: [1, 10299],
+        },
+        {
+          image: "images/surya-sad.jpg",
+          text: "surya 😭",
+          rarity: "epic",
+          numberRange: [1, 30199],
+        },
+        {
+          image: "images/axel.jpg",
+          text: "Hitam Putih",
+          rarity: "mythical",
+          numberRange: [1, 1450000],
+        },
+        {
+          image: "images/naufal-side.jpg",
+          text: "Naufal side eye",
+          rarity: "epic",
+          numberRange: [1, 58400],
+        },
+        {
+          image: "images/yan-.jpg",
+          text: "fathian..",
+          rarity: "common",
+          numberRange: [1, 29],
+        },
+        {
+          image: "images/benq.jpg",
+          text: "ben!",
+          rarity: "rare",
+          numberRange: [1, 6151],
+        },
+        {
+          image: "images/gak-kenal.jpg",
+          text: "hehehe 😭",
+          rarity: "rare",
+          numberRange: [1, 1892],
+        },
+        {
+          image: "images/hilmi-takut.jpg",
+          text: "hilmi takut. mama..",
+          rarity: "epic",
+          numberRange: [1, 50292],
+        },
+        {
+          image: "images/gihun-sigma.jpg",
+          text: "i'm feeling sigma",
+          rarity: "secret",
+          numberRange: [1, 190000000],
+        },
+        {
+          image: "images/hacker.jpg",
+          text: "damcuk pristel!",
+          rarity: "prismatic",
+          numberRange: [1, 30190000],
+        },
+        {
+          image: "images/deki-walawe.jpg",
+          text: "walaweh",
+          rarity: "prismatic",
+          numberRange: [1, 45000000],
+        },
+        {
+          image: "images/sesosok-dev.jpg",
+          text: "SANG DEV",
+          rarity: "secret",
+          numberRange: [1, 990000000],
+        },
+        {
+          image: "images/naufal-byat.jpg",
+          text: "naufal BYAtch!",
+          rarity: "secret",
+          numberRange: [1, 871000000],
+        },
+        {
+          image: "images/rifa-byat.jpg",
+          text: "rifa-BYActh!",
+          rarity: "prismatic",
+          numberRange: [1, 32100000],
+        },
+        {
+          image: "images/agra-imut.jpg",
+          text: "imutnyoo!",
+          rarity: "mythical",
+          numberRange: [1, 5010000],
+        },
+        {
+          image: "images/mahluk-asing.jpg",
+          text: "mahluk asing COEG!",
+          rarity: "secret",
+          numberRange: [1, 521000000],
+        },
+        {
+          image: "images/bagas-sigma.jpg",
+          text: "Bagas Sigma",
+          rarity: "mythical",
+          numberRange: [1, 6120000],
+        },
+        {
+          image: "images/nafis-gepeng.jpg",
+          text: "nafis Yeah!",
+          rarity: "legend",
+          numberRange: [1, 310100],
+        },
+        {
+          image: "images/rasya-wink.jpg",
+          text: "rasya Wink!",
+          rarity: "legend",
+          numberRange: [1, 409199],
+        },
+        {
+          image: "images/wahh.jpg",
+          text: "huwahh",
+          rarity: "rare",
+          numberRange: [1, 810],
+        },
+        {
+          image: "images/alfon-present.jpg",
+          text: "alfon Present!",
+          rarity: "rare",
+          numberRange: [1, 992],
+        },
+        {
+          image: "images/gihun-hs.jpg",
+          text: "gihun and 01 meme!",
+          rarity: "mythical",
+          numberRange: [1, 8300000],
+        },
+        {
+          image: "images/reporter-ketawa.jpg",
+          text: "bahasa inggris bukan bahasa asing lagi yah?",
+          rarity: "legend",
+          numberRange: [1, 700100],
+        },
+        {
+          image: "images/surya-minkem.jpg",
+          text: "sur Minkem!",
+          rarity: "legend",
+          numberRange: [1, 612100],
+        },
+        {
+          image: "images/alif-songong.jpg",
+          text: "lip songong",
+          rarity: "epic",
+          numberRange: [1, 31190],
+        },
+        {
+          image: "images/dzaki-anomali.jpg",
+          text: "BM ALOMANI REAL",
+          rarity: "mythical",
+          numberRange: [1, 1661880],
+        },
+        {
+          image: "images/fathian-wink.jpg",
+          text: "yan wink!",
+          rarity: "legend",
+          numberRange: [1, 301880],
+        },
+        {
+          image: "images/menariklah.jpg",
+          text: "menariklah",
+          rarity: "legend",
+          numberRange: [1, 455280],
+        },
+        {
+          image: "images/nafis-hah.jpg",
+          text: "HAH?!",
+          rarity: "mythical",
+          numberRange: [1, 8910000],
+        },
       ];
 
       // LocalStorage keys
@@ -979,6 +979,7 @@
           loadAutoRollUnlock();
 
           document.getElementById("topSidebar").style.display = "block";
+          updateGameplayProfileUI();
 
           // Kosongkan gambar, tampilkan teks pembuka
           const img = el("rngImage");
@@ -1525,17 +1526,24 @@
           if (rk === "rare") {
             updateQuestProgress("rare3", 1);
             updateAchievementProgress("rare10", 1);
+            updateAchievementProgress("frame_rare", 1);
           } else if (rk === "epic") {
             updateQuestProgress("epic1", 1);
             updateAchievementProgress("epic20", 1);
+            updateAchievementProgress("frame_epic", 1);
           } else if (rk === "legend") {
             updateQuestProgress("getLegend", 1);
             updateQuestProgress("legend3", 1);
             updateAchievementProgress("legend5", 1);
-            updateAchievementProgress("legend10", 1);
+            updateQuestProgress("getLegend10", 1);
           } else if (rk === "mythical") {
             updateQuestProgress("mythical1", 1);
             updateAchievementProgress("mythical3", 1);
+            updateAchievementProgress("banner_crimson", 1);
+          } else if (rk === "prismatic") {
+            updateAchievementProgress("frame_rainbow", 1);
+          } else if (rk === "secret") {
+            updateAchievementProgress("banner_midnight", 1);
           }
         }
 
@@ -1883,6 +1891,101 @@
       }
       function closeInventory() {
         el("inventoryOverlay")?.classList.remove("show");
+        _invClearDetail();
+      }
+
+      /* ── Detail Panel ── */
+      let _invDetailTime = null;
+
+      function _invClearDetail() {
+        _invDetailTime = null;
+        const box = el("invDetailImgBox");
+        if (box) box.innerHTML = `<span class="inv-detail-placeholder">?</span>`;
+        const nameEl = el("invDetailName"); if (nameEl) nameEl.textContent = "—";
+        const rarEl  = el("invDetailRarity"); if (rarEl) { rarEl.textContent = "—"; rarEl.style.background = ""; }
+        const descEl = el("invDetailDesc"); if (descEl) descEl.textContent = "Pilih item dari grid";
+        const lockBtn = el("invDetailLockBtn"); if (lockBtn) { lockBtn.disabled = true; lockBtn.textContent = "🔓 Lock"; }
+        const sellBtn2 = el("invDetailSellBtn"); if (sellBtn2) sellBtn2.disabled = true;
+      }
+
+      function _invUpdateDetail(cardEl) {
+        const time = Number(cardEl.dataset.time);
+        _invDetailTime = time;
+
+        let inv = [];
+        try { inv = JSON.parse(localStorage.getItem(LS_KEY_INVENTORY) || "[]"); } catch(e) {}
+        const it = inv.find(x => x.time === time);
+        if (!it) return;
+
+        const r = typeof it.rarity === "object"
+          ? it.rarity
+          : { key: it.rarity, name: (it.rarity||"common").replace(/^./, c => c.toUpperCase()), grad: gradOf(it.rarity||"common") };
+
+        const box = el("invDetailImgBox");
+        if (box) {
+          box.style.background = r.grad || "#1a1a1a";
+          box.innerHTML = `<img src="${it.image}" alt="${it.text}" class="inv-detail-img-real">`;
+        }
+
+        const count = getItemCount(it.text) || 1;
+        const nameEl = el("invDetailName"); if (nameEl) nameEl.textContent = it.text;
+        const rarEl  = el("invDetailRarity");
+        if (rarEl) { rarEl.textContent = r.name; rarEl.style.background = r.grad; }
+        const descEl = el("invDetailDesc");
+        if (descEl) descEl.textContent = `x${count} dimiliki${it.number ? " · #" + it.number : ""}`;
+
+        const lockBtn = el("invDetailLockBtn");
+        if (lockBtn) {
+          lockBtn.disabled = false;
+          lockBtn.textContent = it.locked ? "🔓 Unlock" : "🔒 Lock";
+          lockBtn.classList.toggle("is-locked", !!it.locked);
+        }
+
+        const sellBtn2 = el("invDetailSellBtn");
+        if (sellBtn2) sellBtn2.disabled = !!it.locked;
+      }
+
+      function invDetailToggleLock() {
+        if (_invDetailTime == null) return;
+        toggleItemLockByTime(_invDetailTime);
+        renderInventory();
+        // re-find card dan update detail
+        const card = document.querySelector(`.card[data-time="${_invDetailTime}"]`);
+        if (card) _invUpdateDetail(card);
+      }
+
+      function invDetailSell() {
+        if (_invDetailTime == null) return;
+        let inv = [];
+        try { inv = JSON.parse(localStorage.getItem(LS_KEY_INVENTORY) || "[]"); } catch(e) {}
+        const it = inv.find(x => x.time === _invDetailTime && !x.locked);
+        if (!it) { showErrorPopup("Item terkunci atau tidak ditemukan!"); return; }
+
+        const rKey = typeof it.rarity === "string" ? it.rarity : it.rarity.key;
+        const count = getItemCount(it.text) || 1;
+        let gained = 0;
+
+        let updated;
+        if (count > 1) {
+          gained = getSellValue(rKey);
+          localStorage.setItem(counterKey(it.text), count - 1);
+          updated = inv;
+        } else {
+          gained = getSellValue(rKey);
+          localStorage.removeItem(counterKey(it.text));
+          updated = inv.filter(x => x.time !== _invDetailTime);
+        }
+
+        localStorage.setItem(LS_KEY_INVENTORY, JSON.stringify(updated));
+        addCoins(gained);
+        updateCoinUI();
+        showCoinPopup(gained);
+        _invClearDetail();
+        renderInventory();
+        updateQuestProgress("sell5", 1);
+        localStorage.setItem("totalSold", parseInt(localStorage.getItem("totalSold")||"0") + 1);
+        updateQuestProgress("sell20", 1);
+        updateAchievements("sell", 1);
       }
 
       // Helper: set chip aktif
@@ -1912,7 +2015,7 @@
           btn.classList.toggle("active", locked);
           btn.textContent = locked
             ? "🔓 Tampilkan Semua"
-            : "🔒 item yang dikunci";
+            : "🔒 Locked Tab";
 
           renderInventory();
         }
@@ -2113,13 +2216,14 @@
           setActiveFilter(key);
           renderInventory();
         }
-        // Klik kartu untuk memilih/deselect
+        // Klik kartu untuk memilih/deselect + update detail panel
         const cardEl = e.target.closest(".card");
         if (cardEl && el("inventoryOverlay")?.classList.contains("show")) {
-          const isLocked = cardEl.classList.contains("locked");
-          if (isLocked) return; // ⛔ jangan bisa dipilih
+          // Skip jika klik tombol lock/inspect di dalam card
+          if (e.target.classList.contains("item-lock-toggle") || e.target.classList.contains("item-inspect-toggle")) return;
 
           cardEl.classList.toggle("selected");
+          _invUpdateDetail(cardEl);
         }
 
         // Tombol Menjual (jual yang dipilih)
@@ -2185,7 +2289,9 @@
           // di sellBtn
           const jumlahTerjual = selectedCards.length;
           updateQuestProgress("sell5", jumlahTerjual);
+          localStorage.setItem("totalSold", parseInt(localStorage.getItem("totalSold")||"0") + jumlahTerjual);
           updateQuestProgress("sell20", jumlahTerjual);
+          updateAchievements("sell", jumlahTerjual);
         }
 
         // Tombol Menjual Semua
@@ -2248,7 +2354,9 @@
           // di sellAllBtn
           const jumlahTerjual = unlocked.length;
           updateQuestProgress("sell5", jumlahTerjual);
+          localStorage.setItem("totalSold", parseInt(localStorage.getItem("totalSold")||"0") + jumlahTerjual);
           updateQuestProgress("sell20", jumlahTerjual);
+          updateAchievements("sell", jumlahTerjual);
         }
       });
 
@@ -2699,13 +2807,17 @@
         try { const inv = JSON.parse(localStorage.getItem('potions')||'{}'); owned = inv[`${type}_${p.mult}`]||0; } catch(e){}
 
         wrap.innerHTML = `
-          <div class="store-detail-img-wrap">
-            <img src="${p.icon}" alt="${p.name}" class="store-detail-img" loading="lazy" style="background:${p.color||'#1a1a1a'}">
+          <div class="store-detail-top-row">
+            <div class="store-detail-img-wrap">
+              <img src="${p.icon}" alt="${p.name}" class="store-detail-img" loading="lazy" style="background:${p.color||'#1a1a1a'}">
+            </div>
+            <div class="store-detail-info">
+              ${owned > 0 ? `<div class="store-detail-qty">x${owned}</div>` : ''}
+              <div class="store-detail-name">${p.name}</div>
+              <div class="store-detail-dur">Selama 5 menit</div>
+              <div class="store-detail-price">$${totalPrice.toLocaleString()} coins</div>
+            </div>
           </div>
-          ${owned > 0 ? `<div class="store-detail-qty">x${owned}</div>` : ''}
-          <div class="store-detail-name">${p.name}</div>
-          <div class="store-detail-dur">Selama 5 menit</div>
-          <div class="store-detail-price">$${totalPrice.toLocaleString()} coins</div>
           <div class="store-detail-actions">
             <button class="store-btn-buy${isFast?' fast-mode':''}" onclick="buyPotion('${type}',${idx},_storeBuyQty); _storeBuyQty=1; _storeRenderLeft('${type}',${idx});">BUY</button>
             <button class="store-btn-minus" onclick="_storeBuyLess('${type}',${idx})">−</button>
@@ -2793,6 +2905,117 @@
         _storeRenderBanner(type);
         _storeRenderGrid(type);
         _storeRenderLeft(type, 0);
+      }
+
+      /* ── Switch tab ── */
+      function switchStoreTab(type) {
+        _storeTab = type;
+        _storeBuyQty = 1;
+        document.getElementById('storeTabLuck')?.classList.remove('active-store-tab');
+        document.getElementById('storeTabFast')?.classList.remove('active-store-tab');
+        document.getElementById('storeTabCosmetic')?.classList.remove('active-store-tab');
+        
+        if (type === 'cosmetic') {
+          document.getElementById('storeTabCosmetic')?.classList.add('active-store-tab');
+          _renderCosmeticStore();
+        } else {
+          document.getElementById(type === 'luck' ? 'storeTabLuck' : 'storeTabFast')?.classList.add('active-store-tab');
+          _storeRenderBanner(type);
+          _storeRenderGrid(type);
+          _storeRenderLeft(type, 0);
+        }
+      }
+
+      function _renderCosmeticStore() {
+        // Sembunyikan storeBanner (dipakai oleh tab Luck/Fast, tidak relevan di Kosmetik)
+        const banner = document.getElementById('storeBanner');
+        if (banner) banner.classList.add('hidden');
+
+        const grid = document.getElementById('storeItemGrid');
+        if (!grid) return;
+        grid.innerHTML = '';
+
+        const leftPanel = document.getElementById('storeDetailWrap');
+        if (leftPanel) leftPanel.innerHTML = `
+          <div class="store-cosmetic-info">
+            <div class="store-cosmetic-info-title">Kosmetik Store</div>
+            <div class="store-cosmetic-info-desc">Beli frame & banner eksklusif untuk profilmu!<br><br>
+            Beberapa kosmetik juga bisa didapat gratis lewat <strong>Achievement</strong>. Cek Quest → Achievements untuk detailnya.</div>
+          </div>`;
+
+        // Frame items for sale
+        const frameSection = document.createElement('div');
+        frameSection.className = 'store-cosmetic-section';
+        frameSection.innerHTML = '<div class="store-cosmetic-section-title">🖼️ Frame Profil</div>';
+        const frameGrid = document.createElement('div');
+        frameGrid.className = 'store-cosmetic-items-grid';
+
+        PRF_FRAMES.forEach(f => {
+          if (f.unlock !== 'buy') return;
+          const owned = isCosmeticUnlocked('frame', f.id);
+          const item = document.createElement('div');
+          item.className = 'store-cosmetic-item' + (owned ? ' owned' : '');
+          item.innerHTML = `
+            <div class="store-cosmetic-preview">
+              <div class="store-frame-preview" style="${f.style}"></div>
+            </div>
+            <div class="store-cosmetic-label">${f.label}</div>
+            <div class="store-cosmetic-price">${owned ? '✅ Dimiliki' : `🪙 ${f.price?.toLocaleString()}`}</div>
+            ${!owned ? `<button class="store-buy-cosmetic-btn" onclick="buyCosmeticItem('frame','${f.id}',${f.price})">Beli</button>` : ''}
+          `;
+          frameGrid.appendChild(item);
+        });
+        frameSection.appendChild(frameGrid);
+        grid.appendChild(frameSection);
+
+        // Banner items for sale
+        const bannerSection = document.createElement('div');
+        bannerSection.className = 'store-cosmetic-section';
+        bannerSection.innerHTML = '<div class="store-cosmetic-section-title">🎨 Banner Profil</div>';
+        const bannerGrid = document.createElement('div');
+        bannerGrid.className = 'store-cosmetic-items-grid';
+
+        PRF_BANNERS.forEach(b => {
+          if (b.unlock !== 'buy') return;
+          const owned = isCosmeticUnlocked('banner', b.id);
+          const item = document.createElement('div');
+          item.className = 'store-cosmetic-item' + (owned ? ' owned' : '');
+          item.innerHTML = `
+            <div class="store-cosmetic-preview store-banner-preview" style="background:${b.bg}">
+              <span>${b.label}</span>
+            </div>
+            <div class="store-cosmetic-price">${owned ? '✅ Dimiliki' : `🪙 ${b.price?.toLocaleString()}`}</div>
+            ${!owned ? `<button class="store-buy-cosmetic-btn" onclick="buyCosmeticItem('banner','${b.id}',${b.price})">Beli</button>` : ''}
+          `;
+          bannerGrid.appendChild(item);
+        });
+        bannerSection.appendChild(bannerGrid);
+        grid.appendChild(bannerSection);
+      }
+
+      function buyCosmeticItem(type, id, price) {
+        let coins = parseInt(localStorage.getItem('coins') || '0');
+        if (coins < price) {
+          showPopup('❌ Coins tidak cukup!');
+          return;
+        }
+        if (isCosmeticUnlocked(type, id)) {
+          showPopup('✅ Sudah dimiliki!');
+          return;
+        }
+        coins -= price;
+        localStorage.setItem('coins', coins);
+        updateCoinUI();
+        unlockCosmetic(type, id);
+        const label = type === 'frame'
+          ? (PRF_FRAMES.find(x=>x.id===id)?.label || id)
+          : (PRF_BANNERS.find(x=>x.id===id)?.label || id);
+        showPopup(`🎉 ${type === 'frame' ? 'Frame' : 'Banner'} "${label}" dibeli! Atur di Profile → Identity`);
+        _renderCosmeticStore();
+        // Refresh profile if open
+        if (document.getElementById('prfTab-identity')?.classList.contains('active')) {
+          prfRenderIdentity();
+        }
       }
 
       function renderPotionStore() { switchStoreTab('luck'); }
@@ -3197,13 +3420,13 @@
       });
 
       const rewards = [
-        { type: "coin", amount: 500 },
-        { type: "potion", potion: "x2", amount: 1 },
-        { type: "coin", amount: 1000 },
-        { type: "potion", potion: "x2", amount: 2 },
-        { type: "coin", amount: 1500 },
-        { type: "potion", potion: "x3", amount: 2 },
-        { type: "potion", potion: "x5", amount: 2 }, // Hari 7 = Potion x5 (2 buah)
+        { type: "coin",   amount: 500,  label: "500 Coins",       icon: "ui/coins1.png" },
+        { type: "potion", potionType: "luck", mult: 2, amount: 1, label: "1x Luck Potion x2",  icon: "ui/luck-potion.png" },
+        { type: "coin",   amount: 1000, label: "1000 Coins",      icon: "ui/coins2.png" },
+        { type: "potion", potionType: "fast", mult: 2, amount: 2, label: "2x Fast Roll x2",    icon: "ui/fast-roll.png" },
+        { type: "coin",   amount: 1500, label: "1500 Coins",      icon: "ui/coins3.png" },
+        { type: "potion", potionType: "luck", mult: 3, amount: 2, label: "2x Luck Potion x3",  icon: "ui/x3-luck.png" },
+        { type: "potion", potionType: "luck", mult: 5, amount: 2, label: "2x Luck Potion x5",  icon: "ui/x5-luck.png" },
       ];
 
       function checkDailyReward() {
@@ -3251,57 +3474,96 @@
 
         if (reward.type === "coin") {
           addCoins(reward.amount);
-          showPopup(`🎉 Kamu dapat ${reward.amount} Coins!`);
+          showPopup(`Kamu dapat ${reward.amount} Coins!`);
         } else if (reward.type === "potion") {
-          const mult = parseInt(reward.potion.replace("x", ""));
-          addDailyPotion("luck", mult, reward.amount);
-          showPopup(`✨ Kamu dapat ${reward.amount} Potion ${reward.potion}!`);
+          addDailyPotion(reward.potionType, reward.mult, reward.amount);
+          showPopup(`Kamu dapat ${reward.amount}x ${reward.potionType === "fast" ? "Fast Roll" : "Luck"} Potion x${reward.mult}!`);
         }
 
-        // ⏭ Simpan hari berikutnya
+        // Simpan hari berikutnya
         localStorage.setItem("dailyDay", day + 1);
 
-        // 🔒 Ubah tombol jadi sudah diklaim
-        const claimBtn = document.querySelector("#dailyRewardOverlay button");
+        // Ubah tombol jadi sudah diklaim
+        const claimBtn = document.getElementById("dailyClaimBtn");
         if (claimBtn) {
-          claimBtn.textContent = "✅ Sudah Diklaim";
+          claimBtn.textContent = "Sudah Diklaim";
           claimBtn.disabled = true;
-          claimBtn.style.opacity = "0.6";
-          claimBtn.style.cursor = "not-allowed";
         }
 
-        // 🎵 SFX cengkrink
+        // SFX
         try {
           const sfx = document.getElementById("resultSfx");
           if (sfx) {
+            const _s = prfGetSettings();
+            sfx.muted = !_s.sfx;
+            sfx.volume = _s.volume / 100;
             sfx.currentTime = 0;
             sfx.play();
           }
-        } catch (e) {
-          console.warn("SFX gagal dimainkan:", e);
-        }
+        } catch (e) {}
 
         const indicator = document.getElementById("rewardIndicator");
         if (indicator) indicator.classList.add("hidden");
 
+        updateDailyUI();
         closeDailyReward();
-        updateDailyUI(); // refresh grid highlight
       }
 
-      function updateDailyUI() {
+      function renderDailyGrid() {
+        const grid = document.getElementById("drGrid");
+        if (!grid) return;
         let day = parseInt(localStorage.getItem("dailyDay") || "1");
         if (day > rewards.length) day = 1;
 
-        // reset semua
-        document.querySelectorAll(".reward-box").forEach((box, i) => {
-          box.classList.remove("active", "claimed");
-          if (i + 1 < day) {
-            box.classList.add("claimed"); // hari sebelumnya
-          }
-          if (i + 1 === day) {
-            box.classList.add("active"); // hari ini
-          }
+        grid.innerHTML = "";
+        rewards.forEach((r, i) => {
+          const dayNum = i + 1;
+          const isClaimed = dayNum < day;
+          const isActive  = dayNum === day;
+          const isDay7    = dayNum === rewards.length;
+
+          const box = document.createElement("div");
+          box.id = `rewardDay${dayNum}`;
+          box.className = [
+            "dr-box",
+            isClaimed ? "dr-claimed" : "",
+            isActive  ? "dr-active"  : "",
+            isDay7    ? "dr-day7"    : "",
+          ].filter(Boolean).join(" ");
+
+          box.innerHTML = `
+            <div class="dr-day-label">Hari ${dayNum}</div>
+            <img src="${r.icon}" alt="${r.label}" class="dr-icon" loading="lazy">
+            <div class="dr-reward-label">${r.label}</div>
+            ${isClaimed ? '<div class="dr-check">✓</div>' : ""}
+          `;
+          grid.appendChild(box);
         });
+
+        // streak label
+        const sl = document.getElementById("drStreakLabel");
+        if (sl) {
+          const claimed = day - 1;
+          sl.textContent = claimed > 0
+            ? `Streak: ${claimed} hari berturut-turut`
+            : "Login pertama hari ini!";
+        }
+      }
+
+      function updateDailyUI() {
+        renderDailyGrid();
+        // update claim button state
+        const today = new Date().toDateString();
+        const lastClaim = localStorage.getItem("lastDailyClaim");
+        const btn = document.getElementById("dailyClaimBtn");
+        if (!btn) return;
+        if (lastClaim === today) {
+          btn.textContent = "Sudah Diklaim";
+          btn.disabled = true;
+        } else {
+          btn.textContent = "Klaim Hadiah";
+          btn.disabled = false;
+        }
       }
 
       function closeDailyReward() {
@@ -3318,19 +3580,14 @@
 
         const today = new Date().toDateString();
         const lastClaim = localStorage.getItem("lastDailyClaim");
-        const claimBtn = document.querySelector("#dailyRewardOverlay button");
+        const claimBtn = document.getElementById("dailyClaimBtn");
 
         if (lastClaim === today) {
-          // sudah klaim
-          claimBtn.textContent = "✅ Sudah Diklaim";
+          claimBtn.textContent = "Sudah Diklaim";
           claimBtn.disabled = true;
-          claimBtn.style.opacity = "0.6";
-          claimBtn.style.cursor = "not-allowed";
         } else {
           claimBtn.textContent = "Klaim Hadiah";
           claimBtn.disabled = false;
-          claimBtn.style.opacity = "1";
-          claimBtn.style.cursor = "pointer";
         }
 
         document.getElementById("dailyRewardOverlay").classList.add("show");
@@ -3342,73 +3599,412 @@
         const key = `${type}_${mult}`;
         potions[key] = (potions[key] || 0) + amount;
         localStorage.setItem("potions", JSON.stringify(potions));
+        // Refresh UI kalau potion inventory sedang terbuka
+        if (document.getElementById("potionInventoryOverlay")?.classList.contains("show")) {
+          renderPotionInventory();
+        }
       }
 
       function updateStats(rarity) {
         // Total roll
         let rolls = parseInt(localStorage.getItem("totalRolls") || "0");
         localStorage.setItem("totalRolls", rolls + 1);
+        
+        // Track roll-based achievements
+        updateAchievements("roll", 1);
 
-        // Legendary
-        if (rarity === "legend") {
-          let legendaryCount = parseInt(
-            localStorage.getItem("legendCount") || "0"
-          );
-          localStorage.setItem("legendaryCount", legendaryCount + 1);
+        // Per-rarity counters — all use consistent *Count keys
+        const rarityKeyMap = {
+          common:    "commonCount",
+          uncommon:  "uncommonCount",
+          rare:      "rareCount",
+          epic:      "epicCount",
+          legend:    "legendaryCount",
+          legendary: "legendaryCount",
+          mythical:  "mythicalCount",
+          prismatic: "prismaticCount",
+          secret:    "secretCount",
+        };
+        const key = rarityKeyMap[rarity];
+        if (key) {
+          localStorage.setItem(key, parseInt(localStorage.getItem(key) || "0") + 1);
+        }
+        
+        // Update gameplay profile UI
+        updateGameplayProfileUI();
+      }
+
+      function updateGameplayProfileUI() {
+        const s = prfGetSettings();
+        const name = localStorage.getItem('username') || 'Guest';
+        const avatarSrc = localStorage.getItem('prfAvatarSrc') || '';
+        const level = prfCalcLevel();
+
+        updateSidebarProfileUI();
+      }
+
+      function updateSidebarProfileUI() {
+        const s = prfGetSettings();
+        const avatarSrc = localStorage.getItem('prfAvatarSrc') || '';
+        const name = localStorage.getItem('username') || 'Guest';
+        const level = prfCalcLevel();
+
+        // Banner background on profile card
+        const bannerBg = document.getElementById('sideProfileBannerBg');
+        if (bannerBg) {
+          const b = PRF_BANNERS.find(x => x.id === s.banner) || PRF_BANNERS[0];
+          bannerBg.style.background = b.bg;
         }
 
-        // Mythical
-        if (rarity === "mythical") {
-          let mythicalCount = parseInt(
-            localStorage.getItem("mythicalCount") || "0"
-          );
-          localStorage.setItem("mythicalCount", mythicalCount + 1);
+        // Avatar image
+        const sideImg = document.getElementById('sideProfileImg');
+        if (sideImg) sideImg.src = avatarSrc || 'ui/user.png';
+
+        // Frame
+        const sideFrame = document.getElementById('sideProfileFrame');
+        if (sideFrame) {
+          const f = PRF_FRAMES.find(x => x.id === s.frame) || PRF_FRAMES[0];
+          sideFrame.style.cssText = f.style ? `border:${f.style};` : '';
+          sideFrame.classList.toggle('side-frame-rainbow', s.frame === 'rainbow');
         }
 
-        // Prismatic
-        if (rarity === "prismatic") {
-          let prismaticCount = parseInt(
-            localStorage.getItem("prismaticCount") || "0"
-          );
-          localStorage.setItem("prismaticCount", prismaticCount + 1);
-        }
+        // Name
+        const sideLabel = document.getElementById('sideProfileLabel');
+        if (sideLabel) sideLabel.textContent = name.length > 10 ? name.substring(0, 10) + '…' : name;
 
-        // Secret
-        if (rarity === "secret") {
-          let secretCount = parseInt(
-            localStorage.getItem("secretCount") || "0"
-          );
-          localStorage.setItem("secretCount", secretCount + 1);
-        }
+        // Level
+        const sideLevel = document.getElementById('sideProfileLevel');
+        if (sideLevel) sideLevel.textContent = `Lv. ${level}`;
       }
 
       // ===== PLAYER PROFILE =====
-      function openProfile() {
-        document.getElementById("profileName").innerText =
-          localStorage.getItem("username") || "Guest";
-        document.getElementById("profileRolls").innerText =
-          localStorage.getItem("totalRolls") || 0;
-        document.getElementById("profileLegendary").innerText =
-          localStorage.getItem("legendaryCount") || 0;
-        document.getElementById("profileMythical").innerText =
-          localStorage.getItem("mythicalCount") || 0;
-        document.getElementById("profilePrismatic").innerText =
-          localStorage.getItem("prismaticCount") || 0;
-        document.getElementById("profileSecret").innerText =
-          localStorage.getItem("secretCount") || 0;
-        document.getElementById("profileCoins").innerText =
-          localStorage.getItem("coins") || 0;
 
-        // render achievements (badges)
-        if (typeof renderProfileAchievements === "function") {
-          renderProfileAchievements();
+      /* ── frame & banner options ── */
+      // unlock types: 'free' | 'buy' (beli di store) | 'achievement' (unlock via achievement)
+      const PRF_FRAMES = [
+        { id:'none',     label:'Default',   style:'',                                                                                    unlock:'free' },
+        { id:'gold',     label:'Gold',      style:'2px solid #ffcf6f; box-shadow:0 0 10px rgba(255,207,111,0.6)',                        unlock:'buy',         price:5000 },
+        { id:'rare',     label:'Rare',      style:'2px solid #6fb6ff; box-shadow:0 0 10px rgba(111,182,255,0.6)',                        unlock:'achievement',  achievementId:'frame_rare' },
+        { id:'epic',     label:'Epic',      style:'2px solid #d08cff; box-shadow:0 0 10px rgba(208,140,255,0.6)',                        unlock:'achievement',  achievementId:'frame_epic' },
+        { id:'mythical', label:'Mythical',  style:'2px solid #ff4444; box-shadow:0 0 10px rgba(255,68,68,0.6)',                          unlock:'buy',         price:20000 },
+        { id:'rainbow',  label:'Rainbow',   style:'3px solid transparent; background-clip:padding-box; outline:2px solid transparent; animation:prfRainbow 2s linear infinite', unlock:'achievement', achievementId:'frame_rainbow' },
+      ];
+      const PRF_BANNERS = [
+        { id:'none',      label:'Default',   bg:'linear-gradient(135deg,#1a1a2e,#16213e)',              unlock:'free' },
+        { id:'fire',      label:'Api',        bg:'linear-gradient(135deg,#7f0000,#ff4500)',             unlock:'buy',         price:3000 },
+        { id:'ocean',     label:'Laut',       bg:'linear-gradient(135deg,#0a3a7c,#00c6ff)',             unlock:'achievement', achievementId:'banner_ocean' },
+        { id:'forest',    label:'Hutan',      bg:'linear-gradient(135deg,#0e3d1e,#2ad980)',             unlock:'buy',         price:1000 },
+        { id:'galaxy',    label:'Galaksi',    bg:'linear-gradient(135deg,#0d0d2b,#a855f7,#ec4899)',     unlock:'achievement', achievementId:'banner_galaxy' },
+        { id:'gold',      label:'Emas',       bg:'linear-gradient(135deg,#3d2400,#ffcf6f,#a07000)',     unlock:'buy',         price:10000 },
+        { id:'midnight',  label:'Midnight',   bg:'linear-gradient(135deg,#0b0b0b,#1a1a2e,#2d2d4e)',    unlock:'achievement', achievementId:'banner_midnight' },
+        { id:'crimson',   label:'Crimson',    bg:'linear-gradient(135deg,#2a0000,#cc0000,#ff6060)',     unlock:'achievement', achievementId:'banner_crimson' },
+      ];
+
+      // Helpers for cosmetic unlock system
+      function getCosmeticUnlocks() {
+        try { return JSON.parse(localStorage.getItem('cosmeticUnlocks') || '{}'); }
+        catch(e) { return {}; }
+      }
+      function saveCosmeticUnlocks(data) { localStorage.setItem('cosmeticUnlocks', JSON.stringify(data)); }
+      function isCosmeticUnlocked(type, id) {
+        const u = getCosmeticUnlocks();
+        if (type === 'frame') {
+          const f = PRF_FRAMES.find(x => x.id === id);
+          // Tidak ada di daftar atau gratis → dianggap unlock
+          if (!f || f.unlock === 'free') return true;
+          // Sudah tersimpan di cosmeticUnlocks (dari beli/achievement sebelumnya) → tetap unlock
+          // walau unlock-type-nya berubah di kode terbaru
+          return !!(u.frames && u.frames[id]);
         }
+        if (type === 'banner') {
+          const b = PRF_BANNERS.find(x => x.id === id);
+          if (!b || b.unlock === 'free') return true;
+          return !!(u.banners && u.banners[id]);
+        }
+        return false;
+      }
+      function unlockCosmetic(type, id) {
+        const u = getCosmeticUnlocks();
+        if (type === 'frame') { u.frames = u.frames || {}; u.frames[id] = true; }
+        if (type === 'banner') { u.banners = u.banners || {}; u.banners[id] = true; }
+        saveCosmeticUnlocks(u);
+      }
 
+      /* ── defaults ── */
+      const PRF_DEFAULTS = {
+        music:true, sfx:true, volume:80, stars:true,
+        anim:true, video:true, particle:true,
+        battery:false, quality:'high',
+        frame:'none', banner:'none',
+      };
+
+      function prfGetSettings() {
+        let s;
+        try { s = { ...PRF_DEFAULTS, ...JSON.parse(localStorage.getItem('prfSettings')||'{}') }; }
+        catch(e) { s = { ...PRF_DEFAULTS }; }
+
+        // Validasi: kalau frame/banner yang tersimpan sudah tidak ada di daftar,
+        // fallback ke 'none' supaya tidak error saat akses .style / .bg
+        const validFrame  = PRF_FRAMES.find(x => x.id === s.frame);
+        const validBanner = PRF_BANNERS.find(x => x.id === s.banner);
+        if (!validFrame)  s.frame  = 'none';
+        if (!validBanner) s.banner = 'none';
+
+        return s;
+      }
+      function prfSaveSettings(s) { localStorage.setItem('prfSettings', JSON.stringify(s)); }
+
+      function openProfile() {
+        prfRenderIdentity();
+        prfRenderStats();
+        prfLoadSettings();
+        prfApplyAllSettings();
         document.getElementById("profileOverlay").classList.add("show");
       }
 
       function closeProfile() {
         document.getElementById("profileOverlay").classList.remove("show");
+      }
+
+      function prfSwitchTab(btn) {
+        document.querySelectorAll('.prf-tab').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.prf-panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('prfTab-' + btn.dataset.tab)?.classList.add('active');
+      }
+
+      /* ── Identity ── */
+      function prfRenderIdentity() {
+        const name = localStorage.getItem('username') || 'Guest';
+        const s = prfGetSettings();
+
+        // header
+        document.getElementById('profileName').textContent = name;
+        document.getElementById('prfLevel').textContent = 'Lv. ' + prfCalcLevel();
+        prfApplyFrame(s.frame);
+        prfApplyBanner(s.banner);
+        prfApplyAvatarImg();
+
+        // input
+        const inp = document.getElementById('prfUsernameInput');
+        if (inp) inp.value = name;
+
+        // preview avatar
+        prfRefreshAvatarPreview();
+
+        // frame grid
+        const fg = document.getElementById('prfFrameGrid');
+        if (fg) {
+          fg.innerHTML = '';
+          PRF_FRAMES.forEach(f => {
+            const unlocked = isCosmeticUnlocked('frame', f.id);
+            const el = document.createElement('div');
+            el.className = 'prf-frame-item' + (s.frame === f.id ? ' active' : '') + (!unlocked ? ' locked-cosmetic' : '');
+            
+            let lockLabel = '';
+            if (!unlocked) {
+              if (f.unlock === 'buy') lockLabel = `<div class="cosmetic-lock-badge">🔒 ${f.price?.toLocaleString()} 🪙</div>`;
+              else lockLabel = `<div class="cosmetic-lock-badge">🔒 Achievement</div>`;
+            }
+            
+            el.innerHTML = `<div class="prf-frame-dot" style="${f.style}"></div><span>${f.label}</span>${lockLabel}`;
+            el.onclick = () => {
+              if (!unlocked) {
+                const errSfx = document.getElementById('errorSfx'); if (errSfx) { errSfx.currentTime = 0; errSfx.play().catch(()=>{}); }
+                if (f.unlock === 'buy') showErrorPopup(`🔒 Beli frame ini di Store → Kosmetik`);
+                else showErrorPopup(`🔒 Selesaikan achievement untuk membuka frame ini!`);
+                return;
+              }
+              const ns = prfGetSettings(); ns.frame = f.id; prfSaveSettings(ns);
+              prfApplyFrame(f.id);
+              document.querySelectorAll('.prf-frame-item').forEach(x => x.classList.remove('active'));
+              el.classList.add('active');
+              updateGameplayProfileUI();
+              updateSidebarProfileUI();
+            };
+            fg.appendChild(el);
+          });
+        }
+
+        // banner grid
+        const bg = document.getElementById('prfBannerGrid');
+        if (bg) {
+          bg.innerHTML = '';
+          PRF_BANNERS.forEach(b => {
+            const unlocked = isCosmeticUnlocked('banner', b.id);
+            const el = document.createElement('div');
+            el.className = 'prf-banner-item' + (s.banner === b.id ? ' active' : '') + (!unlocked ? ' locked-cosmetic' : '');
+            
+            let lockLabel = '';
+            if (!unlocked) {
+              if (b.unlock === 'buy') lockLabel = `<div class="cosmetic-lock-badge">🔒 ${b.price?.toLocaleString()} 🪙</div>`;
+              else lockLabel = `<div class="cosmetic-lock-badge">🔒 Achievement</div>`;
+            }
+            
+            el.style.background = b.bg;
+            el.innerHTML = `<span>${b.label}</span>${lockLabel}`;
+            el.onclick = () => {
+              if (!unlocked) {
+                const errSfx2 = document.getElementById('errorSfx'); if (errSfx2) { errSfx2.currentTime = 0; errSfx2.play().catch(()=>{}); }
+                if (b.unlock === 'buy') showErrorPopup(`🔒 Beli banner ini di Store → Kosmetik`);
+                else showErrorPopup(`🔒 Selesaikan achievement untuk membuka banner ini!`);
+                return;
+              }
+              const ns = prfGetSettings(); ns.banner = b.id; prfSaveSettings(ns);
+              prfApplyBanner(b.id);
+              document.querySelectorAll('.prf-banner-item').forEach(x => x.classList.remove('active'));
+              el.classList.add('active');
+              updateGameplayProfileUI();
+            };
+            bg.appendChild(el);
+          });
+        }
+      }
+
+      function prfCalcLevel() {
+        const rolls = parseInt(localStorage.getItem('totalRolls') || '0');
+        return Math.max(1, Math.floor(rolls / 50) + 1);
+      }
+
+      function prfApplyFrame(frameId) {
+        const f = PRF_FRAMES.find(x => x.id === frameId) || PRF_FRAMES[0];
+        const frameEl = document.getElementById('prfAvatarFrame');
+        if (frameEl) frameEl.style.cssText = f.style ? `border:${f.style};` : '';
+      }
+
+      function prfApplyBanner(bannerId) {
+        const b = PRF_BANNERS.find(x => x.id === bannerId) || PRF_BANNERS[0];
+        const bannerEl = document.getElementById('prfBanner');
+        if (bannerEl) bannerEl.style.background = b.bg;
+      }
+
+      function prfApplyAvatarImg() {
+        const src = localStorage.getItem('prfAvatarSrc') || '';
+        const img = document.getElementById('prfAvatarImg');
+        const ph  = document.getElementById('prfAvatarPh');
+        if (img && ph) {
+          if (src) { img.src = src; img.style.display = 'block'; ph.style.display = 'none'; }
+          else     { img.style.display = 'none'; ph.style.display = 'block'; }
+        }
+      }
+
+      function prfRefreshAvatarPreview() {
+        const src = localStorage.getItem('prfAvatarSrc') || '';
+        const img = document.getElementById('prfAvatarPreviewImg');
+        const ph  = document.getElementById('prfAvatarPreviewPh');
+        if (!img || !ph) return;
+        if (src) { img.src = src; img.style.display = 'block'; ph.style.display = 'none'; }
+        else     { img.style.display = 'none'; ph.style.display = 'block'; }
+      }
+
+      function prfUploadAvatar(input) {
+        const file = input.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          localStorage.setItem('prfAvatarSrc', e.target.result);
+          prfApplyAvatarImg();
+          prfRefreshAvatarPreview();
+          updateGameplayProfileUI();
+        };
+        reader.readAsDataURL(file);
+      }
+
+      function prfRemoveAvatar() {
+        localStorage.removeItem('prfAvatarSrc');
+        prfApplyAvatarImg();
+        prfRefreshAvatarPreview();
+        updateGameplayProfileUI();
+      }
+
+      function prfSaveUsername() {
+        const val = (document.getElementById('prfUsernameInput')?.value || '').trim();
+        if (!val) { showErrorPopup('Username tidak boleh kosong!'); return; }
+        localStorage.setItem('username', val);
+        document.getElementById('profileName').textContent = val;
+        updateUsernameUI();
+        updateGameplayProfileUI();
+        showPopup('Username disimpan!');
+      }
+
+      /* ── Stats ── */
+      function prfRenderStats() {
+        const g = (k, d=0) => parseInt(localStorage.getItem(k) || d);
+        document.getElementById('profileRolls').textContent     = g('totalRolls').toLocaleString();
+        document.getElementById('profileUncommon').textContent  = g('uncommonCount').toLocaleString();
+        document.getElementById('profileRare').textContent      = g('rareCount').toLocaleString();
+        document.getElementById('profileEpic').textContent      = g('epicCount').toLocaleString();
+        document.getElementById('profileLegendary').textContent = g('legendaryCount').toLocaleString();
+        document.getElementById('profileMythical').textContent  = g('mythicalCount').toLocaleString();
+        document.getElementById('profilePrismatic').textContent = g('prismaticCount').toLocaleString();
+        document.getElementById('profileSecret').textContent    = g('secretCount').toLocaleString();
+        document.getElementById('profileCoins').textContent     = g('coins').toLocaleString();
+        document.getElementById('profileSold').textContent      = g('totalSold').toLocaleString();
+        if (typeof renderProfileAchievements === 'function') renderProfileAchievements();
+      }
+
+      /* ── Settings ── */
+      function prfLoadSettings() {
+        const s = prfGetSettings();
+        const set = (id, val) => { const el = document.getElementById(id); if (el) el[typeof val === 'boolean' ? 'checked' : 'value'] = val; };
+        set('stgMusic',   s.music);
+        set('stgSfx',     s.sfx);
+        set('stgVolume',  s.volume);
+        set('stgStars',   s.stars);
+        set('stgAnim',    s.anim);
+        set('stgVideo',   s.video);
+        set('stgParticle',s.particle);
+        set('stgBattery', s.battery);
+        set('stgQuality', s.quality);
+        const vv = document.getElementById('stgVolumeVal');
+        if (vv) vv.textContent = s.volume;
+      }
+
+      function prfApplySetting(key, val) {
+        const s = prfGetSettings();
+        if (key === 'volume') val = parseInt(val);
+        s[key] = val;
+        prfSaveSettings(s);
+        prfApplyAllSettings();
+        const vv = document.getElementById('stgVolumeVal');
+        if (key === 'volume' && vv) vv.textContent = val;
+      }
+
+      function prfApplyAllSettings() {
+        const s = prfGetSettings();
+        const vol = s.volume / 100;
+
+        // Music
+        const music = document.getElementById('gachaMusic');
+        if (music) { music.muted = !s.music; music.volume = vol; }
+
+        // SFX — mute all sfx elements
+        ['rollSfx','resultSfx','coinSfx','errorSfx','prismaticSfx','secretSfx'].forEach(id => {
+          const el = document.getElementById(id);
+          if (el) { el.muted = !s.sfx; el.volume = vol; }
+        });
+
+        // Stars / background particles
+        const stars  = document.getElementById('bgStars');
+        const night  = document.getElementById('bgNight');
+        if (stars) stars.style.visibility = s.stars ? 'visible' : 'hidden';
+        if (night) night.style.visibility = s.stars ? 'visible' : 'hidden';
+
+        // Battery mode — disable non-essential transitions
+        document.body.classList.toggle('prf-battery-mode', s.battery);
+
+        // Video
+        document.body.classList.toggle('prf-no-video', !s.video);
+
+        // Particles / rarity anim
+        document.body.classList.toggle('prf-no-anim', !s.anim);
+      }
+
+      function prfResetSettings() {
+        prfSaveSettings({ ...PRF_DEFAULTS });
+        prfLoadSettings();
+        prfApplyAllSettings();
+        showPopup('Settings direset ke default');
       }
 
       // ===== Pemanggilan awal saat game start =====
@@ -3587,6 +4183,79 @@
           badge: "ui/mythical-badge.png",
           reward: { coins: 30000 },
         },
+        // ── Cosmetic Frame Achievements ──
+        {
+          id: "frame_rare",
+          title: "Unlock Frame Rare — Dapatkan 100 Rare",
+          target: 100,
+          progress: 0,
+          badge: "ui/rare-badge.png",
+          reward: { coins: 1000, cosmetic: { type: 'frame', id: 'rare' } },
+          isCosmeticReward: true,
+          cosmeticLabel: 'Frame: Rare',
+        },
+        {
+          id: "frame_epic",
+          title: "Unlock Frame Epic — Dapatkan 50 Epic",
+          target: 50,
+          progress: 0,
+          badge: "ui/epic-badge.png",
+          reward: { coins: 2000, cosmetic: { type: 'frame', id: 'epic' } },
+          isCosmeticReward: true,
+          cosmeticLabel: 'Frame: Epic',
+        },
+        {
+          id: "frame_rainbow",
+          title: "Unlock Frame Rainbow — Dapatkan 3 Prismatic",
+          target: 3,
+          progress: 0,
+          badge: "ui/mythical-badge.png",
+          reward: { coins: 10000, cosmetic: { type: 'frame', id: 'rainbow' } },
+          isCosmeticReward: true,
+          cosmeticLabel: 'Frame: Rainbow',
+        },
+        // ── Cosmetic Banner Achievements ──
+        {
+          id: "banner_ocean",
+          title: "Unlock Banner Laut — Lakukan 100 Roll",
+          target: 100,
+          progress: 0,
+          badge: "ui/rare-badge.png",
+          reward: { coins: 500, cosmetic: { type: 'banner', id: 'ocean' } },
+          isCosmeticReward: true,
+          cosmeticLabel: 'Banner: Laut',
+        },
+        {
+          id: "banner_crimson",
+          title: "Unlock Banner Crimson — Dapatkan 50 Mythical",
+          target: 50,
+          progress: 0,
+          badge: "ui/epic-badge.png",
+          reward: { coins: 2000, cosmetic: { type: 'banner', id: 'crimson' } },
+          isCosmeticReward: true,
+          cosmeticLabel: 'Banner: Crimson',
+        },
+        {
+          id: "banner_galaxy",
+          title: "Unlock Banner Galaksi — Dapatkan 5 Galaksi (Coming Soon)",
+          target: 5,
+          progress: 0,
+          badge: "ui/mythical-badge.png",
+          reward: { coins: 5000, cosmetic: { type: 'banner', id: 'galaxy' } },
+          isCosmeticReward: true,
+          cosmeticLabel: 'Banner: Galaksi',
+          comingSoon: true,
+        },
+        {
+          id: "banner_midnight",
+          title: "Unlock Banner Midnight — Dapatkan 1 Secret",
+          target: 1,
+          progress: 0,
+          badge: "ui/legend-badge.png",
+          reward: { coins: 5000, cosmetic: { type: 'banner', id: 'midnight' } },
+          isCosmeticReward: true,
+          cosmeticLabel: 'Banner: Midnight',
+        },
       ];
 
       function generateDailyQuests() {
@@ -3607,7 +4276,8 @@
         const now = new Date();
         const today = now.toDateString();
         const week = getWeekNumber(now);
-        const month = now.getMonth();
+        // Simpan sebagai string agar bulan 0 (Januari) tidak dianggap falsy
+        const month = `${now.getFullYear()}-${now.getMonth()}`;
 
         if (!data.meta || data.meta.daily !== today) {
           data.daily = getRandomQuests(QUEST_POOL.daily, 3);
@@ -3671,13 +4341,14 @@
           .map((q) => ({ ...q, progress: 0, claimed: false }));
       }
 
-      // === Progress Update ===
       function updateQuestProgress(id, amount) {
-        let quests = loadQuests();
+        // Baca raw tanpa trigger reset logika loadQuests()
+        let quests = JSON.parse(localStorage.getItem("quests") || "{}");
         ["daily", "weekly", "monthly"].forEach((cat) => {
+          if (!quests[cat]) return;
           quests[cat].forEach((q) => {
             if (q.id === id && !q.claimed) {
-              q.progress = Math.min(q.target, q.progress + amount);
+              q.progress = Math.min(q.target, (q.progress || 0) + amount);
             }
           });
         });
@@ -3737,7 +4408,14 @@
           if (a.id === id && a.progress >= a.target && !a.claimed) {
             a.claimed = true;
             addCoins(a.reward.coins);
-            showPopup("Achievement Unlocked! +" + a.reward.coins + " Coins");
+            
+            // Cosmetic unlock
+            if (a.reward.cosmetic) {
+              unlockCosmetic(a.reward.cosmetic.type, a.reward.cosmetic.id);
+              showPopup(`${a.cosmeticLabel || 'Kosmetik'} sudah dibuka! +${a.reward.coins} Coins`);
+            } else {
+              showPopup("Achievement Unlocked! +" + a.reward.coins + " Coins");
+            }
 
             // 🔊 mainkan suara cengkrink
             const sfx = document.getElementById("resultSfx");
@@ -3750,6 +4428,10 @@
         saveAchievements(data);
         renderAchievements();
         renderProfileAchievements();
+        // Refresh identity tab if open
+        if (document.getElementById('prfTab-identity')?.classList.contains('active')) {
+          prfRenderIdentity();
+        }
       }
 
       // === Render UI ===
@@ -3790,9 +4472,9 @@ function renderQuests() {
   }
 
   const categories = [
-    { key: 'daily',   title: "☀️ Daily Quests",   timer: timeUntilMidnight() },
-    { key: 'weekly',  title: "📆 Weekly Quests",  timer: timeUntilEndOfWeek() },
-    { key: 'monthly', title: "🌙 Monthly Quests", timer: timeUntilEndOfMonth() }
+    { key: 'daily',   title: "Daily Quests",   timer: timeUntilMidnight() },
+    { key: 'weekly',  title: "Weekly Quests",  timer: timeUntilEndOfWeek() },
+    { key: 'monthly', title: "Monthly Quests", timer: timeUntilEndOfMonth() }
   ];
 
   categories.forEach(cat => {
@@ -3874,7 +4556,7 @@ function refreshQuestGroup(group) {
   } else if (group === "weekly") {
     quests.meta.weekly = getWeekNumber(now);
   } else if (group === "monthly") {
-    quests.meta.monthly = now.getMonth();
+    quests.meta.monthly = `${now.getFullYear()}-${now.getMonth()}`;
   }
 
   saveQuests(quests);
@@ -3889,8 +4571,11 @@ function refreshQuestGroup(group) {
         let container = document.getElementById("achievementTab");
         container.innerHTML = "";
 
-        container.innerHTML += `<h3 class="quest-section">🏆 Achievements</h3>`;
-        data.forEach((a) => {
+        const normalAchs = data.filter(a => !a.isCosmeticReward);
+        const cosmeticAchs = data.filter(a => a.isCosmeticReward);
+
+        container.innerHTML += `<h3 class="quest-section">Achievements</h3>`;
+        normalAchs.forEach((a) => {
           let percent = (a.progress / a.target) * 100;
           container.innerHTML += `
       <div class="quest-card">
@@ -3900,7 +4585,7 @@ function refreshQuestGroup(group) {
         
         <div class="reward-text">Reward:</div>
         <div style="display:flex; flex-direction:column; align-items:center; gap:6px;">
-          <div class="coin-reward">🪙 ${a.reward.coins} Coins</div>
+          <div class="coin-reward">+ ${a.reward.coins} Coins</div>
           <div class="badge-preview">
             <img src="${a.badge}" alt="Badge Reward" loading="lazy" />
           </div>
@@ -3909,7 +4594,59 @@ function refreshQuestGroup(group) {
         <button class="pill claim-btn" onclick="claimAchievement('${a.id}')" ${
             a.claimed ? "disabled" : ""
           }>
-          ${a.claimed ? "🏅 Unlocked" : "Claim"}
+          ${a.claimed ? "Unlocked" : "Claim"}
+        </button>
+      </div>
+    `;
+        });
+
+        // ── COSMETIC SEPARATOR ──
+        container.innerHTML += `
+          <hr class="achievement-divider">
+          <h3 class="quest-section">Kosmetik Achievement</h3>
+          <p class="achievement-hint">Selesaikan tantangan ini untuk unlock Frame dan Banner eksklusif!</p>
+        `;
+
+        cosmeticAchs.forEach((a) => {
+          let percent = (a.progress / a.target) * 100;
+          const cosType = a.reward.cosmetic?.type;
+          const cosId   = a.reward.cosmetic?.id;
+          const alreadyOwned = isCosmeticUnlocked(cosType, cosId);
+
+          // Build cosmetic preview element
+          let previewHtml = '';
+          if (cosType === 'frame') {
+            const f = PRF_FRAMES.find(x => x.id === cosId);
+            previewHtml = `
+              <div class="ach-cosmetic-preview ach-frame-preview">
+                <div class="ach-frame-circle" style="${f ? f.style : ''}"></div>
+              </div>`;
+          } else if (cosType === 'banner') {
+            const b = PRF_BANNERS.find(x => x.id === cosId);
+            previewHtml = `
+              <div class="ach-cosmetic-preview ach-banner-preview" style="background:${b ? b.bg : '#1a1a2e'}">
+                <span class="ach-banner-label">${b ? b.label : ''}</span>
+              </div>`;
+          }
+
+          const isComingSoon = !!a.comingSoon;
+
+          container.innerHTML += `
+      <div class="quest-card quest-card-cosmetic${isComingSoon ? ' quest-card-coming-soon' : ''}">
+        <div class="quest-title">${a.title}${isComingSoon ? ' <span class="coming-soon-badge">Coming Soon</span>' : ''}</div>
+        <div class="progress-text">Progress: ${a.progress} / ${a.target}</div>
+        <div class="progress-bar"><div class="fill" style="width:${(a.progress / a.target) * 100}%"></div></div>
+        
+        <div class="reward-text">Reward:</div>
+        <div style="display:flex; flex-direction:column; align-items:center; gap:8px;">
+          <div class="coin-reward">+ ${a.reward.coins} Coins</div>
+          ${previewHtml}
+        </div>
+
+        <button class="pill claim-btn" onclick="claimAchievement('${a.id}')" ${
+            a.claimed || alreadyOwned || isComingSoon ? "disabled" : ""
+          }>
+          ${a.claimed || alreadyOwned ? "Dimiliki" : isComingSoon ? "Coming Soon" : "Claim & Unlock"}
         </button>
       </div>
     `;
@@ -3941,32 +4678,29 @@ function refreshQuestGroup(group) {
       }
 
       function updateAchievements(event, value = 1) {
-        let achievements = JSON.parse(
-          localStorage.getItem("achievements") || "{}"
-        );
+        // Pakai loadAchievements() supaya format selalu array & sinkron
+        let achievements = loadAchievements();
 
-        ACHIEVEMENTS.forEach((a) => {
-          // pastikan objek achievement ada
-          if (!achievements[a.id]) {
-            achievements[a.id] = { progress: 0, claimed: false };
-          }
+        const eventMap = {
+          rare:      ['rare10', 'frame_rare'],
+          epic:      ['epic20', 'frame_epic'],
+          legend:    ['legend5'],
+          mythical:  ['mythical3', 'banner_crimson'],
+          prismatic: ['frame_rainbow'],
+          secret:    ['banner_midnight'],
+          roll:      ['banner_ocean'],
+          sell:      [],
+        };
 
-          // logika update progres sesuai event
-          if (event === "rare" && a.id === "rare10") {
-            achievements[a.id].progress += value;
-          }
-          if (event === "legend" && a.id === "legend5") {
-            achievements[a.id].progress += value;
-          }
-          if (event === "epic" && a.id === "epic20") {
-            achievements[a.id].progress += value;
-          }
-          if (event === "mythical" && a.id === "mythical3") {
-            achievements[a.id].progress += value;
-          }
+        const targets = eventMap[event] || [];
+
+        achievements.forEach((a) => {
+          if (!targets.includes(a.id)) return;
+          if (a.claimed) return;
+          a.progress = Math.min(a.target, (a.progress || 0) + value);
         });
 
-        localStorage.setItem("achievements", JSON.stringify(achievements));
+        saveAchievements(achievements);
       }
 
       // === Tab Switch ===
