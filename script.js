@@ -2,7 +2,7 @@
        * ======= KONFIGURASI =======
        *******************************/
 
-      const CURRENT_UPDATE_VERSION = "1.9";
+      const CURRENT_UPDATE_VERSION = "2.0";
 
       // Rarity & tampilannya
       const RARITIES = [
@@ -2276,6 +2276,14 @@
           });
 
           localStorage.setItem(LS_KEY_INVENTORY, JSON.stringify(updated));
+
+          // ❌ Semua item yang dipilih terkunci — gained=0, batalkan
+          if (gained === 0) {
+            try { const s = document.getElementById('errorSfx'); s.currentTime = 0; s.play(); } catch(e) {}
+            showErrorPopup("❌ Item yang dipilih terkunci, tidak bisa dijual!");
+            return;
+          }
+
           // 💰 Tambahkan koin (selalu sync dengan localStorage dulu)
           let currentCoins = parseInt(localStorage.getItem("coins") || "0");
           currentCoins += gained;
@@ -2996,7 +3004,8 @@
       function buyCosmeticItem(type, id, price) {
         let coins = parseInt(localStorage.getItem('coins') || '0');
         if (coins < price) {
-          showPopup('❌ Coins tidak cukup!');
+          try { const s = document.getElementById('errorSfx'); s.currentTime = 0; s.play(); } catch(e) {}
+          showErrorPopup('❌ Coins tidak cukup!');
           return;
         }
         if (isCosmeticUnlocked(type, id)) {
@@ -3006,6 +3015,14 @@
         coins -= price;
         localStorage.setItem('coins', coins);
         updateCoinUI();
+
+        // 🎵 SFX coin
+        try {
+          const coinSfx = document.getElementById("coinSfx");
+          coinSfx.currentTime = 0;
+          coinSfx.play();
+        } catch (e) {}
+
         unlockCosmetic(type, id);
         const label = type === 'frame'
           ? (PRF_FRAMES.find(x=>x.id===id)?.label || id)
@@ -3085,6 +3102,22 @@
       // ========= UPDATE LOG DATA =========
       const UPDATE_LOGS = [
         {
+          version: "MAJOR-UPD-2.0",
+          image: "ui/update-2.0.jpg",
+          notes: [
+            "⚙️ Fixing store bugs!",
+            "⚙️ Fixing achievements & quest logic!",
+            "🛠️ Remake UI/UX Design",
+            "😄 New small lobby design",
+            "😄 New Profile features & layout design!, new 3 tab identity,statistic,settings",
+            "🖥️ Adding New achievement quest and design!",
+            "🖥️ New & Remake Store Tab, new tab 'Cosmetic' Tab!",
+            "📢 New update overlay UI design!",
+            "📦 New UI design inventory plenger overlay!",
+            "🎴 New 50 plenger card!",
+          ],
+        },
+        {
           version: "UPD-1.9",
           image: "ui/update-1.9.jpg",
           notes: [
@@ -3154,63 +3187,84 @@
         const updateIndicator = document.getElementById("updateIndicator");
         if (updateIndicator) updateIndicator.classList.add("hidden");
 
+        // Build version bar (horizontal pill tabs)
+        const versionBar = document.getElementById("updateVersionBar");
         const updateContent = document.getElementById("updateContent");
-        const updateList = document.getElementById("updateList");
+        if (!versionBar || !updateContent) return;
+
+        versionBar.innerHTML = "";
         updateContent.innerHTML = "";
-        updateList.innerHTML = "";
 
         UPDATE_LOGS.forEach((log, index) => {
-          const btn = document.createElement("div");
-          btn.className = "card";
-          btn.style.cursor = "pointer";
-          btn.style.border = index === 0 ? "2px solid yellow" : "";
-          btn.innerHTML = `
-      <div style="display:flex; align-items:center; gap:6px;">
-        <div class="active-dot" style="width:10px; height:10px; border-radius:50%; background:transparent;"></div>
-        <div style="max-width:190px; max-height:170px;">
-          <div class="frame">
-            <img src="${log.image}" style="width:100%; height:90%; object-fit:cover;" loading="lazy" />
-          </div>
-          <div style="font-size:9px; text-align:center; margin-top:4px; word-wrap:break-word;">
-            ${log.version}
-          </div>
-        </div>
-      </div>
-    `;
+          const pill = document.createElement("button");
+          pill.className = "upd-version-pill" + (index === 0 ? " active" : "");
+          pill.dataset.index = index;
 
-          btn.onclick = () => {
+          // Badge "NEW" hanya untuk versi terbaru
+          const isLatest = index === 0;
+          pill.innerHTML = isLatest
+            ? `${log.version} <span class="upd-new-badge">NEW</span>`
+            : log.version;
+
+          pill.onclick = () => {
+            versionBar.querySelectorAll(".upd-version-pill").forEach(p => p.classList.remove("active"));
+            pill.classList.add("active");
             renderUpdateDetail(log);
-
-            // Hapus border dan indikator dari semua
-            const allButtons = updateList.querySelectorAll(".card");
-            allButtons.forEach((b) => {
-              b.style.border = "";
-              const dot = b.querySelector(".active-dot");
-              if (dot) dot.style.background = "transparent";
-            });
-
-            // Tambahkan ke tombol aktif
-            btn.style.border = "2px solid yellow";
-            const dot = btn.querySelector(".active-dot");
-            if (dot) dot.style.background = "deepskyblue";
           };
 
-          updateList.appendChild(btn);
+          versionBar.appendChild(pill);
 
           if (index === 0) renderUpdateDetail(log);
+        });
+
+        // Drag-to-scroll untuk laptop (mouse drag horizontal)
+        let isDown = false, startX, scrollLeft;
+        versionBar.addEventListener('mousedown', (e) => {
+          isDown = true;
+          versionBar.classList.add('grabbing');
+          startX = e.pageX - versionBar.offsetLeft;
+          scrollLeft = versionBar.scrollLeft;
+        });
+        versionBar.addEventListener('mouseleave', () => {
+          isDown = false;
+          versionBar.classList.remove('grabbing');
+        });
+        versionBar.addEventListener('mouseup', () => {
+          isDown = false;
+          versionBar.classList.remove('grabbing');
+        });
+        versionBar.addEventListener('mousemove', (e) => {
+          if (!isDown) return;
+          e.preventDefault();
+          const x = e.pageX - versionBar.offsetLeft;
+          const walk = (x - startX) * 1.5;
+          versionBar.scrollLeft = scrollLeft - walk;
         });
       }
 
       function renderUpdateDetail(log) {
         const updateContent = document.getElementById("updateContent");
+        if (!updateContent) return;
+
         updateContent.innerHTML = `
-    <h3 style="margin-bottom: 12px;">${log.version}</h3>
-    <ul style="font-size: 10px; padding-left: 16px;">
-      ${log.notes
-        .map((note) => `<li style="margin-bottom: 6px;">${note}</li>`)
-        .join("")}
-    </ul>
-  `;
+          <div class="upd-detail-header">
+            <div class="upd-detail-img-wrap">
+              <img src="${log.image}" alt="${log.version}" class="upd-detail-img" loading="lazy" />
+            </div>
+            <div class="upd-detail-meta">
+              <div class="upd-detail-version">${log.version}</div>
+              <div class="upd-detail-count">${log.notes.length} pembaruan</div>
+            </div>
+          </div>
+          <div class="upd-notes-list">
+            ${log.notes.map(note => `
+              <div class="upd-note-item">
+                <span class="upd-note-dot"></span>
+                <span class="upd-note-text">${note}</span>
+              </div>
+            `).join("")}
+          </div>
+        `;
       }
 
       function closeUpdateLog() {
@@ -3810,7 +3864,7 @@
             el.innerHTML = `<div class="prf-frame-dot" style="${f.style}"></div><span>${f.label}</span>${lockLabel}`;
             el.onclick = () => {
               if (!unlocked) {
-                const errSfx = document.getElementById('errorSfx'); if (errSfx) { errSfx.currentTime = 0; errSfx.play().catch(()=>{}); }
+                try { const s = document.getElementById('errorSfx'); s.currentTime = 0; s.play(); } catch(e) {}
                 if (f.unlock === 'buy') showErrorPopup(`🔒 Beli frame ini di Store → Kosmetik`);
                 else showErrorPopup(`🔒 Selesaikan achievement untuk membuka frame ini!`);
                 return;
@@ -3845,7 +3899,7 @@
             el.innerHTML = `<span>${b.label}</span>${lockLabel}`;
             el.onclick = () => {
               if (!unlocked) {
-                const errSfx2 = document.getElementById('errorSfx'); if (errSfx2) { errSfx2.currentTime = 0; errSfx2.play().catch(()=>{}); }
+                try { const s = document.getElementById('errorSfx'); s.currentTime = 0; s.play(); } catch(e) {}
                 if (b.unlock === 'buy') showErrorPopup(`🔒 Beli banner ini di Store → Kosmetik`);
                 else showErrorPopup(`🔒 Selesaikan achievement untuk membuka banner ini!`);
                 return;
@@ -4150,6 +4204,11 @@
         ],
       };
 
+      // Naikkan versi ini setiap kamu mengubah daftar ACHIEVEMENTS (tambah/hapus/ubah id).
+      // loadAchievements() otomatis bersihkan entry lama & tambah entry baru,
+      // tapi progress achievement yg masih valid tetap dipertahankan.
+      const ACHIEVEMENTS_VERSION = "2";
+
       const ACHIEVEMENTS = [
         {
           id: "rare10",
@@ -4189,7 +4248,7 @@
           title: "Unlock Frame Rare — Dapatkan 100 Rare",
           target: 100,
           progress: 0,
-          badge: "ui/rare-badge.png",
+          // badge: "ui/rare-badge.png",
           reward: { coins: 1000, cosmetic: { type: 'frame', id: 'rare' } },
           isCosmeticReward: true,
           cosmeticLabel: 'Frame: Rare',
@@ -4199,7 +4258,7 @@
           title: "Unlock Frame Epic — Dapatkan 50 Epic",
           target: 50,
           progress: 0,
-          badge: "ui/epic-badge.png",
+          // badge: "ui/epic-badge.png",
           reward: { coins: 2000, cosmetic: { type: 'frame', id: 'epic' } },
           isCosmeticReward: true,
           cosmeticLabel: 'Frame: Epic',
@@ -4209,7 +4268,7 @@
           title: "Unlock Frame Rainbow — Dapatkan 3 Prismatic",
           target: 3,
           progress: 0,
-          badge: "ui/mythical-badge.png",
+          // badge: "ui/mythical-badge.png",
           reward: { coins: 10000, cosmetic: { type: 'frame', id: 'rainbow' } },
           isCosmeticReward: true,
           cosmeticLabel: 'Frame: Rainbow',
@@ -4220,7 +4279,7 @@
           title: "Unlock Banner Laut — Lakukan 100 Roll",
           target: 100,
           progress: 0,
-          badge: "ui/rare-badge.png",
+          // badge: "ui/rare-badge.png",
           reward: { coins: 500, cosmetic: { type: 'banner', id: 'ocean' } },
           isCosmeticReward: true,
           cosmeticLabel: 'Banner: Laut',
@@ -4230,7 +4289,7 @@
           title: "Unlock Banner Crimson — Dapatkan 50 Mythical",
           target: 50,
           progress: 0,
-          badge: "ui/epic-badge.png",
+          // badge: "ui/epic-badge.png",
           reward: { coins: 2000, cosmetic: { type: 'banner', id: 'crimson' } },
           isCosmeticReward: true,
           cosmeticLabel: 'Banner: Crimson',
@@ -4240,7 +4299,7 @@
           title: "Unlock Banner Galaksi — Dapatkan 5 Galaksi (Coming Soon)",
           target: 5,
           progress: 0,
-          badge: "ui/mythical-badge.png",
+          // badge: "ui/mythical-badge.png",
           reward: { coins: 5000, cosmetic: { type: 'banner', id: 'galaxy' } },
           isCosmeticReward: true,
           cosmeticLabel: 'Banner: Galaksi',
@@ -4251,7 +4310,7 @@
           title: "Unlock Banner Midnight — Dapatkan 1 Secret",
           target: 1,
           progress: 0,
-          badge: "ui/legend-badge.png",
+          // badge: "ui/legend-badge.png",
           reward: { coins: 5000, cosmetic: { type: 'banner', id: 'midnight' } },
           isCosmeticReward: true,
           cosmeticLabel: 'Banner: Midnight',
@@ -4314,14 +4373,31 @@
           saved = JSON.parse(localStorage.getItem("achievements") || "[]");
         } catch (e) {}
 
-        // merge: pastikan semua dari ACHIEVEMENTS ada, dan badge selalu di-sync
+        const validIds = new Set(ACHIEVEMENTS.map(a => a.id));
+        const storedVersion = localStorage.getItem("achievementsVersion") || "0";
+
+        // Kalau versi berubah: buang entry lama yang id-nya sudah tidak ada
+        // di daftar ACHIEVEMENTS terbaru. Progress entry yang masih valid tetap dipertahankan.
+        if (storedVersion !== ACHIEVEMENTS_VERSION) {
+          saved = saved.filter(a => validIds.has(a.id));
+          localStorage.setItem("achievementsVersion", ACHIEVEMENTS_VERSION);
+        }
+
+        // Tambah entry baru & sync field statis (badge, title, target, reward, flags)
         ACHIEVEMENTS.forEach((def) => {
           let found = saved.find((a) => a.id === def.id);
           if (!found) {
+            // Entry baru — mulai dari nol
             saved.push({ ...def, progress: 0, claimed: false });
           } else {
-            // selalu update badge dari definisi terbaru supaya path tidak stale
-            found.badge = def.badge;
+            // Sync field statis supaya perubahan definisi langsung berlaku
+            found.badge        = def.badge;
+            found.title        = def.title;
+            found.target       = def.target;
+            found.reward       = def.reward;
+            found.isCosmeticReward = def.isCosmeticReward ?? false;
+            found.cosmeticLabel    = def.cosmeticLabel ?? '';
+            found.comingSoon       = def.comingSoon ?? false;
           }
         });
 
@@ -4404,6 +4480,15 @@
 
       function claimAchievement(id) {
         let data = loadAchievements();
+        const a = data.find(x => x.id === id);
+
+        // Belum memenuhi syarat
+        if (a && !a.claimed && a.progress < a.target) {
+          try { const s = document.getElementById('errorSfx'); s.currentTime = 0; s.play(); } catch(e) {}
+          showErrorPopup(`❌ Belum selesai! Progress: ${a.progress} / ${a.target}`);
+          return;
+        }
+
         data.forEach((a) => {
           if (a.id === id && a.progress >= a.target && !a.claimed) {
             a.claimed = true;
@@ -4443,7 +4528,6 @@ function renderQuests() {
 
   const now = new Date();
 
-  // hitung sisa waktu untuk tiap periode
   function timeUntilMidnight() {
     const tomorrow = new Date(now);
     tomorrow.setDate(tomorrow.getDate() + 1);
@@ -4451,7 +4535,7 @@ function renderQuests() {
     return formatDuration(tomorrow - now);
   }
   function timeUntilEndOfWeek() {
-    const day = now.getDay(); // 0=minggu
+    const day = now.getDay();
     const daysUntilMonday = day === 0 ? 1 : 8 - day;
     const next = new Date(now);
     next.setDate(next.getDate() + daysUntilMonday);
@@ -4472,45 +4556,62 @@ function renderQuests() {
   }
 
   const categories = [
-    { key: 'daily',   title: "Daily Quests",   timer: timeUntilMidnight() },
-    { key: 'weekly',  title: "Weekly Quests",  timer: timeUntilEndOfWeek() },
-    { key: 'monthly', title: "Monthly Quests", timer: timeUntilEndOfMonth() }
+    { key: 'daily',   title: "Daily Quests",   timer: timeUntilMidnight(),    icon: '☀️', accent: '#ffd700' },
+    { key: 'weekly',  title: "Weekly Quests",  timer: timeUntilEndOfWeek(),   icon: '📅', accent: '#00c6ff' },
+    { key: 'monthly', title: "Monthly Quests", timer: timeUntilEndOfMonth(),  icon: '🌙', accent: '#b97fff' }
   ];
 
   categories.forEach(cat => {
     let list = data[cat.key];
     if (!list) return;
 
-    let allClaimed = list.every(q => q.claimed);
+    const allClaimed = list.every(q => q.claimed);
+    const claimedCount = list.filter(q => q.claimed).length;
 
-    // header section — tombol refresh di dalam header (tidak terpisah)
     container.innerHTML += `
-      <div class="quest-section">
-        <div class="quest-header">
-          <span>${cat.title}</span>
+      <div class="qsec-header">
+        <div class="qsec-left">
+          <span class="qsec-icon">${cat.icon}</span>
+          <span class="qsec-title" style="color:${cat.accent}">${cat.title}</span>
+          <span class="qsec-count">${claimedCount}/${list.length}</span>
+        </div>
+        <div class="qsec-right">
           ${allClaimed
-            ? `<button class="refresh-btn" onclick="refreshQuestGroup('${cat.key}')">🔄 Refresh</button>`
-            : `<span class="quest-timer">⏳ ${cat.timer}</span>`
+            ? `<button class="qsec-refresh-btn" onclick="refreshQuestGroup('${cat.key}')">🔄 Refresh</button>`
+            : `<span class="qsec-timer">⏳ ${cat.timer}</span>`
           }
         </div>
       </div>
     `;
 
     list.forEach(q => {
-      let percent = (q.progress / q.target) * 100;
+      const percent = Math.min(100, (q.progress / q.target) * 100);
+      const isDone = q.progress >= q.target;
+      const isClaimed = q.claimed;
+
+      const rewardCoins = q.reward.coins ? `<span class="qcard-reward-coin">💰 ${q.reward.coins.toLocaleString()}</span>` : '';
+      const rewardPotions = q.reward.potions
+        ? q.reward.potions.map(p => `<span class="qcard-reward-potion">🧪 ${p.amount}× ${p.type} x${p.mult}</span>`).join('')
+        : '';
+
       container.innerHTML += `
-        <div class="quest-card">
-          <div class="quest-title">${q.title}</div>
-          <div class="progress-text">Progress: ${q.progress} / ${q.target}</div>
-          <div class="progress-bar"><div class="fill" style="width:${percent}%"></div></div>
-          <div class="reward-text">
-            Reward:
-            ${q.reward.coins ? q.reward.coins + " 💰" : ""}
-            ${q.reward.potions ? q.reward.potions.map(p => ` + ${p.amount}🧪(${p.type}${p.mult ? " x" + p.mult : ""})`).join("") : ""}
+        <div class="qcard${isClaimed ? ' qcard-done' : ''}">
+          <div class="qcard-top">
+            <div class="qcard-title">${q.title}</div>
+            ${isClaimed ? '<span class="qcard-claimed-badge">✔ Claimed</span>' : ''}
           </div>
-          <button class="pill claim-btn" onclick="claimQuest('${q.id}')" ${q.claimed || q.progress < q.target ? "disabled" : ""}>
-            ${q.claimed ? "✔ Claimed" : "Claim"}
-          </button>
+          <div class="qcard-progress-row">
+            <div class="qcard-bar-wrap">
+              <div class="qcard-bar-fill" style="width:${percent}%; background:${cat.accent}"></div>
+            </div>
+            <span class="qcard-progress-label">${q.progress} / ${q.target}</span>
+          </div>
+          <div class="qcard-footer">
+            <div class="qcard-rewards">${rewardCoins}${rewardPotions}</div>
+            <button class="qcard-claim-btn" onclick="claimQuest('${q.id}')" ${isClaimed || !isDone ? 'disabled' : ''}>
+              ${isClaimed ? 'Claimed' : isDone ? 'Claim!' : 'Claim'}
+            </button>
+          </div>
         </div>
       `;
     });
@@ -4574,82 +4675,93 @@ function refreshQuestGroup(group) {
         const normalAchs = data.filter(a => !a.isCosmeticReward);
         const cosmeticAchs = data.filter(a => a.isCosmeticReward);
 
-        container.innerHTML += `<h3 class="quest-section">Achievements</h3>`;
-        normalAchs.forEach((a) => {
-          let percent = (a.progress / a.target) * 100;
-          container.innerHTML += `
-      <div class="quest-card">
-        <div class="quest-title">${a.title}</div>
-        <div class="progress-text">Progress: ${a.progress} / ${a.target}</div>
-        <div class="progress-bar"><div class="fill" style="width:${percent}%"></div></div>
-        
-        <div class="reward-text">Reward:</div>
-        <div style="display:flex; flex-direction:column; align-items:center; gap:6px;">
-          <div class="coin-reward">+ ${a.reward.coins} Coins</div>
-          <div class="badge-preview">
-            <img src="${a.badge}" alt="Badge Reward" loading="lazy" />
-          </div>
-        </div>
+        // ── Normal Achievements ──
+        container.innerHTML += `
+          <div class="qsec-header">
+            <div class="qsec-left">
+              <span class="qsec-icon">🏅</span>
+              <span class="qsec-title" style="color:#ffd700">Achievements</span>
+              <span class="qsec-count">${normalAchs.filter(a=>a.claimed).length}/${normalAchs.length}</span>
+            </div>
+          </div>`;
 
-        <button class="pill claim-btn" onclick="claimAchievement('${a.id}')" ${
-            a.claimed ? "disabled" : ""
-          }>
-          ${a.claimed ? "Unlocked" : "Claim"}
-        </button>
-      </div>
-    `;
+        normalAchs.forEach((a) => {
+          const percent = Math.min(100, (a.progress / a.target) * 100);
+          const isDone = a.progress >= a.target;
+          container.innerHTML += `
+            <div class="qcard${a.claimed ? ' qcard-done' : ''}">
+              <div class="qcard-top">
+                <div class="qcard-title">${a.title}</div>
+                ${a.claimed ? '<span class="qcard-claimed-badge">✔ Unlocked</span>' : ''}
+              </div>
+              <div class="qcard-progress-row">
+                <div class="qcard-bar-wrap">
+                  <div class="qcard-bar-fill" style="width:${percent}%; background:#ffd700"></div>
+                </div>
+                <span class="qcard-progress-label">${a.progress} / ${a.target}</span>
+              </div>
+              <div class="qcard-footer">
+                <div class="qcard-rewards">
+                  <span class="qcard-reward-coin">💰 ${a.reward.coins?.toLocaleString()}</span>
+                  ${a.badge ? `<div class="qcard-badge-mini"><img src="${a.badge}" alt="badge" loading="lazy"/></div>` : ''}
+                </div>
+                <button class="qcard-claim-btn" onclick="claimAchievement('${a.id}')" ${a.claimed ? 'disabled' : ''}>
+                  ${a.claimed ? 'Claimed' : isDone ? 'Claim!' : 'Claim'}
+                </button>
+              </div>
+            </div>`;
         });
 
-        // ── COSMETIC SEPARATOR ──
+        // ── Cosmetic Achievements ──
         container.innerHTML += `
-          <hr class="achievement-divider">
-          <h3 class="quest-section">Kosmetik Achievement</h3>
-          <p class="achievement-hint">Selesaikan tantangan ini untuk unlock Frame dan Banner eksklusif!</p>
-        `;
+          <div class="qsec-header" style="margin-top:8px">
+            <div class="qsec-left">
+              <span class="qsec-icon">✨</span>
+              <span class="qsec-title" style="color:#b97fff">Kosmetik Achievement</span>
+              <span class="qsec-count">${cosmeticAchs.filter(a=>a.claimed).length}/${cosmeticAchs.length}</span>
+            </div>
+          </div>
+          <p class="achievement-hint">Selesaikan tantangan ini untuk unlock Frame & Banner eksklusif!</p>`;
 
         cosmeticAchs.forEach((a) => {
-          let percent = (a.progress / a.target) * 100;
+          const percent = Math.min(100, (a.progress / a.target) * 100);
           const cosType = a.reward.cosmetic?.type;
           const cosId   = a.reward.cosmetic?.id;
           const alreadyOwned = isCosmeticUnlocked(cosType, cosId);
+          const isComingSoon = !!a.comingSoon;
+          const isDone = a.progress >= a.target;
 
-          // Build cosmetic preview element
           let previewHtml = '';
           if (cosType === 'frame') {
             const f = PRF_FRAMES.find(x => x.id === cosId);
-            previewHtml = `
-              <div class="ach-cosmetic-preview ach-frame-preview">
-                <div class="ach-frame-circle" style="${f ? f.style : ''}"></div>
-              </div>`;
+            previewHtml = `<div class="ach-frame-circle" style="${f ? f.style : ''}"></div>`;
           } else if (cosType === 'banner') {
             const b = PRF_BANNERS.find(x => x.id === cosId);
-            previewHtml = `
-              <div class="ach-cosmetic-preview ach-banner-preview" style="background:${b ? b.bg : '#1a1a2e'}">
-                <span class="ach-banner-label">${b ? b.label : ''}</span>
-              </div>`;
+            previewHtml = `<div class="ach-banner-strip" style="background:${b ? b.bg : '#1a1a2e'}">${b ? b.label : ''}</div>`;
           }
 
-          const isComingSoon = !!a.comingSoon;
-
           container.innerHTML += `
-      <div class="quest-card quest-card-cosmetic${isComingSoon ? ' quest-card-coming-soon' : ''}">
-        <div class="quest-title">${a.title}${isComingSoon ? ' <span class="coming-soon-badge">Coming Soon</span>' : ''}</div>
-        <div class="progress-text">Progress: ${a.progress} / ${a.target}</div>
-        <div class="progress-bar"><div class="fill" style="width:${(a.progress / a.target) * 100}%"></div></div>
-        
-        <div class="reward-text">Reward:</div>
-        <div style="display:flex; flex-direction:column; align-items:center; gap:8px;">
-          <div class="coin-reward">+ ${a.reward.coins} Coins</div>
-          ${previewHtml}
-        </div>
-
-        <button class="pill claim-btn" onclick="claimAchievement('${a.id}')" ${
-            a.claimed || alreadyOwned || isComingSoon ? "disabled" : ""
-          }>
-          ${a.claimed || alreadyOwned ? "Dimiliki" : isComingSoon ? "Coming Soon" : "Claim & Unlock"}
-        </button>
-      </div>
-    `;
+            <div class="qcard qcard-cosmetic${a.claimed||alreadyOwned?' qcard-done':''}${isComingSoon?' qcard-coming-soon':''}">
+              <div class="qcard-top">
+                <div class="qcard-title">${a.title}${isComingSoon ? ' <span class="coming-soon-badge">Coming Soon</span>' : ''}</div>
+                ${a.claimed||alreadyOwned ? '<span class="qcard-claimed-badge">✔ Dimiliki</span>' : ''}
+              </div>
+              <div class="qcard-progress-row">
+                <div class="qcard-bar-wrap">
+                  <div class="qcard-bar-fill" style="width:${percent}%; background:#b97fff"></div>
+                </div>
+                <span class="qcard-progress-label">${a.progress} / ${a.target}</span>
+              </div>
+              <div class="qcard-footer">
+                <div class="qcard-rewards">
+                  <span class="qcard-reward-coin">💰 ${a.reward.coins?.toLocaleString()}</span>
+                  ${previewHtml}
+                </div>
+                <button class="qcard-claim-btn qcard-claim-cosmetic" onclick="claimAchievement('${a.id}')" ${a.claimed||alreadyOwned||isComingSoon?'disabled':''}>
+                  ${a.claimed||alreadyOwned ? 'Dimiliki' : isComingSoon ? 'Coming Soon' : isDone ? 'Claim!' : 'Claim'}
+                </button>
+              </div>
+            </div>`;
         });
       }
 
@@ -4661,6 +4773,9 @@ function refreshQuestGroup(group) {
         container.innerHTML = "";
 
         data.forEach((a) => {
+          // Skip achievement yang tidak punya badge (cosmetic reward)
+          if (!a.badge) return;
+
           const img = document.createElement("img");
           img.src = a.badge;
           img.alt = a.title;
@@ -4708,6 +4823,11 @@ function refreshQuestGroup(group) {
         document.getElementById("questTab").classList.add("hidden");
         document.getElementById("achievementTab").classList.add("hidden");
         document.getElementById(tab + "Tab").classList.remove("hidden");
+
+        // sync pill active state
+        document.querySelectorAll('.quest-tab-pill').forEach(p => p.classList.remove('active'));
+        const activePill = document.getElementById('qtab-' + tab);
+        if (activePill) activePill.classList.add('active');
       }
 
       // === Overlay ===
