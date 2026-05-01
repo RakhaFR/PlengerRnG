@@ -1801,6 +1801,20 @@ footer {
   will-change: transform, opacity, filter;
 }
 
+/* Partikel dimatikan → rolling text pakai animasi ringan */
+.prf-no-particle .rolling-text {
+  text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+  animation: slideDownFadeLight 0.35s ease-out;
+  will-change: unset;
+}
+
+@keyframes slideDownFadeLight {
+  0%   { transform: translateY(-12px); opacity: 0; }
+  30%  { transform: translateY(0);     opacity: 1; }
+  80%  { transform: translateY(0);     opacity: 1; }
+  100% { transform: translateY(10px);  opacity: 0; }
+}
+
 @media (max-width: 768px) {
   .rolling-text {
     font-size: 20px;
@@ -6337,4 +6351,63 @@ footer {
     grid-template-columns: repeat(2, 1fr);
     gap: 8px;
   }
+}
+
+/* ── Hotkeys section di settings ── */
+.prf-hotkey-pc-badge {
+  display: inline-block;
+  font-size: 8px;
+  font-family: sans-serif;
+  font-weight: 600;
+  background: rgba(100,180,255,0.15);
+  border: 1px solid rgba(100,180,255,0.3);
+  color: #6ab4ff;
+  border-radius: 6px;
+  padding: 2px 8px;
+  margin-left: 8px;
+  vertical-align: middle;
+  letter-spacing: 0.5px;
+}
+
+.prf-hotkey-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 16px;
+  padding: 10px 0 4px;
+}
+
+.prf-hotkey-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: rgba(255,255,255,0.6);
+}
+.prf-hotkey-row span {
+  color: rgba(255,255,255,0.75);
+}
+
+kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 26px;
+  height: 22px;
+  padding: 0 6px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-bottom: 2px solid rgba(255,255,255,0.15);
+  border-radius: 5px;
+  font-family: "Press Start 2P", monospace;
+  font-size: 7px;
+  color: #fff;
+  white-space: nowrap;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+/* prf-no-particle: sembunyikan ambient flash via CSS juga sebagai backup */
+.prf-no-particle .ambient-flash,
+.prf-no-particle .vignette-flash,
+.prf-no-particle .secret-sparkle {
+  display: none !important;
 }

@@ -1175,6 +1175,9 @@
       }
 
       function spawnAmbientFlash(rarity) {
+        // Skip jika partikel dimatikan
+        if (document.body.classList.contains('prf-no-particle')) return;
+
         // Remove existing flashes
         document.querySelectorAll(".ambient-flash, .vignette-flash").forEach(el => el.remove());
 
@@ -2410,7 +2413,64 @@
 
       // ESC untuk tutup modal
       document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") closeInventory();
+        // Jangan aktifkan hotkey saat user sedang mengetik di input/textarea
+        const tag = document.activeElement?.tagName;
+        if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') return;
+
+        // Jangan aktifkan saat ada overlay modal lain yang terbuka (kecuali Escape)
+        const anyOverlayOpen = () =>
+          ['inventoryOverlay','storeOverlay','questOverlay','profileOverlay',
+           'updateLogOverlay','potionInventoryOverlay'].some(id =>
+            document.getElementById(id)?.classList.contains('show')
+          );
+
+        switch (e.key) {
+          // ── Escape: tutup semua overlay ──
+          case 'Escape':
+            closeInventory();
+            closeStore?.();
+            closeQuestOverlay?.();
+            closeProfile?.();
+            closeUpdateLog?.();
+            closePotionInventory?.();
+            break;
+
+          // ── Hotkey buka/tutup (toggle) ──
+          case 'i': case 'I':
+            if (!anyOverlayOpen()) openInventory();
+            else closeInventory();
+            break;
+
+          case 's': case 'S':
+            if (!anyOverlayOpen()) openStore?.();
+            else closeStore?.();
+            break;
+
+          case 'q': case 'Q':
+            if (!anyOverlayOpen()) openQuestOverlay?.();
+            else closeQuestOverlay?.();
+            break;
+
+          case 'p': case 'P':
+            if (!anyOverlayOpen()) openProfile?.();
+            else closeProfile?.();
+            break;
+
+          case 'u': case 'U':
+            if (!anyOverlayOpen()) openUpdateLog?.();
+            else closeUpdateLog?.();
+            break;
+
+          // ── Roll: Space atau R ──
+          case ' ':
+          case 'r': case 'R':
+            if (!anyOverlayOpen()) {
+              e.preventDefault();
+              const rollBtn = document.getElementById('rollBtn');
+              if (rollBtn && !rollBtn.disabled) rollBtn.click();
+            }
+            break;
+        }
       });
 
       // Jika kamu mau: saat mengetik di search, render realtime (opsional)
@@ -3351,6 +3411,7 @@
        * ======= CUSTOMIZAION =======
        *******************************/
       function spawnSecretSparkle(frameEl) {
+        if (document.body.classList.contains('prf-no-particle')) return;
         const sparkle = document.createElement("div");
         sparkle.className = "secret-sparkle";
 
@@ -4094,7 +4155,7 @@
         if (music) { music.muted = !s.music; music.volume = vol; }
 
         // SFX — mute all sfx elements
-        ['rollSfx','resultSfx','coinSfx','errorSfx','prismaticSfx','secretSfx'].forEach(id => {
+        ['rollSfx','resultSfx','coinSfx','errorSfx','prismaticSfx','secretSfx','editsSfx'].forEach(id => {
           const el = document.getElementById(id);
           if (el) { el.muted = !s.sfx; el.volume = vol; }
         });
@@ -4107,6 +4168,9 @@
 
         // Battery mode — disable non-essential transitions
         document.body.classList.toggle('prf-battery-mode', s.battery);
+
+        // Particle efek ambient flash saat roll
+        document.body.classList.toggle('prf-no-particle', !s.particle);
 
         // Video
         document.body.classList.toggle('prf-no-video', !s.video);
