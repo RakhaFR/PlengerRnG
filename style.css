@@ -22,6 +22,7 @@
     red
   );
   --g-secret: linear-gradient(135deg, #000, #fff);
+  --g-edits: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 40%, #ffd700 100%);
 }
 
 * {
@@ -2093,7 +2094,7 @@ footer {
 .fullscreen-prismatic::before {
   content: "";
   position: absolute;
-  inset: -50%;
+  inset: -80%;
   background: conic-gradient(
     rgba(255, 0, 0, 0.35),
     rgba(255, 165, 0, 0.35),
@@ -5979,4 +5980,361 @@ footer {
   .splash-title { font-size: 34px; letter-spacing: 2px;   -webkit-text-stroke: .5px #ff5577;}
   .splash-sidebar { display: none; }
   .splash-start-btn { padding: 14px 52px; font-size: 16px; }
+}
+/* ══════════════════════════════════════
+   EdiTz RARITY — Frame, Aura, Effects
+   ══════════════════════════════════════ */
+
+/* ── EdiTz Card Frame ──
+   Desain: border hitam tebal + sudut gold + shimmer emas bergerak
+   sesuai gambar: dark background, trophy image, teks pixel, label EdiTz gold
+*/
+.edits-frame {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 3px #ffd700,
+    0 0 0 5px #000,
+    0 0 0 7px #ffd700,
+    0 0 30px rgba(255, 215, 0, 0.5),
+    0 0 60px rgba(255, 165, 0, 0.25);
+}
+
+/* Border berlapis emas bergerak */
+.edits-frame::before {
+  content: "";
+  position: absolute;
+  top: -60%;
+  left: -100%;
+  width: 290%;
+  height: 250%;
+  background: conic-gradient(
+    #000 0deg,
+    #111 60deg,
+    #ffd700 90deg,
+    #ff9900 120deg,
+    #fff700 150deg,
+    #ffd700 180deg,
+    #111 220deg,
+    #000 270deg,
+    #ffd700 300deg,
+    #fff700 330deg,
+    #000 360deg
+  );
+  animation: edits-border-spin 4s linear infinite;
+  z-index: 0;
+}
+
+/* Layer dalam — background hitam agar konten kelihatan */
+.edits-frame::after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  background: #0a0a0a;
+  border-radius: 10px;
+  z-index: 1;
+}
+
+/* Semua anak di atas ::after */
+.edits-frame img,
+.edits-frame .item-count,
+.edits-frame .item-lock-toggle {
+  position: relative;
+  z-index: 2;
+}
+
+@keyframes edits-border-spin {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ── EdiTz Fullscreen Aura ── */
+.fullscreen-edits {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(10, 10, 10, 0.75) 0%,
+    rgba(0, 0, 0, 0.5) 40%,
+    transparent 70%
+  );
+}
+
+.fullscreen-edits::before {
+  content: "";
+  position: absolute;
+  inset: -80%;
+  background: conic-gradient(
+    rgba(255, 215, 0, 0.4),
+    rgba(0, 0, 0, 0.6),
+    rgba(255, 165, 0, 0.35),
+    rgba(0, 0, 0, 0.6),
+    rgba(255, 247, 0, 0.4),
+    rgba(0, 0, 0, 0.6),
+    rgba(255, 215, 0, 0.4)
+  );
+  animation: edits-aura-spin 5s linear infinite;
+  transform: scale(1.5);
+}
+
+@keyframes edits-aura-spin {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ── EdiTz Rolling Text ── */
+.rolling-edits {
+  background: linear-gradient(90deg, #ffd700, #fff700, #ff9900, #ffd700);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 900;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 2px;
+  animation: edits-text-shine 1.5s linear infinite;
+}
+
+@keyframes edits-text-shine {
+  0%   { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+/* ── EdiTz Ambient Flash ── */
+.ambient-flash.edits {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(255,215,0,0.35) 0%, transparent 70%);
+  animation: edits-ambient 1.2s ease-out forwards;
+  pointer-events: none;
+  z-index: 9998;
+}
+
+@keyframes edits-ambient {
+  0%   { opacity: 1; transform: scale(0.8); }
+  60%  { opacity: 0.8; transform: scale(1.1); }
+  100% { opacity: 0; transform: scale(1.3); }
+}
+
+.vignette-flash.edits {
+  position: fixed;
+  inset: 0;
+  box-shadow: inset 0 0 120px rgba(255,215,0,0.4);
+  animation: edits-vignette 1.5s ease-out forwards;
+  pointer-events: none;
+  z-index: 9997;
+}
+
+@keyframes edits-vignette {
+  0%   { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* ── prf-no-anim compatibility ── */
+.prf-no-anim .fullscreen-edits {
+  display: none;
+}
+/* ══════════════════════════════════════
+   INVENTORY — Tab Bar (Items / Potions)
+   ══════════════════════════════════════ */
+
+.inv-header {
+  gap: 12px;
+}
+
+.inv-tab-bar {
+  display: flex;
+  gap: 6px;
+  margin-left: 14px;
+  flex: 1;
+}
+
+.inv-tab-pill {
+  padding: 6px 14px;
+  border-radius: 8px 8px 0 0;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-bottom: none;
+  background: rgba(255,255,255,0.04);
+  color: rgba(255,255,255,0.45);
+  font-family: "Press Start 2P", monospace;
+  font-size: 8px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+.inv-tab-pill:hover {
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.75);
+}
+.inv-tab-pill.active {
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  border-color: rgba(255,255,255,0.2);
+  border-bottom: 2px solid #ffd700;
+}
+
+/* ── Potion tab wrapper ── */
+#invTabPotions {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 18px;
+  gap: 20px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.1) transparent;
+}
+#invTabPotions.hidden { display: none; }
+#invTabItems.hidden { display: none; }
+#invTabItems {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* Empty state */
+.inv-potion-empty {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 48px 0;
+  color: rgba(255,255,255,0.25);
+  font-family: "Press Start 2P", monospace;
+  font-size: 9px;
+  text-align: center;
+}
+.inv-potion-empty span { font-size: 36px; }
+
+/* Section */
+.inv-potion-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.inv-potion-section-title {
+  font-family: "Press Start 2P", monospace;
+  font-size: 9px;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 1px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+
+/* Potion grid */
+.inv-potion-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+}
+
+/* Potion card */
+.inv-pot-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 14px;
+  padding: 14px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.12s, background 0.12s, border-color 0.12s;
+  cursor: default;
+}
+.inv-pot-card:hover {
+  transform: translateY(-2px);
+  background: rgba(255,255,255,0.07);
+  border-color: rgba(255,255,255,0.18);
+}
+
+.inv-pot-img-wrap {
+  position: relative;
+  width: 72px;
+  height: 72px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.4);
+}
+.inv-pot-img {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));
+}
+.inv-pot-count {
+  position: absolute;
+  bottom: -6px;
+  right: -6px;
+  background: #ffd700;
+  color: #000;
+  font-family: "Press Start 2P", monospace;
+  font-size: 7px;
+  font-weight: 900;
+  padding: 3px 7px;
+  border-radius: 20px;
+  border: 2px solid #0d0d0d;
+  white-space: nowrap;
+}
+
+.inv-pot-name {
+  font-family: "Press Start 2P", monospace;
+  font-size: 7px;
+  color: #fff;
+  text-align: center;
+  line-height: 1.5;
+  word-break: break-word;
+}
+.inv-pot-effect {
+  font-size: 10px;
+  color: rgba(255,255,255,0.4);
+  text-align: center;
+}
+.inv-pot-equip-btn {
+  width: 100%;
+  padding: 8px 0;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #ffd700, #ff9900);
+  color: #000;
+  font-family: "Press Start 2P", monospace;
+  font-size: 7px;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: transform 0.12s, box-shadow 0.12s;
+  box-shadow: 0 3px 8px rgba(255,160,0,0.3);
+}
+.inv-pot-equip-btn:hover {
+  transform: scale(1.04);
+  box-shadow: 0 0 12px rgba(255,200,0,0.5);
+}
+.inv-pot-equip-btn:active { transform: scale(0.96); }
+
+/* ── Responsive potion grid ── */
+@media (max-width: 600px) {
+  .inv-potion-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  #invTabPotions {
+    padding: 12px 12px;
+    gap: 16px;
+  }
+  .inv-tab-bar { margin-left: 8px; }
+  .inv-tab-pill { font-size: 7px; padding: 5px 10px; }
+  .inv-pot-card { padding: 10px 8px; gap: 6px; }
+  .inv-pot-img-wrap { width: 60px; height: 60px; }
+  .inv-pot-img { width: 44px; height: 44px; }
+}
+@media (max-width: 380px) {
+  .inv-potion-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
 }

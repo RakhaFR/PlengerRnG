@@ -12,6 +12,7 @@
 <body>
   <div class="fullscreen-prismatic hidden"></div>
   <div class="fullscreen-secret hidden"></div>
+  <div class="fullscreen-edits hidden"></div>
 
 
   <!-- Background bintang jatuh (menggantikan bg-video) -->
@@ -63,9 +64,18 @@
     <source src="video/secret-vert.mp4" type="video/mp4">
   </video>
 
+  <!-- EdiTz rarity video & audio -->
+  <video id="editsVideo" class="rarity-video hidden desktop-only" playsinline muted>
+    <source src="video/edits.mp4" type="video/mp4">
+  </video>
+  <video id="editsVideoMobile" class="rarity-video hidden mobile-only" playsinline muted>
+    <source src="video/edits-vert.mp4" type="video/mp4">
+  </video>
+
 
   <audio id="prismaticSfx" src="sound/prismatic-anim.mp3" preload="auto"></audio>
   <audio id="secretSfx" src="sound/secret-anim.mp3" preload="auto"></audio>
+  <audio id="editsSfx" src="sound/edits-anim.mp3" preload="auto"></audio>
 
   <div id="toast-container"></div>
 
@@ -185,66 +195,89 @@
       <!-- ── HEADER ── -->
       <div class="inv-header">
         <span class="inv-title" id="invTitle">⭐ KOLEKSI</span>
+        <!-- Tab pills -->
+        <div class="inv-tab-bar">
+          <button class="inv-tab-pill active" id="itab-items" onclick="switchInvMainTab('items')">🗃️ Items</button>
+          <button class="inv-tab-pill" id="itab-potions" onclick="switchInvMainTab('potions')">🧪 Potions</button>
+        </div>
         <div class="inv-close" id="closeInv" title="Tutup">✕</div>
       </div>
 
-      <!-- ── SEARCH + FILTER ROW ── -->
-      <div class="inv-toolbar">
-        <div class="inv-search-wrap">
-          <input id="searchInput" class="inv-search-input" placeholder="Cari item..." />
+      <!-- ── ITEMS TAB ── -->
+      <div id="invTabItems">
+        <!-- SEARCH + FILTER ROW -->
+        <div class="inv-toolbar">
+          <div class="inv-search-wrap">
+            <input id="searchInput" class="inv-search-input" placeholder="Cari item..." />
+          </div>
+          <div class="inv-filter-wrap" id="chips">
+            <select id="rarityFilter" class="inv-filter-select" onchange="updateFilterFromDropdown(this)">
+              <option class="chip active" data-r="all">Filter</option>
+              <option class="chip" data-r="common">Common</option>
+              <option class="chip" data-r="uncommon">Uncommon</option>
+              <option class="chip" data-r="rare">Rare</option>
+              <option class="chip" data-r="epic">Epic</option>
+              <option class="chip" data-r="legend">Legend</option>
+              <option class="chip" data-r="mythical">Mythical</option>
+              <option class="chip" data-r="prismatic">Prismatic</option>
+              <option class="chip" data-r="secret">Secret</option>
+              <option class="chip" data-r="edits">EdiTz</option>
+            </select>
+          </div>
         </div>
-        <div class="inv-filter-wrap" id="chips">
-          <select id="rarityFilter" class="inv-filter-select" onchange="updateFilterFromDropdown(this)">
-            <option class="chip active" data-r="all">Filter</option>
-            <option class="chip" data-r="common">Common</option>
-            <option class="chip" data-r="uncommon">Uncommon</option>
-            <option class="chip" data-r="rare">Rare</option>
-            <option class="chip" data-r="epic">Epic</option>
-            <option class="chip" data-r="legend">Legend</option>
-            <option class="chip" data-r="mythical">Mythical</option>
-            <option class="chip" data-r="prismatic">Prismatic</option>
-            <option class="chip" data-r="secret">Secret</option>
-          </select>
-        </div>
-      </div>
 
-      <!-- ── MAIN BODY: Detail Left + Grid Right ── -->
-      <div class="inv-body">
-
-        <!-- LEFT: Detail selected item -->
-        <div class="inv-detail-panel" id="invDetailPanel">
-          <div class="inv-detail-img-wrap">
-            <div class="inv-detail-img-box" id="invDetailImgBox">
-              <span class="inv-detail-placeholder">?</span>
+        <!-- MAIN BODY: Detail Left + Grid Right -->
+        <div class="inv-body">
+          <!-- LEFT: Detail selected item -->
+          <div class="inv-detail-panel" id="invDetailPanel">
+            <div class="inv-detail-img-wrap">
+              <div class="inv-detail-img-box" id="invDetailImgBox">
+                <span class="inv-detail-placeholder">?</span>
+              </div>
+            </div>
+            <div class="inv-detail-info" id="invDetailInfo">
+              <div class="inv-detail-name" id="invDetailName">—</div>
+              <div class="inv-detail-rarity" id="invDetailRarity">—</div>
+              <div class="inv-detail-desc" id="invDetailDesc">Pilih item dari grid</div>
+            </div>
+            <div class="inv-detail-actions">
+              <button class="inv-action-btn inv-lock-btn" id="invDetailLockBtn" onclick="invDetailToggleLock()" disabled>Lock</button>
+              <button class="inv-action-btn inv-sell-btn" id="invDetailSellBtn" onclick="invDetailSell()" disabled>Sell</button>
             </div>
           </div>
-          <div class="inv-detail-info" id="invDetailInfo">
-            <div class="inv-detail-name" id="invDetailName">—</div>
-            <div class="inv-detail-rarity" id="invDetailRarity">—</div>
-            <div class="inv-detail-desc" id="invDetailDesc">Pilih item dari grid</div>
-          </div>
-          <div class="inv-detail-actions">
-            <button class="inv-action-btn inv-lock-btn" id="invDetailLockBtn" onclick="invDetailToggleLock()" disabled>Lock</button>
-            <button class="inv-action-btn inv-sell-btn" id="invDetailSellBtn" onclick="invDetailSell()" disabled>Sell</button>
+
+          <!-- DIVIDER -->
+          <div class="inv-vdivider"></div>
+
+          <!-- RIGHT: Grid -->
+          <div class="inv-grid-panel">
+            <div id="gridWrap" class="inv-grid"></div>
           </div>
         </div>
 
-        <!-- DIVIDER -->
-        <div class="inv-vdivider"></div>
-
-        <!-- RIGHT: Grid -->
-        <div class="inv-grid-panel">
-          <div id="gridWrap" class="inv-grid"></div>
+        <!-- FOOTER -->
+        <div class="inv-footer">
+          <button class="inv-footer-btn inv-sell-selected-btn" id="sellBtn">Sell Selected</button>
+          <button class="inv-footer-btn inv-sell-all-btn" id="sellAllBtn">Sell All</button>
+          <button class="inv-footer-btn inv-locked-tab-btn" id="lockedBtn">Locked Tab</button>
+          <div id="errorPopup" class="error-popup hidden">Pesan kesalahan</div>
         </div>
-
       </div>
 
-      <!-- ── FOOTER: action buttons ── -->
-      <div class="inv-footer">
-        <button class="inv-footer-btn inv-sell-selected-btn" id="sellBtn">Sell Selected</button>
-        <button class="inv-footer-btn inv-sell-all-btn" id="sellAllBtn">Sell All</button>
-        <button class="inv-footer-btn inv-locked-tab-btn" id="lockedBtn">Locked Tab</button>
-        <div id="errorPopup" class="error-popup hidden">Pesan kesalahan</div>
+      <!-- ── POTIONS TAB ── -->
+      <div id="invTabPotions" class="hidden">
+        <div class="inv-potion-empty" id="invPotionEmpty" style="display:none">
+          <span>🧪</span>
+          <p>Tidak ada potion di inventory</p>
+        </div>
+        <div class="inv-potion-section">
+          <div class="inv-potion-section-title">🍀 Luck Potions</div>
+          <div class="inv-potion-grid" id="invPotionLuck"></div>
+        </div>
+        <div class="inv-potion-section">
+          <div class="inv-potion-section-title">⚡ Fast-Roll Potions</div>
+          <div class="inv-potion-grid" id="invPotionFast"></div>
+        </div>
       </div>
 
     </div>

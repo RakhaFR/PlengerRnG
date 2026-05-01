@@ -29,6 +29,7 @@
           weight: 0.5,
         },
         { key: "secret", name: "Secret", grad: "var(--g-secret)", weight: 0.1 },
+        { key: "edits",  name: "EdiTz",  grad: "var(--g-edits)",  weight: 0.8 },
       ];
 
       const POTIONS = {
@@ -147,6 +148,7 @@
           mythical: 2,
           prismatic: 1.5,
           secret: 1.2,
+          edits: 1.1,
         },
         3: {
           common: 0.75,
@@ -157,6 +159,7 @@
           mythical: 3,
           prismatic: 2,
           secret: 1.5,
+          edits: 1.2,
         },
         5: {
           common: 0.6,
@@ -167,6 +170,7 @@
           mythical: 5,
           prismatic: 3,
           secret: 2,
+          edits: 2,
         },
         7: {
           common: 0.3,
@@ -177,6 +181,7 @@
           mythical: 7,
           prismatic: 4,
           secret: 2.5,
+          edits: 5,
         },
         10: {
           common: 0.1,
@@ -187,6 +192,7 @@
           mythical: 10,
           prismatic: 5,
           secret: 3,
+          edits: 8,
         },
         25: {
           common: 0,
@@ -197,6 +203,7 @@
           mythical: 22,
           prismatic: 10,
           secret: 6,
+          edits: 10,
         },
       };
 
@@ -212,28 +219,28 @@
       // Daftar item contoh (ganti sesuai asetmu)
       const ITEMS = [
         // {
-        //   image: 'images/ac.jpg',
-        //   text: 'AC prismatic',
-        //   rarity: 'prismatic',
-        //   numberRange: [1, 1200000]
-        // },
-        // {
-        //   image: 'images/ac.jpg',
-        //   text: 'AC secret',
-        //   rarity: 'secret',
-        //   numberRange: [1, 120000000]
-        // },
-        // {
-        //   image: 'images/ac.jpg',
-        //   text: 'AC secret',
-        //   rarity: 'legend',
-        //   numberRange: [1, 120000]
-        // },
-        // {
-        //   image: 'images/ac.jpg',
-        //   text: 'AC secret',
+        //   image: 'ui/icon-game2.jpg',
+        //   text: 'Tester1',
         //   rarity: 'mythical',
-        //   numberRange: [1, 1200000]
+        //   numberRange: [1, 999999999]
+        // },
+        // {
+        //   image: 'ui/icon-game2.jpg',
+        //   text: 'Tester2',
+        //   rarity: 'prismatic',
+        //   numberRange: [1, 999999999]
+        // },
+        // {
+        //   image: 'ui/icon-game2.jpg',
+        //   text: 'Tester3',
+        //   rarity: 'secret',
+        //   numberRange: [1, 999999999]
+        // },
+        // {
+        //   image: 'ui/icon-game2.jpg',
+        //   text: 'Tester4',
+        //   rarity: 'edits',
+        //   numberRange: [1, 999999999]
         // },
         {
           image: "images/agra sigma.jpg",
@@ -819,6 +826,8 @@
             return "var(--g-prismatic)";
           case "secret":
             return "var(--g-secret)";
+          case "edits":
+            return "var(--g-edits)";
           case "uncommon":
             return "var(--g-uncommon)";
           case "rare":
@@ -838,9 +847,11 @@
       function rarityTextColor(key) {
         switch (key) {
           case "prismatic":
-            return "#ffffff"; // netral, biar kontras dengan rainbow frame
+            return "#ffffff";
           case "secret":
-            return "#000000"; // hitam, kontras dengan grad hitam-putih
+            return "#000000";
+          case "edits":
+            return "#fff700"; // kuning cerah kontras dengan hitam frame
           case "uncommon":
             return "#2ad980";
           case "rare":
@@ -881,8 +892,10 @@
 
       function getSellValue(rarityKey) {
         switch (rarityKey) {
+          case "edits":
+            return 20000; 
           case "secret":
-            return 25000; // harga jual paling tinggi
+            return 25000;
           case "prismatic":
             return 15000; // harga jual tinggi
           case "mythical":
@@ -1125,10 +1138,14 @@
 
         if (frame) {
           frame.style.background = item.rarity.grad;
-          frame.classList.remove("rainbow-frame");
+          frame.classList.remove("rainbow-frame", "edits-frame");
           if (item.rarity.key === "prismatic") {
             frame.style.background = "transparent";
             frame.classList.add("rainbow-frame");
+          }
+          if (item.rarity.key === "edits") {
+            frame.style.background = "transparent";
+            frame.classList.add("edits-frame");
           }
         }
       }
@@ -1281,7 +1298,8 @@
       function hideFullscreenAuras() {
         document.querySelector(".fullscreen-prismatic").classList.add("hidden");
         document.querySelector(".fullscreen-secret").classList.add("hidden");
-
+        const editsEl = document.querySelector(".fullscreen-edits");
+        if (editsEl) editsEl.classList.add("hidden");
         stopSecretSparkle();
       }
 
@@ -1300,6 +1318,9 @@
         if (rarity === "secret") {
           auraEl = document.querySelector(".fullscreen-secret");
         }
+        if (rarity === "edits") {
+          auraEl = document.querySelector(".fullscreen-edits");
+        }
 
         if (!video) return;
 
@@ -1317,10 +1338,24 @@
           sfx.play().catch((e) => console.warn("SFX play error:", e));
         }
 
+        // ⏱ EdiTz: stop audio setelah 11 detik, stop video setelah 8 detik
+        let editsVideoTimer = null;
+        let editsAudioTimer = null;
+        if (rarity === "edits") {
+          editsAudioTimer = setTimeout(() => {
+            if (sfx) { sfx.pause(); sfx.currentTime = 0; }
+          }, 11700);
+          editsVideoTimer = setTimeout(() => {
+            video.pause();
+            video.dispatchEvent(new Event("ended"));
+          }, 8800);
+        }
+
         // 🚨 Set flag animasi spesial
         isSpecialAnimation = true;
 
         video.onended = () => {
+          if (editsVideoTimer) { clearTimeout(editsVideoTimer); editsVideoTimer = null; }
           video.classList.add("hidden");
           toggleUI(false);
 
@@ -1328,8 +1363,8 @@
             auraEl.classList.remove("hidden");
           }
 
-          // Efek shake — prismatic/secret lebih gila
-          const isInsaneRarity = ["prismatic", "secret"].includes(rarity);
+          // Efek shake — prismatic/secret/edits lebih gila
+          const isInsaneRarity = ["prismatic", "secret", "edits"].includes(rarity);
           body.classList.add(isInsaneRarity ? "shake-insane" : "shake-body");
           setTimeout(() => {
             body.classList.remove("shake-insane", "shake-body");
@@ -1363,12 +1398,14 @@
 
       function setRollingText(rarity, text) {
         const rollingText = document.getElementById("rollingText");
-        rollingText.classList.remove("rolling-prismatic", "rolling-secret");
+        rollingText.classList.remove("rolling-prismatic", "rolling-secret", "rolling-edits");
 
         if (rarity === "prismatic") {
           rollingText.classList.add("rolling-prismatic");
         } else if (rarity === "secret") {
           rollingText.classList.add("rolling-secret");
+        } else if (rarity === "edits") {
+          rollingText.classList.add("rolling-edits");
         }
 
         rollingText.textContent = text;
@@ -1385,6 +1422,7 @@
           { key: "mythical", name: "Mythical" },
           { key: "prismatic", name: "Prismatic" },
           { key: "secret", name: "Secret" },
+          { key: "edits", name: "EdiTz" },
         ];
 
         return rarities[Math.floor(Math.random() * rarities.length)];
@@ -1623,6 +1661,8 @@
             playVideoRarity("prismatic");
           } else if (selected.rarity.key === "secret") {
             playVideoRarity("secret");
+          } else if (selected.rarity.key === "edits") {
+            playVideoRarity("edits");
           } else {
             // rarity biasa → efek bintang lama
             if (["epic", "legend", "mythical"].includes(selected.rarity.key)) {
@@ -1844,7 +1884,7 @@
             // tandai sebagai orphan supaya masih bisa dijual, tapi image diganti placeholder
             if (!it._orphan) {
               it._orphan = true;
-              it.image = "ui/icon-game.jpg"; // fallback ke icon game
+              it.image = "ui/icon-game2.jpg"; // fallback ke icon game
               changed = true;
             }
           }
@@ -2374,8 +2414,8 @@
       });
 
       // Jika kamu mau: saat mengetik di search, render realtime (opsional)
-      // const si = el('searchInput');
-      // if (si) si.addEventListener('input', renderInventory);
+      const si = el('searchInput');
+      if (si) si.addEventListener('input', renderInventory);
 
       /*****************************************
        * ======= INVENTORY (COINS) =====
@@ -2647,44 +2687,65 @@
           .classList.remove("show");
       }
 
-      function renderPotionInventory() {
-        const grid = document.getElementById("potionGrid");
-        if (!grid) return;
-        grid.innerHTML = "";
+      function switchInvMainTab(tab) {
+        const tabs = ['items', 'potions'];
+        tabs.forEach(t => {
+          document.getElementById('invTab' + t.charAt(0).toUpperCase() + t.slice(1))?.classList.toggle('hidden', t !== tab);
+          document.getElementById('itab-' + t)?.classList.toggle('active', t === tab);
+        });
+        if (tab === 'potions') renderInvPotions();
+      }
 
+      function renderInvPotions() {
         const potions = JSON.parse(localStorage.getItem("potions") || "{}");
+        const luckGrid  = document.getElementById("invPotionLuck");
+        const fastGrid  = document.getElementById("invPotionFast");
+        const emptyMsg  = document.getElementById("invPotionEmpty");
+        if (!luckGrid || !fastGrid) return;
+
+        luckGrid.innerHTML = "";
+        fastGrid.innerHTML = "";
+
+        let totalCount = 0;
 
         ["luck", "fast"].forEach((type) => {
+          const grid = type === "luck" ? luckGrid : fastGrid;
           POTIONS[type].forEach((p, i) => {
-            const key = `${type}_${p.mult}`;
+            const key   = `${type}_${p.mult}`;
             const count = potions[key] || 0;
-            if (count > 0) {
-              grid.innerHTML += `
-          <div class="card">
-            <div class="frame" style="background:${p.color}">
-              <img src="${p.icon}" alt="${p.name}" loading="lazy">
-            </div>
-            <div class="name">${p.name}</div>
-            <div class="rarity-badge">x${count}</div>
-            <div class="actions">
-              <div class="pill" onclick="equipPotion('${type}', ${i})">EQUIP</div>
-            </div>
-          </div>
-        `;
-            }
+            if (count <= 0) return;
+            totalCount++;
+
+            const card = document.createElement("div");
+            card.className = "inv-pot-card";
+            card.innerHTML = `
+              <div class="inv-pot-img-wrap" style="background:${p.color || '#1a1a2e'}">
+                <img src="${p.icon}" alt="${p.name}" loading="lazy" class="inv-pot-img">
+                <span class="inv-pot-count">x${count}</span>
+              </div>
+              <div class="inv-pot-name">${p.name}</div>
+              <div class="inv-pot-effect">${type === 'luck' ? '🍀 Luck' : '⚡ Fast-Roll'} ×${p.mult}</div>
+              <button class="inv-pot-equip-btn" onclick="equipPotion('${type}', ${i})">EQUIP</button>
+            `;
+            grid.appendChild(card);
           });
         });
+
+        if (emptyMsg) emptyMsg.style.display = totalCount === 0 ? 'flex' : 'none';
+      }
+
+      function renderPotionInventory() {
+        renderInvPotions();
       }
 
       function openPotionInventory() {
-        renderPotionInventory(); // ← ini WAJIB agar inventory terisi
-        document.getElementById("potionInventoryOverlay").classList.add("show");
+        // Buka inventory utama langsung di tab potions
+        document.getElementById("inventoryOverlay").classList.add("show");
+        switchInvMainTab('potions');
       }
 
       function closePotionInventory() {
-        document
-          .getElementById("potionInventoryOverlay")
-          .classList.remove("show");
+        document.getElementById("potionInventoryOverlay")?.classList.remove("show");
       }
       let effectUIRunning = false;
 
@@ -3109,7 +3170,7 @@
             "⚙️ Fixing achievements & quest logic!",
             "🛠️ Remake UI/UX Design",
             "😄 New small lobby design",
-            "😄 New Profile features & layout design!, new 3 tab identity,statistic,settings",
+            "😄 New Profile features & layout design!",
             "🖥️ Adding New achievement quest and design!",
             "🖥️ New & Remake Store Tab, new tab 'Cosmetic' Tab!",
             "📢 New update overlay UI design!",
