@@ -3635,6 +3635,7 @@
             "🖥️ New & Remake Store Tab, new tab 'Cosmetic' Tab!",
             "📢 New update overlay UI design!",
             "📦 New UI design inventory plenger overlay!",
+            "🎴 New Rarity plenger Edits!", 
             "🎴 New 50 plenger card!",
           ],
         },
