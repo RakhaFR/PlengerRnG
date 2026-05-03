@@ -788,6 +788,282 @@
           rarity: "mythical",
           numberRange: [1, 8910000],
         },
+        {
+          image: "images/144p.png",
+          text: "144p taken",
+          rarity: "legend",
+          numberRange: [1, 300900],
+        },
+        {
+          image: "images/aduh.png",
+          text: "aduhhh!",
+          rarity: "mythical",
+          numberRange: [1, 7000009],
+        },
+        {
+          image: "images/agra_GUA.png",
+          text: "'SAYA?' MEME",
+          rarity: "secret",
+          numberRange: [1, 200000000],
+        },
+        {
+          image: "images/agra_kiwai.png",
+          text: "agra kiwai",
+          rarity: "legend",
+          numberRange: [1, 451000],
+        },
+                {
+          image: "images/akbar_dora.png",
+          text: "akbar dora explor",
+          rarity: "legend",
+          numberRange: [1, 608770],
+        },
+                {
+          image: "images/akbar_turu.png",
+          text: "turu bar..?",
+          rarity: "epic",
+          numberRange: [1, 64100],
+        },
+                {
+          image: "images/akbar_wlee.png",
+          text: "akbar wlee",
+          rarity: "prismatic",
+          numberRange: [1, 21000000],
+        },
+                {
+          image: "images/akbar_wlee.png",
+          text: "akbar wlee",
+          rarity: "prismatic",
+          numberRange: [1, 21000000],
+        },
+                {
+          image: "images/alien.png",
+          text: "alien terlihat",
+          rarity: "mythical",
+          numberRange: [1, 5610000],
+        },
+                {
+          image: "images/alya_hah.png",
+          text: "alya HAH?",
+          rarity: "epic",
+          numberRange: [1, 61809],
+        },
+                {
+          image: "images/anomalys.png",
+          text: "anomali detected",
+          rarity: "mythical",
+          numberRange: [1, 9099970],
+        },
+                {
+          image: "images/berbaring.png",
+          text: "berbaring",
+          rarity: "uncommon",
+          numberRange: [1, 871],
+        },
+                {
+          image: "images/call_melet.png",
+          text: "callista melet",
+          rarity: "epic",
+          numberRange: [1, 63490],
+        },
+                {
+          image: "images/deki_facelight.png",
+          text: "deki faceLight",
+          rarity: "epic",
+          numberRange: [1, 73819],
+        },
+                {
+          image: "images/duh_hilmi.png",
+          text: "hilmi : duhh",
+          rarity: "rare",
+          numberRange: [1, 5300],
+        },
+                {
+          image: "images/fazio_nah.png",
+          text: "🙁🙁",
+          rarity: "rare",
+          numberRange: [1, 7261],
+        },
+                {
+          image: "images/fazio_nose.png",
+          text: "fazio nosee",
+          rarity: "legend",
+          numberRange: [1, 837100],
+        },
+                {
+          image: "images/fazio_turu.png",
+          text: "terdampar",
+          rarity: "legend",
+          numberRange: [1, 937100],
+        },
+                {
+          image: "images/hehe_qori.png",
+          text: "hehe..",
+          rarity: "legend",
+          numberRange: [1, 631090],
+        },
+                {
+          image: "images/hilmi_ahh.png",
+          text: "hilmi smileFace",
+          rarity: "secret",
+          numberRange: [1, 831777000],
+        },
+                {
+          image: "images/hilmi_prabowo.png",
+          text: "hilmi wowo",
+          rarity: "epic",
+          numberRange: [1, 86190],
+        },
+                {
+          image: "images/hilmi_wlee.png",
+          text: "hilmi wlee",
+          rarity: "mythical",
+          numberRange: [1, 8109000],
+        },
+                {
+          image: "images/kiwai.png",
+          text: "kiwai 720p",
+          rarity: "legend",
+          numberRange: [1, 688900],
+        },
+                {
+          image: "images/nabhil_purple.png",
+          text: "nabhil purple",
+          rarity: "prismatic",
+          numberRange: [1, 16709999],
+        },
+                {
+          image: "images/nafis_senyum.png",
+          text: "nafis senyum",
+          rarity: "epic",
+          numberRange: [1, 74120],
+        },
+                {
+          image: "images/noo.png",
+          text: "noo meme",
+          rarity: "mythical",
+          numberRange: [1, 8391009],
+        },
+                {
+          image: "images/rakha_face.png",
+          text: "rakha face",
+          rarity: "epic",
+          numberRange: [1, 31500],
+        },
+                {
+          image: "images/rasya_hoo2.png",
+          text: "rasya hoo2",
+          rarity: "legend",
+          numberRange: [1, 736166],
+        },
+                {
+          image: "images/restu_boss.png",
+          text: "restu ni bos",
+          rarity: "epic",
+          numberRange: [1, 61520],
+        },
+                {
+          image: "images/rifa_melet2.png",
+          text: "rifa melet2",
+          rarity: "legend",
+          numberRange: [1, 817200],
+        },
+                {
+          image: "images/riza_turu.png",
+          text: "riza turu",
+          rarity: "legend",
+          numberRange: [1, 721500],
+        },
+                {
+          image: "images/rizky_face.png",
+          text: "rizki face",
+          rarity: "epic",
+          numberRange: [1, 33500],
+        },
+                {
+          image: "images/yo_nafis.png",
+          text: "yoo disini nafis",
+          rarity: "epic",
+          numberRange: [1, 78180],
+        },
+                        {
+          image: "images/lock-in.jpg",
+          text: "LOCK IN!",
+          rarity: "edits",
+          numberRange: [1, 92888777],
+        },
+                                {
+          image: "images/aku-jowo.jpg",
+          text: "AKU JOWO",
+          rarity: "edits",
+          numberRange: [1, 93828888],
+        },
+                                {
+          image: "images/otewe.jpg",
+          text: "OTEWE",
+          rarity: "edits",
+          numberRange: [1, 76811890],
+        },
+                                {
+          image: "images/buangsat.jpg",
+          text: "BUANGSAT",
+          rarity: "edits",
+          numberRange: [1, 53700000],
+        },
+                                {
+          image: "images/gak-tahan.jpg",
+          text: "gak tahan",
+          rarity: "legend",
+          numberRange: [1, 857390],
+        },
+                                {
+          image: "images/trainer.jpg",
+          text: "trainer UMA",
+          rarity: "legend",
+          numberRange: [1, 612009],
+        },
+                                {
+          image: "images/lapar-bos.jpg",
+          text: "oguri LAPAR BOS",
+          rarity: "legend",
+          numberRange: [1, 531001],
+        },
+                                {
+          image: "images/terang-banget.jpg",
+          text: "terang banget",
+          rarity: "legend",
+          numberRange: [1, 842500],
+        },
+                                {
+          image: "images/saitama.jpg",
+          text: "saitama pun nahan",
+          rarity: "mythical",
+          numberRange: [1, 3217770],
+        },
+                                {
+          image: "images/kitasan-satono.jpg",
+          text: "kitasan&satono",
+          rarity: "epic",
+          numberRange: [1, 61729],
+        },
+                                {
+          image: "images/my-honest.jpg",
+          text: "my honest.NUKE",
+          rarity: "prismatic",
+          numberRange: [1, 64529999],
+        },
+                                {
+          image: "images/ngotak-dong.jpg",
+          text: "ngotak dong😂",
+          rarity: "edits",
+          numberRange: [1, 87300000],
+        },
+                                {
+          image: "images/kritik-anime.jpg",
+          text: "kritikan",
+          rarity: "epic",
+          numberRange: [1, 32880],
+        },
       ];
 
       // LocalStorage keys
@@ -968,13 +1244,13 @@
 
         localStorage.setItem("potions", JSON.stringify(potions));
 
-        // auto-refresh kalau inventory terbuka
+        // auto-refresh kalau inventory terbuka di tab potions
         if (
-          document
-            .getElementById("potionInventoryOverlay")
-            ?.classList.contains("show")
+          document.getElementById("inventoryOverlay")?.classList.contains("show") &&
+          document.getElementById("invTabPotions") &&
+          !document.getElementById("invTabPotions").classList.contains("hidden")
         ) {
-          renderPotionInventory();
+          renderInvPotions();
         }
       }
 
@@ -988,8 +1264,8 @@
           el("game")?.classList.remove("hidden");
           migrateOldKey();
           loadCoins();
-          updateAutoRollUI();
           loadAutoRollUnlock();
+          updateAutoRollUI();
 
           document.getElementById("topSidebar").style.display = "block";
           updateGameplayProfileUI();
@@ -1399,22 +1675,7 @@
         };
       }
 
-      function setRollingText(rarity, text) {
-        const rollingText = document.getElementById("rollingText");
-        rollingText.classList.remove("rolling-prismatic", "rolling-secret", "rolling-edits");
-
-        if (rarity === "prismatic") {
-          rollingText.classList.add("rolling-prismatic");
-        } else if (rarity === "secret") {
-          rollingText.classList.add("rolling-secret");
-        } else if (rarity === "edits") {
-          rollingText.classList.add("rolling-edits");
-        }
-
-        rollingText.textContent = text;
-      }
-
-      // Untuk shuffle saja
+      let activeSecretFrame = null;
       function pickRarityForShuffle() {
         const rarities = [
           { key: "common", name: "Common" },
@@ -1449,8 +1710,6 @@
         wrapper.classList.add("hidden");
       }
 
-      let activeSecretFrame = null;
-
       function setRollingText(rarityKey, itemName, rarityName) {
         const rollingEl = document.getElementById("rollingText");
         rollingEl.textContent = `${itemName} (${rarityName})`;
@@ -1474,6 +1733,14 @@
           rollingEl.style.webkitBackgroundClip = "text";
           rollingEl.style.webkitTextFillColor = "transparent";
           rollingEl.style.fontWeight = "bold";
+        } else if (rarityKey === "edits") {
+          // Gold shimmer
+          rollingEl.style.background =
+            "linear-gradient(90deg, #ffd700, #fff700, #ff9900, #ffd700)";
+          rollingEl.style.backgroundSize = "200% auto";
+          rollingEl.style.webkitBackgroundClip = "text";
+          rollingEl.style.webkitTextFillColor = "transparent";
+          rollingEl.style.fontWeight = "900";
         } else {
           // warna normal rarity
           rollingEl.style.color = rarityTextColor(rarityKey);
@@ -1533,6 +1800,7 @@
 
         document.querySelector(".fullscreen-prismatic").classList.add("hidden");
         document.querySelector(".fullscreen-secret").classList.add("hidden");
+        document.querySelector(".fullscreen-edits")?.classList.add("hidden");
 
         // ==========================
         // Hitung multiplier luck (potion + bonus roll ke-10)
@@ -1585,6 +1853,9 @@
             updateAchievementProgress("frame_rainbow", 1);
           } else if (rk === "secret") {
             updateAchievementProgress("banner_midnight", 1);
+          } else if (rk === "edits") {
+            updateQuestProgress("edits1", 1);
+            updateAchievementProgress("edits1", 1);
           }
         }
 
@@ -3800,6 +4071,7 @@
           mythical:  "mythicalCount",
           prismatic: "prismaticCount",
           secret:    "secretCount",
+          edits:     "editsCount",
         };
         const key = rarityKeyMap[rarity];
         if (key) {
@@ -4107,6 +4379,7 @@
       function prfRenderStats() {
         const g = (k, d=0) => parseInt(localStorage.getItem(k) || d);
         document.getElementById('profileRolls').textContent     = g('totalRolls').toLocaleString();
+        document.getElementById('profileCommon').textContent    = g('commonCount').toLocaleString();
         document.getElementById('profileUncommon').textContent  = g('uncommonCount').toLocaleString();
         document.getElementById('profileRare').textContent      = g('rareCount').toLocaleString();
         document.getElementById('profileEpic').textContent      = g('epicCount').toLocaleString();
@@ -4114,6 +4387,7 @@
         document.getElementById('profileMythical').textContent  = g('mythicalCount').toLocaleString();
         document.getElementById('profilePrismatic').textContent = g('prismaticCount').toLocaleString();
         document.getElementById('profileSecret').textContent    = g('secretCount').toLocaleString();
+        document.getElementById('profileEdits').textContent     = g('editsCount').toLocaleString();
         document.getElementById('profileCoins').textContent     = g('coins').toLocaleString();
         document.getElementById('profileSold').textContent      = g('totalSold').toLocaleString();
         if (typeof renderProfileAchievements === 'function') renderProfileAchievements();

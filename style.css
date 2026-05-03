@@ -2840,7 +2840,6 @@ footer {
 #questTab {
   display: flex;
   flex-direction: column;
-  align-items: center; /* biar card rata tengah */
 }
 
 .progress-bar {
@@ -2972,7 +2971,6 @@ footer {
 #achievementTab {
   display: flex;
   flex-direction: column;
-  align-items: center; /* biar card rata tengah */
 }
 
 #achievementTab .quest-card {
@@ -3371,6 +3369,9 @@ footer {
 }
 
 /* rarity accent borders */
+.prf-stat-common {
+  border-top: 2px solid #888888;
+}
 .prf-stat-uncommon {
   border-top: 2px solid #2ad980;
 }
@@ -3391,6 +3392,10 @@ footer {
 }
 .prf-stat-secret {
   border-top: 2px solid #ffffff;
+}
+.prf-stat-edits {
+  border-top: 2px solid #ffd700;
+  box-shadow: 0 0 8px rgba(255,215,0,0.2);
 }
 .prf-stat-coins {
   border-top: 2px solid #f59e0b;
