@@ -4480,7 +4480,7 @@ footer {
 /* ══════════════════════════════════════════
    RESPONSIVE — SMALL PHONE  (≤ 380px)
 ══════════════════════════════════════════ */
-@media (max-width: 380px) {
+@media (max-width: 500px) {
 
       .store-detail-top-row {
   display: flex;

@@ -1274,7 +1274,7 @@
             title: "Geotrade",
             desc: "Buat perusahaan mu dan tingkatkan jaringan antar kota, jangan sampai pasokan habis!",
             tag: "COMING SOON",
-            img: "ui/og-geotrade.png",
+            img: "ui/og-geoTrade.png",
             url: "#",
             comingSoon: true
           },
