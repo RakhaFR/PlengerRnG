@@ -986,6 +986,7 @@
           rarity: "epic",
           numberRange: [1, 78180],
         },
+        
                         {
           image: "images/lock-in.jpg",
           text: "LOCK IN!",
@@ -1257,6 +1258,134 @@
       /******************************************
        * ======= LOBBY → GAME TRANSITION =======
        ******************************************/
+      // ============================================
+      // OTHER GAMES OVERLAY
+      // ============================================
+      (function() {
+        const OG_GAMES = [
+          {
+            title: "Reflex Hands",
+            desc: "Uji refleksmu! Klik tombol yang tepat secepat mungkin dan raih skor tertinggi.",
+            tag: "ARCADE • REFLEX",
+            img: "ui/og-reflex-games.png",
+            url: "https://rakhafr.github.io/Reflex-Game/"
+          },
+          {
+            title: "Geotrade",
+            desc: "Buat perusahaan mu dan tingkatkan jaringan antar kota, jangan sampai pasokan habis!",
+            tag: "COMING SOON",
+            img: "ui/og-geotrade.png",
+            url: "#",
+            comingSoon: true
+          },
+        ];
+
+        let ogCurrent = 0;
+        const overlay = document.getElementById("otherGamesOverlay");
+        const ogBg    = document.getElementById("ogBg");
+        const ogTrack = document.getElementById("ogTrack");
+        const ogDots  = document.getElementById("ogDots");
+        const ogTitle = document.getElementById("ogInfoTitle");
+        const ogDesc  = document.getElementById("ogInfoDesc");
+        const ogTag   = document.getElementById("ogInfoTag");
+        const ogVisit = document.getElementById("ogVisitBtn");
+        const ogPrev  = document.getElementById("ogPrevBtn");
+        const ogNext  = document.getElementById("ogNextBtn");
+
+        if (!overlay) return;
+
+        // Build cards
+        OG_GAMES.forEach((g, i) => {
+          const card = document.createElement("div");
+          card.className = "og-card" + (i === 0 ? " active-card" : "") + (g.comingSoon ? " og-coming-soon" : "");
+          card.dataset.idx = i;
+          const csOverlay = g.comingSoon ? `
+            <div class="og-cs-overlay">
+              <div class="og-cs-badge">
+                <span class="og-cs-icon">🔒</span>
+                <span class="og-cs-text">COMING SOON</span>
+              </div>
+            </div>` : "";
+          card.innerHTML = `
+            <div class="og-card-img-wrap">
+              <img src="${g.img}" alt="${g.title}" onerror="this.style.background='#1a1a2e';this.style.display='block'"/>
+              ${csOverlay}
+            </div>`;
+          card.addEventListener("click", () => goToSlide(i));
+          ogTrack.appendChild(card);
+
+          const dot = document.createElement("div");
+          dot.className = "og-dot" + (i === 0 ? " active" : "");
+          dot.addEventListener("click", () => goToSlide(i));
+          ogDots.appendChild(dot);
+        });
+
+        function getCardWidth() {
+          const c = ogTrack.querySelector(".og-card");
+          return c ? c.offsetWidth + 20 : 400;
+        }
+
+        function goToSlide(idx) {
+          ogCurrent = Math.max(0, Math.min(OG_GAMES.length - 1, idx));
+          const g = OG_GAMES[ogCurrent];
+
+          const trackWrap = document.querySelector(".og-track-wrap");
+          const wrapW = trackWrap ? trackWrap.offsetWidth : 0;
+          const cw = getCardWidth();
+          const offset = ogCurrent * cw - (wrapW / 2) + (cw / 2) - 12;
+          ogTrack.style.transform = `translateX(${-offset}px)`;
+
+          ogTrack.querySelectorAll(".og-card").forEach((c, i) => {
+            c.classList.toggle("active-card", i === ogCurrent);
+          });
+          ogDots.querySelectorAll(".og-dot").forEach((d, i) => {
+            d.classList.toggle("active", i === ogCurrent);
+          });
+
+          if (ogTitle) ogTitle.textContent = g.title;
+          if (ogDesc)  ogDesc.textContent  = g.desc;
+          if (ogTag)   ogTag.textContent   = g.tag;
+
+          if (ogVisit) {
+            ogVisit.style.display = g.comingSoon ? "none" : "";
+            if (!g.comingSoon) ogVisit.onclick = () => { if (g.url !== "#") window.open(g.url, "_blank"); };
+          }
+
+          if (ogBg) ogBg.style.backgroundImage = `url('${g.img}')`;
+          if (ogPrev) ogPrev.disabled = ogCurrent === 0;
+          if (ogNext) ogNext.disabled = ogCurrent === OG_GAMES.length - 1;
+        }
+
+        if (ogPrev) ogPrev.addEventListener("click", () => goToSlide(ogCurrent - 1));
+        if (ogNext) ogNext.addEventListener("click", () => goToSlide(ogCurrent + 1));
+
+        // Keyboard
+        document.addEventListener("keydown", (e) => {
+          if (!overlay.classList.contains("active")) return;
+          if (e.key === "ArrowLeft")  goToSlide(ogCurrent - 1);
+          if (e.key === "ArrowRight") goToSlide(ogCurrent + 1);
+          if (e.key === "Escape")     closeOtherGames();
+        });
+
+        // Touch swipe
+        let touchStartX = 0;
+        overlay.addEventListener("touchstart", e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+        overlay.addEventListener("touchend", e => {
+          const dx = e.changedTouches[0].clientX - touchStartX;
+          if (Math.abs(dx) > 50) dx < 0 ? goToSlide(ogCurrent + 1) : goToSlide(ogCurrent - 1);
+        });
+
+        document.getElementById("ogCloseBtn")?.addEventListener("click", () => closeOtherGames());
+
+        window.openOtherGames = function() {
+          overlay.classList.add("active");
+          goToSlide(0);
+        };
+        window.closeOtherGames = function() {
+          overlay.classList.remove("active");
+        };
+      })();
+
       function startGame() {
         showLoading(5500, () => {
           // kasih durasi loading (2.5 detik)

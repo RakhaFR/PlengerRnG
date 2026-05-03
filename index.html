@@ -153,8 +153,42 @@
         <span class="splash-btn-glow"></span>
         <span class="splash-btn-label">Mulai</span>
       </button>
+      <!-- Row bawah: Other Games + Donate -->
+      <div class="splash-secondary-btns">
+        <button class="splash-sec-btn splash-other-btn" onclick="openOtherGames()">
+          🎮 Other Games
+        </button>
+        <a href="https://lynk.id/bangriyadi/s/z6l332ojeqrg" target="_blank" class="splash-sec-btn splash-donate-btn">
+          ❤️ Donate
+        </a>
+      </div>
     </div>
   </section>
+
+  <!-- OTHER GAMES OVERLAY -->
+  <div id="otherGamesOverlay">
+    <div class="og-bg" id="ogBg"></div>
+    <div class="og-topbar">
+      <span class="og-topbar-title">🎮 Other Games</span>
+      <button class="og-close-btn" id="ogCloseBtn">✕</button>
+    </div>
+    <div class="og-main">
+      <button class="og-arrow" id="ogPrevBtn">&#8249;</button>
+      <div class="og-track-wrap">
+        <div class="og-track" id="ogTrack"></div>
+      </div>
+      <button class="og-arrow" id="ogNextBtn">&#8250;</button>
+    </div>
+    <div class="og-info">
+      <div class="og-info-left">
+        <div class="og-info-game-title" id="ogInfoTitle"></div>
+        <div class="og-info-desc" id="ogInfoDesc"></div>
+        <span class="og-info-tag" id="ogInfoTag"></span>
+      </div>
+      <button class="og-visit-btn" id="ogVisitBtn">🔗 Visit Game</button>
+    </div>
+    <div class="og-dots" id="ogDots"></div>
+  </div>
 
   <section class="game hidden" id="game">
     <div class="coin-bar">
