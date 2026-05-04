@@ -3664,6 +3664,7 @@
             "📦 New UI design inventory plenger overlay!",
             "🎴 New Rarity plenger Edits!", 
             "🎴 New 50 plenger card!",
+            "🍀 Potion will not be lost if exiting the game!"
           ],
         },
         {
