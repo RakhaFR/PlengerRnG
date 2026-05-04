@@ -6705,3 +6705,29 @@ kbd {
   .og-info { flex-direction: column; align-items: flex-start; }
   .og-visit-btn { width: 100%; text-align: center; }
 }
+/* ── Quest Indicator (tanda seru di tombol Quest) ── */
+.quest-indicator {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 18px;
+  height: 18px;
+  background: linear-gradient(135deg, #ff3b3b, #ff6b00);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 900;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 8px rgba(255,60,0,0.7);
+  animation: questPulse 1.5s ease-in-out infinite;
+  z-index: 5;
+  pointer-events: none;
+}
+.quest-indicator.hidden { display: none; }
+
+@keyframes questPulse {
+  0%,100% { transform: scale(1);    box-shadow: 0 0 8px rgba(255,60,0,0.7); }
+  50%      { transform: scale(1.2); box-shadow: 0 0 14px rgba(255,60,0,0.9); }
+}

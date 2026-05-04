@@ -1388,7 +1388,6 @@
 
       function startGame() {
         showLoading(5500, () => {
-          // kasih durasi loading (2.5 detik)
           el("lobby")?.classList.add("hidden");
           el("game")?.classList.remove("hidden");
           migrateOldKey();
@@ -1396,10 +1395,15 @@
           loadAutoRollUnlock();
           updateAutoRollUI();
 
+          // ✅ Terapkan settings yang tersimpan
+          prfApplyAllSettings();
+
+          // ✅ Restore potion timer yang tersimpan
+          loadActiveEffects();
+
           document.getElementById("topSidebar").style.display = "block";
           updateGameplayProfileUI();
 
-          // Kosongkan gambar, tampilkan teks pembuka
           const img = el("rngImage");
           if (img) img.src = "";
 
@@ -1412,6 +1416,9 @@
 
           const frame = el("rngFrame");
           if (frame) frame.style.background = "var(--g-common)";
+
+          // ✅ Cek quest/achievement indicator
+          updateQuestIndicator();
         });
       }
 
@@ -3249,19 +3256,16 @@
 
         let html = "";
         const now = Date.now();
+        let changed = false;
 
         // Luck
         if (Array.isArray(window.activeEffects.luck)) {
-          window.activeEffects.luck = window.activeEffects.luck.filter(
-            (e) => e.expire > now
-          );
+          const before = window.activeEffects.luck.length;
+          window.activeEffects.luck = window.activeEffects.luck.filter(e => e.expire > now);
+          if (window.activeEffects.luck.length !== before) changed = true;
           window.activeEffects.luck.forEach((e) => {
             const min = Math.floor((e.expire - now) / 60000);
-            const sec = Math.floor(((e.expire - now) % 60000) / 1000)
-              .toString()
-              .padStart(2, "0");
-
-            // warna ungu kalau x5 - x10
+            const sec = Math.floor(((e.expire - now) % 60000) / 1000).toString().padStart(2, "0");
             const color = e.mult >= 7 && e.mult <= 10 ? "violet" : "lime";
             html += `<div style="color:${color}">Luck x${e.mult}: ${min}:${sec}</div>`;
           });
@@ -3269,51 +3273,72 @@
 
         // Fast Roll
         if (Array.isArray(window.activeEffects.fast)) {
-          window.activeEffects.fast = window.activeEffects.fast.filter(
-            (e) => e.expire > now
-          );
+          const before = window.activeEffects.fast.length;
+          window.activeEffects.fast = window.activeEffects.fast.filter(e => e.expire > now);
+          if (window.activeEffects.fast.length !== before) changed = true;
           window.activeEffects.fast.forEach((e) => {
             const min = Math.floor((e.expire - now) / 60000);
-            const sec = Math.floor(((e.expire - now) % 60000) / 1000)
-              .toString()
-              .padStart(2, "0");
-
-            // warna ungu kalau x5 - x10
+            const sec = Math.floor(((e.expire - now) % 60000) / 1000).toString().padStart(2, "0");
             const color = e.mult >= 7 && e.mult <= 10 ? "violet" : "cyan";
             html += `<div style="color:${color}">Fast x${e.mult}: ${min}:${sec}</div>`;
           });
         }
 
         elStatus.innerHTML = html;
+
+        // Auto-save saat ada efek yang expired
+        if (changed) saveActiveEffects();
       }
 
       function activatePotionEffect(type, duration, mult = 2) {
         const now = Date.now();
 
-        // Pastikan struktur array ada
         if (!window.activeEffects) window.activeEffects = {};
         if (!Array.isArray(window.activeEffects[type])) {
           window.activeEffects[type] = [];
         }
 
-        // Tambahkan efek baru (durasi dan multiplier terpisah)
         window.activeEffects[type].push({
           mult: mult,
           expire: now + duration,
         });
 
-        // Jika luck → update badge multiplier total
+        // Simpan ke localStorage agar persists saat keluar
+        saveActiveEffects();
+
         if (type === "luck") {
           updateLuckBadge(getLuckMultiplier());
         }
-
-        // Jika fast → update speed multiplier
         if (type === "fast") {
           getFastRollMultiplier();
         }
 
-        // Refresh UI status efek
         updateEffectStatusUI();
+      }
+
+      function saveActiveEffects() {
+        const now = Date.now();
+        // Hanya simpan yang belum expired
+        const toSave = {
+          luck: (window.activeEffects.luck || []).filter(e => e.expire > now),
+          fast: (window.activeEffects.fast || []).filter(e => e.expire > now),
+        };
+        localStorage.setItem('activeEffects', JSON.stringify(toSave));
+      }
+
+      function loadActiveEffects() {
+        try {
+          const saved = JSON.parse(localStorage.getItem('activeEffects') || '{}');
+          const now = Date.now();
+          window.activeEffects = {
+            luck: (saved.luck || []).filter(e => e.expire > now),
+            fast: (saved.fast || []).filter(e => e.expire > now),
+          };
+        } catch(e) {
+          window.activeEffects = { luck: [], fast: [] };
+        }
+        updateEffectStatusUI();
+        updateLuckBadge(getLuckMultiplier());
       }
 
       /* ── STORE STATE ── */
@@ -4894,6 +4919,7 @@
 
       function saveQuests(data) {
         localStorage.setItem("quests", JSON.stringify(data));
+        updateQuestIndicator();
       }
 
       function loadAchievements() {
@@ -4937,6 +4963,7 @@
 
       function saveAchievements(data) {
         localStorage.setItem("achievements", JSON.stringify(data));
+        updateQuestIndicator();
       }
 
       function getRandomQuests(pool, count) {
@@ -5360,13 +5387,43 @@ function refreshQuestGroup(group) {
       }
 
       // === Overlay ===
+      function updateQuestIndicator() {
+        const indicator = document.getElementById('questIndicator');
+        if (!indicator) return;
+
+        const quests = loadQuests();
+        const achievements = loadAchievements();
+        const now = Date.now();
+
+        // Cek quest: ada yang progress >= target dan belum claimed?
+        let hasClaimable = false;
+
+        ['daily','weekly','monthly'].forEach(cat => {
+          (quests[cat] || []).forEach(q => {
+            if (!q.claimed && q.progress >= q.target) hasClaimable = true;
+          });
+        });
+
+        // Cek achievement juga
+        if (!hasClaimable) {
+          achievements.forEach(a => {
+            if (!a.claimed && a.progress >= a.target) hasClaimable = true;
+          });
+        }
+
+        indicator.classList.toggle('hidden', !hasClaimable);
+      }
+
       function openQuestOverlay() {
         document.getElementById("questOverlay").classList.add("show");
+        switchQuestTab('quest');
         renderQuests();
         renderAchievements();
       }
+
       function closeQuestOverlay() {
         document.getElementById("questOverlay").classList.remove("show");
+        updateQuestIndicator();
       }
 
       function getPotions() {
