@@ -1962,25 +1962,27 @@
         el("rngImage").src = "";
 
         const rk = selected?.rarity?.key || null;
+        // Roll counter — semua rarity
         updateQuestProgress("roll20", 1);
         updateQuestProgress("roll100", 1);
         updateQuestProgress("roll500", 1);
         updateQuestProgress("roll200", 1);
+
         if (rk) {
-          // contoh mapping (sesuaikan id quest/achievement dengan yang kamu definisikan)
           if (rk === "rare") {
             updateQuestProgress("rare3", 1);
             updateAchievementProgress("rare10", 1);
             updateAchievementProgress("frame_rare", 1);
           } else if (rk === "epic") {
             updateQuestProgress("epic1", 1);
-            updateAchievementProgress("epic20", 1);
+            updateQuestProgress("epic20", 1);       // ← FIX: quest epic20 butuh ini
+            updateAchievementProgress("epic20", 1); // achievement epic20
             updateAchievementProgress("frame_epic", 1);
           } else if (rk === "legend") {
             updateQuestProgress("getLegend", 1);
             updateQuestProgress("legend3", 1);
-            updateAchievementProgress("legend5", 1);
             updateQuestProgress("getLegend10", 1);
+            updateAchievementProgress("legend5", 1);
           } else if (rk === "mythical") {
             updateQuestProgress("mythical1", 1);
             updateAchievementProgress("mythical3", 1);
