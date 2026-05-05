@@ -4,7 +4,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>PLENGER RnG — UPD-1.9</title>
+  <meta property="og:title" content="PLENGER RnG" />
+  <meta property="og:description" content="Game roll kartu PLENGER berbagai rarity — bisa kamu dapatkan semuannya?" />
+  <meta property="og:image" content="https://rakhafr.github.io/PlengerRnG/ui/icon-game2.jpg" />
+  <meta property="og:url" content="https://rakhafr.github.io/PlengerRnG/" />
+  <meta property="og:type" content="website" />
+  <title>PLENGER RnG — UPD-2.0</title>
   <link rel="icon" type="image/png" href="ui/icon-game2.jpg">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -276,8 +281,10 @@
               <div class="inv-detail-desc" id="invDetailDesc">Pilih item dari grid</div>
             </div>
             <div class="inv-detail-actions">
-              <button class="inv-action-btn inv-lock-btn" id="invDetailLockBtn" onclick="invDetailToggleLock()" disabled>Lock</button>
-              <button class="inv-action-btn inv-sell-btn" id="invDetailSellBtn" onclick="invDetailSell()" disabled>Sell</button>
+              <button class="inv-action-btn inv-lock-btn" id="invDetailLockBtn" onclick="invDetailToggleLock()"
+                disabled>Lock</button>
+              <button class="inv-action-btn inv-sell-btn" id="invDetailSellBtn" onclick="invDetailSell()"
+                disabled>Sell</button>
             </div>
           </div>
 
@@ -340,9 +347,11 @@
 
         <!-- Tabs row (top-right) -->
         <div class="store-tab-row">
-          <button class="store-tab-btn luck-tab active-store-tab" id="storeTabLuck" onclick="switchStoreTab('luck')">LUCK</button>
+          <button class="store-tab-btn luck-tab active-store-tab" id="storeTabLuck"
+            onclick="switchStoreTab('luck')">LUCK</button>
           <button class="store-tab-btn fast-tab" id="storeTabFast" onclick="switchStoreTab('fast')">FAST-ROLL</button>
-          <button class="store-tab-btn cosmetic-tab" id="storeTabCosmetic" onclick="switchStoreTab('cosmetic')">KOSMETIK</button>
+          <button class="store-tab-btn cosmetic-tab" id="storeTabCosmetic"
+            onclick="switchStoreTab('cosmetic')">KOSMETIK</button>
           <div class="close-x store-close-x" onclick="closeStore()">✕</div>
         </div>
 
@@ -493,7 +502,8 @@
             </div>
             <div class="prf-avatar-edit-actions">
               <label class="prf-upload-btn" for="prfAvatarInput">Upload Foto</label>
-              <input type="file" id="prfAvatarInput" accept="image/*" style="display:none" onchange="prfUploadAvatar(this)">
+              <input type="file" id="prfAvatarInput" accept="image/*" style="display:none"
+                onchange="prfUploadAvatar(this)">
               <button class="prf-ghost-btn" onclick="prfRemoveAvatar()">Hapus Foto</button>
             </div>
           </div>
@@ -583,15 +593,18 @@
           <div class="prf-settings-grid">
             <div class="prf-setting-row">
               <span class="prf-setting-label">Musik Latar</span>
-              <label class="prf-toggle"><input type="checkbox" id="stgMusic" onchange="prfApplySetting('music',this.checked)"><span class="prf-toggle-track"></span></label>
+              <label class="prf-toggle"><input type="checkbox" id="stgMusic"
+                  onchange="prfApplySetting('music',this.checked)"><span class="prf-toggle-track"></span></label>
             </div>
             <div class="prf-setting-row">
               <span class="prf-setting-label">Efek Suara</span>
-              <label class="prf-toggle"><input type="checkbox" id="stgSfx" onchange="prfApplySetting('sfx',this.checked)"><span class="prf-toggle-track"></span></label>
+              <label class="prf-toggle"><input type="checkbox" id="stgSfx"
+                  onchange="prfApplySetting('sfx',this.checked)"><span class="prf-toggle-track"></span></label>
             </div>
             <div class="prf-setting-row">
               <span class="prf-setting-label">Volume</span>
-              <input type="range" id="stgVolume" min="0" max="100" step="1" class="prf-slider" oninput="prfApplySetting('volume',this.value)">
+              <input type="range" id="stgVolume" min="0" max="100" step="1" class="prf-slider"
+                oninput="prfApplySetting('volume',this.value)">
               <span class="prf-slider-val" id="stgVolumeVal">80</span>
             </div>
           </div>
@@ -600,19 +613,23 @@
           <div class="prf-settings-grid">
             <div class="prf-setting-row">
               <span class="prf-setting-label">Bintang Jatuh</span>
-              <label class="prf-toggle"><input type="checkbox" id="stgStars" onchange="prfApplySetting('stars',this.checked)"><span class="prf-toggle-track"></span></label>
+              <label class="prf-toggle"><input type="checkbox" id="stgStars"
+                  onchange="prfApplySetting('stars',this.checked)"><span class="prf-toggle-track"></span></label>
             </div>
             <div class="prf-setting-row">
               <span class="prf-setting-label">Animasi Rarity</span>
-              <label class="prf-toggle"><input type="checkbox" id="stgAnim" onchange="prfApplySetting('anim',this.checked)"><span class="prf-toggle-track"></span></label>
+              <label class="prf-toggle"><input type="checkbox" id="stgAnim"
+                  onchange="prfApplySetting('anim',this.checked)"><span class="prf-toggle-track"></span></label>
             </div>
             <div class="prf-setting-row">
               <span class="prf-setting-label">Video Cutscene</span>
-              <label class="prf-toggle"><input type="checkbox" id="stgVideo" onchange="prfApplySetting('video',this.checked)"><span class="prf-toggle-track"></span></label>
+              <label class="prf-toggle"><input type="checkbox" id="stgVideo"
+                  onchange="prfApplySetting('video',this.checked)"><span class="prf-toggle-track"></span></label>
             </div>
             <div class="prf-setting-row">
               <span class="prf-setting-label">Partikel Efek</span>
-              <label class="prf-toggle"><input type="checkbox" id="stgParticle" onchange="prfApplySetting('particle',this.checked)"><span class="prf-toggle-track"></span></label>
+              <label class="prf-toggle"><input type="checkbox" id="stgParticle"
+                  onchange="prfApplySetting('particle',this.checked)"><span class="prf-toggle-track"></span></label>
             </div>
           </div>
 
@@ -620,7 +637,8 @@
           <div class="prf-settings-grid">
             <div class="prf-setting-row">
               <span class="prf-setting-label">Mode Hemat Baterai</span>
-              <label class="prf-toggle"><input type="checkbox" id="stgBattery" onchange="prfApplySetting('battery',this.checked)"><span class="prf-toggle-track"></span></label>
+              <label class="prf-toggle"><input type="checkbox" id="stgBattery"
+                  onchange="prfApplySetting('battery',this.checked)"><span class="prf-toggle-track"></span></label>
             </div>
             <div class="prf-setting-row">
               <span class="prf-setting-label">Resolusi Gambar</span>
@@ -679,11 +697,12 @@
       </div>
       <!-- Tab bar -->
       <div class="quest-tab-bar">
-        <button class="quest-tab-pill active" id="qtab-quest"   onclick="switchQuestTab('quest')">⚔️ Quest</button>
-        <button class="quest-tab-pill"        id="qtab-achievement" onclick="switchQuestTab('achievement')">🏆 Achievements</button>
+        <button class="quest-tab-pill active" id="qtab-quest" onclick="switchQuestTab('quest')">⚔️ Quest</button>
+        <button class="quest-tab-pill" id="qtab-achievement" onclick="switchQuestTab('achievement')">🏆
+          Achievements</button>
       </div>
       <!-- Content -->
-      <div id="questTab"       class="quest-scroll-area"></div>
+      <div id="questTab" class="quest-scroll-area"></div>
       <div id="achievementTab" class="quest-scroll-area hidden"></div>
     </div>
   </div>
