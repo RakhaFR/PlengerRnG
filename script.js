@@ -1901,6 +1901,8 @@
         stopRarityEffect();
         if (rolling) return;
         rolling = true;
+        const _rollBtn = document.getElementById('rollBtn');
+        if (_rollBtn) _rollBtn.disabled = true;
 
         rollCount++;
         const isTenth = rollCount % 10 === 0 && rollCount > 0;
@@ -2117,6 +2119,8 @@
           }
 
           rolling = false;
+          const _rollBtnEnd = document.getElementById('rollBtn');
+          if (_rollBtnEnd) _rollBtnEnd.disabled = false;
         }, rollDuration);
       }
 
@@ -2875,6 +2879,8 @@
           case 'r': case 'R':
             if (!anyOverlayOpen()) {
               e.preventDefault();
+              // Guard: jangan roll kalau animasi masih berjalan
+              if (rolling || isSpecialAnimation) break;
               const rollBtn = document.getElementById('rollBtn');
               if (rollBtn && !rollBtn.disabled) rollBtn.click();
             }
@@ -2978,16 +2984,18 @@
         const price = 5000;
 
         if (!autoRoll) {
-          // Cek: sudah pernah beli belum?
           if (!autoRollUnlocked) {
+            // Re-read coins dari localStorage untuk hindari stale value
+            coins = parseInt(localStorage.getItem('coins') || '0');
             if (coins >= price) {
               coins -= price;
-              autoRollUnlocked = true;
               saveCoins();
-              saveAutoRollUnlock();
               updateCoinUI();
+              autoRollUnlocked = true;
+              saveAutoRollUnlock();
             } else {
-              showErrorPopup("💸 Coin tidak cukup!");
+              try { const s = document.getElementById('errorSfx'); s.currentTime = 0; s.play(); } catch(e) {}
+              showErrorPopup("💸 Coin tidak cukup! Butuh 5.000 coins");
               return;
             }
           }
@@ -3020,24 +3028,51 @@
         const pill = document.querySelector(".pill-left");
         if (!pill) return;
 
+        const refundClaimed = localStorage.getItem("autoRollRefundClaimed") === "true";
+
         if (autoRoll) {
           pill.innerHTML = `
-      Gulir Otomatis: <span style="color:#2ad980;">AKTIF ✅</span><br>
-      <span class="sub">Auto mode berjalan</span>
-    `;
+            Gulir Otomatis: <span style="color:#2ad980;">AKTIF ✅</span><br>
+            <span class="sub">Auto mode berjalan</span>
+          `;
         } else {
           if (autoRollUnlocked) {
             pill.innerHTML = `
-        Gulir Otomatis: <span style="color:#ffcc00;">MATI</span><br>
-        <span class="sub">Klik untuk aktifkan lagi</span>
-      `;
+              Gulir Otomatis: <span style="color:#ffcc00;">MATI</span><br>
+              <span class="sub">Klik untuk aktifkan lagi</span>
+              ${!refundClaimed ? `<br><button onclick="refundAutoRoll(event)" class="autoroll-refund-btn">🔄 Refund 5.000 Coins (bug kemarin)</button>` : ''}
+            `;
           } else {
             pill.innerHTML = `
-        Gulir Otomatis: <span style="color:#ffcc00;">MATI</span><br>
-        <span class="sub" style="color:orange;">Bayar 5000 Coins (sekali saja)</span>
-      `;
+              Gulir Otomatis: <span style="color:#ffcc00;">MATI</span><br>
+              <span class="sub" style="color:orange;">Bayar 5000 Coins (sekali saja)</span>
+            `;
           }
         }
+      }
+
+      function refundAutoRoll(e) {
+        e.stopPropagation(); // jangan trigger toggleAutoRoll
+
+        const refundClaimed = localStorage.getItem("autoRollRefundClaimed") === "true";
+        if (refundClaimed) {
+          showErrorPopup("❌ Refund sudah pernah diklaim!");
+          return;
+        }
+
+        // Kembalikan 5000 coins
+        coins = parseInt(localStorage.getItem('coins') || '0');
+        coins += 5000;
+        saveCoins();
+        updateCoinUI();
+
+        // Tandai sudah diklaim — hanya bisa sekali
+        localStorage.setItem("autoRollRefundClaimed", "true");
+
+        try { const s = document.getElementById('coinSfx'); s.currentTime = 0; s.play(); } catch(e2) {}
+        showPopup("✅ Refund berhasil! +5.000 Coins dikembalikan");
+
+        updateAutoRollUI();
       }
 
       /*************************************
