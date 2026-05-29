@@ -3034,7 +3034,7 @@
         const boughtAt       = parseInt(localStorage.getItem("autoRollBoughtAt") || "0");
         // Cutoff: timestamp push fix (setelah ini = beli normal, tidak eligible refund)
         // 2025-01-01 00:00:00 UTC → ganti ke tanggal push fix kamu
-        const FIX_PUSH_TS = new Date("2025-05-29T00:00:00Z").getTime();
+        const FIX_PUSH_TS = new Date("2026-05-28T23:59:59Z").getTime();
         const isRefundEligible = autoRollUnlocked
           && !refundClaimed
           && (boughtAt === 0 || boughtAt < FIX_PUSH_TS); // boughtAt=0 artinya beli sebelum ada timestamp (pasti lama)
