@@ -3034,11 +3034,12 @@
         const boughtAt       = parseInt(localStorage.getItem("autoRollBoughtAt") || "0");
         // Cutoff: timestamp push fix (setelah ini = beli normal, tidak eligible refund)
         // 2025-01-01 00:00:00 UTC → ganti ke tanggal push fix kamu
-        const FIX_PUSH_TS = new Date("2026-05-28T23:59:59Z").getTime();
-        const isRefundEligible = autoRollUnlocked
-          && !refundClaimed
-          && (boughtAt === 0 || boughtAt < FIX_PUSH_TS); // boughtAt=0 artinya beli sebelum ada timestamp (pasti lama)
+const FIX_PUSH_TS_START = new Date("2026-05-25T00:00:00Z").getTime();
+const FIX_PUSH_TS_END   = new Date("2026-05-29T23:59:59Z").getTime();
 
+const isRefundEligible = autoRollUnlocked
+  && !refundClaimed
+  && (boughtAt >= FIX_PUSH_TS_START && boughtAt <= FIX_PUSH_TS_END);
         if (autoRoll) {
           pill.innerHTML = `
             Gulir Otomatis: <span style="color:#2ad980;">AKTIF ✅</span><br>
