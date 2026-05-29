@@ -2993,6 +2993,8 @@
               updateCoinUI();
               autoRollUnlocked = true;
               saveAutoRollUnlock();
+              // Simpan timestamp beli — untuk guard refund
+              localStorage.setItem('autoRollBoughtAt', Date.now().toString());
             } else {
               try { const s = document.getElementById('errorSfx'); s.currentTime = 0; s.play(); } catch(e) {}
               showErrorPopup("💸 Coin tidak cukup! Butuh 5.000 coins");
@@ -3028,7 +3030,14 @@
         const pill = document.querySelector(".pill-left");
         if (!pill) return;
 
-        const refundClaimed = localStorage.getItem("autoRollRefundClaimed") === "true";
+        const refundClaimed  = localStorage.getItem("autoRollRefundClaimed") === "true";
+        const boughtAt       = parseInt(localStorage.getItem("autoRollBoughtAt") || "0");
+        // Cutoff: timestamp push fix (setelah ini = beli normal, tidak eligible refund)
+        // 2025-01-01 00:00:00 UTC → ganti ke tanggal push fix kamu
+        const FIX_PUSH_TS = new Date("2025-05-29T00:00:00Z").getTime();
+        const isRefundEligible = autoRollUnlocked
+          && !refundClaimed
+          && (boughtAt === 0 || boughtAt < FIX_PUSH_TS); // boughtAt=0 artinya beli sebelum ada timestamp (pasti lama)
 
         if (autoRoll) {
           pill.innerHTML = `
@@ -3040,7 +3049,7 @@
             pill.innerHTML = `
               Gulir Otomatis: <span style="color:#ffcc00;">MATI</span><br>
               <span class="sub">Klik untuk aktifkan lagi</span>
-              ${!refundClaimed ? `<br><button onclick="refundAutoRoll(event)" class="autoroll-refund-btn">🔄 Refund 5.000 Coins (bug kemarin)</button>` : ''}
+              ${isRefundEligible ? `<br><button onclick="refundAutoRoll(event)" class="autoroll-refund-btn">🔄 Refund 5.000 Coins (bug kemarin)</button>` : ''}
             `;
           } else {
             pill.innerHTML = `
