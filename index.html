@@ -812,7 +812,6 @@
 
   <!-- ── Auth Module Script ── -->
 <script type="module">
-  // Import langsung dari helper db.js agar instance Firebase tidak duplikat
   import { 
     loginWithGoogle, 
     logoutUser, 
@@ -820,17 +819,16 @@
     applyCloudDataToLocalStorage, 
     saveDataToFirebase,
     getCurrentUser
-  } from "db.js";
+  } from "./db.js";
 
-  // Sediakan akses global untuk dipakai oleh script.js lama lu (opsional)
   window._authDB = { saveDataToFirebase, getCurrentUser };
 
-  /* ── UI helpers ─────────────────────────────────────────── */
+  /* ── UI helpers ── */
   function setStatus(msg, type = "") {
     const el = document.getElementById("authStatus");
     if (!el) return;
     el.textContent = msg;
-    el.className   = "auth-status show " + type;
+    el.className = "auth-status show " + type;
   }
 
   function clearStatus() {
@@ -845,23 +843,22 @@
   }
 
   function showLoggedInPanel(user) {
-    document.getElementById("authBody").style.display  = "none";
+    document.getElementById("authBody").style.display = "none";
     const panel = document.getElementById("authLoggedIn");
     panel.classList.add("show");
 
     const av   = document.getElementById("authUserAvatar");
     const name = document.getElementById("authUserName");
     const mail = document.getElementById("authUserEmail");
-    if (av && user.photoURL)      av.src         = user.photoURL;
+    if (av && user.photoURL)      av.src          = user.photoURL;
     if (name && user.displayName) name.textContent = user.displayName;
-    if (mail && user.email)        mail.textContent = user.email;
+    if (mail && user.email)       mail.textContent = user.email;
 
-    /* Update tampilan tombol profile/avatar di sidebar */
     const sideAv  = document.getElementById("sideAuthAvatarImg");
     const sideLbl = document.getElementById("sideAuthLabel");
     const sideDot = document.getElementById("sideAuthDot");
-    if (sideAv && user.photoURL)      sideAv.src          = user.photoURL;
-    if (sideLbl && user.displayName) sideLbl.textContent  = user.displayName.split(" ")[0];
+    if (sideAv && user.photoURL)      sideAv.src         = user.photoURL;
+    if (sideLbl && user.displayName) sideLbl.textContent = user.displayName.split(" ")[0];
     if (sideDot) sideDot.classList.add("online");
   }
 
@@ -873,92 +870,10 @@
     const sideAv  = document.getElementById("sideAuthAvatarImg");
     const sideLbl = document.getElementById("sideAuthLabel");
     const sideDot = document.getElementById("sideAuthDot");
-    if (sideAv)  sideAv.src          = "ui/user.png";
-    if (sideLbl) sideLbl.textContent  = "Login";
+    if (sideAv)  sideAv.src         = "ui/user.png";
+    if (sideLbl) sideLbl.textContent = "Login";
     if (sideDot) sideDot.classList.remove("online");
   }
-
-  /* ── Trigger Aksi Jendela Popup ─────────────────────────── */
-  window.openAuthPopup = function () {
-    clearStatus();
-    document.getElementById("authOverlay")?.classList.add("show");
-  };
-  window.closeAuthPopup = function () {
-    document.getElementById("authOverlay")?.classList.remove("show");
-  };
-
-  /* ── Jalankan Login Menggunakan Fungsi db.js ─────────────── */
-  window.authDoGoogleLogin = async function () {
-    const btn = document.getElementById("authGoogleBtn");
-    const lbl = document.getElementById("authGoogleBtnLabel");
-    if (btn) btn.disabled = true;
-    if (lbl) lbl.innerHTML = '<span class="auth-spinner"></span>Menghubungkan…';
-    setStatus("Membuka popup Google…", "loading");
-
-    try {
-      await loginWithGoogle(); 
-    } catch (err) {
-      let msg = "Login gagal. Coba lagi.";
-      if (err.code === "auth/popup-closed-by-user")   msg = "Popup ditutup. Coba lagi.";
-      if (err.code === "auth/network-request-failed") msg = "Tidak ada koneksi internet.";
-      setStatus(msg, "");
-      if (btn) btn.disabled = false;
-      if (lbl) lbl.textContent = "Masuk dengan Google";
-    }
-  };
-
-  /* ── Jalankan Logout Menggunakan Fungsi db.js ────────────── */
-  window.authDoLogout = async function () {
-    await logoutUser();
-    showGuestPanel();
-    setStatus("Kamu telah keluar.", "");
-  };
-
-  /* ── Jalankan Sinkronisasi Manual ───────────────────────── */
-  window.authManualSync = async function () {
-    const btn = document.querySelector(".auth-sync-btn");
-    if (btn) { btn.disabled = true; btn.textContent = "Menyimpan…"; }
-    
-    const ok = await saveDataToFirebase();
-    if (btn) {
-      btn.disabled = false;
-      btn.textContent = ok ? "✅ Tersimpan!" : "❌ Gagal";
-      setTimeout(() => { btn.textContent = "☁️ Simpan ke Cloud"; }, 2500);
-    }
-    if (ok) updateLastSync(Date.now());
-  };
-
-  /* ── Jalankan Pemantau Status Utama via db.js ────────────── */
-  checkAuthStatus(
-    // 1. Jika Player Lama (Data Firestore Ada)
-    (cloudData, user) => {
-      applyCloudDataToLocalStorage(cloudData);
-      updateLastSync(cloudData.lastSynced);
-      setStatus("Data cloud dimuat! ☁️", "success");
-
-      // Menjalankan fungsi render UI bawaan script.js milikmu secara dinamis
-      if (typeof loadCoins === "function") loadCoins();
-      if (typeof updateGameplayProfileUI === "function") updateGameplayProfileUI();
-
-      showLoggedInPanel(user);
-      resetLoginButtonState();
-      autoClosePopup();
-      startAutoSyncInterval();
-    },
-    // 2. Jika Player Baru
-    (user) => {
-      setStatus("Akun baru terdaftar! Data lokal diupload. 🎉", "success");
-      showLoggedInPanel(user);
-      resetLoginButtonState();
-      autoClosePopup();
-      startAutoSyncInterval();
-    },
-    // 3. Jika Belum/Tidak Login
-    () => {
-      showGuestPanel();
-      clearInterval(window._authSyncInterval);
-    }
-  );
 
   function resetLoginButtonState() {
     const btn = document.getElementById("authGoogleBtn");
@@ -970,7 +885,7 @@
   function autoClosePopup() {
     setTimeout(() => {
       if (document.getElementById("authOverlay")?.classList.contains("show")) {
-        closeAuthPopup();
+        window.closeAuthPopup();
       }
     }, 1200);
   }
@@ -980,7 +895,112 @@
     window._authSyncInterval = setInterval(saveDataToFirebase, 3 * 60 * 1000);
   }
 
-  /* ── Sinkronisasi otomatis saat keluar game ──────────────── */
+  /* ── Global functions (dipanggil dari HTML) ── */
+  window.openAuthPopup = function () {
+    clearStatus();
+    document.getElementById("authOverlay")?.classList.add("show");
+  };
+
+  window.closeAuthPopup = function () {
+    document.getElementById("authOverlay")?.classList.remove("show");
+  };
+
+  window.authDoGoogleLogin = async function () {
+    const btn = document.getElementById("authGoogleBtn");
+    const lbl = document.getElementById("authGoogleBtnLabel");
+    if (btn) btn.disabled = true;
+    if (lbl) lbl.innerHTML = '<span class="auth-spinner"></span>Menghubungkan…';
+    setStatus("Membuka popup Google…", "loading");
+
+    try {
+      await loginWithGoogle();
+    } catch (err) {
+      let msg = "Login gagal. Coba lagi.";
+      if (err.code === "auth/popup-closed-by-user")   msg = "Popup ditutup. Coba lagi.";
+      if (err.code === "auth/popup-blocked")           msg = "Popup diblokir browser. Izinkan popup untuk domain ini.";
+      if (err.code === "auth/network-request-failed")  msg = "Tidak ada koneksi internet.";
+      if (err.code === "auth/unauthorized-domain")     msg = "Domain belum didaftarkan di Firebase Console.";
+      setStatus(msg, "");
+      if (btn) btn.disabled = false;
+      if (lbl) lbl.textContent = "Masuk dengan Google";
+    }
+  };
+
+  window.authDoLogout = async function () {
+    await logoutUser();
+    showGuestPanel();
+    setStatus("Kamu telah keluar.", "");
+  };
+
+  window.authManualSync = async function () {
+    const btn = document.querySelector(".auth-sync-btn");
+    if (btn) { btn.disabled = true; btn.textContent = "Menyimpan…"; }
+
+    const ok = await saveDataToFirebase();
+    if (btn) {
+      btn.disabled = false;
+      btn.textContent = ok ? "✅ Tersimpan!" : "❌ Gagal";
+      setTimeout(() => { btn.textContent = "☁️ Simpan ke Cloud"; }, 2500);
+    }
+    if (ok) updateLastSync(Date.now());
+  };
+
+  /* ── Event listeners (ganti inline onclick di HTML) ── */
+  document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("sideAuthBtn")
+      ?.addEventListener("click", window.openAuthPopup);
+
+    document.getElementById("authGoogleBtn")
+      ?.addEventListener("click", window.authDoGoogleLogin);
+
+    document.querySelector(".auth-close-btn")
+      ?.addEventListener("click", window.closeAuthPopup);
+
+    document.querySelector(".auth-guest-btn")
+      ?.addEventListener("click", window.closeAuthPopup);
+
+    document.querySelector(".auth-sync-btn")
+      ?.addEventListener("click", window.authManualSync);
+
+    document.querySelector(".auth-logout-btn")
+      ?.addEventListener("click", window.authDoLogout);
+
+    // Klik overlay gelap untuk tutup
+    document.getElementById("authOverlay")
+      ?.addEventListener("click", (e) => {
+        if (e.target.id === "authOverlay") window.closeAuthPopup();
+      });
+  });
+
+  /* ── Auth state observer ── */
+  checkAuthStatus(
+    (cloudData, user) => {
+      applyCloudDataToLocalStorage(cloudData);
+      updateLastSync(cloudData.lastSynced);
+      setStatus("Data cloud dimuat! ☁️", "success");
+
+      if (typeof loadCoins === "function") loadCoins();
+      if (typeof updateGameplayProfileUI === "function") updateGameplayProfileUI();
+
+      showLoggedInPanel(user);
+      resetLoginButtonState();
+      autoClosePopup();
+      startAutoSyncInterval();
+    },
+    (user) => {
+      setStatus("Akun baru terdaftar! Data lokal diupload. 🎉", "success");
+      showLoggedInPanel(user);
+      resetLoginButtonState();
+      autoClosePopup();
+      startAutoSyncInterval();
+    },
+    () => {
+      showGuestPanel();
+      clearInterval(window._authSyncInterval);
+    }
+  );
+
+  /* ── Auto sync saat keluar ── */
   window.addEventListener("beforeunload", () => {
     if (getCurrentUser()) saveDataToFirebase();
   });
