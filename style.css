@@ -7425,3 +7425,155 @@ kbd {
   color: rgba(255, 255, 255, 0.3);
   line-height: 1.8;
 }
+
+/* ===== AUTH CHOICE POPUP ===== */
+#authChoiceOverlay {
+  z-index: 1500;
+}
+
+.auth-choice-modal {
+  background: #0d0b1e;
+  border: 1px solid rgba(180, 120, 255, 0.25);
+  width: min(380px, 92vw);
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+.auth-choice-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 18px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.auth-choice-title {
+  font-family: "Press Start 2P", monospace;
+  font-size: 9px;
+  color: #c084fc;
+  letter-spacing: 1px;
+}
+
+.auth-choice-body {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.auth-choice-desc {
+  font-family: "Press Start 2P", monospace;
+  font-size: 7px;
+  color: rgba(255, 255, 255, 0.35);
+  line-height: 1.9;
+  margin-bottom: 4px;
+}
+
+/* base button */
+.auth-choice-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+  color: #fff;
+  cursor: pointer;
+  text-align: left;
+  text-decoration: none;
+  transition: all 0.12s;
+  font-family: "Press Start 2P", monospace;
+}
+
+.auth-choice-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.auth-choice-btn-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+  width: 32px;
+  text-align: center;
+}
+
+.auth-choice-btn-text {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.auth-choice-btn-label {
+  font-family: "Press Start 2P", monospace;
+  font-size: 8px;
+  color: #fff;
+  display: block;
+}
+
+.auth-choice-btn-desc {
+  font-family: "Press Start 2P", monospace;
+  font-size: 6px;
+  color: rgba(255, 255, 255, 0.35);
+  line-height: 1.8;
+  display: block;
+}
+
+/* Login — hijau seperti prf-cloud-logged-in */
+.auth-choice-login {
+  border-color: rgba(74, 222, 128, 0.25);
+  background: rgba(74, 222, 128, 0.06);
+}
+.auth-choice-login:hover {
+  background: rgba(74, 222, 128, 0.12);
+  border-color: rgba(74, 222, 128, 0.45);
+}
+.auth-choice-login .auth-choice-btn-label {
+  color: #4ade80;
+}
+
+/* Sign up — ungu */
+.auth-choice-signup {
+  border-color: rgba(192, 132, 252, 0.2);
+  background: rgba(192, 132, 252, 0.05);
+}
+.auth-choice-signup:hover {
+  background: rgba(192, 132, 252, 0.12);
+  border-color: rgba(192, 132, 252, 0.4);
+}
+.auth-choice-signup .auth-choice-btn-label {
+  color: #c084fc;
+}
+
+/* Player lama — kuning seperti prf-cloud-status-warn */
+.auth-choice-migrate {
+  border-color: rgba(251, 191, 36, 0.2);
+  background: rgba(251, 191, 36, 0.04);
+}
+.auth-choice-migrate:hover {
+  background: rgba(251, 191, 36, 0.1);
+  border-color: rgba(251, 191, 36, 0.4);
+}
+.auth-choice-migrate .auth-choice-btn-label {
+  color: #fbbf24;
+}
+
+/* Skip link */
+.auth-choice-skip {
+  width: 100%;
+  padding: 10px;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.2);
+  font-family: "Press Start 2P", monospace;
+  font-size: 6px;
+  cursor: pointer;
+  text-align: center;
+  transition: color 0.12s;
+  margin-top: 2px;
+}
+.auth-choice-skip:hover {
+  color: rgba(255, 255, 255, 0.45);
+}

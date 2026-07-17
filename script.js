@@ -4688,9 +4688,9 @@ function prfRenderCloudSection() {
           ⚠️ Belum login — progress hanya tersimpan lokal di browser ini
         </div>
         <button class="prf-save-btn" id="prfCloudLoginBtn"
-                onclick="authDoGoogleLogin()"
+                onclick="openAuthChoicePopup()"
                 style="width:100%; margin-top:10px; padding:10px; font-size:8px">
-          🔑 Login dengan Google
+          🔑 Masuk / Daftar Akun
         </button>
         <div class="prf-cloud-note">
           Login Google → progress tersimpan di cloud & bisa dibuka dari HP / PC manapun
@@ -4698,6 +4698,14 @@ function prfRenderCloudSection() {
       </div>
     `;
   }
+}
+
+function openAuthChoicePopup() {
+  document.getElementById("authChoiceOverlay")?.classList.add("show");
+}
+
+function closeAuthChoicePopup() {
+  document.getElementById("authChoiceOverlay")?.classList.remove("show");
 }
 
 function openProfile() {

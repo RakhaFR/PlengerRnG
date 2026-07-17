@@ -9,7 +9,7 @@
   <meta property="og:image" content="https://rakhafr.github.io/PlengerRnG/ui/icon-game2.jpg" />
   <meta property="og:url" content="https://plenger-rng.vercel.app/" />
   <meta property="og:type" content="website" />
-  <title>PLENGER RnG — UPD-2.0</title>
+  <title>PLENGER RnG — UPD-2.1</title>
   <link rel="icon" type="image/png" href="ui/icon-game2.jpg">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -153,7 +153,7 @@
       </div>
       <div class="splash-version-wrap">
         <span class="splash-ver-icon">🎴</span>
-        <span class="splash-version">UPDATE 2.0</span>
+        <span class="splash-version">UPDATE 2.1</span>
         <span class="splash-ver-icon">🎲</span>
       </div>
       <button onclick="startGame()" class="splash-start-btn">
@@ -458,6 +458,52 @@
     </div>
   </div>
 
+
+  <!-- AUTH CHOICE POPUP -->
+  <div class="overlay" id="authChoiceOverlay">
+    <div class="auth-choice-modal">
+      <div class="auth-choice-header">
+        <div class="auth-choice-title">☁️ AKUN CLOUD</div>
+        <div class="close-x" onclick="closeAuthChoicePopup()">✕</div>
+      </div>
+      <div class="auth-choice-body">
+        <div class="auth-choice-desc">
+          Pilih opsi untuk menyimpan progressmu ke cloud.
+        </div>
+
+        <!-- Opsi 1: Login -->
+        <button class="auth-choice-btn auth-choice-login" id="prfCloudLoginBtn" onclick="authDoGoogleLogin()">
+          <span class="auth-choice-btn-icon">🔑</span>
+          <span class="auth-choice-btn-text">
+            <span class="auth-choice-btn-label">Login dengan Google</span>
+            <span class="auth-choice-btn-desc">Sudah punya akun? Masuk dan sinkron data.</span>
+          </span>
+        </button>
+
+        <!-- Opsi 2: Daftar akun baru -->
+        <button class="auth-choice-btn auth-choice-signup" onclick="authDoGoogleLogin()">
+          <span class="auth-choice-btn-icon">✨</span>
+          <span class="auth-choice-btn-text">
+            <span class="auth-choice-btn-label">Daftar Akun Baru</span>
+            <span class="auth-choice-btn-desc">Belum punya akun? Google akan membuat akunmu.</span>
+          </span>
+        </button>
+
+        <!-- Opsi 3: Player lama gh-pages -->
+        <a class="auth-choice-btn auth-choice-migrate" href="https://rakhafr.github.io/PlengerRnG/" target="_blank">
+          <span class="auth-choice-btn-icon">📦</span>
+          <span class="auth-choice-btn-text">
+            <span class="auth-choice-btn-label">Saya Player Lama</span>
+            <span class="auth-choice-btn-desc">Pernah main di GitHub Pages? Backup dulu datamu di sana.</span>
+          </span>
+        </a>
+
+        <button class="auth-choice-skip" onclick="closeAuthChoicePopup()">
+          Lewati — main tanpa akun
+        </button>
+      </div>
+    </div>
+  </div>
 
   <!-- PLAYER PROFILE POPUP -->
   <div class="overlay" id="profileOverlay">
@@ -789,19 +835,26 @@
 
     /* ── Global functions (dipanggil dari script.js via prfRenderCloudSection) ── */
     window.authDoGoogleLogin = async function () {
-      // Tampil loading state di tombol dalam profile
-      const btn = document.getElementById("prfCloudLoginBtn");
-      if (btn) { btn.disabled = true; btn.textContent = "Menghubungkan…"; }
+      // Tutup pop-up pilihan, disable semua tombol login di dalamnya
+      const overlay = document.getElementById("authChoiceOverlay");
+      const btns = overlay?.querySelectorAll(".auth-choice-login, .auth-choice-signup");
+      btns?.forEach(b => { b.disabled = true; });
+      const loginBtn = document.getElementById("prfCloudLoginBtn");
+      if (loginBtn) { loginBtn.disabled = true; loginBtn.textContent = "Menghubungkan…"; }
 
       try {
         await loginWithGoogle();
+        // Berhasil → tutup pop-up
+        overlay?.classList.remove("show");
       } catch (err) {
         let msg = "Login gagal. Coba lagi.";
         if (err.code === "auth/popup-closed-by-user")   msg = "Popup ditutup. Coba lagi.";
         if (err.code === "auth/popup-blocked")           msg = "Popup diblokir browser. Izinkan popup.";
         if (err.code === "auth/network-request-failed")  msg = "Tidak ada koneksi internet.";
         if (err.code === "auth/unauthorized-domain")     msg = "Domain belum terdaftar di Firebase.";
-        if (btn) { btn.disabled = false; btn.textContent = "🔑 Login dengan Google"; }
+        // Reset tombol kalau gagal
+        btns?.forEach(b => { b.disabled = false; });
+        if (loginBtn) { loginBtn.disabled = false; loginBtn.textContent = "🔑 Masuk / Daftar Akun"; }
         showToast(msg, "error");
       }
     };
