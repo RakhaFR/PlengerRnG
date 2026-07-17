@@ -46,16 +46,25 @@ export function applyCloudDataToLocalStorage(data) {
     localStorage.setItem(key, typeof val === "object" ? JSON.stringify(val) : String(val));
   };
 
-// Di dalam array keys di applyCloudDataToLocalStorage
-const keys = [
-  "username","coins","totalRolls","totalSold","autoRollUnlocked",
-  "prfSettings","rhg_profile","commonCount","uncommonCount","rareCount",
-  "epicCount","prismaticCount","secretCount","inventory","potions",
-  "quests","achievements","achievementsVersion","dailyDay","lastDailyClaim",
-  "googlePhotoURL"  // ← tambah ini
-];
+  const keys = [
+    "username", "coins", "totalRolls", "totalSold", "autoRollUnlocked",
+    "prfSettings", "rhg_profile",
+    "cosmeticUnlocks",    // ← frame & banner unlocks
+    "commonCount", "uncommonCount", "rareCount", "epicCount",
+    "legendaryCount",     // ← legend
+    "mythicalCount",      // ← mythical
+    "prismaticCount", "secretCount",
+    "editsCount",         // ← EdiTz
+    "inventory", "potions",
+    "activeEffects",      // ← potion timers
+    "quests", "achievements", "achievementsVersion",
+    "dailyDay", "lastDailyClaim",
+    "googlePhotoURL"
+  ];
+
   keys.forEach(k => setLS(k, data[k]));
 
+  // counter_ custom items
   Object.keys(data).forEach(key => {
     if (key.startsWith("counter_")) setLS(key, data[key]);
   });
