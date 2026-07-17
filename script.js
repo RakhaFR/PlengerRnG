@@ -2,7 +2,7 @@
  * ======= KONFIGURASI =======
  *******************************/
 
-const CURRENT_UPDATE_VERSION = "2.0";
+const CURRENT_UPDATE_VERSION = "2.1";
 
 // Rarity & tampilannya
 const RARITIES = [
@@ -3805,21 +3805,11 @@ function debugActivePotions() {
 // ========= UPDATE LOG DATA =========
 const UPDATE_LOGS = [
   {
-    version: "MAJOR-UPD-2.0",
-    image: "ui/update-2.0.jpg",
+    version: "MIGRATION UPDATE 2.1",
+    image: "ui/UPDATE-MIGRATION.jpg",
     notes: [
-      "⚙️ Fixing store bugs!",
-      "⚙️ Fixing achievements & quest logic!",
-      "🛠️ Remake UI/UX Design",
-      "😄 New small lobby design",
-      "😄 New Profile features & layout design!",
-      "🖥️ Adding New achievement quest and design!",
-      "🖥️ New & Remake Store Tab, new tab 'Cosmetic' Tab!",
-      "📢 New update overlay UI design!",
-      "📦 New UI design inventory plenger overlay!",
-      "🎴 New Rarity plenger Edits!",
-      "🎴 New 50 plenger card!",
-      "🍀 Potion will not be lost if exiting the game!",
+      "☁️ NEW: Cloud Save Integration! Amankan data gacha kamu dengan Google Login!",
+      "🚀 Web migrated to Vercel for better & faster performance!",
     ],
   },
   {
@@ -4449,7 +4439,7 @@ function updateGameplayProfileUI() {
 
 function updateSidebarProfileUI() {
   const s = prfGetSettings();
-  const avatarSrc = localStorage.getItem("prfAvatarSrc") || "";  // ← ini yang baca foto Google
+  const avatarSrc = localStorage.getItem("prfAvatarSrc") || ""; // ← ini yang baca foto Google
   const name = localStorage.getItem("username") || "Guest";
   const level = prfCalcLevel();
 
@@ -4475,7 +4465,8 @@ function updateSidebarProfileUI() {
   // Name
   const sideLabel = document.getElementById("sideProfileLabel");
   if (sideLabel)
-    sideLabel.textContent = name.length > 10 ? name.substring(0, 10) + "…" : name;
+    sideLabel.textContent =
+      name.length > 10 ? name.substring(0, 10) + "…" : name;
 
   // Level
   const sideLevel = document.getElementById("sideProfileLevel");
