@@ -71,62 +71,52 @@ export async function saveDataToFirebase() {
   const user = auth.currentUser;
   if (!user) return false;
 
-  // DIOPTIMALKAN: Validasi ekstra agar JSON rusak tidak merusak Firestore Entity
   const getLS = (key, isJson = false, defaultValue = "") => {
     const val = localStorage.getItem(key);
     if (!val) return isJson ? (defaultValue ? JSON.parse(defaultValue) : null) : defaultValue;
-    if (isJson) { 
-      try { 
-        const parsed = JSON.parse(val);
-        // Pastikan hasil parse berupa object murni JavaScript, bukan string mentah atau corrupt
-        if (parsed && typeof parsed === "object") return parsed;
-        return JSON.parse(defaultValue);
-      } catch { 
-        return JSON.parse(defaultValue); 
-      } 
-    }
+    if (isJson) { try { return JSON.parse(val); } catch { return val; } }
     return val;
   };
 
   try {
     const playerData = {
-      username:           getLS("username", false, "Player"),
-      coins:              parseInt(getLS("coins") || "0"),
-      totalRolls:         parseInt(getLS("totalRolls") || "0"),
-      totalSold:          parseInt(getLS("totalSold") || "0"),
-      autoRollUnlocked:   getLS("autoRollUnlocked") === "true",
+      username:            getLS("username", false, "Player"),
+      coins:               parseInt(getLS("coins") || "0"),
+      totalRolls:          parseInt(getLS("totalRolls") || "0"),
+      totalSold:           parseInt(getLS("totalSold") || "0"),
+      autoRollUnlocked:    getLS("autoRollUnlocked") === "true",
 
-      // Kosmetik & Settings (Aman dari Invalid Nested Entity)
-      prfSettings:        getLS("prfSettings", true, "{}"),
-      rhg_profile:        getLS("rhg_profile", true, "{}"),
-      cosmeticUnlocks:    getLS("cosmeticUnlocks", true, "{}"),
+      // Kosmetik & Settings
+      prfSettings:         getLS("prfSettings", true, "{}"),
+      rhg_profile:         getLS("rhg_profile", true, "{}"),
+      cosmeticUnlocks:     getLS("cosmeticUnlocks", true, "{}"),   // ← frame & banner
 
       // Rarity counters
-      commonCount:        parseInt(getLS("commonCount") || "0"),
-      uncommonCount:      parseInt(getLS("uncommonCount") || "0"),
-      rareCount:          parseInt(getLS("rareCount") || "0"),
-      epicCount:          parseInt(getLS("epicCount") || "0"),
-      legendaryCount:     parseInt(getLS("legendaryCount") || "0"),
-      mythicalCount:      parseInt(getLS("mythicalCount") || "0"),
-      prismaticCount:     parseInt(getLS("prismaticCount") || "0"),
-      secretCount:        parseInt(getLS("secretCount") || "0"),
-      editsCount:         parseInt(getLS("editsCount") || "0"),
+      commonCount:         parseInt(getLS("commonCount") || "0"),
+      uncommonCount:       parseInt(getLS("uncommonCount") || "0"),
+      rareCount:           parseInt(getLS("rareCount") || "0"),
+      epicCount:           parseInt(getLS("epicCount") || "0"),
+      legendaryCount:      parseInt(getLS("legendaryCount") || "0"), // ← legend
+      mythicalCount:       parseInt(getLS("mythicalCount") || "0"),  // ← mythical
+      prismaticCount:      parseInt(getLS("prismaticCount") || "0"),
+      secretCount:         parseInt(getLS("secretCount") || "0"),
+      editsCount:          parseInt(getLS("editsCount") || "0"),     // ← EdiTz
 
       // Item & Progress
-      inventory:          getLS("inventory", true, "[]"),
-      potions:            getLS("potions", true, "{}"),
-      activeEffects:      getLS("activeEffects", true, "{}"),
+      inventory:           getLS("inventory", true, "[]"),
+      potions:             getLS("potions", true, "{}"),
+      activeEffects:       getLS("activeEffects", true, "{}"),      // ← potion timers
 
       // Quest & Achievement
-      quests:             getLS("quests", true, "{}"),
-      achievements:       getLS("achievements", true, "[]"),
+      quests:              getLS("quests", true, "{}"),
+      achievements:        getLS("achievements", true, "[]"),
       achievementsVersion: getLS("achievementsVersion", false, "1"),
 
       // Daily reward
-      dailyDay:           parseInt(getLS("dailyDay") || "1"),
-      lastDailyClaim:     getLS("lastDailyClaim"),
+      dailyDay:            parseInt(getLS("dailyDay") || "1"),
+      lastDailyClaim:      getLS("lastDailyClaim"),
 
-      lastSynced:         Date.now()
+      lastSynced:          Date.now()
     };
 
     for (let i = 0; i < localStorage.length; i++) {
