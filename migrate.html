@@ -626,6 +626,30 @@
       return v;
     }
 
+    // ── Sanitize: buang undefined / NaN / Infinity (tidak valid di Firestore) ──
+    function sanitizeForFirestore(val) {
+      if (val === null || val === undefined) return null;
+      if (typeof val === "number") {
+        if (!isFinite(val)) return null; // buang NaN dan Infinity
+        return val;
+      }
+      if (typeof val === "string" || typeof val === "boolean") return val;
+      if (Array.isArray(val)) {
+        return val
+          .map(sanitizeForFirestore)
+          .filter(v => v !== undefined && v !== null);
+      }
+      if (typeof val === "object") {
+        const clean = {};
+        for (const [k, v] of Object.entries(val)) {
+          const s = sanitizeForFirestore(v);
+          if (s !== undefined) clean[k] = s;
+        }
+        return clean;
+      }
+      return null;
+    }
+
     function setStatus(msg, type = "info") {
       const el = document.getElementById("statusBox");
       el.textContent = msg;
@@ -731,7 +755,7 @@ window.startMigration = async function () {
     setStatus(`✅ Login berhasil sebagai: ${user.displayName || user.email}`, "success");
     setProgress(40, "Login berhasil, mengumpulkan data…");
 
-    const playerData = collectLocalData(user);  // ← sekarang aman
+    const playerData = sanitizeForFirestore(collectLocalData(user));
     setProgress(65, "Mengupload data ke cloud Firebase…");
     markStep(3);
 
