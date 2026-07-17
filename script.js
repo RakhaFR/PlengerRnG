@@ -3813,6 +3813,24 @@ const UPDATE_LOGS = [
     ],
   },
   {
+    version: "MAJOR-UPD-2.0",
+    image: "ui/update-2.0.jpg",
+    notes: [
+      "⚙️ Fixing store bugs!",
+      "⚙️ Fixing achievements & quest logic!",
+      "🛠️ Remake UI/UX Design",
+      "😄 New small lobby design",
+      "😄 New Profile features & layout design!",
+      "🖥️ Adding New achievement quest and design!",
+      "🖥️ New & Remake Store Tab, new tab 'Cosmetic' Tab!",
+      "📢 New update overlay UI design!",
+      "📦 New UI design inventory plenger overlay!",
+      "🎴 New Rarity plenger Edits!",
+      "🎴 New 50 plenger card!",
+      "🍀 Potion will not be lost if exiting the game!",
+    ],
+  },
+  {
     version: "UPD-1.9",
     image: "ui/update-1.9.jpg",
     notes: ["⚙️ Fixing bugs, in quest overlay systems"],
@@ -4665,11 +4683,11 @@ function prfRenderCloudSection() {
     section.innerHTML = `
       <div class="prf-cloud-box prf-cloud-logged-in">
         <div class="prf-cloud-user-row">
-          <img src="${user.photoURL || 'ui/user.png'}" class="prf-cloud-avatar" alt="avatar"
+          <img src="${user.photoURL || "ui/user.png"}" class="prf-cloud-avatar" alt="avatar"
                onerror="this.src='ui/user.png'">
           <div class="prf-cloud-info">
-            <div class="prf-cloud-name">${user.displayName || '—'}</div>
-            <div class="prf-cloud-email">${user.email || '—'}</div>
+            <div class="prf-cloud-name">${user.displayName || "—"}</div>
+            <div class="prf-cloud-email">${user.email || "—"}</div>
           </div>
         </div>
         <div class="prf-cloud-status">
