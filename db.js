@@ -67,6 +67,29 @@ export function applyCloudDataToLocalStorage(data) {
   });
 }
 
+function sanitizeForFirestore(val) {
+  if (val === null || val === undefined) return null;
+  if (typeof val === "number") {
+    if (!isFinite(val)) return null; // buang NaN dan Infinity
+    return val;
+  }
+  if (typeof val === "string" || typeof val === "boolean") return val;
+  if (Array.isArray(val)) {
+    return val
+      .map(sanitizeForFirestore)
+      .filter(v => v !== undefined && v !== null);
+  }
+  if (typeof val === "object") {
+    const clean = {};
+    for (const [k, v] of Object.entries(val)) {
+      const s = sanitizeForFirestore(v);
+      if (s !== undefined) clean[k] = s;
+    }
+    return clean;
+  }
+  return null;
+}
+
 export async function saveDataToFirebase() {
   const user = auth.currentUser;
   if (!user) return false;
@@ -126,7 +149,7 @@ export async function saveDataToFirebase() {
       }
     }
 
-    await setDoc(doc(db, "players", user.uid), playerData, { merge: true });
+    await setDoc(doc(db, "players", user.uid), sanitizeForFirestore(playerData), { merge: true });
     return true;
   } catch (error) {
     console.error("[Firebase] Gagal simpan data:", error);
