@@ -4449,7 +4449,7 @@ function updateGameplayProfileUI() {
 
 function updateSidebarProfileUI() {
   const s = prfGetSettings();
-  const avatarSrc = localStorage.getItem("prfAvatarSrc") || "";
+  const avatarSrc = localStorage.getItem("prfAvatarSrc") || "";  // ← ini yang baca foto Google
   const name = localStorage.getItem("username") || "Guest";
   const level = prfCalcLevel();
 
@@ -4460,7 +4460,7 @@ function updateSidebarProfileUI() {
     bannerBg.style.background = b.bg;
   }
 
-  // Avatar image
+  // Avatar image ← ini yang update foto di sidebar
   const sideImg = document.getElementById("sideProfileImg");
   if (sideImg) sideImg.src = avatarSrc || "ui/user.png";
 
@@ -4475,8 +4475,7 @@ function updateSidebarProfileUI() {
   // Name
   const sideLabel = document.getElementById("sideProfileLabel");
   if (sideLabel)
-    sideLabel.textContent =
-      name.length > 10 ? name.substring(0, 10) + "…" : name;
+    sideLabel.textContent = name.length > 10 ? name.substring(0, 10) + "…" : name;
 
   // Level
   const sideLevel = document.getElementById("sideProfileLevel");

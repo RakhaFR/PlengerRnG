@@ -792,20 +792,23 @@
       </div>
 
       <!-- Panel saat sudah login -->
-      <div class="auth-logged-in" id="authLoggedIn">
-        <div class="auth-user-row">
-          <img class="auth-user-avatar" id="authUserAvatar" src="ui/user.png" alt="">
-          <div class="auth-user-info">
-            <div class="auth-user-name" id="authUserName">—</div>
-            <div class="auth-user-email" id="authUserEmail">—</div>
-          </div>
-        </div>
-        <div class="auth-sync-row">
-          <button class="auth-sync-btn" onclick="authManualSync()">☁️ Simpan ke Cloud</button>
-          <button class="auth-logout-btn" onclick="authDoLogout()">Keluar</button>
-        </div>
-        <div class="auth-last-sync" id="authLastSync"></div>
-      </div>
+<!-- Panel saat sudah login -->
+<div class="auth-logged-in" id="authLoggedIn">
+  <div class="auth-user-row">
+    <img class="auth-user-avatar" id="authUserAvatar" src="ui/user.png" alt="">
+    <div class="auth-user-info">
+      <div class="auth-user-name" id="authUserName">—</div>
+      <div class="auth-user-email" id="authUserEmail">—</div>
+    </div>
+  </div>
+  <div class="auth-sync-row">
+    <button class="auth-logout-btn" style="width:100%" onclick="authDoLogout()">Keluar</button>
+  </div>
+  <div class="auth-last-sync" id="authLastSync"></div>
+  <div class="auth-note" style="margin-top:8px">
+    ☁️ Progress tersimpan otomatis setiap 5 menit
+  </div>
+</div>
 
     </div>
   </div>
@@ -843,6 +846,11 @@
   }
 
   function showLoggedInPanel(user) {
+    // Sembunyikan tombol login di sidebar
+    const sideAuthBtn = document.getElementById("sideAuthBtn");
+    if (sideAuthBtn) sideAuthBtn.style.display = "none";
+
+    // Update popup auth
     document.getElementById("authBody").style.display = "none";
     const panel = document.getElementById("authLoggedIn");
     panel.classList.add("show");
@@ -854,25 +862,31 @@
     if (name && user.displayName) name.textContent = user.displayName;
     if (mail && user.email)       mail.textContent = user.email;
 
-    const sideAv  = document.getElementById("sideAuthAvatarImg");
-    const sideLbl = document.getElementById("sideAuthLabel");
-    const sideDot = document.getElementById("sideAuthDot");
-    if (sideAv && user.photoURL)      sideAv.src         = user.photoURL;
-    if (sideLbl && user.displayName) sideLbl.textContent = user.displayName.split(" ")[0];
-    if (sideDot) sideDot.classList.add("online");
+    // Simpan foto Google ke localStorage supaya profile card pakai foto ini
+    if (user.photoURL) {
+      localStorage.setItem("prfAvatarSrc", user.photoURL);
+    }
+
+    // Simpan nama Google ke localStorage kalau belum ada username custom
+    if (user.displayName && !localStorage.getItem("username")) {
+      localStorage.setItem("username", user.displayName);
+    }
+
+    // Sync profile card & sidebar profile
+    if (typeof updateGameplayProfileUI === "function") updateGameplayProfileUI();
+    if (typeof updateSidebarProfileUI  === "function") updateSidebarProfileUI();
+    if (typeof prfApplyAvatarImg       === "function") prfApplyAvatarImg();
+    if (typeof prfRefreshAvatarPreview === "function") prfRefreshAvatarPreview();
   }
 
   function showGuestPanel() {
+    // Tampilkan tombol login di sidebar
+    const sideAuthBtn = document.getElementById("sideAuthBtn");
+    if (sideAuthBtn) sideAuthBtn.style.display = "";
+
     document.getElementById("authBody").style.display = "flex";
     const panel = document.getElementById("authLoggedIn");
     panel.classList.remove("show");
-
-    const sideAv  = document.getElementById("sideAuthAvatarImg");
-    const sideLbl = document.getElementById("sideAuthLabel");
-    const sideDot = document.getElementById("sideAuthDot");
-    if (sideAv)  sideAv.src         = "ui/user.png";
-    if (sideLbl) sideLbl.textContent = "Login";
-    if (sideDot) sideDot.classList.remove("online");
   }
 
   function resetLoginButtonState() {
@@ -892,10 +906,14 @@
 
   function startAutoSyncInterval() {
     clearInterval(window._authSyncInterval);
-    window._authSyncInterval = setInterval(saveDataToFirebase, 3 * 60 * 1000);
+    // Auto sync setiap 5 menit
+    window._authSyncInterval = setInterval(async () => {
+      const ok = await saveDataToFirebase();
+      if (ok) updateLastSync(Date.now());
+    }, 5 * 60 * 1000);
   }
 
-  /* ── Global functions (dipanggil dari HTML) ── */
+  /* ── Global functions ── */
   window.openAuthPopup = function () {
     clearStatus();
     document.getElementById("authOverlay")?.classList.add("show");
@@ -928,24 +946,22 @@
 
   window.authDoLogout = async function () {
     await logoutUser();
+    clearInterval(window._authSyncInterval);
+    // Hapus foto Google dari localStorage saat logout
+    localStorage.removeItem("prfAvatarSrc");
     showGuestPanel();
+    if (typeof updateGameplayProfileUI === "function") updateGameplayProfileUI();
     setStatus("Kamu telah keluar.", "");
   };
 
+  // Sync manual masih tersedia tapi dipanggil dari dalam JS, bukan tombol
   window.authManualSync = async function () {
-    const btn = document.querySelector(".auth-sync-btn");
-    if (btn) { btn.disabled = true; btn.textContent = "Menyimpan…"; }
-
     const ok = await saveDataToFirebase();
-    if (btn) {
-      btn.disabled = false;
-      btn.textContent = ok ? "✅ Tersimpan!" : "❌ Gagal";
-      setTimeout(() => { btn.textContent = "☁️ Simpan ke Cloud"; }, 2500);
-    }
     if (ok) updateLastSync(Date.now());
+    return ok;
   };
 
-  /* ── Event listeners (ganti inline onclick di HTML) ── */
+  /* ── Event listeners ── */
   document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("sideAuthBtn")
       ?.addEventListener("click", window.openAuthPopup);
@@ -959,9 +975,6 @@
     document.querySelector(".auth-guest-btn")
       ?.addEventListener("click", window.closeAuthPopup);
 
-    document.querySelector(".auth-sync-btn")
-      ?.addEventListener("click", window.authManualSync);
-
     document.querySelector(".auth-logout-btn")
       ?.addEventListener("click", window.authDoLogout);
 
@@ -974,6 +987,7 @@
 
   /* ── Auth state observer ── */
   checkAuthStatus(
+    // Player lama — data cloud ada
     (cloudData, user) => {
       applyCloudDataToLocalStorage(cloudData);
       updateLastSync(cloudData.lastSynced);
@@ -987,22 +1001,31 @@
       autoClosePopup();
       startAutoSyncInterval();
     },
+    // Player baru
     (user) => {
-      setStatus("Akun baru terdaftar! Data lokal diupload. 🎉", "success");
+      setStatus("Akun baru terdaftar! 🎉", "success");
       showLoggedInPanel(user);
       resetLoginButtonState();
       autoClosePopup();
       startAutoSyncInterval();
     },
+    // Belum login
     () => {
       showGuestPanel();
       clearInterval(window._authSyncInterval);
     }
   );
 
-  /* ── Auto sync saat keluar ── */
+  /* ── Auto sync saat keluar tab ── */
   window.addEventListener("beforeunload", () => {
     if (getCurrentUser()) saveDataToFirebase();
+  });
+
+  /* ── Auto sync setiap kali tab kembali aktif (pindah tab lalu balik) ── */
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible" && getCurrentUser()) {
+      saveDataToFirebase();
+    }
   });
 </script>
 

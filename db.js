@@ -46,12 +46,14 @@ export function applyCloudDataToLocalStorage(data) {
     localStorage.setItem(key, typeof val === "object" ? JSON.stringify(val) : String(val));
   };
 
-  const keys = [
-    "username","coins","totalRolls","totalSold","autoRollUnlocked",
-    "prfSettings","rhg_profile","commonCount","uncommonCount","rareCount",
-    "epicCount","prismaticCount","secretCount","inventory","potions",
-    "quests","achievements","achievementsVersion","dailyDay","lastDailyClaim"
-  ];
+// Di dalam array keys di applyCloudDataToLocalStorage
+const keys = [
+  "username","coins","totalRolls","totalSold","autoRollUnlocked",
+  "prfSettings","rhg_profile","commonCount","uncommonCount","rareCount",
+  "epicCount","prismaticCount","secretCount","inventory","potions",
+  "quests","achievements","achievementsVersion","dailyDay","lastDailyClaim",
+  "googlePhotoURL"  // ← tambah ini
+];
   keys.forEach(k => setLS(k, data[k]));
 
   Object.keys(data).forEach(key => {
