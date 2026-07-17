@@ -659,131 +659,131 @@
     }
 
     // ── Kumpulkan semua data localStorage ────────────────────────
-    function collectLocalData(user) {
-      const data = {
-        username: getLS("username", false, user.displayName || "Player"),
-        coins: parseInt(getLS("coins") || "0"),
-        totalRolls: parseInt(getLS("totalRolls") || "0"),
-        totalSold: parseInt(getLS("totalSold") || "0"),
-        autoRollUnlocked: getLS("autoRollUnlocked") === "true",
+function collectLocalData(user) {
+  // Guard: kalau user undefined, pakai fallback kosong
+  const displayName = user?.displayName || "";
+  const photoURL    = user?.photoURL    || "";
 
-        prfSettings: getLS("prfSettings", true, "{}"),
-        rhg_profile: getLS("rhg_profile", true, "{}"),
-        cosmeticUnlocks: getLS("cosmeticUnlocks", true, "{}"),   // ← frame & banner
+  const data = {
+    username:            getLS("username", false, displayName || "Player"),
+    coins:               parseInt(getLS("coins") || "0"),
+    totalRolls:          parseInt(getLS("totalRolls") || "0"),
+    totalSold:           parseInt(getLS("totalSold") || "0"),
+    autoRollUnlocked:    getLS("autoRollUnlocked") === "true",
 
-        commonCount: parseInt(getLS("commonCount") || "0"),
-        uncommonCount: parseInt(getLS("uncommonCount") || "0"),
-        rareCount: parseInt(getLS("rareCount") || "0"),
-        epicCount: parseInt(getLS("epicCount") || "0"),
-        legendaryCount: parseInt(getLS("legendaryCount") || "0"),
-        mythicalCount: parseInt(getLS("mythicalCount") || "0"),
-        prismaticCount: parseInt(getLS("prismaticCount") || "0"),
-        secretCount: parseInt(getLS("secretCount") || "0"),
-        editsCount: parseInt(getLS("editsCount") || "0"),
+    prfSettings:         getLS("prfSettings", true, "{}"),
+    rhg_profile:         getLS("rhg_profile", true, "{}"),
+    cosmeticUnlocks:     getLS("cosmeticUnlocks", true, "{}"),
 
-        inventory: getLS("inventory", true, "[]"),
-        potions: getLS("potions", true, "{}"),
-        activeEffects: getLS("activeEffects", true, "{}"),     // ← potion timers
+    commonCount:         parseInt(getLS("commonCount") || "0"),
+    uncommonCount:       parseInt(getLS("uncommonCount") || "0"),
+    rareCount:           parseInt(getLS("rareCount") || "0"),
+    epicCount:           parseInt(getLS("epicCount") || "0"),
+    legendaryCount:      parseInt(getLS("legendaryCount") || "0"),
+    mythicalCount:       parseInt(getLS("mythicalCount") || "0"),
+    prismaticCount:      parseInt(getLS("prismaticCount") || "0"),
+    secretCount:         parseInt(getLS("secretCount") || "0"),
+    editsCount:          parseInt(getLS("editsCount") || "0"),
 
-        quests: getLS("quests", true, "{}"),
-        achievements: getLS("achievements", true, "[]"),
-        achievementsVersion: getLS("achievementsVersion", false, "1"),
+    inventory:           getLS("inventory", true, "[]"),
+    potions:             getLS("potions", true, "{}"),
+    activeEffects:       getLS("activeEffects", true, "{}"),
 
-        dailyDay: parseInt(getLS("dailyDay") || "1"),
-        lastDailyClaim: getLS("lastDailyClaim"),
+    quests:              getLS("quests", true, "{}"),
+    achievements:        getLS("achievements", true, "[]"),
+    achievementsVersion: getLS("achievementsVersion", false, "1"),
 
-        googlePhotoURL: user.photoURL || "",
-        migratedFrom: "github-pages",
-        lastSynced: Date.now()
-      };
+    dailyDay:            parseInt(getLS("dailyDay") || "1"),
+    lastDailyClaim:      getLS("lastDailyClaim"),
 
-      for (let i = 0; i < localStorage.length; i++) {
-        const k = localStorage.key(i);
-        if (k && k.startsWith("counter_")) {
-          data[k] = parseInt(localStorage.getItem(k) || "0");
-        }
-      }
-      return data;
+    googlePhotoURL:      photoURL,
+    migratedFrom:        "github-pages",
+    lastSynced:          Date.now()
+  };
+
+  for (let i = 0; i < localStorage.length; i++) {
+    const k = localStorage.key(i);
+    if (k && k.startsWith("counter_")) {
+      data[k] = parseInt(localStorage.getItem(k) || "0");
+    }
+  }
+  return data;
+}
+    // ── Proses migrasi utama ──────────────────────────────────────
+window.startMigration = async function () {
+  const btn = document.getElementById("migrateBtn");
+  btn.disabled = true;
+  btn.innerHTML = `<div class="spinner"></div> Membuka Google Login…`;
+
+  setStatus("Menunggu kamu login dengan Google…", "info");
+  setProgress(15, "Membuka popup login…");
+
+  try {
+    const result = await signInWithPopup(auth, provider);
+    const user   = result?.user;  // ← pakai optional chaining
+
+    // Guard: kalau user null/undefined setelah login, stop
+    if (!user) {
+      throw new Error("Login berhasil tapi data user tidak tersedia. Coba lagi.");
     }
 
-    // ── Proses migrasi utama ──────────────────────────────────────
-    window.startMigration = async function () {
-      const btn = document.getElementById("migrateBtn");
-      btn.disabled = true;
-      btn.innerHTML = `<div class="spinner"></div> Membuka Google Login…`;
+    markStep(2, true);
+    setStatus(`✅ Login berhasil sebagai: ${user.displayName || user.email}`, "success");
+    setProgress(40, "Login berhasil, mengumpulkan data…");
 
-      setStatus("Menunggu kamu login dengan Google…", "info");
-      setProgress(15, "Membuka popup login…");
+    const playerData = collectLocalData(user);  // ← sekarang aman
+    setProgress(65, "Mengupload data ke cloud Firebase…");
+    markStep(3);
 
-      try {
-        // Step 1: Login Google
-        const result = await signInWithPopup(auth, provider);
-        const user = result.user;
-        markStep(2, true);
-        setStatus(`✅ Login berhasil sebagai: ${user.displayName}`, "success");
-        setProgress(40, "Login berhasil, mengumpulkan data…");
+    const userDocRef = doc(db, "players", user.uid);
+    await setDoc(userDocRef, playerData, { merge: true });
+    markStep(3, true);
+    setProgress(90, "Data berhasil tersimpan!");
 
-        // Step 2: Kumpulkan data lokal
-        const playerData = collectLocalData();
-        setProgress(65, "Mengupload data ke cloud Firebase…");
-        markStep(3);
+    markStep(4, true);
+    setProgress(100, "Selesai! Mengarahkan ke Vercel…");
+    setStatus("🎉 Semua data berhasil dimigrasi! Kamu akan diarahkan ke Vercel.", "success");
 
-        // Step 3: Upload ke Firestore
-        const userDocRef = doc(db, "players", user.uid);
-        await setDoc(userDocRef, playerData, { merge: true });
-        markStep(3, true);
-        setProgress(90, "Data berhasil tersimpan!");
+    btn.innerHTML = "✅ Migrasi Selesai!";
 
-        // Step 4: Redirect countdown
-        markStep(4, true);
-        setProgress(100, "Selesai! Mengarahkan ke Vercel…");
-        setStatus("🎉 Semua data berhasil dimigrasi ke cloud! Kamu akan diarahkan ke Vercel.", "success");
+    const redirectBox = document.getElementById("redirectBox");
+    redirectBox.classList.add("show");
 
-        btn.innerHTML = "✅ Migrasi Selesai!";
-
-        const redirectBox = document.getElementById("redirectBox");
-        redirectBox.classList.add("show");
-
-        let countdown = 5;
-        const cdEl = document.getElementById("cdNum");
-        const cdInterval = setInterval(() => {
-          countdown--;
-          if (cdEl) cdEl.textContent = countdown;
-          if (countdown <= 0) {
-            clearInterval(cdInterval);
-            window.location.href = VERCEL_URL;
-          }
-        }, 1000);
-
-      } catch (err) {
-        console.error("[Migrasi] Gagal:", err);
-
-        let msg = "Terjadi kesalahan. Coba lagi.";
-        if (err.code === "auth/popup-closed-by-user") {
-          msg = "Popup login ditutup. Klik tombol lagi untuk mencoba.";
-        } else if (err.code === "auth/network-request-failed") {
-          msg = "Tidak ada koneksi internet. Cek koneksi dan coba lagi.";
-        } else if (err.message) {
-          msg = err.message;
-        }
-
-        setStatus("❌ " + msg, "error");
-        setProgress(0, "");
-        document.getElementById("progressWrap").classList.remove("show");
-
-        btn.disabled = false;
-        btn.innerHTML = `
-        <svg class="google-icon" viewBox="0 0 48 48">
-          <path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.1 7.9 3l5.7-5.7C34.2 6.5 29.4 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.9z"/>
-          <path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.6 15.1 19 12 24 12c3.1 0 5.8 1.1 7.9 3l5.7-5.7C34.2 6.5 29.4 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/>
-          <path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.3 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8H6.1C9.5 35.7 16.2 44 24 44z"/>
-          <path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.3-2.3 4.3-4.3 5.6l6.2 5.2C36.9 36.2 44 31 44 24c0-1.3-.1-2.7-.4-3.9z"/>
-        </svg>
-        🛡️ Coba Lagi
-      `;
+    let countdown = 5;
+    const cdEl = document.getElementById("cdNum");
+    const cdInterval = setInterval(() => {
+      countdown--;
+      if (cdEl) cdEl.textContent = countdown;
+      if (countdown <= 0) {
+        clearInterval(cdInterval);
+        window.location.href = VERCEL_URL;
       }
-    };
+    }, 1000);
 
+  } catch (err) {
+    console.error("[Migrasi] Gagal:", err);
+
+    let msg = "Terjadi kesalahan. Coba lagi.";
+    if (err.code === "auth/popup-closed-by-user")  msg = "Popup login ditutup. Klik tombol lagi.";
+    if (err.code === "auth/network-request-failed") msg = "Tidak ada koneksi internet.";
+    if (err.code === "auth/unauthorized-domain")    msg = "Domain belum didaftarkan di Firebase.";
+    if (err.message) msg = err.message;
+
+    setStatus("❌ " + msg, "error");
+    document.getElementById("progressWrap").classList.remove("show");
+
+    btn.disabled = false;
+    btn.innerHTML = `
+      <svg class="google-icon" viewBox="0 0 48 48">
+        <path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.1 7.9 3l5.7-5.7C34.2 6.5 29.4 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.9z"/>
+        <path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.6 15.1 19 12 24 12c3.1 0 5.8 1.1 7.9 3l5.7-5.7C34.2 6.5 29.4 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/>
+        <path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.3 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8H6.1C9.5 35.7 16.2 44 24 44z"/>
+        <path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.3-2.3 4.3-4.3 5.6l6.2 5.2C36.9 36.2 44 31 44 24c0-1.3-.1-2.7-.4-3.9z"/>
+      </svg>
+      🛡️ Coba Lagi
+    `;
+  }
+};
     // ── Init: tampilkan data summary ──────────────────────────────
     showDataSummary();
   </script>
