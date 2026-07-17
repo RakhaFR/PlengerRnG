@@ -53,6 +53,30 @@ export function checkAuthStatus(onDataLoaded, onNotLoggedIn) {
   });
 }
 
+// Sanitize: buang undefined / NaN / Infinity (tidak valid di Firestore)
+function sanitizeForFirestore(val) {
+  if (val === null || val === undefined) return null;
+  if (typeof val === "number") {
+    if (!isFinite(val)) return null;
+    return val;
+  }
+  if (typeof val === "string" || typeof val === "boolean") return val;
+  if (Array.isArray(val)) {
+    return val
+      .map(sanitizeForFirestore)
+      .filter(v => v !== undefined && v !== null);
+  }
+  if (typeof val === "object") {
+    const clean = {};
+    for (const [k, v] of Object.entries(val)) {
+      const s = sanitizeForFirestore(v);
+      if (s !== undefined) clean[k] = s;
+    }
+    return clean;
+  }
+  return null;
+}
+
 // 5. Fungsi untuk menyimpan data game ke Firebase
 export async function saveDataToFirebase() {
   const user = auth.currentUser;
@@ -80,23 +104,23 @@ export async function saveDataToFirebase() {
       // Kosmetik & Settings
       prfSettings:         getLocalData("prfSettings", true, "{}"),
       rhg_profile:         getLocalData("rhg_profile", true, "{}"),
-      cosmeticUnlocks:     getLocalData("cosmeticUnlocks", true, "{}"),  // ← frame & banner unlocks
+      cosmeticUnlocks:     getLocalData("cosmeticUnlocks", true, "{}"),
 
       // Rarity counters
       commonCount:         parseInt(getLocalData("commonCount") || "0"),
       uncommonCount:       parseInt(getLocalData("uncommonCount") || "0"),
       rareCount:           parseInt(getLocalData("rareCount") || "0"),
       epicCount:           parseInt(getLocalData("epicCount") || "0"),
-      legendaryCount:      parseInt(getLocalData("legendaryCount") || "0"),  // ← legend
-      mythicalCount:       parseInt(getLocalData("mythicalCount") || "0"),   // ← mythical
+      legendaryCount:      parseInt(getLocalData("legendaryCount") || "0"),
+      mythicalCount:       parseInt(getLocalData("mythicalCount") || "0"),
       prismaticCount:      parseInt(getLocalData("prismaticCount") || "0"),
       secretCount:         parseInt(getLocalData("secretCount") || "0"),
-      editsCount:          parseInt(getLocalData("editsCount") || "0"),      // ← EdiTz
+      editsCount:          parseInt(getLocalData("editsCount") || "0"),
 
       // Item & Progress
       inventory:           getLocalData("inventory", true, "[]"),
       potions:             getLocalData("potions", true, "{}"),
-      activeEffects:       getLocalData("activeEffects", true, "{}"),        // ← potion timers
+      activeEffects:       getLocalData("activeEffects", true, "{}"),
       quests:              getLocalData("quests", true, "{}"),
       achievements:        getLocalData("achievements", true, "[]"),
       achievementsVersion: getLocalData("achievementsVersion", false, "1"),
@@ -116,7 +140,7 @@ export async function saveDataToFirebase() {
       }
     }
 
-    await setDoc(userDocRef, playerData, { merge: true });
+    await setDoc(userDocRef, sanitizeForFirestore(playerData), { merge: true });
     console.log("✅ Data berhasil disinkronkan ke Cloud!");
     return true;
   } catch (error) {
