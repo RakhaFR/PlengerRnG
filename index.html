@@ -7,7 +7,7 @@
   <meta property="og:title" content="PLENGER RnG" />
   <meta property="og:description" content="Game roll kartu PLENGER berbagai rarity — bisa kamu dapatkan semuannya?" />
   <meta property="og:image" content="https://rakhafr.github.io/PlengerRnG/ui/icon-game2.jpg" />
-  <meta property="og:url" content="https://rakhafr.github.io/PlengerRnG/" />
+  <meta property="og:url" content="https://plenger-rng.vercel.app/" />
   <meta property="og:type" content="website" />
   <title>PLENGER RnG — UPD-2.0</title>
   <link rel="icon" type="image/png" href="ui/icon-game2.jpg">
@@ -132,6 +132,16 @@
       <img loading="lazy" src="ui/update.png" alt="Update" class="side-icon">
       <span class="side-label">Update Log</span>
       <div id="updateIndicator" class="reward-indicator hidden">!</div>
+    </button>
+
+    <!-- ── Tombol Cloud / Login Google ── -->
+    <button class="side-btn side-btn-auth" id="sideAuthBtn" onclick="openAuthPopup()">
+      <span class="corner-tr"></span><span class="corner-bl"></span>
+      <div class="side-auth-avatar-wrap">
+        <img id="sideAuthAvatarImg" src="ui/user.png" alt="Akun" class="side-auth-avatar">
+        <div class="side-auth-status-dot" id="sideAuthDot"></div>
+      </div>
+      <span class="side-label" id="sideAuthLabel">Login</span>
     </button>
   </div>
 
@@ -739,6 +749,555 @@
   </script>
 
   <script src="script.js"></script>
+
+  <!-- ══════════════════════════════════════════════════════════
+       AUTH POPUP — Google Login & Cloud Sync
+       ══════════════════════════════════════════════════════════ -->
+
+  <!-- Overlay / Modal -->
+  <div class="overlay" id="authOverlay">
+    <div class="auth-modal">
+
+      <!-- Header -->
+      <div class="auth-header">
+        <div class="auth-logo">🎲</div>
+        <div class="auth-title">PLENGER <span class="auth-title-rng">RnG</span></div>
+        <div class="auth-sub">Simpan progress &amp; main di mana saja</div>
+        <button class="auth-close-btn" onclick="closeAuthPopup()">✕</button>
+      </div>
+
+      <!-- Body — tampil saat belum login -->
+      <div class="auth-body" id="authBody">
+        <div class="auth-status" id="authStatus"></div>
+
+        <button class="auth-google-btn" id="authGoogleBtn" onclick="authDoGoogleLogin()">
+          <svg class="auth-google-icon" viewBox="0 0 48 48">
+            <path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.1 7.9 3l5.7-5.7C34.2 6.5 29.4 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.7-.4-3.9z"/>
+            <path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.6 15.1 19 12 24 12c3.1 0 5.8 1.1 7.9 3l5.7-5.7C34.2 6.5 29.4 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/>
+            <path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.3 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8H6.1C9.5 35.7 16.2 44 24 44z"/>
+            <path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.3-2.3 4.3-4.3 5.6l6.2 5.2C36.9 36.2 44 31 44 24c0-1.3-.1-2.7-.4-3.9z"/>
+          </svg>
+          <span id="authGoogleBtnLabel">Masuk dengan Google</span>
+        </button>
+
+        <div class="auth-divider"><span>atau</span></div>
+
+        <button class="auth-guest-btn" onclick="closeAuthPopup()">
+          Lanjut sebagai Tamu
+        </button>
+
+        <p class="auth-note">
+          Login Google → progress tersimpan di cloud &amp; bisa dibuka dari HP / PC manapun.
+        </p>
+      </div>
+
+      <!-- Panel saat sudah login -->
+      <div class="auth-logged-in" id="authLoggedIn">
+        <div class="auth-user-row">
+          <img class="auth-user-avatar" id="authUserAvatar" src="ui/user.png" alt="">
+          <div class="auth-user-info">
+            <div class="auth-user-name" id="authUserName">—</div>
+            <div class="auth-user-email" id="authUserEmail">—</div>
+          </div>
+        </div>
+        <div class="auth-sync-row">
+          <button class="auth-sync-btn" onclick="authManualSync()">☁️ Simpan ke Cloud</button>
+          <button class="auth-logout-btn" onclick="authDoLogout()">Keluar</button>
+        </div>
+        <div class="auth-last-sync" id="authLastSync"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── Styles auth popup ── -->
+  <style>
+    /* Modal wrapper */
+    .auth-modal {
+      background: linear-gradient(160deg, #0f0f1a 0%, #1a1030 100%);
+      border: 1px solid rgba(180,120,255,0.25);
+      border-radius: 20px;
+      width: min(420px, 92vw);
+      overflow: hidden;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.65), 0 0 0 1px rgba(255,255,255,0.04);
+      animation: authSlideIn 0.3s cubic-bezier(0.34,1.56,0.64,1) both;
+    }
+    @keyframes authSlideIn {
+      from { opacity:0; transform:translateY(28px) scale(0.96); }
+      to   { opacity:1; transform:translateY(0)    scale(1); }
+    }
+
+    /* Header */
+    .auth-header {
+      position: relative;
+      padding: 28px 24px 20px;
+      text-align: center;
+      background: linear-gradient(180deg, rgba(140,80,255,0.18) 0%, transparent 100%);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .auth-logo {
+      font-size: 2.2rem;
+      line-height: 1;
+      margin-bottom: 6px;
+      filter: drop-shadow(0 0 12px rgba(180,120,255,0.6));
+    }
+    .auth-title {
+      font-size: 1.5rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: #fff;
+      text-transform: uppercase;
+    }
+    .auth-title-rng { color: #c084fc; margin-left: 4px; }
+    .auth-sub {
+      margin-top: 4px;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.45);
+      letter-spacing: 0.5px;
+    }
+    .auth-close-btn {
+      position: absolute;
+      top: 14px; right: 16px;
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.4);
+      font-size: 1.1rem;
+      cursor: pointer;
+      padding: 4px 8px;
+      border-radius: 6px;
+      transition: color 0.2s, background 0.2s;
+    }
+    .auth-close-btn:hover { color:#fff; background:rgba(255,255,255,0.1); }
+
+    /* Body (belum login) */
+    .auth-body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .auth-status {
+      min-height: 0;
+      font-size: 0.82rem;
+      text-align: center;
+      color: #f87171;
+      transition: all 0.3s;
+      display: none;
+    }
+    .auth-status.show { display: block; }
+    .auth-status.success { color: #4ade80; }
+    .auth-status.loading { color: #c084fc; }
+
+    /* Google button */
+    .auth-google-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      width: 100%;
+      padding: 13px 20px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.06);
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s, transform 0.1s;
+    }
+    .auth-google-btn:hover { background:rgba(255,255,255,0.12); border-color:rgba(255,255,255,0.3); }
+    .auth-google-btn:active { transform: scale(0.98); }
+    .auth-google-btn:disabled { opacity:0.5; cursor:not-allowed; }
+    .auth-google-icon { width:22px; height:22px; flex-shrink:0; }
+
+    /* Divider */
+    .auth-divider {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: rgba(255,255,255,0.25);
+      font-size: 0.75rem;
+    }
+    .auth-divider::before, .auth-divider::after {
+      content: ""; flex:1; height:1px; background:rgba(255,255,255,0.1);
+    }
+
+    /* Guest button */
+    .auth-guest-btn {
+      width: 100%;
+      padding: 11px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: transparent;
+      color: rgba(255,255,255,0.5);
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .auth-guest-btn:hover { background:rgba(255,255,255,0.06); color:rgba(255,255,255,0.8); }
+
+    .auth-note {
+      font-size: 0.74rem;
+      color: rgba(255,255,255,0.28);
+      text-align: center;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* Logged-in panel */
+    .auth-logged-in {
+      padding: 20px 24px 24px;
+      display: none;
+      flex-direction: column;
+      gap: 14px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .auth-logged-in.show { display: flex; }
+
+    .auth-user-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 12px;
+      padding: 12px 14px;
+    }
+    .auth-user-avatar {
+      width: 42px; height: 42px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(192,132,252,0.5);
+      flex-shrink: 0;
+    }
+    .auth-user-name { font-weight:700; font-size:0.95rem; color:#fff; }
+    .auth-user-email { font-size:0.75rem; color:rgba(255,255,255,0.4); margin-top:2px; }
+
+    .auth-sync-row { display:flex; gap:10px; }
+
+    .auth-sync-btn {
+      flex: 1;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid rgba(192,132,252,0.4);
+      background: rgba(192,132,252,0.1);
+      color: #c084fc;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .auth-sync-btn:hover { background:rgba(192,132,252,0.2); }
+    .auth-sync-btn:disabled { opacity:0.5; cursor:not-allowed; }
+
+    .auth-logout-btn {
+      padding: 10px 16px;
+      border-radius: 10px;
+      border: 1px solid rgba(248,113,113,0.3);
+      background: rgba(248,113,113,0.08);
+      color: #f87171;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .auth-logout-btn:hover { background:rgba(248,113,113,0.18); }
+
+    .auth-last-sync {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.25);
+      text-align: center;
+    }
+
+    /* Spinner */
+    @keyframes authSpin { to { transform: rotate(360deg); } }
+    .auth-spinner {
+      display: inline-block;
+      width: 16px; height: 16px;
+      border: 2px solid rgba(255,255,255,0.2);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: authSpin 0.7s linear infinite;
+      vertical-align: middle;
+      margin-right: 8px;
+    }
+
+    /* Sidebar auth button extras */
+    .side-btn-auth {
+      position: relative;
+    }
+    .side-auth-avatar-wrap {
+      position: relative;
+      width: 28px; height: 28px;
+      flex-shrink: 0;
+    }
+    .side-auth-avatar {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1px solid rgba(192,132,252,0.4);
+    }
+    .side-auth-status-dot {
+      position: absolute;
+      bottom: 0; right: 0;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: #6b7280;
+      border: 1.5px solid #0f0f1a;
+    }
+    .side-auth-status-dot.online { background: #4ade80; }
+  </style>
+
+  <!-- ── Auth Module Script ── -->
+  <script type="module">
+    import { initializeApp }     from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+    import { getAuth, signInWithPopup, signOut, GoogleAuthProvider, onAuthStateChanged }
+      from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+    /* ── Firebase config ────────────────────────────────────── */
+    const firebaseConfig = {
+      apiKey:            "AIzaSyBxPz3VVGUI_bAsrRxZBeUSIWoT8SU_mbM",
+      authDomain:        "plengerrng.firebaseapp.com",
+      projectId:         "plengerrng",
+      storageBucket:     "plengerrng.firebasestorage.app",
+      messagingSenderId: "304226883637",
+      appId:             "1:304226883637:web:abcd1d90ba217d8ec7b97c"
+    };
+
+    const app      = initializeApp(firebaseConfig);
+    const db       = getFirestore(app);
+    const auth     = getAuth(app);
+    const provider = new GoogleAuthProvider();
+
+    /* ── Helpers localStorage ───────────────────────────────── */
+    const getLS = (key, isJson = false, def = "") => {
+      const v = localStorage.getItem(key);
+      if (!v) return isJson ? (def ? JSON.parse(def) : null) : def;
+      if (isJson) { try { return JSON.parse(v); } catch { return v; } }
+      return v;
+    };
+
+    const setLS = (key, val) => {
+      if (val === undefined || val === null) return;
+      localStorage.setItem(key, typeof val === "object" ? JSON.stringify(val) : String(val));
+    };
+
+    /* ── Kumpulkan semua data lokal ─────────────────────────── */
+    function collectData() {
+      const d = {
+        username:            getLS("username", false, "Player"),
+        coins:               parseInt(getLS("coins") || "0"),
+        totalRolls:          parseInt(getLS("totalRolls") || "0"),
+        totalSold:           parseInt(getLS("totalSold") || "0"),
+        autoRollUnlocked:    getLS("autoRollUnlocked") === "true",
+        prfSettings:         getLS("prfSettings", true, "{}"),
+        rhg_profile:         getLS("rhg_profile", true, "{}"),
+        commonCount:         parseInt(getLS("commonCount") || "0"),
+        uncommonCount:       parseInt(getLS("uncommonCount") || "0"),
+        rareCount:           parseInt(getLS("rareCount") || "0"),
+        epicCount:           parseInt(getLS("epicCount") || "0"),
+        prismaticCount:      parseInt(getLS("prismaticCount") || "0"),
+        secretCount:         parseInt(getLS("secretCount") || "0"),
+        inventory:           getLS("inventory", true, "[]"),
+        potions:             getLS("potions", true, "{}"),
+        quests:              getLS("quests", true, "{}"),
+        achievements:        getLS("achievements", true, "[]"),
+        achievementsVersion: getLS("achievementsVersion", false, "1"),
+        dailyDay:            parseInt(getLS("dailyDay") || "1"),
+        lastDailyClaim:      getLS("lastDailyClaim"),
+        lastSynced:          Date.now()
+      };
+      for (let i = 0; i < localStorage.length; i++) {
+        const k = localStorage.key(i);
+        if (k && k.startsWith("counter_")) d[k] = parseInt(localStorage.getItem(k) || "0");
+      }
+      return d;
+    }
+
+    /* ── Terapkan data cloud ke localStorage ────────────────── */
+    function applyCloud(data) {
+      if (!data) return;
+      const keys = [
+        "username","coins","totalRolls","totalSold","autoRollUnlocked",
+        "prfSettings","rhg_profile","commonCount","uncommonCount","rareCount",
+        "epicCount","prismaticCount","secretCount","inventory","potions",
+        "quests","achievements","achievementsVersion","dailyDay","lastDailyClaim"
+      ];
+      keys.forEach(k => { if (data[k] !== undefined) setLS(k, data[k]); });
+      Object.keys(data).forEach(k => {
+        if (k.startsWith("counter_")) setLS(k, data[k]);
+      });
+    }
+
+    /* ── Upload data ke Firestore ───────────────────────────── */
+    async function saveToCloud() {
+      const user = auth.currentUser;
+      if (!user) return false;
+      try {
+        await setDoc(doc(db, "players", user.uid), collectData(), { merge: true });
+        return true;
+      } catch (e) {
+        console.error("[Auth] Gagal simpan cloud:", e);
+        return false;
+      }
+    }
+
+    /* ── UI helpers ─────────────────────────────────────────── */
+    function setStatus(msg, type = "") {
+      const el = document.getElementById("authStatus");
+      if (!el) return;
+      el.textContent = msg;
+      el.className   = "auth-status show " + type;
+    }
+
+    function clearStatus() {
+      const el = document.getElementById("authStatus");
+      if (el) el.className = "auth-status";
+    }
+
+    function updateLastSync(ts) {
+      const el = document.getElementById("authLastSync");
+      if (!el || !ts) return;
+      el.textContent = "Sync terakhir: " + new Date(ts).toLocaleString("id-ID");
+    }
+
+    function showLoggedInPanel(user) {
+      document.getElementById("authBody").style.display  = "none";
+      const panel = document.getElementById("authLoggedIn");
+      panel.classList.add("show");
+
+      const av   = document.getElementById("authUserAvatar");
+      const name = document.getElementById("authUserName");
+      const mail = document.getElementById("authUserEmail");
+      if (av   && user.photoURL)     av.src         = user.photoURL;
+      if (name && user.displayName)  name.textContent = user.displayName;
+      if (mail && user.email)        mail.textContent = user.email;
+
+      /* Update sidebar */
+      const sideAv  = document.getElementById("sideAuthAvatarImg");
+      const sideLbl = document.getElementById("sideAuthLabel");
+      const sideDot = document.getElementById("sideAuthDot");
+      if (sideAv  && user.photoURL)    sideAv.src          = user.photoURL;
+      if (sideLbl && user.displayName) sideLbl.textContent  = user.displayName.split(" ")[0];
+      if (sideDot) sideDot.classList.add("online");
+    }
+
+    function showGuestPanel() {
+      document.getElementById("authBody").style.display = "flex";
+      const panel = document.getElementById("authLoggedIn");
+      panel.classList.remove("show");
+
+      /* Reset sidebar */
+      const sideAv  = document.getElementById("sideAuthAvatarImg");
+      const sideLbl = document.getElementById("sideAuthLabel");
+      const sideDot = document.getElementById("sideAuthDot");
+      if (sideAv)  sideAv.src          = "ui/user.png";
+      if (sideLbl) sideLbl.textContent  = "Login";
+      if (sideDot) sideDot.classList.remove("online");
+    }
+
+    /* ── Buka / tutup popup ─────────────────────────────────── */
+    window.openAuthPopup = function () {
+      clearStatus();
+      document.getElementById("authOverlay")?.classList.add("show");
+    };
+    window.closeAuthPopup = function () {
+      document.getElementById("authOverlay")?.classList.remove("show");
+    };
+
+    /* ── Google Login ───────────────────────────────────────── */
+    window.authDoGoogleLogin = async function () {
+      const btn = document.getElementById("authGoogleBtn");
+      const lbl = document.getElementById("authGoogleBtnLabel");
+      if (btn) btn.disabled = true;
+      if (lbl) lbl.innerHTML = '<span class="auth-spinner"></span>Menghubungkan…';
+      setStatus("Membuka popup Google…", "loading");
+
+      try {
+        await signInWithPopup(auth, provider);
+        /* onAuthStateChanged akan handle sisanya */
+      } catch (err) {
+        let msg = "Login gagal. Coba lagi.";
+        if (err.code === "auth/popup-closed-by-user")   msg = "Popup ditutup. Coba lagi.";
+        if (err.code === "auth/network-request-failed") msg = "Tidak ada koneksi internet.";
+        setStatus(msg, "");
+        if (btn) { btn.disabled = false; }
+        if (lbl) lbl.textContent = "Masuk dengan Google";
+      }
+    };
+
+    /* ── Logout ─────────────────────────────────────────────── */
+    window.authDoLogout = async function () {
+      await signOut(auth);
+      showGuestPanel();
+      setStatus("Kamu telah keluar.", "");
+    };
+
+    /* ── Manual sync ────────────────────────────────────────── */
+    window.authManualSync = async function () {
+      const btn = document.querySelector(".auth-sync-btn");
+      if (btn) { btn.disabled = true; btn.textContent = "Menyimpan…"; }
+      const ok = await saveToCloud();
+      if (btn) {
+        btn.disabled = false;
+        btn.textContent = ok ? "✅ Tersimpan!" : "❌ Gagal";
+        setTimeout(() => { btn.textContent = "☁️ Simpan ke Cloud"; }, 2500);
+      }
+      if (ok) updateLastSync(Date.now());
+    };
+
+    /* ── Auth state listener (inti utama) ───────────────────── */
+    onAuthStateChanged(auth, async (user) => {
+      const btn = document.getElementById("authGoogleBtn");
+      const lbl = document.getElementById("authGoogleBtnLabel");
+
+      if (user) {
+        /* Ada user login — cek data di Firestore */
+        const snap = await getDoc(doc(db, "players", user.uid));
+
+        if (snap.exists()) {
+          /* Player lama: terapkan data cloud ke localStorage */
+          applyCloud(snap.data());
+          updateLastSync(snap.data().lastSynced);
+          setStatus("Data cloud dimuat! ☁️", "success");
+
+          /* Jika game sudah jalan, reload state UI tanpa reload halaman */
+          if (typeof loadCoins === "function")          loadCoins();
+          if (typeof updateGameplayProfileUI === "function") updateGameplayProfileUI();
+
+        } else {
+          /* Player baru: upload data lokal ke cloud */
+          await saveToCloud();
+          setStatus("Akun baru terdaftar! Data lokal diupload. 🎉", "success");
+        }
+
+        showLoggedInPanel(user);
+        if (btn) { btn.disabled = false; }
+        if (lbl) lbl.textContent = "Masuk dengan Google";
+
+        /* Tutup popup otomatis setelah 1.2 detik jika sedang terbuka */
+        setTimeout(() => {
+          if (document.getElementById("authOverlay")?.classList.contains("show")) {
+            closeAuthPopup();
+          }
+        }, 1200);
+
+        /* Auto-sync tiap 3 menit */
+        clearInterval(window._authSyncInterval);
+        window._authSyncInterval = setInterval(saveToCloud, 3 * 60 * 1000);
+
+      } else {
+        showGuestPanel();
+        clearInterval(window._authSyncInterval);
+      }
+    });
+
+    /* ── Auto-sync saat tab ditutup ─────────────────────────── */
+    window.addEventListener("beforeunload", () => {
+      if (auth.currentUser) saveToCloud();
+    });
+  </script>
+
 </body>
 
 </html>
