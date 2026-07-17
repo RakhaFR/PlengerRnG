@@ -2,7 +2,7 @@
        * ======= KONFIGURASI =======
        *******************************/
 
-      const CURRENT_UPDATE_VERSION = "2.0";
+      const CURRENT_UPDATE_VERSION = "2.1";
 
       // Rarity & tampilannya
       const RARITIES = [
@@ -3694,6 +3694,14 @@ const isRefundEligible = autoRollUnlocked
 
       // ========= UPDATE LOG DATA =========
       const UPDATE_LOGS = [
+        {
+          version: "MIGRATION UPDATE 2.1",
+          image: "ui/UPDATE-MIGRATION.jpg",
+          notes: [
+            "☁️ NEW: Cloud Save Integration! Amankan data gacha kamu dengan Google Login!",
+            "🚀 Web migrated to Vercel for better & faster performance!",
+          ],
+        },
         {
           version: "MAJOR-UPD-2.0",
           image: "ui/update-2.0.jpg",
