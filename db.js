@@ -49,14 +49,12 @@ export function applyCloudDataToLocalStorage(data) {
   const keys = [
     "username", "coins", "totalRolls", "totalSold", "autoRollUnlocked",
     "prfSettings", "rhg_profile",
-    "cosmeticUnlocks",    // ← frame & banner unlocks
+    "cosmeticUnlocks",
     "commonCount", "uncommonCount", "rareCount", "epicCount",
-    "legendaryCount",     // ← legend
-    "mythicalCount",      // ← mythical
-    "prismaticCount", "secretCount",
-    "editsCount",         // ← EdiTz
+    "legendaryCount", "mythicalCount",
+    "prismaticCount", "secretCount", "editsCount",
     "inventory", "potions",
-    "activeEffects",      // ← potion timers
+    "activeEffects",
     "quests", "achievements", "achievementsVersion",
     "dailyDay", "lastDailyClaim",
     "googlePhotoURL"
@@ -64,7 +62,6 @@ export function applyCloudDataToLocalStorage(data) {
 
   keys.forEach(k => setLS(k, data[k]));
 
-  // counter_ custom items
   Object.keys(data).forEach(key => {
     if (key.startsWith("counter_")) setLS(key, data[key]);
   });
@@ -83,32 +80,50 @@ export async function saveDataToFirebase() {
 
   try {
     const playerData = {
-      username: getLS("username", false, "Player"),
-      coins: parseInt(getLS("coins") || "0"),
-      totalRolls: parseInt(getLS("totalRolls") || "0"),
-      totalSold: parseInt(getLS("totalSold") || "0"),
-      autoRollUnlocked: getLS("autoRollUnlocked") === "true",
-      prfSettings: getLS("prfSettings", true, "{}"),
-      rhg_profile: getLS("rhg_profile", true, "{}"),
-      commonCount: parseInt(getLS("commonCount") || "0"),
-      uncommonCount: parseInt(getLS("uncommonCount") || "0"),
-      rareCount: parseInt(getLS("rareCount") || "0"),
-      epicCount: parseInt(getLS("epicCount") || "0"),
-      prismaticCount: parseInt(getLS("prismaticCount") || "0"),
-      secretCount: parseInt(getLS("secretCount") || "0"),
-      inventory: getLS("inventory", true, "[]"),
-      potions: getLS("potions", true, "{}"),
-      quests: getLS("quests", true, "{}"),
-      achievements: getLS("achievements", true, "[]"),
+      username:            getLS("username", false, "Player"),
+      coins:               parseInt(getLS("coins") || "0"),
+      totalRolls:          parseInt(getLS("totalRolls") || "0"),
+      totalSold:           parseInt(getLS("totalSold") || "0"),
+      autoRollUnlocked:    getLS("autoRollUnlocked") === "true",
+
+      // Kosmetik & Settings
+      prfSettings:         getLS("prfSettings", true, "{}"),
+      rhg_profile:         getLS("rhg_profile", true, "{}"),
+      cosmeticUnlocks:     getLS("cosmeticUnlocks", true, "{}"),   // ← frame & banner
+
+      // Rarity counters
+      commonCount:         parseInt(getLS("commonCount") || "0"),
+      uncommonCount:       parseInt(getLS("uncommonCount") || "0"),
+      rareCount:           parseInt(getLS("rareCount") || "0"),
+      epicCount:           parseInt(getLS("epicCount") || "0"),
+      legendaryCount:      parseInt(getLS("legendaryCount") || "0"), // ← legend
+      mythicalCount:       parseInt(getLS("mythicalCount") || "0"),  // ← mythical
+      prismaticCount:      parseInt(getLS("prismaticCount") || "0"),
+      secretCount:         parseInt(getLS("secretCount") || "0"),
+      editsCount:          parseInt(getLS("editsCount") || "0"),     // ← EdiTz
+
+      // Item & Progress
+      inventory:           getLS("inventory", true, "[]"),
+      potions:             getLS("potions", true, "{}"),
+      activeEffects:       getLS("activeEffects", true, "{}"),      // ← potion timers
+
+      // Quest & Achievement
+      quests:              getLS("quests", true, "{}"),
+      achievements:        getLS("achievements", true, "[]"),
       achievementsVersion: getLS("achievementsVersion", false, "1"),
-      dailyDay: parseInt(getLS("dailyDay") || "1"),
-      lastDailyClaim: getLS("lastDailyClaim"),
-      lastSynced: Date.now()
+
+      // Daily reward
+      dailyDay:            parseInt(getLS("dailyDay") || "1"),
+      lastDailyClaim:      getLS("lastDailyClaim"),
+
+      lastSynced:          Date.now()
     };
 
     for (let i = 0; i < localStorage.length; i++) {
       const key = localStorage.key(i);
-      if (key && key.startsWith("counter_")) playerData[key] = parseInt(localStorage.getItem(key) || "0");
+      if (key && key.startsWith("counter_")) {
+        playerData[key] = parseInt(localStorage.getItem(key) || "0");
+      }
     }
 
     await setDoc(doc(db, "players", user.uid), playerData, { merge: true });

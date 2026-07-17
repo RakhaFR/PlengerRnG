@@ -4654,6 +4654,52 @@ function prfSaveSettings(s) {
   localStorage.setItem("prfSettings", JSON.stringify(s));
 }
 
+/* ── Cloud Account Section di Identity tab ── */
+function prfRenderCloudSection() {
+  const section = document.getElementById("prfCloudSection");
+  if (!section) return;
+
+  const user = window._authDB?.getCurrentUser?.();
+
+  if (user) {
+    section.innerHTML = `
+      <div class="prf-cloud-box prf-cloud-logged-in">
+        <div class="prf-cloud-user-row">
+          <img src="${user.photoURL || 'ui/user.png'}" class="prf-cloud-avatar" alt="avatar"
+               onerror="this.src='ui/user.png'">
+          <div class="prf-cloud-info">
+            <div class="prf-cloud-name">${user.displayName || '—'}</div>
+            <div class="prf-cloud-email">${user.email || '—'}</div>
+          </div>
+        </div>
+        <div class="prf-cloud-status">
+          ✅ Terhubung · Progress disimpan otomatis setiap 2 menit
+        </div>
+        <button class="prf-danger-btn" onclick="authDoLogout(); closeProfile();"
+                style="width:100%; margin-top:6px">
+          Keluar dari Akun Google
+        </button>
+      </div>
+    `;
+  } else {
+    section.innerHTML = `
+      <div class="prf-cloud-box prf-cloud-guest">
+        <div class="prf-cloud-status prf-cloud-status-warn">
+          ⚠️ Belum login — progress hanya tersimpan lokal di browser ini
+        </div>
+        <button class="prf-save-btn" id="prfCloudLoginBtn"
+                onclick="authDoGoogleLogin()"
+                style="width:100%; margin-top:10px; padding:10px; font-size:8px">
+          🔑 Login dengan Google
+        </button>
+        <div class="prf-cloud-note">
+          Login Google → progress tersimpan di cloud & bisa dibuka dari HP / PC manapun
+        </div>
+      </div>
+    `;
+  }
+}
+
 function openProfile() {
   prfRenderIdentity();
   prfRenderStats();
@@ -4679,6 +4725,8 @@ function prfSwitchTab(btn) {
 
 /* ── Identity ── */
 function prfRenderIdentity() {
+  prfRenderCloudSection(); // ← render cloud section setiap kali identity dibuka
+
   const name = localStorage.getItem("username") || "Guest";
   const s = prfGetSettings();
 
