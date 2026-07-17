@@ -56,72 +56,71 @@ export function checkAuthStatus(onDataLoaded, onNotLoggedIn) {
 // 5. Fungsi untuk menyimpan data game ke Firebase
 export async function saveDataToFirebase() {
   const user = auth.currentUser;
-  if (!user) return;
+  if (!user) return false;
 
   const userDocRef = doc(db, "players", user.uid);
 
-  // Helper untuk mengambil data local storage dengan aman
   const getLocalData = (key, isJson = false, defaultValue = "") => {
     const val = localStorage.getItem(key);
     if (!val) return isJson ? (defaultValue ? JSON.parse(defaultValue) : null) : defaultValue;
     if (isJson) {
-      try {
-        return JSON.parse(val);
-      } catch (e) {
-        return val; // Jika gagal parse (misal string biasa), kembalikan string-nya
-      }
+      try { return JSON.parse(val); } catch (e) { return val; }
     }
     return val;
   };
 
   try {
-    // Kumpulkan semua data game lu ke dalam satu objek raksasa
     const playerData = {
-      username: getLocalData("username", false, "Player"),
-      coins: parseInt(getLocalData("coins") || "0"),
-      totalRolls: parseInt(getLocalData("totalRolls") || "0"),
-      totalSold: parseInt(getLocalData("totalSold") || "0"),
-      autoRollUnlocked: getLocalData("autoRollUnlocked") === "true",
-      
-      // Data Kosmetik & Settings
-      prfSettings: getLocalData("prfSettings", true, "{}"),
-      rhg_profile: getLocalData("rhg_profile", true, "{}"),
-      
-      // Data Count Rarity
-      commonCount: parseInt(getLocalData("commonCount") || "0"),
-      uncommonCount: parseInt(getLocalData("uncommonCount") || "0"),
-      rareCount: parseInt(getLocalData("rareCount") || "0"),
-      epicCount: parseInt(getLocalData("epicCount") || "0"),
-      prismaticCount: parseInt(getLocalData("prismaticCount") || "0"),
-      secretCount: parseInt(getLocalData("secretCount") || "0"),
-      
-      // Data Item & Progress (Disimpan dalam bentuk Array/Object murni di Firestore)
-      inventory: getLocalData("inventory", true, "[]"),
-      potions: getLocalData("potions", true, "{}"),
-      quests: getLocalData("quests", true, "{}"),
-      achievements: getLocalData("achievements", true, "[]"),
-      achievementsVersion: getLocalData("achievementsVersion", false, "1"),
-      
-      // Track login harian
-      dailyDay: parseInt(getLocalData("dailyDay") || "1"),
-      lastDailyClaim: getLocalData("lastDailyClaim"),
+      username:            getLocalData("username", false, "Player"),
+      coins:               parseInt(getLocalData("coins") || "0"),
+      totalRolls:          parseInt(getLocalData("totalRolls") || "0"),
+      totalSold:           parseInt(getLocalData("totalSold") || "0"),
+      autoRollUnlocked:    getLocalData("autoRollUnlocked") === "true",
 
-      // Timestamp sinkronisasi terakhir
-      lastSynced: Date.now()
+      // Kosmetik & Settings
+      prfSettings:         getLocalData("prfSettings", true, "{}"),
+      rhg_profile:         getLocalData("rhg_profile", true, "{}"),
+      cosmeticUnlocks:     getLocalData("cosmeticUnlocks", true, "{}"),  // ← frame & banner unlocks
+
+      // Rarity counters
+      commonCount:         parseInt(getLocalData("commonCount") || "0"),
+      uncommonCount:       parseInt(getLocalData("uncommonCount") || "0"),
+      rareCount:           parseInt(getLocalData("rareCount") || "0"),
+      epicCount:           parseInt(getLocalData("epicCount") || "0"),
+      legendaryCount:      parseInt(getLocalData("legendaryCount") || "0"),  // ← legend
+      mythicalCount:       parseInt(getLocalData("mythicalCount") || "0"),   // ← mythical
+      prismaticCount:      parseInt(getLocalData("prismaticCount") || "0"),
+      secretCount:         parseInt(getLocalData("secretCount") || "0"),
+      editsCount:          parseInt(getLocalData("editsCount") || "0"),      // ← EdiTz
+
+      // Item & Progress
+      inventory:           getLocalData("inventory", true, "[]"),
+      potions:             getLocalData("potions", true, "{}"),
+      activeEffects:       getLocalData("activeEffects", true, "{}"),        // ← potion timers
+      quests:              getLocalData("quests", true, "{}"),
+      achievements:        getLocalData("achievements", true, "[]"),
+      achievementsVersion: getLocalData("achievementsVersion", false, "1"),
+
+      // Daily reward
+      dailyDay:            parseInt(getLocalData("dailyDay") || "1"),
+      lastDailyClaim:      getLocalData("lastDailyClaim"),
+
+      lastSynced:          Date.now()
     };
 
-    // Cari juga jika ada data counter_ kustom di localStorage
+    // counter_ custom items
     for (let i = 0; i < localStorage.length; i++) {
       const key = localStorage.key(i);
-      if (key.startsWith("counter_")) {
+      if (key && key.startsWith("counter_")) {
         playerData[key] = parseInt(localStorage.getItem(key) || "0");
       }
     }
 
-    // Kirim data utuh ke Firestore
     await setDoc(userDocRef, playerData, { merge: true });
-    console.log("Semua data progress Plenger RnG berhasil disinkronkan ke Cloud!");
+    console.log("✅ Data berhasil disinkronkan ke Cloud!");
+    return true;
   } catch (error) {
     console.error("Gagal menyimpan data ke cloud:", error);
+    return false;
   }
 }
