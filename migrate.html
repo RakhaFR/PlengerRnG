@@ -755,7 +755,14 @@ window.startMigration = async function () {
     setStatus(`✅ Login berhasil sebagai: ${user.displayName || user.email}`, "success");
     setProgress(40, "Login berhasil, mengumpulkan data…");
 
-    const playerData = sanitizeForFirestore(collectLocalData(user));
+    const rawData = collectLocalData(user);
+    // Debug: log rhg_profile asli sebelum sanitize
+    const errBox2 = document.getElementById("debugErrorBox");
+    if (errBox2) {
+      errBox2.textContent = "rhg_profile raw: " + JSON.stringify(rawData.rhg_profile);
+      errBox2.style.display = "block";
+    }
+    const playerData = sanitizeForFirestore(rawData);
     setProgress(65, "Mengupload data ke cloud Firebase…");
     markStep(3);
 
@@ -793,6 +800,14 @@ window.startMigration = async function () {
     if (err.code === "auth/unauthorized-domain")    msg = "Domain belum didaftarkan di Firebase.";
     if (err.message) msg = err.message;
 
+    // Tampilkan detail error di layar untuk user HP yang tidak bisa buka console
+    const errDetail = [
+      "code: " + (err.code || "-"),
+      "msg: " + (err.message || "-"),
+    ].join("\n");
+    const errBox = document.getElementById("debugErrorBox");
+    if (errBox) { errBox.textContent = errDetail; errBox.style.display = "block"; }
+
     setStatus("❌ " + msg, "error");
     document.getElementById("progressWrap").classList.remove("show");
 
@@ -811,6 +826,15 @@ window.startMigration = async function () {
     // ── Init: tampilkan data summary ──────────────────────────────
     showDataSummary();
   </script>
+
+  <!-- DEBUG ERROR BOX — tampil saat error, untuk user HP -->
+  <div id="debugErrorBox" style="
+    display:none; margin:16px; padding:14px;
+    background:#1a0a0a; border:1px solid #ff4444;
+    color:#ff9999; font-family:monospace; font-size:11px;
+    line-height:1.7; white-space:pre-wrap; word-break:break-all;
+    border-radius:8px;
+  "></div>
 
 </body>
 
