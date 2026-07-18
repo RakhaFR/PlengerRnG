@@ -149,6 +149,12 @@ export async function saveDataToFirebase() {
       }
     }
 
+    // Strip base64 avatar dari rhg_profile — terlalu besar untuk Firestore
+    if (playerData.rhg_profile && typeof playerData.rhg_profile === "object") {
+      if (playerData.rhg_profile.identity) delete playerData.rhg_profile.identity.avatar;
+      delete playerData.rhg_profile.avatar;
+    }
+
     await setDoc(doc(db, "players", user.uid), sanitizeForFirestore(playerData), { merge: true });
     return true;
   } catch (error) {
